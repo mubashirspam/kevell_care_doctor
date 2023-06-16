@@ -14,6 +14,8 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
   final Color? backround;
   final Color? inputFiled;
 
+  final Color? textPrimary;
+
   // button
 
   final Color? buttonBackroundEnable;
@@ -29,6 +31,7 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
     this.secondary,
     this.backround,
     this.inputFiled,
+    this.textPrimary,
 
     // button
     this.buttonBackroundEnable,
@@ -44,6 +47,8 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
     secondary: MainConfigColorsLightThem.secondary,
     backround: MainConfigColorsLightThem.backround,
     inputFiled: MainConfigColorsLightThem.inputFiled,
+
+    textPrimary: MainConfigColorsDarkThem.textPrimary,
 
     // button
 
@@ -71,6 +76,8 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
     buttonForgroundEnable: MainConfigColorsDarkThem.primary,
     buttonForgroundDisable: MainConfigColorsDarkThem.primary,
     buttonForgroundPressed: MainConfigColorsDarkThem.primary,
+
+    textPrimary: MainConfigColorsDarkThem.textPrimary,
   );
 
   @override
@@ -79,6 +86,7 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
     Color? secondary,
     Color? backround,
     Color? inputFiled,
+    Color? textPrimary,
 
     // button
 
@@ -94,6 +102,8 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
       secondary: secondary ?? this.secondary,
       backround: backround ?? this.backround,
       inputFiled: inputFiled ?? this.inputFiled,
+
+      textPrimary: textPrimary ?? this.textPrimary,
 
       // button
 
@@ -122,6 +132,8 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
       secondary: Color.lerp(secondary, other.secondary, t),
       backround: Color.lerp(backround, other.backround, t),
       inputFiled: Color.lerp(inputFiled, other.inputFiled, t),
+
+      textPrimary: Color.lerp(textPrimary, other.textPrimary, t),
 
       // button
 

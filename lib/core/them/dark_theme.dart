@@ -38,5 +38,11 @@ ThemeData darkTheme() {
       unselectedLabelColor: MainConfigColorsDarkThem.backround,
       labelColor: MainConfigColorsDarkThem.backround,
     ),
+    textTheme:const TextTheme(
+      displayLarge: TextStyle(
+        fontSize: 16,
+        color: MainConfigColorsDarkThem.primary
+      )
+    )
   );
 }

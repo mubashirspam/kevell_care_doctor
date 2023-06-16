@@ -14,7 +14,15 @@ class MainConfigColorsLightThem {
   static const Color backround = Color(0xFFFFFFFF);
   static const Color inputFiled = Color(0xFFEFEFEF);
   static const Color canvas = Color(0xFFEEB14B);
+
+
+
+    static const Color textPrimary = Color(0xFF1E1F20);
+    
+
 }
+
+
 
 class MainConfigColorsDarkThem {
   MainConfigColorsDarkThem._();
@@ -30,4 +38,9 @@ class MainConfigColorsDarkThem {
   static const Color backround = Color(0xFFFFFFFF);
   static const Color inputFiled = Color(0xFFEFEFEF);
   static const Color canvas = Color(0xFFEEB14B);
+
+
+   static const Color textPrimary = Color(0xFF1E1F20);
+
+   
 }

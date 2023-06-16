@@ -36,7 +36,7 @@ class SignupScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 20, top: 20),
                 child: GestureDetector(
-                  onTap: () => context.go('/'),
+                  onTap: () => context.go('/login'),
                   child: RichText(
                     text: TextSpan(
                       style: const TextStyle(color: Colors.black, fontSize: 16),

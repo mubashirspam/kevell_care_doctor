@@ -4,14 +4,12 @@ import 'package:kevell_care_dr/configure/color/maian_color.dart';
 
 import 'custom_theme_extension.dart';
 
-
 ThemeData lightTheme() {
   final ThemeData base = ThemeData.light();
   return base.copyWith(
     colorScheme: const ColorScheme.light(
       background: MainConfigColorsLightThem.backround,
     ),
-
     scaffoldBackgroundColor: MainConfigColorsLightThem.backround,
     extensions: [CustomThemeExtension.lightMode],
     appBarTheme: const AppBarTheme(
@@ -44,6 +42,22 @@ ThemeData lightTheme() {
         splashFactory: NoSplash.splashFactory,
         elevation: 0,
         shadowColor: Colors.transparent,
+      ),
+    ),
+    textTheme: const TextTheme(
+      displayLarge: TextStyle(
+        fontSize: 16,
+        color: MainConfigColorsLightThem.textPrimary,
+      ),
+      headlineLarge: TextStyle(
+        fontSize: 24,
+        color: MainConfigColorsLightThem.textPrimary,
+        fontWeight: FontWeight.w600
+      ),
+      titleMedium: TextStyle(
+        fontSize: 14,
+        color: MainConfigColorsLightThem.textPrimary,
+        fontWeight: FontWeight.w600
       ),
     ),
   );
