@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kevell_care_dr/configure/color/maian_color.dart';
+import 'package:kevell_care_dr/configure/color/main_color.dart';
 
 import 'custom_theme_extension.dart';
 
@@ -50,15 +50,13 @@ ThemeData lightTheme() {
         color: MainConfigColorsLightThem.textPrimary,
       ),
       headlineLarge: TextStyle(
-        fontSize: 24,
-        color: MainConfigColorsLightThem.textPrimary,
-        fontWeight: FontWeight.w600
-      ),
+          fontSize: 24,
+          color: MainConfigColorsLightThem.textPrimary,
+          fontWeight: FontWeight.w600),
       titleMedium: TextStyle(
-        fontSize: 14,
-        color: MainConfigColorsLightThem.textPrimary,
-        fontWeight: FontWeight.w600
-      ),
+          fontSize: 14,
+          color: MainConfigColorsLightThem.textPrimary,
+          fontWeight: FontWeight.w600),
     ),
   );
 }

@@ -35,6 +35,7 @@ class MainConfigColorsDarkThem {
   static const Color warning = Color(0xFFE3DEF9);
   static const Color info = Color(0xFFFFFFFF);
 
+  // static const Color backround = Color(0xFFFFFFFF);
   static const Color backround = Color(0xFFFFFFFF);
   static const Color inputFiled = Color(0xFFEFEFEF);
   static const Color canvas = Color(0xFFEEB14B);
@@ -42,5 +43,6 @@ class MainConfigColorsDarkThem {
 
    static const Color textPrimary = Color(0xFF1E1F20);
 
+   
    
 }

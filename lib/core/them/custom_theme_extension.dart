@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../configure/color/maian_color.dart';
+import '../../configure/color/main_color.dart';
 
 extension ExtendedTheme on BuildContext {
   CustomThemeExtension get theme {

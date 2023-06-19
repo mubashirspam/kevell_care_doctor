@@ -7,7 +7,8 @@ class ScheduleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      color: Colors.white,
       width: double.maxFinite,
       height: double.maxFinite,
       child: Padding(

@@ -4,11 +4,10 @@ import 'package:go_router/go_router.dart';
 import 'package:kevell_care_dr/configure/assets_manage/icons.dart';
 import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
 
-
 class Dashboard extends StatefulWidget {
   final Widget child;
-    final List<PreferredSizeWidget?> appBar;
-  const Dashboard({super.key, required this.child ,required this.appBar});
+  final List<PreferredSizeWidget?> appBar;
+  const Dashboard({super.key, required this.child, required this.appBar});
 
   @override
   State<Dashboard> createState() => _DashboardState();
@@ -35,18 +34,29 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: widget.appBar[_currentIndex],
-      body: widget.child,
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: context.theme.backround,
-        elevation: 2,
-        selectedItemColor: context.theme.primary,
-        unselectedItemColor: context.theme.backround,
-        items: tabs,
-        currentIndex: _currentIndex,
-        onTap: (index) => _onItemTapped(context, index),
-      ),
-    );
+        appBar: widget.appBar[_currentIndex],
+        body: widget.child,
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: context.theme.backround,
+          elevation: 2,
+          selectedItemColor: context.theme.primary,
+          unselectedItemColor: context.theme.backround,
+          items: tabs,
+          currentIndex: _currentIndex,
+          onTap: (index) => _onItemTapped(context, index),
+        ),
+        floatingActionButton: _currentIndex == 1
+            ? FloatingActionButton(
+                backgroundColor: context.theme.primary,
+                onPressed: () {
+                  context.go ("/schedule_your_time");
+                },
+                child: Icon(
+                  Icons.calendar_month,
+                  color: context.theme.backround,
+                ),
+              )
+            : null);
   }
 }
 

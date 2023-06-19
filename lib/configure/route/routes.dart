@@ -7,6 +7,7 @@ import '../../pages/home_screen/presentation/home_scrre.dart';
 import '../../pages/login_scrren/presentation/login_screen.dart';
 import '../../pages/patient_chekup_screen/presentation/patient_checkup_screen.dart';
 import '../../pages/schedule/presentation/schedule_screen.dart';
+import '../../pages/schedule/presentation/schedule_your_time.dart';
 import '../../pages/signup_screen/presentation/lsignup_screen.dart';
 
 // This route hierarchy can be represented like this:
@@ -23,8 +24,8 @@ final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
 class MianRoute {
   static final router = GoRouter(
-    // initialLocation: '/home',
     initialLocation: '/home',
+    // initialLocation: '/schedule_your_time',
     navigatorKey: _rootNavigatorKey,
     routes: <RouteBase>[
       ShellRoute(
@@ -56,6 +57,10 @@ class MianRoute {
             GoRoute(
                 path: '/profile',
                 builder: (context, state) => const SignupScreen()),
+// hhhhhhhhhhh
+              
+
+
           ]),
       GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
       GoRoute(
@@ -63,6 +68,12 @@ class MianRoute {
           builder: (context, state) => const PatientCheckupScreen()),
       GoRoute(
           path: '/signup', builder: (context, state) => const SignupScreen()),
+
+            GoRoute(
+                name: "schedule_your_time",
+                path: '/schedule_your_time',
+                builder: (context, state) => const ScheduleYourTime()),
     ],
   );
 }
+
