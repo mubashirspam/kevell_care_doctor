@@ -50,13 +50,30 @@ ThemeData lightTheme() {
         color: MainConfigColorsLightThem.textPrimary,
       ),
       headlineLarge: TextStyle(
-          fontSize: 24,
-          color: MainConfigColorsLightThem.textPrimary,
-          fontWeight: FontWeight.w600),
-      titleMedium: TextStyle(
+        fontSize: 28,
+        color: MainConfigColorsLightThem.textPrimary,
+        fontWeight: FontWeight.bold,
+      ),
+       headlineMedium: TextStyle(
+        fontSize: 18,
+        color: MainConfigColorsLightThem.textPrimary,
+        fontWeight: FontWeight.bold,
+      ),
+       headlineSmall: TextStyle(
+        fontSize: 14,
+        color: MainConfigColorsLightThem.textPrimary,
+        fontWeight: FontWeight.bold,
+      ),
+      titleLarge: TextStyle(
           fontSize: 14,
-          color: MainConfigColorsLightThem.textPrimary,
-          fontWeight: FontWeight.w600),
+          color: MainConfigColorsLightThem.textSecondary,
+          fontWeight: FontWeight.bold),
+           titleMedium: TextStyle(
+          fontSize: 14,
+          color: MainConfigColorsLightThem.textSecondary,
+          fontWeight: FontWeight.normal),
+       
     ),
+    
   );
 }

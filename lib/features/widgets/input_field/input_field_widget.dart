@@ -26,10 +26,10 @@ class TextFieldWidget extends StatelessWidget {
     required this.hintText,
     required this.keyboardType,
     this.textEditingController,
-    required this.onChanged,
-    required this.onSaved,
+    this.onChanged,
+    this.onSaved,
     required this.validate,
-    required this.labelText,
+    this.labelText,
     this.obscureText,
     this.suffixIcon,
     this.prefix,
@@ -46,8 +46,9 @@ class TextFieldWidget extends StatelessWidget {
           Expanded(
             child: TextFormField(
               initialValue: initialValue,
-              style: const TextStyle(
-                  // color: AppColor.textPrimeryLight,
+
+              style: TextStyle(
+                  color: context.theme.textPrimary,
                   fontWeight: FontWeight.normal,
                   fontSize: 14),
               obscureText: obscureText ?? false,
@@ -57,11 +58,13 @@ class TextFieldWidget extends StatelessWidget {
               // cursorColor: ,
               keyboardType: keyboardType,
               decoration: InputDecoration(
+                hintText: hintText,
+                hintStyle: TextStyle(color: context.theme.textGrey),
                 contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                 labelText: labelText,
-                labelStyle: const TextStyle(
-                    color: Color(0xff8F8F8F),
+                labelStyle: TextStyle(
+                    color: context.theme.textPrimary,
                     fontWeight: FontWeight.normal,
                     fontSize: 12),
                 prefix: prefix,
@@ -72,19 +75,19 @@ class TextFieldWidget extends StatelessWidget {
                 fillColor: context.theme.inputFiled,
                 enabled: true,
                 enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide.none),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 errorBorder: OutlineInputBorder(
                   borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 // hintText: hintText,
               ),

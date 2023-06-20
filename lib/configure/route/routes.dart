@@ -24,7 +24,7 @@ final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
 class MianRoute {
   static final router = GoRouter(
-    initialLocation: '/home',
+    initialLocation: '/login',
     // initialLocation: '/schedule_your_time',
     navigatorKey: _rootNavigatorKey,
     routes: <RouteBase>[

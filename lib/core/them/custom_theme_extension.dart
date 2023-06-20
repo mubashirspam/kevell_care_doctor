@@ -15,6 +15,8 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
   final Color? inputFiled;
 
   final Color? textPrimary;
+  final Color? textSecondary;
+  final Color? textGrey;
 
   // button
 
@@ -31,7 +33,6 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
     this.secondary,
     this.backround,
     this.inputFiled,
-    this.textPrimary,
 
     // button
     this.buttonBackroundEnable,
@@ -40,6 +41,12 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
     this.buttonForgroundEnable,
     this.buttonForgroundDisable,
     this.buttonForgroundPressed,
+
+    // text
+
+    this.textPrimary,
+    this.textGrey,
+    this.textSecondary,
   });
 
   static const lightMode = CustomThemeExtension(
@@ -48,17 +55,20 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
     backround: MainConfigColorsLightThem.backround,
     inputFiled: MainConfigColorsLightThem.inputFiled,
 
+//text
     textPrimary: MainConfigColorsDarkThem.textPrimary,
+    textGrey: MainConfigColorsDarkThem.textGrey,
+    textSecondary: MainConfigColorsDarkThem.textSecondary,
 
     // button
 
     buttonBackroundEnable: MainConfigColorsLightThem.primary,
-    buttonBackroundDisable: MainConfigColorsLightThem.primary,
-    buttonBackroundPressed: MainConfigColorsLightThem.primary,
+    buttonBackroundDisable: MainConfigColorsLightThem.secondary,
+    buttonBackroundPressed: MainConfigColorsLightThem.secondary,
 
-    buttonForgroundEnable: MainConfigColorsLightThem.primary,
-    buttonForgroundDisable: MainConfigColorsLightThem.primary,
-    buttonForgroundPressed: MainConfigColorsLightThem.primary,
+    buttonForgroundEnable: MainConfigColorsLightThem.textWhite,
+    buttonForgroundDisable: MainConfigColorsLightThem.textThemePrimary,
+    buttonForgroundPressed: MainConfigColorsLightThem.textThemePrimary,
   );
 
   static const darkMode = CustomThemeExtension(
@@ -70,14 +80,16 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
     // button
 
     buttonBackroundEnable: MainConfigColorsDarkThem.primary,
-    buttonBackroundDisable: MainConfigColorsDarkThem.primary,
-    buttonBackroundPressed: MainConfigColorsDarkThem.primary,
+    buttonBackroundDisable: MainConfigColorsDarkThem.secondary,
+    buttonBackroundPressed: MainConfigColorsDarkThem.secondary,
 
-    buttonForgroundEnable: MainConfigColorsDarkThem.primary,
-    buttonForgroundDisable: MainConfigColorsDarkThem.primary,
-    buttonForgroundPressed: MainConfigColorsDarkThem.primary,
+    buttonForgroundEnable: MainConfigColorsDarkThem.textWhite,
+    buttonForgroundDisable: MainConfigColorsDarkThem.textThemePrimary,
+    buttonForgroundPressed: MainConfigColorsDarkThem.textThemePrimary,
 
     textPrimary: MainConfigColorsDarkThem.textPrimary,
+    textGrey: MainConfigColorsDarkThem.textGrey,
+    textSecondary: MainConfigColorsDarkThem.textSecondary,
   );
 
   @override
@@ -86,7 +98,12 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
     Color? secondary,
     Color? backround,
     Color? inputFiled,
+
+    // text
+
     Color? textPrimary,
+    Color? textSecondary,
+    Color? textGrey,
 
     // button
 
@@ -103,7 +120,11 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
       backround: backround ?? this.backround,
       inputFiled: inputFiled ?? this.inputFiled,
 
+      // text
+
       textPrimary: textPrimary ?? this.textPrimary,
+      textSecondary: textSecondary ?? this.textSecondary,
+      textGrey: textGrey ?? this.textGrey,
 
       // button
 
@@ -133,7 +154,10 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
       backround: Color.lerp(backround, other.backround, t),
       inputFiled: Color.lerp(inputFiled, other.inputFiled, t),
 
+// text
       textPrimary: Color.lerp(textPrimary, other.textPrimary, t),
+      textSecondary: Color.lerp(textSecondary, other.textSecondary, t),
+      textGrey: Color.lerp(textGrey, other.textGrey, t),
 
       // button
 

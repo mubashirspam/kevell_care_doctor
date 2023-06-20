@@ -26,7 +26,9 @@ class TextButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
+      
       style: ButtonStyle(
+        
         minimumSize: MaterialStateProperty.resolveWith<Size>(
             (states) => const Size(double.maxFinite, 50)),
         padding: MaterialStateProperty.resolveWith<EdgeInsetsGeometry>(
@@ -39,6 +41,8 @@ class TextButtonWidget extends StatelessWidget {
             (Set<MaterialState> states) {
           if (states.contains(MaterialState.pressed)) {
             return bgInColor ?? context.theme.buttonBackroundPressed!;
+          } else if (states.contains(MaterialState.disabled)){
+            return context.theme.buttonBackroundDisable!;
           }
           return bgColor ?? context.theme.buttonBackroundEnable!;
         }),
@@ -46,6 +50,8 @@ class TextButtonWidget extends StatelessWidget {
             (Set<MaterialState> states) {
           if (states.contains(MaterialState.pressed)) {
             return fgIColor ?? context.theme.buttonForgroundPressed!;
+          } else if (states.contains(MaterialState.disabled)){
+            return  context.theme.buttonForgroundDisable!;
           }
           return fgColor ?? context.theme.buttonForgroundEnable!;
         }),
