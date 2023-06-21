@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
+import 'package:kevell_care_dr/pages/login_scrren/presentation/login_screen.dart';
 
 import '../../../configure/assets_manage/images.dart';
 import '../../../features/signup/presentation/signup_widget.dart';
 
 class SignupScreen extends StatelessWidget {
+    static const routeName = '/signup-screen';
   const SignupScreen({super.key});
 
   @override
@@ -39,7 +40,7 @@ class SignupScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: GestureDetector(
-                  onTap: () => context.go('/login'),
+                  onTap: () => Navigator.of(context).pushNamedAndRemoveUntil(LoginScreen.routeName , (route) => false),
                   child: RichText(
                     text: TextSpan(
                       style: const TextStyle(color: Colors.black, fontSize: 16),

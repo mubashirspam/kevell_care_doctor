@@ -9,7 +9,7 @@ class DateRanger extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void _showDialog(Widget child) {
+    void showDialog(Widget child) {
       showCupertinoModalPopup<void>(
         context: context,
         builder: (BuildContext context) => Container(
@@ -39,7 +39,7 @@ class DateRanger extends StatelessWidget {
         children: [
           GestureDetector(
               onTap: () {
-                _showDialog(
+                showDialog(
                   CupertinoDatePicker(
                     initialDateTime: time,
                     mode: CupertinoDatePickerMode.time,
@@ -52,11 +52,11 @@ class DateRanger extends StatelessWidget {
               },
               child: timeSection(context, "13.00", true)),
           const SizedBox(width: 40),
-          IconButton(onPressed: () {}, icon: Icon(Icons.chevron_right)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.chevron_right)),
           const SizedBox(width: 40),
           GestureDetector(
               onTap: () {
-                _showDialog(
+                showDialog(
                   CupertinoDatePicker(
                     initialDateTime: time,
                     mode: CupertinoDatePickerMode.time,

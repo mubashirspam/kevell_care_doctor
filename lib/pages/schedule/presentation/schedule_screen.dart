@@ -3,12 +3,12 @@ import 'package:kevell_care_dr/features/schedule/presentation/today_shedule.dart
 import 'package:kevell_care_dr/features/schedule/presentation/upcoming_schedule.dart';
 
 class ScheduleScreen extends StatelessWidget {
+  static const routeName = '/schedule-screen';
   const ScheduleScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
+    return SizedBox(
       width: double.maxFinite,
       height: double.maxFinite,
       child: Padding(

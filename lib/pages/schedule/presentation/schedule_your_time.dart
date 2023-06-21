@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
 
 import '../../../features/schedule/presentation/schedule_your_time_widget.dart';
 
 class ScheduleYourTime extends StatelessWidget {
+    static const routeName = '/schedule-your-time-screen';
   const ScheduleYourTime({super.key});
 
   @override
@@ -13,7 +13,7 @@ class ScheduleYourTime extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
-          onTap: () => context.go('/schedule'),
+          onTap: () => Navigator.pop(context),
           child: Container(
             margin: const EdgeInsets.all(10),
             decoration: BoxDecoration(

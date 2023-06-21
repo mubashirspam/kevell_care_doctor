@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
 
 class HomeScreen extends StatelessWidget {
+    static const routeName = '/home';
   const HomeScreen({super.key});
 
   @override
@@ -64,14 +65,14 @@ class HomeScreen extends StatelessWidget {
               child: Row(
                 children: [
                  const CircleAvatar(),
-                  Column(
+                const  Column(
                     children: [
-                      const Text("Johnny Greig"),
-                      const Text("General Checkup"),
-                      const Text("Johnny Greig"),
+                       Text("Johnny Greig"),
+                       Text("General Checkup"),
+                       Text("Johnny Greig"),
                     ],
                   ),
-                  Spacer(),
+                 const Spacer(),
                   TextButton(
                       style: TextButton.styleFrom(
                         backgroundColor: context.theme.primary,
