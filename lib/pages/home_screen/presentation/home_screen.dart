@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:kevell_care_dr/configure/assets_manage/images.dart';
 import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
+import 'package:kevell_care_dr/features/home/presentation/search.dart';
+import 'package:kevell_care_dr/features/home/presentation/status_cards.dart';
+import 'package:kevell_care_dr/features/home/presentation/waiting_patient.dart';
+
+import 'package:sliver_tools/sliver_tools.dart';
 
 class HomeScreen extends StatelessWidget {
-    static const routeName = '/home';
+  static const routeName = '/home';
   const HomeScreen({super.key});
 
   @override
@@ -11,85 +16,125 @@ class HomeScreen extends StatelessWidget {
     return SizedBox(
       width: double.maxFinite,
       height: double.maxFinite,
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Stack(
-              children: [
-                SizedBox(height: 300),
-                Placeholder(
-                  color: Colors.red,
-                  fallbackHeight: 250,
+      child: CustomScrollView(
+        slivers: [
+          MultiSliver(
+            children: [
+              ColoredBox(
+                color: context.theme.primary!,
+                child: Row(
+                  children: [
+                    const SizedBox(width: 20),
+                    Expanded(
+                        child: SizedBox(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Hello,",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineLarge!
+                                .copyWith(
+                                    color: context.theme.backround,
+                                    fontSize: 16),
+                          ),
+                          Text(
+                            "Doctor, \nJohn Doe",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineLarge!
+                                .copyWith(
+                                    color: context.theme.backround,
+                                    fontSize: 35),
+                          )
+                        ],
+                      ),
+                    )),
+                    Expanded(
+                        child: SizedBox(
+                      child: Image.asset(
+                        AppImg.doctor,
+                        height: 200,
+                      ),
+                    )),
+                  ],
                 ),
-                Positioned(
-                  bottom: 25,
-                  child: Placeholder(
-                    color: Colors.blue,
-                    fallbackHeight: 50,
-                  ),
-                ),
-              ],
-            ),
-            const Placeholder(
-              fallbackHeight: 50,
-            ),
-            const Row(
-              children: [
-                Expanded(
-                  child: Placeholder(
-                    color: Colors.green,
-                    fallbackHeight: 100,
-                  ),
-                ),
-                Expanded(
-                  child: Placeholder(
-                    color: Colors.green,
-                    fallbackHeight: 100,
-                  ),
-                )
-              ],
-            ),
-            const SizedBox(height: 15),
-            const Text("Waiting patients"),
-            const SizedBox(height: 15),
-            Container(
-              padding: const EdgeInsets.all(10),
-              width: double.maxFinite,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: const Color(0xffBDE5FF),
               ),
-              child: Row(
-                children: [
-                 const CircleAvatar(),
-                const  Column(
+              const SliverPinnedHeader(child: SearchWidget()),
+              MultiSliver(children: [
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  height: 50,
+                  width: 200,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFF0095F7), Color(0xFFD3B7F6)],
+                      begin: Alignment(0, 0),
+                      end: Alignment(1, 0),
+                    ),
+                  ),
+                  child: Row(
                     children: [
-                       Text("Johnny Greig"),
-                       Text("General Checkup"),
-                       Text("Johnny Greig"),
+                      Icon(
+                        Icons.calendar_month,
+                        color: context.theme.backround,
+                      ),
+                      const SizedBox(width: 15),
+                      Expanded(
+                        child: Text(
+                          "Schedule your time today",
+                          style:
+                              Theme.of(context).textTheme.titleLarge!.copyWith(
+                                    color: context.theme.backround,
+                                  ),
+                        ),
+                      ),
+                      Icon(
+                        Icons.arrow_forward,
+                        color: context.theme.backround,
+                      )
                     ],
                   ),
-                 const Spacer(),
-                  TextButton(
-                      style: TextButton.styleFrom(
-                        backgroundColor: context.theme.primary,
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: StatusCards(color: [
+                          Color(0xFFB9F8DB),
+                          Color(0xFF44EC9F),
+                        ], statusName: "You attended the patients"),
                       ),
-                      onPressed: () => context.go('/patient_checkup'),
-                      child: Text(
-                        "Attand",
-                        style: Theme.of(context)
-                            .textTheme
-                            .displayLarge!
-                            .copyWith(fontWeight: FontWeight.bold),
-                      ))
-                ],
-              ),
-            )
-          ],
-        ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Expanded(
+                        child: StatusCards(color: [
+                          Color(0xFFDEC9F8),
+                          Color(0xFFA76EEC),
+                        ], statusName: "Today your attending patients"),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, bottom: 20),
+                  child: Text(
+                    "Waiting patients",
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                ),
+                // const SizedBox(height: 15),
+              ]),
+            ],
+          ),
+          const WaitingPatient()
+        ],
       ),
     );
   }

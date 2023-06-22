@@ -3,6 +3,7 @@ import 'package:kevell_care_dr/pages/profile/presentation/profile_screen.dart';
 import 'package:kevell_care_dr/pages/schedule/presentation/schedule_screen.dart';
 import 'package:kevell_care_dr/pages/schedule/presentation/widgets/schedule_appbar.dart';
 import '../../home_screen/presentation/home_screen.dart';
+import '../../home_screen/presentation/widgets/home_appbar.dart';
 import '../../profile/presentation/widgets/profile_appbar.dart';
 import 'widgets/bottom_navigation.dart';
 
@@ -120,7 +121,7 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   static final List<Map<String, dynamic>> _pagesOptions =
       <Map<String, dynamic>>[
-    {"page": const HomeScreen(), "appbar": null, "flotingButton": null},
+    {"page": const HomeScreen(), "appbar":const HomeAppBar(), "flotingButton": null},
     {
       "page": const ScheduleScreen(),
       "appbar": const ScheduleAppBar(),
