@@ -16,27 +16,29 @@ class TextFieldWidget extends StatelessWidget {
   final Widget? prefix;
   final Widget? suffixIcon;
   final String? labelText;
+  final int? maxLines;
   // final void Function (String value) onSaved;
 
-  const TextFieldWidget({
-    super.key,
-    this.onTap,
-    this.autoValidateMode,
-    this.prefixIcon,
-    required this.hintText,
-    required this.keyboardType,
-    this.textEditingController,
-    this.onChanged,
-    this.onSaved,
-    required this.validate,
-    this.labelText,
-    this.obscureText,
-    this.suffixIcon,
-    this.prefix,
-    this.initialValue,
+  const TextFieldWidget(
+      {super.key,
+      this.onTap,
+      this.autoValidateMode,
+      this.prefixIcon,
+      required this.hintText,
+      required this.keyboardType,
+      this.textEditingController,
+      this.onChanged,
+      this.onSaved,
+      required this.validate,
+      this.labelText,
+      this.obscureText,
+      this.suffixIcon,
+      this.prefix,
+      this.initialValue,
+      this.maxLines
 
-    // required this.onSaved,
-  });
+      // required this.onSaved,
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +47,7 @@ class TextFieldWidget extends StatelessWidget {
         children: [
           Expanded(
             child: TextFormField(
+              maxLines: maxLines,
               initialValue: initialValue,
 
               style: TextStyle(
@@ -59,6 +62,7 @@ class TextFieldWidget extends StatelessWidget {
               keyboardType: keyboardType,
               decoration: InputDecoration(
                 hintText: hintText,
+
                 hintStyle: TextStyle(color: context.theme.textGrey),
                 contentPadding:
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 10),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kevell_care_dr/pages/profile/presentation/my_profile_screen.dart';
 import 'package:kevell_care_dr/pages/profile/presentation/profile_screen.dart';
+import '../../pages/prescription/presentation/prescription_screen.dart';
 import '../../pages/dashborad/presentation/dashborad.dart';
 import '../../pages/login_scrren/presentation/login_screen.dart';
 import '../../pages/schedule/presentation/schedule_your_time.dart';
@@ -76,4 +77,5 @@ final Map<String, Widget Function(BuildContext)> route = {
   ScheduleYourTime.routeName: (ctx) => const ScheduleYourTime(),
   ProfileScreen.routeName: (ctx) => const ProfileScreen(),
   MyProfileScreen.routeName: (ctx) => const MyProfileScreen(),
+  AppoinmentScreen.routeName: (ctx) => const AppoinmentScreen(),
 };

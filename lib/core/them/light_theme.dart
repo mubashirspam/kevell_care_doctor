@@ -54,12 +54,12 @@ ThemeData lightTheme() {
         color: MainConfigColorsLightThem.textPrimary,
         fontWeight: FontWeight.bold,
       ),
-       headlineMedium: TextStyle(
+      headlineMedium: TextStyle(
         fontSize: 18,
         color: MainConfigColorsLightThem.textPrimary,
         fontWeight: FontWeight.bold,
       ),
-       headlineSmall: TextStyle(
+      headlineSmall: TextStyle(
         fontSize: 14,
         color: MainConfigColorsLightThem.textPrimary,
         fontWeight: FontWeight.bold,
@@ -68,12 +68,14 @@ ThemeData lightTheme() {
           fontSize: 14,
           color: MainConfigColorsLightThem.textSecondary,
           fontWeight: FontWeight.bold),
-           titleMedium: TextStyle(
+      titleMedium: TextStyle(
           fontSize: 14,
           color: MainConfigColorsLightThem.textSecondary,
           fontWeight: FontWeight.normal),
-       
+      titleSmall: TextStyle(
+          fontSize: 12,
+          color: MainConfigColorsLightThem.textSecondary,
+          fontWeight: FontWeight.normal),
     ),
-    
   );
 }

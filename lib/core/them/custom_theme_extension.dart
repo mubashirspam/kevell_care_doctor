@@ -56,9 +56,9 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
     inputFiled: MainConfigColorsLightThem.inputFiled,
 
 //text
-    textPrimary: MainConfigColorsDarkThem.textPrimary,
-    textGrey: MainConfigColorsDarkThem.textGrey,
-    textSecondary: MainConfigColorsDarkThem.textSecondary,
+    textPrimary: MainConfigColorsLightThem.textPrimary,
+    textGrey: MainConfigColorsLightThem.textGrey,
+    textSecondary: MainConfigColorsLightThem.textSecondary,
 
     // button
 
