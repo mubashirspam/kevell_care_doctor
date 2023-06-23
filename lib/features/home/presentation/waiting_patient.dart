@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kevell_care_dr/configure/color/main_color.dart';
 import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
+import 'package:kevell_care_dr/pages/patien_checkup/presentation/patient_checkup_screen.dart';
 
 class WaitingPatient extends StatelessWidget {
   const WaitingPatient({super.key});
@@ -65,7 +66,8 @@ class WaitingPatient extends StatelessWidget {
                 style: TextButton.styleFrom(
                   backgroundColor: context.theme.primary,
                 ),
-                onPressed: () {},
+                onPressed: () => Navigator.of(context)
+                    .pushNamed(PatientCheckupScreen.routeName),
                 child: Text(
                   "Attand",
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
