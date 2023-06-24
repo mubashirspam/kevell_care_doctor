@@ -105,7 +105,7 @@ class MyProfileScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              ViewMyProfile(),
+             const ViewMyProfile(),
               const Spacer(),
               TextButtonWidget(
                 onPressed: () {

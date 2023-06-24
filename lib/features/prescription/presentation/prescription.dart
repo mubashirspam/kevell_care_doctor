@@ -26,7 +26,7 @@ class Prescription extends StatelessWidget {
         ),
         trailing: TextButton(
           style: TextButton.styleFrom(
-            minimumSize: Size(65, 30),
+            minimumSize:const Size(65, 30),
             backgroundColor: context.theme.primary,
             foregroundColor: context.theme.backround,
           ),

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
+import 'package:kevell_care_dr/features/checkup/presentation/stethoscope_widget.dart';
+import 'package:kevell_care_dr/features/checkup/presentation/temparature_widgtet.dart';
 
-import '../../../features/checkup/presentation/checkup.dart';
+import '../../../features/checkup/presentation/unloack.dart';
+import '../../../features/checkup/presentation/checkup_header.dart';
 
 class PatientCheckupScreen extends StatelessWidget {
   static const routeName = '/patient-checup-screen';
@@ -29,14 +32,22 @@ class PatientCheckupScreen extends StatelessWidget {
         backgroundColor: context.theme.primary,
         centerTitle: false,
       ),
-      body: Column(
-        children: [
-          Placeholder(),
-          const SizedBox(
-            height: 10,
-          ),
-          CheckupWidget()
-        ],
+      body: const SingleChildScrollView(
+        child: Column(
+          children: [
+            CheckupHeaderWidget(),
+            SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: UnloackWidget(),
+            ),
+            TepamratureWidget(),
+            StethoscopeWidget(),
+            StethoscopeWidget(),
+          ],
+        ),
       ),
     );
   }

@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kevell_care_dr/configure/color/main_color.dart';
@@ -27,6 +28,10 @@ ThemeData darkTheme() {
       iconTheme: IconThemeData(
         color: MainConfigColorsDarkThem.primary,
       ),
+    ),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: MainConfigColorsDarkThem.primary,
+      foregroundColor: MainConfigColorsDarkThem.backround,
     ),
     tabBarTheme: const TabBarTheme(
       indicator: UnderlineTabIndicator(

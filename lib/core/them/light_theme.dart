@@ -44,6 +44,10 @@ ThemeData lightTheme() {
         shadowColor: Colors.transparent,
       ),
     ),
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: MainConfigColorsLightThem.primary,
+      foregroundColor: MainConfigColorsLightThem.backround,
+    ),
     textTheme: const TextTheme(
       displayLarge: TextStyle(
         fontSize: 16,
@@ -54,6 +58,7 @@ ThemeData lightTheme() {
         color: MainConfigColorsLightThem.textPrimary,
         fontWeight: FontWeight.bold,
       ),
+      
       headlineMedium: TextStyle(
         fontSize: 18,
         color: MainConfigColorsLightThem.textPrimary,
@@ -64,6 +69,7 @@ ThemeData lightTheme() {
         color: MainConfigColorsLightThem.textPrimary,
         fontWeight: FontWeight.bold,
       ),
+      
       titleLarge: TextStyle(
           fontSize: 14,
           color: MainConfigColorsLightThem.textSecondary,

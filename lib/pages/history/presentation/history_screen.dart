@@ -9,7 +9,7 @@ class HistoryScreen extends StatelessWidget {
     return SizedBox(
       child: Center(
         child: TextButton(
-          child: Text("prescription"),
+          child:const Text("Prescription"),
           onPressed: () => Navigator.pushNamed(
             context,
             AppoinmentScreen.routeName,

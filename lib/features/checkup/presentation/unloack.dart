@@ -5,19 +5,19 @@ import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
 
 import 'bloc/checkup_bloc.dart';
 
-class CheckupWidget extends StatelessWidget {
-  const CheckupWidget({super.key});
+class UnloackWidget extends StatelessWidget {
+  const 
+  UnloackWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        children: [
-          Row(
+    return  Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text("Kit Check up status"),
+              Text(
+                "Kit Check up status",
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
               BlocConsumer<CheckupBloc, CheckupState>(
                 listener: (context, state) {
                   if (state.isLoading) {
@@ -41,30 +41,22 @@ class CheckupWidget extends StatelessWidget {
                   }
                 },
                 builder: (context, state) {
-                  return Column(
-                    children: [
-                      Switch(
-                        activeColor: context.theme.primary,
-                        value: state.isServerConnected,
-                        onChanged: (value) {
-                          state.isServerConnected == false
-                              ? context
-                                  .read<CheckupBloc>()
-                                  .add(const CheckupEvent.unlockKit())
-                              : context
-                                  .read<CheckupBloc>()
-                                  .add(const CheckupEvent.lockKit());
-                        },
-                      ),
-                      Text(state.message),
-                    ],
+                  return Switch(
+                    activeColor: context.theme.primary,
+                    value: state.isServerConnected,
+                    onChanged: (value) {
+                      state.isServerConnected == false
+                          ? context
+                              .read<CheckupBloc>()
+                              .add(const CheckupEvent.unlockKit())
+                          : context
+                              .read<CheckupBloc>()
+                              .add(const CheckupEvent.lockKit());
+                    },
                   );
                 },
               ),
             ],
-          )
-        ],
-      ),
-    );
+          );
   }
 }
