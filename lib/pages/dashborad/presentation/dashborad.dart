@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kevell_care_dr/pages/chat/presentation/chat_screen.dart';
+import 'package:kevell_care_dr/pages/history/presentation/widgets/history_appbar.dart';
 import 'package:kevell_care_dr/pages/profile/presentation/profile_screen.dart';
 import 'package:kevell_care_dr/pages/schedule/presentation/schedule_screen.dart';
 import 'package:kevell_care_dr/pages/schedule/presentation/widgets/schedule_appbar.dart';
@@ -139,7 +140,11 @@ class _DashboardState extends State<Dashboard> {
       "appbar": const ChatAppBar(),
       "flotingButton": null
     },
-    {"page": const HistoryScreen(), "appbar": null, "flotingButton": null},
+    {
+      "page": const HistoryScreen(),
+      "appbar": const HistoryAppBar(),
+      "flotingButton": null
+    },
     {
       "page": const ProfileScreen(),
       "appbar": const ProfileAppBar(),

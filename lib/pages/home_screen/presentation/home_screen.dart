@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kevell_care_dr/configure/assets_manage/images.dart';
 import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
-import 'package:kevell_care_dr/features/home/presentation/search.dart';
 import 'package:kevell_care_dr/features/home/presentation/status_cards.dart';
 import 'package:kevell_care_dr/features/home/presentation/waiting_patient.dart';
 
 import 'package:sliver_tools/sliver_tools.dart';
+
+import '../../../features/home/presentation/home_search.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = '/home';
@@ -62,7 +63,7 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const SliverPinnedHeader(child: SearchWidget()),
+              const SliverPinnedHeader(child: HomeSearchWidget()),
               MultiSliver(children: [
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 20),
