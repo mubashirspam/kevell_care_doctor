@@ -70,7 +70,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(height: 10),
             TextFieldWidget(
-              obscureText: isPasswordVisible,
+              obscureText: true,
               suffixIcon: GestureDetector(
                 onTap: () =>
                     setState(() => isPasswordVisible = !isPasswordVisible),

@@ -4,9 +4,9 @@ import 'package:kevell_care_dr/features/prescription/presentation/prescription.d
 
 import '../../../features/prescription/presentation/widgets/edit_prescription.dart';
 
-class AppoinmentScreen extends StatelessWidget {
-  static const routeName = '/appoiment-screen';
-  const AppoinmentScreen({super.key});
+class PrescriptionScreen extends StatelessWidget {
+  static const routeName = '/prescription-screen';
+  const PrescriptionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

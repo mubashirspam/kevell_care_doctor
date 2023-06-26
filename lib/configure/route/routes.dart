@@ -79,9 +79,7 @@ final Map<String, Widget Function(BuildContext)> route = {
   ScheduleYourTime.routeName: (ctx) => const ScheduleYourTime(),
   ProfileScreen.routeName: (ctx) => const ProfileScreen(),
   MyProfileScreen.routeName: (ctx) => const MyProfileScreen(),
-  AppoinmentScreen.routeName: (ctx) => const AppoinmentScreen(),
-
-
-    ChatingScreen.routeName: (ctx) => const ChatingScreen(),
-        PatientCheckupScreen.routeName: (ctx) => const PatientCheckupScreen(),
+  PrescriptionScreen.routeName: (ctx) => const PrescriptionScreen(),
+  ChatingScreen.routeName: (ctx) => const ChatingScreen(),
+  PatientCheckupScreen.routeName: (ctx) => const PatientCheckupScreen(),
 };

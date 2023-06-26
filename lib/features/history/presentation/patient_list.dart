@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kevell_care_dr/features/widgets/cards/patient_card.dart';
 
-import '../../../pages/patien_checkup/presentation/patient_checkup_screen.dart';
+import '../../../pages/prescription/presentation/prescription_screen.dart';
 
 class PatientList extends StatelessWidget {
   const PatientList({super.key});
@@ -15,7 +15,7 @@ class PatientList extends StatelessWidget {
           (index) => PatentCard(
             buttonName: "View Reports",
             onPressed: () => Navigator.of(context).pushNamed(
-              PatientCheckupScreen.routeName,
+              PrescriptionScreen.routeName,
             ),
           ),
         ),

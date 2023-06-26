@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kevell_care_dr/features/signup/presentation/bloc/signup_bloc.dart';
 import 'package:kevell_care_dr/features/widgets/input_field/input_field_widget.dart';
 
 import '../../../core/helper/validater.dart';
@@ -147,10 +149,29 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               },
             ),
             const SizedBox(height: 20),
-            TextButtonWidget(
-              onPressed: isButtonDisabled ? null : () {},
-              name: "Sign up",
-              isLoading: false,
+            BlocConsumer<SignupBloc, SignupState>(
+              listener: (context, state) {
+                // TODO: implement listener
+              },
+              builder: (context, state) {
+                return TextButtonWidget(
+                  onPressed: isButtonDisabled
+                      ? null
+                      : () {
+                          context.read<SignupBloc>().add(
+                                SignupEvent.signup(
+                                  fullName: nameController.value.text,
+                                  phone: mobileController.value.text,
+                                  email: emailController.value.text,
+                                  password:
+                                      confirmPasswordController.value.text,
+                                ),
+                              );
+                        },
+                  name: "Sign up",
+                  isLoading: state.isLoading,
+                );
+              },
             ),
           ],
         ),

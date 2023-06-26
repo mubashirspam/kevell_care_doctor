@@ -47,7 +47,9 @@ class TextFieldWidget extends StatelessWidget {
         children: [
           Expanded(
             child: TextFormField(
-              maxLines: maxLines,
+              
+              
+              // maxLines: maxLines,
               initialValue: initialValue,
 
               style: TextStyle(

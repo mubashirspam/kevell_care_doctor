@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kevell_care_dr/configure/route/routes.dart';
 import 'package:kevell_care_dr/features/checkup/presentation/bloc/checkup_bloc.dart';
+import 'package:kevell_care_dr/features/signup/presentation/bloc/signup_bloc.dart';
 
 import 'core/di/injectable.dart';
 import 'core/them/dark_theme.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (ctx) => getIt<CheckupBloc>()),
+        BlocProvider(create: (ctx) => getIt<SignupBloc>()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
         theme: lightTheme(),
         darkTheme: darkTheme(),
         themeMode: ThemeMode.light,
-        initialRoute: "/dashboard",
+        initialRoute: "/login-screen",
         routes: route,
       ),
     );
