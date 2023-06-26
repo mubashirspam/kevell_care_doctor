@@ -8,5 +8,6 @@ abstract class SignupRepository {
     required String email,
     required String phone,
     required String fullName,
+     required String password,
   });
 }

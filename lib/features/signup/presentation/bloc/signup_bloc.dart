@@ -22,6 +22,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
           phone: event.phone,
           email: event.email,
           fullName: event.fullName,
+          password: event.password,
         );
 
         final result = response.fold(

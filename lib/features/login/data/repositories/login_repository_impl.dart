@@ -5,35 +5,35 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kevell_care_dr/configure/api/endpoints.dart';
-import 'package:kevell_care_dr/features/signup/data/models/signup_model.dart';
+import 'package:kevell_care_dr/features/login/data/models/login_model.dart';
 import '../../../../core/failiar/main_failures.dart';
 import '../../../../core/network/netwrok.dart';
-import '../../domain/repositories/signup_repository.dart';
+import '../../domain copy/repositories/login_repository.dart';
 
-@LazySingleton(as: SignupRepository)
-class SignupRepoImpliment implements SignupRepository {
+
+@LazySingleton(as: LoginRepository)
+class LoginRepoImpliment implements LoginRepository {
   final NetworkInfo networkInfo;
 
-  SignupRepoImpliment({
+  LoginRepoImpliment({
     required this.networkInfo,
   });
   @override
-  Future<Either<MainFailure, SignupModel>> signup({
+  Future<Either<MainFailure, LoginModel>> login({
     required String email,
-    required String phone,
-    required String fullName,
     required String password,
+  
   }) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await Dio(BaseOptions())
-            .post(ApiEndPoints.register, data: jsonEncode(""));
+            .post(ApiEndPoints.login, data: jsonEncode(""));
 
         if (response.statusCode == 200 || response.statusCode == 201) {
-          final registerResult = SignupModel.fromJson(response.data);
-          log(registerResult.toString());
+          final result = LoginModel.fromJson(response.data);
+          log(result.toString());
 
-          return Right(registerResult);
+          return Right(result);
         } else {
           return const Left(MainFailure.serverFailure());
         }

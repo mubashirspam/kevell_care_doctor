@@ -16,37 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LoginEvent {
+  String get email => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function(String email, String password) login,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult? Function(String email, String password)? login,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(String email, String password)? login,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_Login value) login,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(_Login value)? login,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Login value)? login,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $LoginEventCopyWith<LoginEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -55,6 +61,8 @@ abstract class $LoginEventCopyWith<$Res> {
   factory $LoginEventCopyWith(
           LoginEvent value, $Res Function(LoginEvent) then) =
       _$LoginEventCopyWithImpl<$Res, LoginEvent>;
+  @useResult
+  $Res call({String email, String password});
 }
 
 /// @nodoc
@@ -66,66 +74,119 @@ class _$LoginEventCopyWithImpl<$Res, $Val extends LoginEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+    Object? password = null,
+  }) {
+    return _then(_value.copyWith(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_StartedCopyWith<$Res> {
-  factory _$$_StartedCopyWith(
-          _$_Started value, $Res Function(_$_Started) then) =
-      __$$_StartedCopyWithImpl<$Res>;
+abstract class _$$_LoginCopyWith<$Res> implements $LoginEventCopyWith<$Res> {
+  factory _$$_LoginCopyWith(_$_Login value, $Res Function(_$_Login) then) =
+      __$$_LoginCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String email, String password});
 }
 
 /// @nodoc
-class __$$_StartedCopyWithImpl<$Res>
-    extends _$LoginEventCopyWithImpl<$Res, _$_Started>
-    implements _$$_StartedCopyWith<$Res> {
-  __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
+class __$$_LoginCopyWithImpl<$Res>
+    extends _$LoginEventCopyWithImpl<$Res, _$_Login>
+    implements _$$_LoginCopyWith<$Res> {
+  __$$_LoginCopyWithImpl(_$_Login _value, $Res Function(_$_Login) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+    Object? password = null,
+  }) {
+    return _then(_$_Login(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Started implements _Started {
-  const _$_Started();
+class _$_Login implements _Login {
+  const _$_Login({required this.email, required this.password});
+
+  @override
+  final String email;
+  @override
+  final String password;
 
   @override
   String toString() {
-    return 'LoginEvent.started()';
+    return 'LoginEvent.login(email: $email, password: $password)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Started);
+        (other.runtimeType == runtimeType &&
+            other is _$_Login &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, email, password);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_LoginCopyWith<_$_Login> get copyWith =>
+      __$$_LoginCopyWithImpl<_$_Login>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function(String email, String password) login,
   }) {
-    return started();
+    return login(email, password);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult? Function(String email, String password)? login,
   }) {
-    return started?.call();
+    return login?.call(email, password);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(String email, String password)? login,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started();
+    if (login != null) {
+      return login(email, password);
     }
     return orElse();
   }
@@ -133,69 +194,55 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_Login value) login,
   }) {
-    return started(this);
+    return login(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(_Login value)? login,
   }) {
-    return started?.call(this);
+    return login?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Login value)? login,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(this);
+    if (login != null) {
+      return login(this);
     }
     return orElse();
   }
 }
 
-abstract class _Started implements LoginEvent {
-  const factory _Started() = _$_Started;
+abstract class _Login implements LoginEvent {
+  const factory _Login(
+      {required final String email, required final String password}) = _$_Login;
+
+  @override
+  String get email;
+  @override
+  String get password;
+  @override
+  @JsonKey(ignore: true)
+  _$$_LoginCopyWith<_$_Login> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$LoginState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) =>
+  bool get isLoading => throw _privateConstructorUsedError;
+  bool get isError => throw _privateConstructorUsedError;
+  bool get hasValidationData => throw _privateConstructorUsedError;
+  LoginModel? get loginDetails => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $LoginStateCopyWith<LoginState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -204,6 +251,12 @@ abstract class $LoginStateCopyWith<$Res> {
   factory $LoginStateCopyWith(
           LoginState value, $Res Function(LoginState) then) =
       _$LoginStateCopyWithImpl<$Res, LoginState>;
+  @useResult
+  $Res call(
+      {bool isLoading,
+      bool isError,
+      bool hasValidationData,
+      LoginModel? loginDetails});
 }
 
 /// @nodoc
@@ -215,99 +268,153 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? isError = null,
+    Object? hasValidationData = null,
+    Object? loginDetails = freezed,
+  }) {
+    return _then(_value.copyWith(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isError: null == isError
+          ? _value.isError
+          : isError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasValidationData: null == hasValidationData
+          ? _value.hasValidationData
+          : hasValidationData // ignore: cast_nullable_to_non_nullable
+              as bool,
+      loginDetails: freezed == loginDetails
+          ? _value.loginDetails
+          : loginDetails // ignore: cast_nullable_to_non_nullable
+              as LoginModel?,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$_LoginStateCopyWith<$Res>
+    implements $LoginStateCopyWith<$Res> {
+  factory _$$_LoginStateCopyWith(
+          _$_LoginState value, $Res Function(_$_LoginState) then) =
+      __$$_LoginStateCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {bool isLoading,
+      bool isError,
+      bool hasValidationData,
+      LoginModel? loginDetails});
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$_LoginStateCopyWithImpl<$Res>
+    extends _$LoginStateCopyWithImpl<$Res, _$_LoginState>
+    implements _$$_LoginStateCopyWith<$Res> {
+  __$$_LoginStateCopyWithImpl(
+      _$_LoginState _value, $Res Function(_$_LoginState) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? isError = null,
+    Object? hasValidationData = null,
+    Object? loginDetails = freezed,
+  }) {
+    return _then(_$_LoginState(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isError: null == isError
+          ? _value.isError
+          : isError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasValidationData: null == hasValidationData
+          ? _value.hasValidationData
+          : hasValidationData // ignore: cast_nullable_to_non_nullable
+              as bool,
+      loginDetails: freezed == loginDetails
+          ? _value.loginDetails
+          : loginDetails // ignore: cast_nullable_to_non_nullable
+              as LoginModel?,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$_LoginState implements _LoginState {
+  const _$_LoginState(
+      {required this.isLoading,
+      required this.isError,
+      required this.hasValidationData,
+      required this.loginDetails});
+
+  @override
+  final bool isLoading;
+  @override
+  final bool isError;
+  @override
+  final bool hasValidationData;
+  @override
+  final LoginModel? loginDetails;
 
   @override
   String toString() {
-    return 'LoginState.initial()';
+    return 'LoginState(isLoading: $isLoading, isError: $isError, hasValidationData: $hasValidationData, loginDetails: $loginDetails)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType &&
+            other is _$_LoginState &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            (identical(other.isError, isError) || other.isError == isError) &&
+            (identical(other.hasValidationData, hasValidationData) ||
+                other.hasValidationData == hasValidationData) &&
+            (identical(other.loginDetails, loginDetails) ||
+                other.loginDetails == loginDetails));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, isLoading, isError, hasValidationData, loginDetails);
 
+  @JsonKey(ignore: true)
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
+  @pragma('vm:prefer-inline')
+  _$$_LoginStateCopyWith<_$_LoginState> get copyWith =>
+      __$$_LoginStateCopyWithImpl<_$_LoginState>(this, _$identity);
 }
 
-abstract class _Initial implements LoginState {
-  const factory _Initial() = _$_Initial;
+abstract class _LoginState implements LoginState {
+  const factory _LoginState(
+      {required final bool isLoading,
+      required final bool isError,
+      required final bool hasValidationData,
+      required final LoginModel? loginDetails}) = _$_LoginState;
+
+  @override
+  bool get isLoading;
+  @override
+  bool get isError;
+  @override
+  bool get hasValidationData;
+  @override
+  LoginModel? get loginDetails;
+  @override
+  @JsonKey(ignore: true)
+  _$$_LoginStateCopyWith<_$_LoginState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

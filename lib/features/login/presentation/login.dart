@@ -1,12 +1,14 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kevell_care_dr/core/helper/validater.dart';
 import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
 
 import '../../widgets/buttons/text_button_widget.dart';
 import '../../widgets/input_field/input_field_widget.dart';
+import 'bloc/login_bloc.dart';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({super.key});
@@ -17,6 +19,9 @@ class LoginWidget extends StatefulWidget {
 
 class _LoginWidgetState extends State<LoginWidget> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   bool isButtonDisabled = true;
   bool isPasswordVisible = true;
@@ -51,6 +56,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(height: 10),
             TextFieldWidget(
+              textEditingController: emailController,
               onChanged: (value) {
                 validateForm();
               },
@@ -86,6 +92,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               },
               hintText: "Choose a password",
               keyboardType: TextInputType.visiblePassword,
+              textEditingController: passwordController,
               validate: (value) {
                 if (value == null || value.isEmpty) {
                   return "Please enter a password";
@@ -114,12 +121,28 @@ class _LoginWidgetState extends State<LoginWidget> {
               ),
             ),
             const SizedBox(height: 30),
-            TextButtonWidget(
-              // bgColor: context.theme.backround,
-              fgColor: context.theme.backround,
-              name: "Login",
-              onPressed: isButtonDisabled ? null : () {},
-              isLoading: false,
+            BlocConsumer<LoginBloc, LoginState>(
+              listener: (context, state) {
+                // TODO: implement listener
+              },
+              builder: (context, state) {
+                return TextButtonWidget(
+                  // bgColor: context.theme.backround,
+                  fgColor: context.theme.backround,
+                  name: "Login",
+                  onPressed: isButtonDisabled
+                      ? null
+                      : () {
+                          context.read<LoginBloc>().add(
+                                LoginEvent.login(
+                                  email: emailController.value.text,
+                                  password: passwordController.value.text,
+                                ),
+                              );
+                        },
+                  isLoading: state.isLoading,
+                );
+              },
             ),
           ],
         ),
