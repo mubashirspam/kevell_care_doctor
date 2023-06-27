@@ -7,6 +7,7 @@ class TextFieldWidget extends StatelessWidget {
   final String? initialValue;
   final Widget? prefixIcon;
   final bool? obscureText;
+  final Color?fillColor;
   final TextEditingController? textEditingController;
   final Function(String value)? onChanged;
   final Function(dynamic value)? onSaved;
@@ -35,7 +36,8 @@ class TextFieldWidget extends StatelessWidget {
       this.suffixIcon,
       this.prefix,
       this.initialValue,
-      this.maxLines
+      this.maxLines,
+      this.fillColor,
 
       // required this.onSaved,
       });
@@ -78,7 +80,7 @@ class TextFieldWidget extends StatelessWidget {
 
                 suffixIcon: suffixIcon,
                 filled: true,
-                fillColor: context.theme.inputFiled,
+                fillColor:fillColor?? context.theme.inputFiled,
                 enabled: true,
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
