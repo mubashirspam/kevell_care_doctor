@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kevell_care_dr/configure/color/main_color.dart';
-import 'package:kevell_care_dr/features/checkup/presentation/temparature_widgtet.dart';
 import 'package:kevell_care_dr/features/report/presetantion/widgets/result_value_card.dart';
 
 class CheckupReportResultList extends StatelessWidget {

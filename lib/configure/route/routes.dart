@@ -10,6 +10,7 @@ import '../../pages/dashborad/presentation/dashborad.dart';
 import '../../pages/login_scrren/presentation/login_screen.dart';
 import '../../pages/schedule/presentation/schedule_your_time.dart';
 import '../../pages/signup_screen/presentation/lsignup_screen.dart';
+import '../../pages/videocall/presentation/one_to_one_meeting_screen.dart';
 
 // This route hierarchy can be represented like this:
 
@@ -75,7 +76,6 @@ import '../../pages/signup_screen/presentation/lsignup_screen.dart';
 // }
 
 final Map<String, Widget Function(BuildContext)> route = {
-  
   LoginScreen.routeName: (ctx) => const LoginScreen(),
   SignupScreen.routeName: (ctx) => const SignupScreen(),
   Dashboard.routeName: (ctx) => const Dashboard(),
@@ -86,8 +86,7 @@ final Map<String, Widget Function(BuildContext)> route = {
   ChatingScreen.routeName: (ctx) => const ChatingScreen(),
   PatientCheckupScreen.routeName: (ctx) => const PatientCheckupScreen(),
   PersonHistroyScreen.routeName: (ctx) => const PersonHistroyScreen(),
-
-   ReportScreen.routeName: (ctx) => const ReportScreen(),
-
-  
+  ReportScreen.routeName: (ctx) => const ReportScreen(),
+  OneToOneMeetingScreen.routeName: (ctx) => const OneToOneMeetingScreen(
+      displayName: "Mubashir", meetingId: "", token: ""),
 };
