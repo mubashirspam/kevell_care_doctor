@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kevell_care_dr/configure/assets_manage/icons.dart';
 import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
+import 'package:kevell_care_dr/pages/report/presentation/report_screen.dart';
 
 import '../../widgets/input_field/input_field_widget.dart';
 
@@ -114,6 +115,7 @@ class ReportItem extends StatelessWidget {
       elevation: 3,
       color: context.theme.secondary,
       child: ListTile(
+        onTap: () => Navigator.of(context).pushNamed(ReportScreen.routeName),
         contentPadding:
             const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         title: Text.rich(

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
 
-class CheckupCard extends StatelessWidget {
+class CheckupResultCard extends StatelessWidget {
   final String name;
   final List<Widget> children;
   final VoidCallback onPress;
   final String? imageName;
-  const CheckupCard({
+  const CheckupResultCard({
     super.key,
     required this.children,
     this.imageName,
@@ -51,14 +51,6 @@ class CheckupCard extends StatelessWidget {
                       .headlineLarge!
                       .copyWith(fontSize: 24),
                 )),
-                CircleAvatar(
-                  minRadius: 25,
-                  maxRadius: 25,
-                  backgroundColor: context.theme.primary,
-                  child: const Center(
-                    child: Icon(Icons.play_arrow),
-                  ),
-                ),
               ],
             ),
           ),
