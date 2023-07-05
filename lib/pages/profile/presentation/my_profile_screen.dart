@@ -91,7 +91,7 @@ class MyProfileScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "John Doe",
+                            "John Doem",
                             style: Theme.of(context).textTheme.headlineMedium,
                           ),
                           Text(
