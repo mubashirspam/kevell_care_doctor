@@ -3,8 +3,9 @@ import 'package:kevell_care_dr/configure/color/main_color.dart';
 import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
 import 'package:kevell_care_dr/features/widgets/avatar/active_avatar.dart';
 
+import '../../../pages/videocall/presentation/one_to_one_meeting_screen.dart';
+
 class CheckupHeaderWidget extends StatelessWidget {
- 
   const CheckupHeaderWidget({super.key});
 
   @override
@@ -104,21 +105,25 @@ class CheckupHeaderWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(0.3),
-                          blurRadius: 15,
-                          offset: const Offset(0, 5))
-                    ],
-                    borderRadius: BorderRadius.circular(100),
-                    color: context.theme.secondary),
-                child: Center(
-                  child: Icon(
-                    Icons.video_call,
-                    color: context.theme.primary,
+              InkWell(
+                onTap: () => Navigator.of(context)
+                    .pushNamed(OneToOneMeetingScreen.routeName),
+                child: Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.3),
+                            blurRadius: 15,
+                            offset: const Offset(0, 5))
+                      ],
+                      borderRadius: BorderRadius.circular(100),
+                      color: context.theme.secondary),
+                  child: Center(
+                    child: Icon(
+                      Icons.video_call,
+                      color: context.theme.primary,
+                    ),
                   ),
                 ),
               ),

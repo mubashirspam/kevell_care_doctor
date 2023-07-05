@@ -7,7 +7,7 @@ class TepamratureWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CheckupCard(
-      imageName: "imageName",
+      // imageName: "imageName",
       name: "Body Temperature",
       onPress: () {},
       children: [

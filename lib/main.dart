@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         theme: lightTheme(),
         darkTheme: darkTheme(),
         themeMode: ThemeMode.light,
-        initialRoute: "/login-screen",
+        initialRoute: "/dashboard",
         routes: route,
       ),
     );

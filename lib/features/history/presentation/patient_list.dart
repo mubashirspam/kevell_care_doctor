@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kevell_care_dr/features/widgets/cards/patient_card.dart';
-
-import '../../../pages/prescription/presentation/prescription_screen.dart';
+import 'package:kevell_care_dr/pages/history/presentation/single_person_history_screen.dart';
 
 class PatientList extends StatelessWidget {
   const PatientList({super.key});
@@ -15,7 +14,7 @@ class PatientList extends StatelessWidget {
           (index) => PatentCard(
             buttonName: "View Reports",
             onPressed: () => Navigator.of(context).pushNamed(
-              PrescriptionScreen.routeName,
+              PersonHistroyScreen.routeName,
             ),
           ),
         ),
