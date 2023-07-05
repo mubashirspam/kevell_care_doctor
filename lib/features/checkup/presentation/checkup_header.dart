@@ -111,14 +111,15 @@ class CheckupHeaderWidget extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.3),
-                            blurRadius: 15,
-                            offset: const Offset(0, 5))
-                      ],
-                      borderRadius: BorderRadius.circular(100),
-                      color: context.theme.secondary),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(0.3),
+                          blurRadius: 15,
+                          offset: const Offset(0, 5))
+                    ],
+                    borderRadius: BorderRadius.circular(100),
+                    color: context.theme.secondary,
+                  ),
                   child: Center(
                     child: Icon(
                       Icons.video_call,
