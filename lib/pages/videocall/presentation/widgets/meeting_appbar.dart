@@ -31,7 +31,6 @@ class MeetingAppBar extends StatefulWidget {
 class MeetingAppBarState extends State<MeetingAppBar> {
   Duration? elapsedTime;
   Timer? sessionTimer;
-
   List<MediaDeviceInfo> cameras = [];
 
   @override

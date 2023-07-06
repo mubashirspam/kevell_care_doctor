@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kevell_care_dr/features/login/domain%20copy/repositories/login_repository.dart';
+import 'package:kevell_care_dr/features/login/domain/repositories/login_repository.dart';
 
 import '../../data/models/login_model.dart';
 

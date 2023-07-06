@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kevell_care_dr/configure/route/routes.dart';
 import 'package:kevell_care_dr/features/checkup/presentation/bloc/checkup_bloc.dart';
+import 'package:kevell_care_dr/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:kevell_care_dr/features/signup/presentation/bloc/signup_bloc.dart';
 
 import 'core/di/injectable.dart';
@@ -10,6 +11,8 @@ import 'core/them/dark_theme.dart';
 import 'core/them/light_theme.dart';
 
 Future<void> main() async {
+ 
+
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
   await configureInjeactable();
@@ -26,6 +29,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (ctx) => getIt<CheckupBloc>()),
         BlocProvider(create: (ctx) => getIt<SignupBloc>()),
+        BlocProvider(create: (ctx) => getIt<ProfileBloc>()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

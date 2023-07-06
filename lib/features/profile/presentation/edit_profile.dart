@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
 
+import '../../../core/helper/toast.dart';
 import '../../../core/helper/validater.dart';
 import '../../widgets/buttons/text_button_widget.dart';
 import '../../widgets/input_field/input_field_widget.dart';
+import 'bloc/profile_bloc.dart';
 
 class EditMyProfile extends StatefulWidget {
   const EditMyProfile({super.key});
@@ -19,9 +22,9 @@ class _EditMyProfileState extends State<EditMyProfile> {
       TextEditingController(text: "Mubashir");
   TextEditingController mobileController =
       TextEditingController(text: "9562229979");
-  TextEditingController passwordController =
+  TextEditingController dobController =
       TextEditingController(text: "24 Jan 1988");
-  TextEditingController confirmPasswordController =
+  TextEditingController addressController =
       TextEditingController(text: "24, Maruthu Pandiyar Street, Madurai - 20");
 
   bool isButtonDisabled = true;
@@ -102,7 +105,7 @@ class _EditMyProfileState extends State<EditMyProfile> {
                     style: Theme.of(context).textTheme.titleLarge),
                 const SizedBox(height: 10),
                 TextFieldWidget(
-                  textEditingController: passwordController,
+                  textEditingController: dobController,
                   onChanged: (value) {
                     validateForm();
                   },
@@ -110,9 +113,7 @@ class _EditMyProfileState extends State<EditMyProfile> {
                   keyboardType: TextInputType.visiblePassword,
                   validate: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Please enter a password";
-                    } else if (value.length < 8) {
-                      return "Password must contain at least 8 characters";
+                      return "Please enter a dob";
                     }
                     return null; // Return null if validation succeeds
                   },
@@ -121,7 +122,7 @@ class _EditMyProfileState extends State<EditMyProfile> {
                 Text("Address", style: Theme.of(context).textTheme.titleLarge),
                 const SizedBox(height: 10),
                 TextFieldWidget(
-                  textEditingController: confirmPasswordController,
+                  textEditingController: addressController,
                   onChanged: (value) {
                     validateForm();
                   },
@@ -129,9 +130,7 @@ class _EditMyProfileState extends State<EditMyProfile> {
                   keyboardType: TextInputType.visiblePassword,
                   validate: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Please enter a password";
-                    } else if (value != passwordController.value.text) {
-                      return "Password must same as above";
+                      return "Please enter a adress";
                     }
                     return null; // Return null if validation succeeds
                   },
@@ -153,10 +152,33 @@ class _EditMyProfileState extends State<EditMyProfile> {
                       ),
                       const SizedBox(width: 10),
                       Expanded(
-                        child: TextButtonWidget(
-                          onPressed: () {},
-                          name: "Update",
-                          isLoading: false,
+                        child: BlocConsumer<ProfileBloc, ProfileState>(
+                          listener: (context, state) {
+                            if (!state.isUpdateLoading && state.isError) {
+                              Toast.showToast(
+                                  context: context, message: "message");
+                            }
+                          },
+                          builder: (context, state) {
+                            return TextButtonWidget(
+                              onPressed: isButtonDisabled
+                                  ? null
+                                  : () {
+                                      context.read<ProfileBloc>().add(
+                                            ProfileEvent.updateProfile(
+                                              address:
+                                                  addressController.value.text,
+                                              dob: dobController.value.text,
+                                              mobileNumber:
+                                                  mobileController.text,
+                                              name: nameController.value.text,
+                                            ),
+                                          );
+                                    },
+                              name: "Update",
+                              isLoading: state.isUpdateLoading,
+                            );
+                          },
                         ),
                       ),
                     ],
