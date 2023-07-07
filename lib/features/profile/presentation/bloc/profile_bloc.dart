@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kevell_care_dr/features/profile/domain/repositories/get_profile_repository.dart';
-
+import 'package:kevell_care_dr/features/profile/domain/repositories/update_profile_repository.dart';
 
 import '../../data/models/profile_model.dart';
 
@@ -13,8 +13,9 @@ part 'profile_bloc.freezed.dart';
 @injectable
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final GetProfileRepository getprofileRepository;
+  final UpdateProfileRepository updateProfileRepository;
 
-  ProfileBloc(this.getprofileRepository, )
+  ProfileBloc(this.getprofileRepository, this.updateProfileRepository)
       : super(ProfileState.initial()) {
     on<_GetProfile>((event, emit) async {
       emit(
@@ -48,7 +49,12 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         ),
       );
 
-      final response = await getprofileRepository.getProfile();
+      final response = await updateProfileRepository.updateProfile(
+        address: event.address,
+        dob: event.dob,
+        mobileNumber: event.mobileNumber,
+        name: event.name,
+      );
 
       final result = response.fold(
         (failure) => state.copyWith(

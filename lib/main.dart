@@ -9,10 +9,9 @@ import 'package:kevell_care_dr/features/signup/presentation/bloc/signup_bloc.dar
 import 'core/di/injectable.dart';
 import 'core/them/dark_theme.dart';
 import 'core/them/light_theme.dart';
+import 'features/home/presentation/bloc/home_bloc.dart';
 
 Future<void> main() async {
- 
-
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
   await configureInjeactable();
@@ -30,6 +29,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (ctx) => getIt<CheckupBloc>()),
         BlocProvider(create: (ctx) => getIt<SignupBloc>()),
         BlocProvider(create: (ctx) => getIt<ProfileBloc>()),
+        BlocProvider(create: (ctx) => getIt<HomeBloc>()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

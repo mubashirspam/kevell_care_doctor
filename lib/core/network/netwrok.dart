@@ -8,7 +8,8 @@ abstract class NetworkInfo {
   Future<bool> get isConnected;
 }
 
-@Injectable(as: NetworkInfo)
+@LazySingleton(as: NetworkInfo)
+// @Injectable(as: NetworkInfo)
 
 class NetworkInfoImpl implements NetworkInfo {
   final InternetConnectionChecker connectionChecker;

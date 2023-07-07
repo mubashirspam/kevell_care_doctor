@@ -156,7 +156,13 @@ class _EditMyProfileState extends State<EditMyProfile> {
                           listener: (context, state) {
                             if (!state.isUpdateLoading && state.isError) {
                               Toast.showToast(
-                                  context: context, message: "message");
+                                  context: context,
+                                  message: "Error occured try again later");
+                            }
+                            if (!state.isUpdateLoading && state.hasData) {
+                              Toast.showToast(
+                                  context: context,
+                                  message: "Profile Updated Successfully");
                             }
                           },
                           builder: (context, state) {

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:kevell_care_dr/configure/assets_manage/images.dart';
 import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
-import 'package:kevell_care_dr/features/home/presentation/status_cards.dart';
+import 'package:kevell_care_dr/features/home/presentation/widgets/status_cards.dart';
 import 'package:kevell_care_dr/features/home/presentation/waiting_patient.dart';
 
 import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../../features/home/presentation/home_search.dart';
+import '../../../features/home/presentation/satus_card_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = '/home';
@@ -101,28 +102,7 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: StatusCards(color: [
-                          Color(0xFFB9F8DB),
-                          Color(0xFF44EC9F),
-                        ], statusName: "You attended the patients"),
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Expanded(
-                        child: StatusCards(color: [
-                          Color(0xFFDEC9F8),
-                          Color(0xFFA76EEC),
-                        ], statusName: "Today your attending patients"),
-                      ),
-                    ],
-                  ),
-                ),
+                const StatusCardWidget(),
                 Padding(
                   padding: const EdgeInsets.only(left: 20, bottom: 20),
                   child: Text(

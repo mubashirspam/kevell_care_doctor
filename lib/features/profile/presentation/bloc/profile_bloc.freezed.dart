@@ -368,6 +368,8 @@ abstract class _UpdateProfile implements ProfileEvent {
 mixin _$ProfileState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isUpdateLoading => throw _privateConstructorUsedError;
+  bool get unauthorized => throw _privateConstructorUsedError;
+  bool get hasData => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
   ProfileModel? get result => throw _privateConstructorUsedError;
 
@@ -385,6 +387,8 @@ abstract class $ProfileStateCopyWith<$Res> {
   $Res call(
       {bool isLoading,
       bool isUpdateLoading,
+      bool unauthorized,
+      bool hasData,
       bool isError,
       ProfileModel? result});
 }
@@ -404,6 +408,8 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
   $Res call({
     Object? isLoading = null,
     Object? isUpdateLoading = null,
+    Object? unauthorized = null,
+    Object? hasData = null,
     Object? isError = null,
     Object? result = freezed,
   }) {
@@ -415,6 +421,14 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
       isUpdateLoading: null == isUpdateLoading
           ? _value.isUpdateLoading
           : isUpdateLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      unauthorized: null == unauthorized
+          ? _value.unauthorized
+          : unauthorized // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasData: null == hasData
+          ? _value.hasData
+          : hasData // ignore: cast_nullable_to_non_nullable
               as bool,
       isError: null == isError
           ? _value.isError
@@ -439,6 +453,8 @@ abstract class _$$_ProfileStateCopyWith<$Res>
   $Res call(
       {bool isLoading,
       bool isUpdateLoading,
+      bool unauthorized,
+      bool hasData,
       bool isError,
       ProfileModel? result});
 }
@@ -456,6 +472,8 @@ class __$$_ProfileStateCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? isUpdateLoading = null,
+    Object? unauthorized = null,
+    Object? hasData = null,
     Object? isError = null,
     Object? result = freezed,
   }) {
@@ -467,6 +485,14 @@ class __$$_ProfileStateCopyWithImpl<$Res>
       isUpdateLoading: null == isUpdateLoading
           ? _value.isUpdateLoading
           : isUpdateLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      unauthorized: null == unauthorized
+          ? _value.unauthorized
+          : unauthorized // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasData: null == hasData
+          ? _value.hasData
+          : hasData // ignore: cast_nullable_to_non_nullable
               as bool,
       isError: null == isError
           ? _value.isError
@@ -486,6 +512,8 @@ class _$_ProfileState implements _ProfileState {
   const _$_ProfileState(
       {required this.isLoading,
       required this.isUpdateLoading,
+      required this.unauthorized,
+      required this.hasData,
       required this.isError,
       required this.result});
 
@@ -494,13 +522,17 @@ class _$_ProfileState implements _ProfileState {
   @override
   final bool isUpdateLoading;
   @override
+  final bool unauthorized;
+  @override
+  final bool hasData;
+  @override
   final bool isError;
   @override
   final ProfileModel? result;
 
   @override
   String toString() {
-    return 'ProfileState(isLoading: $isLoading, isUpdateLoading: $isUpdateLoading, isError: $isError, result: $result)';
+    return 'ProfileState(isLoading: $isLoading, isUpdateLoading: $isUpdateLoading, unauthorized: $unauthorized, hasData: $hasData, isError: $isError, result: $result)';
   }
 
   @override
@@ -512,13 +544,16 @@ class _$_ProfileState implements _ProfileState {
                 other.isLoading == isLoading) &&
             (identical(other.isUpdateLoading, isUpdateLoading) ||
                 other.isUpdateLoading == isUpdateLoading) &&
+            (identical(other.unauthorized, unauthorized) ||
+                other.unauthorized == unauthorized) &&
+            (identical(other.hasData, hasData) || other.hasData == hasData) &&
             (identical(other.isError, isError) || other.isError == isError) &&
             (identical(other.result, result) || other.result == result));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, isLoading, isUpdateLoading, isError, result);
+  int get hashCode => Object.hash(runtimeType, isLoading, isUpdateLoading,
+      unauthorized, hasData, isError, result);
 
   @JsonKey(ignore: true)
   @override
@@ -531,6 +566,8 @@ abstract class _ProfileState implements ProfileState {
   const factory _ProfileState(
       {required final bool isLoading,
       required final bool isUpdateLoading,
+      required final bool unauthorized,
+      required final bool hasData,
       required final bool isError,
       required final ProfileModel? result}) = _$_ProfileState;
 
@@ -538,6 +575,10 @@ abstract class _ProfileState implements ProfileState {
   bool get isLoading;
   @override
   bool get isUpdateLoading;
+  @override
+  bool get unauthorized;
+  @override
+  bool get hasData;
   @override
   bool get isError;
   @override
