@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
-import 'package:kevell_care_dr/features/profile/presentation/edit_profile.dart';
+
 
 import '../../../features/profile/presentation/view_my_profile.dart';
-import '../../../features/widgets/buttons/text_button_widget.dart';
+
 
 class MyProfileScreen extends StatelessWidget {
   static const routeName = '/my-profile-screen';
@@ -11,6 +12,7 @@ class MyProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+ 
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
@@ -35,31 +37,10 @@ class MyProfileScreen extends StatelessWidget {
           style: Theme.of(context).textTheme.headlineLarge,
         ),
       ),
-      body: SafeArea(
+      body:const SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 20),
-              const ViewMyProfile(),
-              const Spacer(),
-              TextButtonWidget(
-                onPressed: () {
-                  showModalBottomSheet(
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                    isScrollControlled: true,
-                    context: context,
-                    builder: (context) => const EditMyProfile(),
-                  );
-                },
-                name: "Edit Profile",
-                isLoading: false,
-              ),
-            ],
-          ),
+          padding:  EdgeInsets.all(20),
+          child:  ViewMyProfile(),
         ),
       ),
     );

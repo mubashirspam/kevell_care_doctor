@@ -1,3 +1,7 @@
+// To parse this JSON data, do
+//
+//     final profileModel = profileModelFromJson(jsonString);
+
 import 'dart:convert';
 
 ProfileModel profileModelFromJson(String str) =>
@@ -6,64 +10,56 @@ ProfileModel profileModelFromJson(String str) =>
 String profileModelToJson(ProfileModel data) => json.encode(data.toJson());
 
 class ProfileModel {
+  bool? success;
+  List<Result>? result;
+
   ProfileModel({
-    this.status,
-    this.responsecode,
-    this.message,
-    this.data,
+    this.success,
+    this.result,
   });
 
-  bool? status;
-  int? responsecode;
-  String? message;
-  Data? data;
-
   factory ProfileModel.fromJson(Map<String, dynamic> json) => ProfileModel(
-        status: json["status"],
-        responsecode: json["responsecode"],
-        message: json["message"],
-        data: json["data"] == null ? null : Data.fromJson(json["data"]),
+        success: json["success"],
+        result: json["result"] == null
+            ? []
+            : List<Result>.from(json["result"]!.map((x) => Result.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "status": status,
-        "responsecode": responsecode,
-        "message": message,
-        "data": data?.toJson(),
+        "success": success,
+        "result": result == null
+            ? []
+            : List<dynamic>.from(result!.map((x) => x.toJson())),
       };
 }
 
-class Data {
-  Data({
-    this.fullName,
-    this.phone,
-    this.createdAt,
-    this.id,
-    this.v,
-    this.updatedAt,
-    this.address,
-    this.dob,
-    this.email,
-  });
-
-  String? fullName;
-  String? email;
-  String? dob;
+class Result {
+  String? username;
   String? address;
-
-  String? phone;
-  String? id;
+  String? emailid;
+  String? mobileNo;
+  DateTime? dob;
   DateTime? createdAt;
   DateTime? updatedAt;
   int? v;
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-        fullName: json["name"],
-        email: json["email"],
-        dob: json["dob"],
+  Result({
+    this.username,
+    this.emailid,
+    this.mobileNo,
+    this.dob,
+    this.createdAt,
+    this.updatedAt,
+    this.v,
+    this.address,
+  });
+
+  factory Result.fromJson(Map<String, dynamic> json) => Result(
+        username: json["username"],
         address: json["address"],
-        phone: json["phone"],
-        id: json["_id"],
+        emailid: json["Emailid"],
+        mobileNo: json["MobileNo"],
+        dob: json["DOB"] == null ? null : DateTime.parse(json["DOB"]),
         createdAt: json["createdAt"] == null
             ? null
             : DateTime.parse(json["createdAt"]),
@@ -74,12 +70,11 @@ class Data {
       );
 
   Map<String, dynamic> toJson() => {
-        "name": fullName,
-        "email": email,
-        "dob": dob,
+        "username": username,
         "address": address,
-        "phone": phone,
-        "_id": id,
+        "Emailid": emailid,
+        "MobileNo": mobileNo,
+        "DOB": dob?.toIso8601String(),
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
         "__v": v,

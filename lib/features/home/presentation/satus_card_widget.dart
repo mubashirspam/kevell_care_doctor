@@ -16,28 +16,33 @@ class StatusCardWidget extends StatelessWidget {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         if (state.isStatusLoading) {
-          return const Center(
-            child: LoadingWIdget(),
-          );
+          return const Center(child: LoadingWIdget());
         } else if (state.hasStatusData) {
-          return const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             child: Row(
               children: [
                 Expanded(
-                  child: StatusCards(color: [
-                    Color(0xFFB9F8DB),
-                    Color(0xFF44EC9F),
-                  ], statusName: "You attended the patients"),
+                  child: StatusCards(
+                      count: state.statusResult!.data!.first.todaywaiting
+                          .toString(),
+                      color: const [
+                        Color(0xFFB9F8DB),
+                        Color(0xFF44EC9F),
+                      ],
+                      statusName: "You attended the patients"),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 Expanded(
-                  child: StatusCards(color: [
-                    Color(0xFFDEC9F8),
-                    Color(0xFFA76EEC),
-                  ], statusName: "Today your attending patients"),
+                  child: StatusCards(
+                      count: state.statusResult!.data![1].vistedall.toString(),
+                      color: const [
+                        Color(0xFFDEC9F8),
+                        Color(0xFFA76EEC),
+                      ],
+                      statusName: "Today your attending patients"),
                 ),
               ],
             ),

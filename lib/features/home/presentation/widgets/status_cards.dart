@@ -5,10 +5,12 @@ class StatusCards extends StatelessWidget {
   final List<Color> color;
 
   final String statusName;
+    final String count;
   const StatusCards({
     super.key,
     required this.color,
     required this.statusName,
+    required this.count,
   });
 
   @override
@@ -31,7 +33,7 @@ class StatusCards extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "20",
+                  count,
                   style: Theme.of(context).textTheme.headlineLarge,
                 ),
                 const Icon(Icons.verified_user_outlined)

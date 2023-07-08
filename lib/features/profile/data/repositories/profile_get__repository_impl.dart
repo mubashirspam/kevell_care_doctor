@@ -1,4 +1,4 @@
-import 'dart:convert';
+
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
@@ -6,6 +6,8 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kevell_care_dr/configure/api/endpoints.dart';
 import 'package:kevell_care_dr/features/profile/data/models/profile_model.dart';
+import '../../../../configure/value/constant.dart';
+import '../../../../configure/value/secure_storage.dart';
 import '../../../../core/failiar/main_failures.dart';
 // import '../../../../core/network/netwrok.dart';
 import '../../domain/repositories/get_profile_repository.dart';
@@ -22,8 +24,19 @@ class GetProfileRepoImpliment implements GetProfileRepository {
     // if (await networkInfo.isConnected) {
 
     try {
-      final response = await Dio(BaseOptions())
-          .get(ApiEndPoints.getprofile, data: jsonEncode(""));
+      final token = await getTokenFromSS(secureStoreKey);
+      final mail = await getTokenFromSS(mailsecureStoreKey);
+
+      final headers = {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      };
+
+      final response = await Dio(BaseOptions()).get(
+        ApiEndPoints.getprofile,
+        options: Options(headers: headers),
+        data: {'Emailid': mail},
+      );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = ProfileModel.fromJson(response.data);
@@ -31,9 +44,12 @@ class GetProfileRepoImpliment implements GetProfileRepository {
 
         return Right(result);
       } else {
+        log("Server eroor");
         return const Left(MainFailure.serverFailure());
       }
     } catch (e) {
+      log(e.toString());
+      log("errooroorroorooroor");
       return const Left(MainFailure.unauthorized());
     }
 

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kevell_care_dr/configure/assets_manage/images.dart';
 import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
-import 'package:kevell_care_dr/features/home/presentation/widgets/status_cards.dart';
+import 'package:kevell_care_dr/features/home/presentation/bloc/home_bloc.dart';
 import 'package:kevell_care_dr/features/home/presentation/waiting_patient.dart';
 
 import 'package:sliver_tools/sliver_tools.dart';
@@ -15,6 +16,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<HomeBloc>().add(const HomeEvent.getHomeStatus());
+      context.read<HomeBloc>().add(const HomeEvent.getHomeWaitingPatient());
+    });
     return SizedBox(
       width: double.maxFinite,
       height: double.maxFinite,

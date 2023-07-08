@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -18,6 +20,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ProfileBloc(this.getprofileRepository, this.updateProfileRepository)
       : super(ProfileState.initial()) {
     on<_GetProfile>((event, emit) async {
+      if (state.hasData) {
+        return;
+      }
       emit(
         state.copyWith(
           isLoading: true,
@@ -35,6 +40,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         (success) => state.copyWith(
           isError: false,
           isLoading: false,
+          hasData: true,
           result: success,
         ),
       );
@@ -45,6 +51,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       emit(
         state.copyWith(
           isUpdateLoading: true,
+          hasData: false,
           isError: false,
         ),
       );
@@ -65,6 +72,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           isError: false,
           isUpdateLoading: false,
           result: success,
+          hasData: true
         ),
       );
       emit(result);

@@ -237,6 +237,7 @@ abstract class _Login implements LoginEvent {
 /// @nodoc
 mixin _$LoginState {
   bool get isLoading => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
   bool get hasValidationData => throw _privateConstructorUsedError;
   LoginModel? get loginDetails => throw _privateConstructorUsedError;
@@ -254,6 +255,7 @@ abstract class $LoginStateCopyWith<$Res> {
   @useResult
   $Res call(
       {bool isLoading,
+      String message,
       bool isError,
       bool hasValidationData,
       LoginModel? loginDetails});
@@ -273,6 +275,7 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? message = null,
     Object? isError = null,
     Object? hasValidationData = null,
     Object? loginDetails = freezed,
@@ -282,6 +285,10 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
       isError: null == isError
           ? _value.isError
           : isError // ignore: cast_nullable_to_non_nullable
@@ -308,6 +315,7 @@ abstract class _$$_LoginStateCopyWith<$Res>
   @useResult
   $Res call(
       {bool isLoading,
+      String message,
       bool isError,
       bool hasValidationData,
       LoginModel? loginDetails});
@@ -325,6 +333,7 @@ class __$$_LoginStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? message = null,
     Object? isError = null,
     Object? hasValidationData = null,
     Object? loginDetails = freezed,
@@ -334,6 +343,10 @@ class __$$_LoginStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
       isError: null == isError
           ? _value.isError
           : isError // ignore: cast_nullable_to_non_nullable
@@ -355,12 +368,15 @@ class __$$_LoginStateCopyWithImpl<$Res>
 class _$_LoginState implements _LoginState {
   const _$_LoginState(
       {required this.isLoading,
+      required this.message,
       required this.isError,
       required this.hasValidationData,
       required this.loginDetails});
 
   @override
   final bool isLoading;
+  @override
+  final String message;
   @override
   final bool isError;
   @override
@@ -370,7 +386,7 @@ class _$_LoginState implements _LoginState {
 
   @override
   String toString() {
-    return 'LoginState(isLoading: $isLoading, isError: $isError, hasValidationData: $hasValidationData, loginDetails: $loginDetails)';
+    return 'LoginState(isLoading: $isLoading, message: $message, isError: $isError, hasValidationData: $hasValidationData, loginDetails: $loginDetails)';
   }
 
   @override
@@ -380,6 +396,7 @@ class _$_LoginState implements _LoginState {
             other is _$_LoginState &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.message, message) || other.message == message) &&
             (identical(other.isError, isError) || other.isError == isError) &&
             (identical(other.hasValidationData, hasValidationData) ||
                 other.hasValidationData == hasValidationData) &&
@@ -388,8 +405,8 @@ class _$_LoginState implements _LoginState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, isLoading, isError, hasValidationData, loginDetails);
+  int get hashCode => Object.hash(runtimeType, isLoading, message, isError,
+      hasValidationData, loginDetails);
 
   @JsonKey(ignore: true)
   @override
@@ -401,12 +418,15 @@ class _$_LoginState implements _LoginState {
 abstract class _LoginState implements LoginState {
   const factory _LoginState(
       {required final bool isLoading,
+      required final String message,
       required final bool isError,
       required final bool hasValidationData,
       required final LoginModel? loginDetails}) = _$_LoginState;
 
   @override
   bool get isLoading;
+  @override
+  String get message;
   @override
   bool get isError;
   @override

@@ -55,6 +55,9 @@ class BottomWidget extends StatelessWidget {
             children: [
               SvgPicture.asset(
                 icon,
+                color: selectedIndexNorifier.value == index
+                    ? context.theme.primary
+                    : null,
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5),

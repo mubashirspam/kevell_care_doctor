@@ -3,9 +3,13 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kevell_care_dr/core/helper/toast.dart';
 import 'package:kevell_care_dr/core/helper/validater.dart';
 import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
+import 'package:kevell_care_dr/pages/initialize/initialize.dart';
 
+import '../../../configure/value/constant.dart';
+import '../../../configure/value/secure_storage.dart';
 import '../../widgets/buttons/text_button_widget.dart';
 import '../../widgets/input_field/input_field_widget.dart';
 import 'bloc/login_bloc.dart';
@@ -43,6 +47,10 @@ class _LoginWidgetState extends State<LoginWidget> {
     }
   }
 
+  void isPasswordVisiblity() {
+    setState(() => isPasswordVisible = !isPasswordVisible);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -76,7 +84,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(height: 10),
             TextFieldWidget(
-              obscureText: true,
+              obscureText: isPasswordVisible,
               suffixIcon: GestureDetector(
                 onTap: () =>
                     setState(() => isPasswordVisible = !isPasswordVisible),
@@ -123,7 +131,38 @@ class _LoginWidgetState extends State<LoginWidget> {
             const SizedBox(height: 30),
             BlocConsumer<LoginBloc, LoginState>(
               listener: (context, state) {
-                // TODO: implement listener
+                if (!state.isLoading && state.isError) {
+                  Toast.showToast(
+                    context: context,
+                    message: state.message,
+                  );
+                }
+                if (!state.isLoading && state.hasValidationData) {
+                  addTokenToSS(mailsecureStoreKey,
+                      state.loginDetails!.data!.emailid.toString());
+
+                  addTokenToSS(drIdsecureStoreKey,
+                      state.loginDetails!.data!.id.toString());
+
+                  addTokenToSS(secureStoreKey,
+                      state.loginDetails!.data!.token.toString());
+
+                  log("Token : ${state.loginDetails!.data?.token}");
+                  log("id : ${state.loginDetails!.data?.id}");
+                  log("mail : ${state.loginDetails!.data?.emailid}");
+
+                  Toast.showToast(
+                    context: context,
+                    message: state.message,
+                  );
+
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                      builder: (context) => const Initialize(),
+                    ),
+                    (route) => false,
+                  );
+                }
               },
               builder: (context, state) {
                 return TextButtonWidget(

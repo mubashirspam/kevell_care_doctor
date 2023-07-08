@@ -25,12 +25,17 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
         final result = response.fold(
           (failure) => state.copyWith(
-              isLoading: false, isError: true, hasValidationData: false),
+            isLoading: false,
+            isError: true,
+            message: "Something went wrong",
+            hasValidationData: false,
+          ),
           (success) => state.copyWith(
             isError: false,
             hasValidationData: true,
             isLoading: false,
             loginDetails: success,
+            message: 'You are successfully Logined 🥳',
           ),
         );
         emit(result);

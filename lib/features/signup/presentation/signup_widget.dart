@@ -5,7 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kevell_care_dr/features/signup/presentation/bloc/signup_bloc.dart';
 import 'package:kevell_care_dr/features/widgets/input_field/input_field_widget.dart';
 
+import '../../../core/helper/toast.dart';
 import '../../../core/helper/validater.dart';
+import '../../../pages/login_scrren/presentation/login_screen.dart';
 import '../../widgets/buttons/text_button_widget.dart';
 
 class SignUpWidget extends StatefulWidget {
@@ -151,7 +153,28 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             const SizedBox(height: 20),
             BlocConsumer<SignupBloc, SignupState>(
               listener: (context, state) {
-                // TODO: implement listener
+                if (!state.isLoading && state.isError) {
+                  Toast.showToast(
+                    context: context,
+                    message: "erro",
+                  );
+                }
+                if (!state.isLoading && state.hasValidationData) {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      content: Text("You are Successfull Registerd"),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pushNamedAndRemoveUntil(
+                                  LoginScreen.routeName, (route) => false);
+                            },
+                            child: const Text("Click here to login"))
+                      ],
+                    ),
+                  );
+                }
               },
               builder: (context, state) {
                 return TextButtonWidget(

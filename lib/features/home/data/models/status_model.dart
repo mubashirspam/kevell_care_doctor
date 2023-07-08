@@ -1,81 +1,57 @@
+// To parse this JSON data, do
+//
+//     final homeStatusModel = homeStatusModelFromJson(jsonString);
+
 import 'dart:convert';
 
-HomeStatusModel homeStatusModelFromJson(String str) =>
-    HomeStatusModel.fromJson(json.decode(str));
+HomeStatusModel homeStatusModelFromJson(String str) => HomeStatusModel.fromJson(json.decode(str));
 
-String homeStatusModelToJson(HomeStatusModel data) =>
-    json.encode(data.toJson());
+String homeStatusModelToJson(HomeStatusModel data) => json.encode(data.toJson());
 
 class HomeStatusModel {
-  HomeStatusModel({
-    this.status,
-    this.responsecode,
-    this.message,
-    this.data,
-  });
+    bool? success;
+    int? responsecode;
+    String? message;
+    List<Datum>? data;
 
-  bool? status;
-  int? responsecode;
-  String? message;
-  Data? data;
+    HomeStatusModel({
+        this.success,
+        this.responsecode,
+        this.message,
+        this.data,
+    });
 
-  factory HomeStatusModel.fromJson(Map<String, dynamic> json) =>
-      HomeStatusModel(
-        status: json["status"],
+    factory HomeStatusModel.fromJson(Map<String, dynamic> json) => HomeStatusModel(
+        success: json["success"],
         responsecode: json["responsecode"],
         message: json["message"],
-        data: json["data"] == null ? null : Data.fromJson(json["data"]),
-      );
+        data: json["data"] == null ? [] : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
+    );
 
-  Map<String, dynamic> toJson() => {
-        "status": status,
+    Map<String, dynamic> toJson() => {
+        "success": success,
         "responsecode": responsecode,
         "message": message,
-        "data": data?.toJson(),
-      };
+        "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
+    };
 }
 
-class Data {
-  Data({
-    this.count,
-    this.icon,
-    this.statusName,
-    this.createdAt,
-    this.id,
-    this.v,
-    this.updatedAt,
-  });
+class Datum {
+    int? todaywaiting;
+    int? vistedall;
 
-  String? count;
-  String? icon;
-  String? statusName;
+    Datum({
+        this.todaywaiting,
+        this.vistedall,
+    });
 
-  String? id;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-  int? v;
+    factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+        todaywaiting: json["todaywaiting"],
+        vistedall: json["vistedall"],
+    );
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-        count: json["count"],
-        icon: json["icon"],
-        statusName: json["statusname"],
-        id: json["_id"],
-        createdAt: json["createdAt"] == null
-            ? null
-            : DateTime.parse(json["createdAt"]),
-        updatedAt: json["updatedAt"] == null
-            ? null
-            : DateTime.parse(json["updatedAt"]),
-        v: json["__v"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "count": count,
-        "icon": icon,
-        "statusname": statusName,
-        "_id": id,
-        "createdAt": createdAt?.toIso8601String(),
-        "updatedAt": updatedAt?.toIso8601String(),
-        "__v": v,
-      };
+    Map<String, dynamic> toJson() => {
+        "todaywaiting": todaywaiting,
+        "vistedall": vistedall,
+    };
 }
