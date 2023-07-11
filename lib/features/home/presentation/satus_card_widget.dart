@@ -24,25 +24,25 @@ class StatusCardWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: StatusCards(
-                      count: state.statusResult!.data!.first.todaywaiting
+                      count: state.statusResult!.data!.status!.first.count
                           .toString(),
                       color: const [
                         Color(0xFFB9F8DB),
                         Color(0xFF44EC9F),
                       ],
-                      statusName: "You attended the patients"),
+                      statusName: state.statusResult!.data!.status!.first.name.toString()),
                 ),
                 const SizedBox(
                   width: 15,
                 ),
                 Expanded(
                   child: StatusCards(
-                      count: state.statusResult!.data![1].vistedall.toString(),
+                      count: state.statusResult!.data!.status![1].count.toString(),
                       color: const [
                         Color(0xFFDEC9F8),
                         Color(0xFFA76EEC),
                       ],
-                      statusName: "Today your attending patients"),
+                      statusName: state.statusResult!.data!.status![1].name.toString()),
                 ),
               ],
             ),

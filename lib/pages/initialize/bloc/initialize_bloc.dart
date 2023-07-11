@@ -32,6 +32,7 @@ class InitializeBloc extends Bloc<InitializeEvent, InitializeState> {
       );
 
       final token = await getTokenFromSS(secureStoreKey);
+      
 
       if (token != null) {
         emit(state.copyWith(

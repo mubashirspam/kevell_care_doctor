@@ -83,7 +83,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
                       failureOrSuccessOption: some(Left(failure)),
                     ));
                   },
-                  unauthorized: () {
+                  unauthorized: (String message) {
                     log('emit unauthorized');
                     return emit(state.copyWith(
                       isWaitingPatientLoading: false,

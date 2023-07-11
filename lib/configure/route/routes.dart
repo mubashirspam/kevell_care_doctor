@@ -12,68 +12,7 @@ import '../../pages/schedule/presentation/schedule_your_time.dart';
 import '../../pages/signup_screen/presentation/lsignup_screen.dart';
 import '../../pages/videocall/presentation/one_to_one_meeting_screen.dart';
 
-// This route hierarchy can be represented like this:
 
-// // GoRouter
-// // └─ ShellRoute
-// //     ├─ GoRoute('/a')
-// //     │  ├─ GoRoute('details')
-// //     └─ GoRoute('/b')
-// //        └─ GoRoute('details')
-
-// final _rootNavigatorKey = GlobalKey<NavigatorState>();
-// final _shellNavigatorKey = GlobalKey<NavigatorState>();
-
-// class MianRoute {
-//   static final router = GoRouter(
-//     initialLocation: '/login',
-//     // initialLocation: '/schedule_your_time',
-//     navigatorKey: _rootNavigatorKey,
-//     routes: <RouteBase>[
-//       ShellRoute(
-//           navigatorKey: _shellNavigatorKey,
-//           builder: (context, state, child) => Dashboard(
-//                 appBar: const <PreferredSizeWidget?>[
-//                   null,
-//                   ScheduleAppBar(),
-//                   null,
-//                   null,
-//                   null
-//                 ],
-//                 child: child,
-//               ),
-//           routes: [
-//             GoRoute(
-//                 name: "Home",
-//                 path: '/home',
-//                 builder: (context, state) => const HomeScreen()),
-//             GoRoute(
-//                 path: '/schedule',
-//                 builder: (context, state) => const ScheduleScreen()),
-//             GoRoute(
-//                 path: '/chat',
-//                 builder: (context, state) => const SignupScreen()),
-//             GoRoute(
-//                 path: '/history',
-//                 builder: (context, state) => const SignupScreen()),
-//             GoRoute(
-//                 path: '/profile',
-//                 builder: (context, state) => const SignupScreen()),
-// // hhhhhhhhhhh
-//           ]),
-//       GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
-//       GoRoute(
-//           path: '/patient_checkup',
-//           builder: (context, state) => const PatientCheckupScreen()),
-//       GoRoute(
-//           path: '/signup', builder: (context, state) => const SignupScreen()),
-//       GoRoute(
-//           name: "schedule_your_time",
-//           path: '/schedule_your_time',
-//           builder: (context, state) => const ScheduleYourTime()),
-//     ],
-//   );
-// }
 
 final Map<String, Widget Function(BuildContext)> route = {
   LoginScreen.routeName: (ctx) => const LoginScreen(),

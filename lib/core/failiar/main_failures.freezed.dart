@@ -20,21 +20,21 @@ mixin _$MainFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() clientFailure,
     required TResult Function() serverFailure,
-    required TResult Function() unauthorized,
+    required TResult Function(String message) unauthorized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clientFailure,
     TResult? Function()? serverFailure,
-    TResult? Function()? unauthorized,
+    TResult? Function(String message)? unauthorized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clientFailure,
     TResult Function()? serverFailure,
-    TResult Function()? unauthorized,
+    TResult Function(String message)? unauthorized,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,7 +120,7 @@ class _$_ClientFailure implements _ClientFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() clientFailure,
     required TResult Function() serverFailure,
-    required TResult Function() unauthorized,
+    required TResult Function(String message) unauthorized,
   }) {
     return clientFailure();
   }
@@ -130,7 +130,7 @@ class _$_ClientFailure implements _ClientFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clientFailure,
     TResult? Function()? serverFailure,
-    TResult? Function()? unauthorized,
+    TResult? Function(String message)? unauthorized,
   }) {
     return clientFailure?.call();
   }
@@ -140,7 +140,7 @@ class _$_ClientFailure implements _ClientFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clientFailure,
     TResult Function()? serverFailure,
-    TResult Function()? unauthorized,
+    TResult Function(String message)? unauthorized,
     required TResult orElse(),
   }) {
     if (clientFailure != null) {
@@ -228,7 +228,7 @@ class _$_ServerFailure implements _ServerFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() clientFailure,
     required TResult Function() serverFailure,
-    required TResult Function() unauthorized,
+    required TResult Function(String message) unauthorized,
   }) {
     return serverFailure();
   }
@@ -238,7 +238,7 @@ class _$_ServerFailure implements _ServerFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clientFailure,
     TResult? Function()? serverFailure,
-    TResult? Function()? unauthorized,
+    TResult? Function(String message)? unauthorized,
   }) {
     return serverFailure?.call();
   }
@@ -248,7 +248,7 @@ class _$_ServerFailure implements _ServerFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clientFailure,
     TResult Function()? serverFailure,
-    TResult Function()? unauthorized,
+    TResult Function(String message)? unauthorized,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
@@ -301,6 +301,8 @@ abstract class _$$_UnauthorizedCopyWith<$Res> {
   factory _$$_UnauthorizedCopyWith(
           _$_Unauthorized value, $Res Function(_$_Unauthorized) then) =
       __$$_UnauthorizedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
 }
 
 /// @nodoc
@@ -310,35 +312,59 @@ class __$$_UnauthorizedCopyWithImpl<$Res>
   __$$_UnauthorizedCopyWithImpl(
       _$_Unauthorized _value, $Res Function(_$_Unauthorized) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$_Unauthorized(
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Unauthorized implements _Unauthorized {
-  const _$_Unauthorized();
+  const _$_Unauthorized({required this.message});
+
+  @override
+  final String message;
 
   @override
   String toString() {
-    return 'MainFailure.unauthorized()';
+    return 'MainFailure.unauthorized(message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Unauthorized);
+        (other.runtimeType == runtimeType &&
+            other is _$_Unauthorized &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UnauthorizedCopyWith<_$_Unauthorized> get copyWith =>
+      __$$_UnauthorizedCopyWithImpl<_$_Unauthorized>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() clientFailure,
     required TResult Function() serverFailure,
-    required TResult Function() unauthorized,
+    required TResult Function(String message) unauthorized,
   }) {
-    return unauthorized();
+    return unauthorized(message);
   }
 
   @override
@@ -346,9 +372,9 @@ class _$_Unauthorized implements _Unauthorized {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clientFailure,
     TResult? Function()? serverFailure,
-    TResult? Function()? unauthorized,
+    TResult? Function(String message)? unauthorized,
   }) {
-    return unauthorized?.call();
+    return unauthorized?.call(message);
   }
 
   @override
@@ -356,11 +382,11 @@ class _$_Unauthorized implements _Unauthorized {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clientFailure,
     TResult Function()? serverFailure,
-    TResult Function()? unauthorized,
+    TResult Function(String message)? unauthorized,
     required TResult orElse(),
   }) {
     if (unauthorized != null) {
-      return unauthorized();
+      return unauthorized(message);
     }
     return orElse();
   }
@@ -401,5 +427,11 @@ class _$_Unauthorized implements _Unauthorized {
 }
 
 abstract class _Unauthorized implements MainFailure {
-  const factory _Unauthorized() = _$_Unauthorized;
+  const factory _Unauthorized({required final String message}) =
+      _$_Unauthorized;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$_UnauthorizedCopyWith<_$_Unauthorized> get copyWith =>
+      throw _privateConstructorUsedError;
 }

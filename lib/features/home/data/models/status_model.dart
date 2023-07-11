@@ -12,7 +12,7 @@ class HomeStatusModel {
     bool? success;
     int? responsecode;
     String? message;
-    List<Datum>? data;
+    Data? data;
 
     HomeStatusModel({
         this.success,
@@ -25,33 +25,49 @@ class HomeStatusModel {
         success: json["success"],
         responsecode: json["responsecode"],
         message: json["message"],
-        data: json["data"] == null ? [] : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
+        data: json["data"] == null ? null : Data.fromJson(json["data"]),
     );
 
     Map<String, dynamic> toJson() => {
         "success": success,
         "responsecode": responsecode,
         "message": message,
-        "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
+        "data": data?.toJson(),
     };
 }
 
-class Datum {
-    int? todaywaiting;
-    int? vistedall;
+class Data {
+    List<Status>? status;
 
-    Datum({
-        this.todaywaiting,
-        this.vistedall,
+    Data({
+        this.status,
     });
 
-    factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        todaywaiting: json["todaywaiting"],
-        vistedall: json["vistedall"],
+    factory Data.fromJson(Map<String, dynamic> json) => Data(
+        status: json["status"] == null ? [] : List<Status>.from(json["status"]!.map((x) => Status.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
-        "todaywaiting": todaywaiting,
-        "vistedall": vistedall,
+        "status": status == null ? [] : List<dynamic>.from(status!.map((x) => x.toJson())),
+    };
+}
+
+class Status {
+    String? name;
+    int? count;
+
+    Status({
+        this.name,
+        this.count,
+    });
+
+    factory Status.fromJson(Map<String, dynamic> json) => Status(
+        name: json["name"],
+        count: json["count"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "name": name,
+        "count": count,
     };
 }

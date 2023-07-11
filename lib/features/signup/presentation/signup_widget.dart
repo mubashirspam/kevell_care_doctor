@@ -156,14 +156,14 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 if (!state.isLoading && state.isError) {
                   Toast.showToast(
                     context: context,
-                    message: "erro",
+                    message: state.message ?? "",
                   );
                 }
                 if (!state.isLoading && state.hasValidationData) {
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
-                      content: Text("You are Successfull Registerd"),
+                      content: Text(state.message ?? ""),
                       actions: [
                         TextButton(
                             onPressed: () {

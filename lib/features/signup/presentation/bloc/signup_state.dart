@@ -7,6 +7,7 @@ class SignupState with _$SignupState {
     required bool isError,
     required bool hasValidationData,
     required SignupModel? singnupDetails,
+    required String ? message,
   }) = _SignupState;
 
   factory SignupState.initial() => const SignupState(
@@ -14,5 +15,6 @@ class SignupState with _$SignupState {
         isError: false,
         hasValidationData: false,
         singnupDetails: null,
+        message: null,
       );
 }

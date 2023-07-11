@@ -6,6 +6,7 @@ import 'package:kevell_care_dr/configure/api/endpoints.dart';
 import 'package:kevell_care_dr/features/profile/data/models/profile_model.dart';
 import '../../../../configure/value/constant.dart';
 import '../../../../configure/value/secure_storage.dart';
+import '../../../../core/failiar/failiur_model.dart';
 import '../../../../core/failiar/main_failures.dart';
 // import '../../../../core/network/netwrok.dart';
 import '../../domain/repositories/update_profile_repository.dart';
@@ -51,11 +52,15 @@ class UpdateProfileRepoImpliment implements UpdateProfileRepository {
         log(result.toString());
 
         return Right(result);
+      } else if (response.statusCode == 400 || response.statusCode == 401) {
+        final result = FailuerModel.fromJson(response.data);
+        return Left(
+            MainFailure.unauthorized(message: result.message ?? "Error"));
       } else {
         return const Left(MainFailure.serverFailure());
       }
     } catch (e) {
-      return const Left(MainFailure.unauthorized());
+      return const Left(MainFailure.clientFailure());
     }
     // } else {
     //   return const Left(MainFailure.clientFailure());

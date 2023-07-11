@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -16,7 +18,10 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
     on<_Signup>(
       (event, emit) async {
         emit(state.copyWith(
-            isLoading: true, hasValidationData: false, isError: false));
+          isLoading: true,
+          hasValidationData: false,
+          isError: false,
+        ));
 
         final response = await signupRepository.signup(
           phone: event.phone,
@@ -25,17 +30,53 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
           password: event.password,
         );
 
-        final result = response.fold(
-          (failure) => state.copyWith(
-              isLoading: false, isError: true, hasValidationData: false),
-          (success) => state.copyWith(
-            isError: false,
-            hasValidationData: true,
-            isLoading: false,
-            singnupDetails: success,
-          ),
-        );
-        emit(result);
+        response.fold(
+            (failure) => {
+                  failure.maybeWhen(
+                    clientFailure: () {
+                      log('clientFailure');
+                      return emit(state.copyWith(
+                        isLoading: false,
+                        message: "Client faliure",
+                        isError: true,
+                      ));
+                    },
+                    unauthorized: (String message) {
+                      log('emit unauthorized');
+                      return emit(state.copyWith(
+                        isLoading: false,
+                        message: message,
+                        isError: true,
+                      ));
+                    },
+                    serverFailure: () {
+                      log('emit serverFailure');
+                      return emit(state.copyWith(
+                        isLoading: false,
+                        message: "Server faliure",
+                        isError: true,
+                      ));
+                    },
+                    orElse: () {
+                      log('emit orElse');
+                      return emit(state.copyWith(
+                        isLoading: false,
+                        message: "Error",
+                        isError: true,
+                      ));
+                    },
+                  )
+                }, (success) {
+          emit(
+            state.copyWith(
+              isError: false,
+              hasValidationData: true,
+              isLoading: false,
+              singnupDetails: success,
+              message: 'You are successfully Registerd 🥳',
+            ),
+          );
+        });
       },
     );
   }

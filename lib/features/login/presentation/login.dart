@@ -24,8 +24,8 @@ class LoginWidget extends StatefulWidget {
 class _LoginWidgetState extends State<LoginWidget> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController(text: "test@gmail.com");
+  TextEditingController passwordController = TextEditingController(text: "1111111");
 
   bool isButtonDisabled = true;
   bool isPasswordVisible = true;
@@ -138,30 +138,39 @@ class _LoginWidgetState extends State<LoginWidget> {
                   );
                 }
                 if (!state.isLoading && state.hasValidationData) {
-                  addTokenToSS(mailsecureStoreKey,
-                      state.loginDetails!.data!.emailid.toString());
+                  if (state.loginDetails!.data!.token != null &&
+                      state.loginDetails!.data!.emailid != null &&
+                      state.loginDetails!.data!.id != null) {
+                    addTokenToSS(
+                        mailsecureStoreKey, state.loginDetails!.data!.emailid!);
 
-                  addTokenToSS(drIdsecureStoreKey,
-                      state.loginDetails!.data!.id.toString());
+                    addTokenToSS(drIdsecureStoreKey,
+                        state.loginDetails!.data!.id.toString());
 
-                  addTokenToSS(secureStoreKey,
-                      state.loginDetails!.data!.token.toString());
+                    addTokenToSS(
+                        secureStoreKey, state.loginDetails!.data!.token!);
+
+                    Toast.showToast(
+                      context: context,
+                      message: state.message,
+                    );
+
+                    Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                        builder: (context) => const Initialize(),
+                      ),
+                      (route) => false,
+                    );
+                  }
+
+                  Toast.showToast(
+                    context: context,
+                    message: "Error Occured",
+                  );
 
                   log("Token : ${state.loginDetails!.data?.token}");
                   log("id : ${state.loginDetails!.data?.id}");
                   log("mail : ${state.loginDetails!.data?.emailid}");
-
-                  Toast.showToast(
-                    context: context,
-                    message: state.message,
-                  );
-
-                  Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(
-                      builder: (context) => const Initialize(),
-                    ),
-                    (route) => false,
-                  );
                 }
               },
               builder: (context, state) {

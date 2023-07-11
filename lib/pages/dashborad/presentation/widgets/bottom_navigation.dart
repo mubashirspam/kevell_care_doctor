@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kevell_care_dr/configure/assets_manage/icons.dart';
-import 'package:kevell_care_dr/configure/color/main_color.dart';
+
 import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
 
 ValueNotifier<int> selectedIndexNorifier = ValueNotifier<int>(0);
@@ -67,9 +67,9 @@ class BottomWidget extends StatelessWidget {
                             fontSize: 11,
                             color: context.theme.textGrey,
                             fontWeight: FontWeight.bold)
-                        : const TextStyle(
+                        :  TextStyle(
                             fontSize: 11,
-                            color: MainConfigColorsDarkThem.textThemePrimary,
+                            color:  context.theme.textPrimary,
                           ),
                     name),
               )

@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
@@ -6,7 +5,9 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kevell_care_dr/configure/api/endpoints.dart';
 import 'package:kevell_care_dr/features/signup/data/models/signup_model.dart';
+import '../../../../core/failiar/failiur_model.dart';
 import '../../../../core/failiar/main_failures.dart';
+
 import '../../domain/repositories/signup_repository.dart';
 
 @LazySingleton(as: SignupRepository)
@@ -30,7 +31,7 @@ class SignupRepoImpliment implements SignupRepository {
         queryParameters: {
           "username": fullName,
           "email": email,
-          "mobile":phone,
+          "mobile": phone,
           "password": password,
         },
       );
@@ -40,11 +41,15 @@ class SignupRepoImpliment implements SignupRepository {
         log(registerResult.toString());
 
         return Right(registerResult);
+      } else if (response.statusCode == 400 || response.statusCode == 401) {
+        final result = FailuerModel.fromJson(response.data);
+        return Left(
+            MainFailure.unauthorized(message: result.message ?? "Error"));
       } else {
         return const Left(MainFailure.serverFailure());
       }
     } catch (e) {
-      return const Left(MainFailure.unauthorized());
+      return const Left(MainFailure.clientFailure());
     }
     // } else {
     //   return const Left(MainFailure.clientFailure());

@@ -6,6 +6,9 @@ import 'package:kevell_care_dr/features/widgets/error_widget.dart';
 import 'package:kevell_care_dr/features/widgets/loading_widget.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
+import '../../../configure/value/constant.dart';
+import '../../../configure/value/secure_storage.dart';
+import '../../../pages/initialize/initialize.dart';
 import 'widgets/waiting_patient_card.dart';
 
 class WaitingPatient extends StatelessWidget {
@@ -14,9 +17,19 @@ class WaitingPatient extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeBloc, HomeState>(
-      listener: (context, state) {
-        if (state.unauthorized == true) {
-          // logOut(context);
+      listener: (context, state) async {
+        if (state.unauthorized) {
+          Toast.showToast(
+            context: context,
+            message: "Unauthrized",
+          );
+          await deleteFromSS(secureStoreKey)
+              .then((value) => Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                      builder: (context) => const Initialize(),
+                    ),
+                    (route) => false,
+                  ));
         } else if (state.isError) {
           Toast.showToast(context: context, message: "Network Error");
         }
@@ -26,10 +39,14 @@ class WaitingPatient extends StatelessWidget {
       },
       builder: (context, state) {
         if (state.isWaitingPatientLoading) {
-          return MultiSliver(children: const [Center(child: LoadingWIdget())]);
+          return MultiSliver(children: const [
+            Center(
+              child: LoadingWIdget(),
+            ),
+          ]);
         }
         if (state.hasWaitingPatientData) {
-          if (state.waitingPatientResult!.data!.isEmpty) {
+          if (state.waitingPatientResult!.data == null) {
             return MultiSliver(
               children: [
                 Container(
@@ -49,6 +66,7 @@ class WaitingPatient extends StatelessWidget {
 
           return SliverList(
             delegate: SliverChildBuilderDelegate(
+              childCount: 6,
               (context, index) => WaitingPatientCard(
                 imageUrl: "",
                 isActive: index.isEven ? true : false,

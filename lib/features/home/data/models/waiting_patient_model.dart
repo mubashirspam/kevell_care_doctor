@@ -9,29 +9,81 @@ HomeWaitingPatientModel homeWaitingPatientModelFromJson(String str) => HomeWaiti
 String homeWaitingPatientModelToJson(HomeWaitingPatientModel data) => json.encode(data.toJson());
 
 class HomeWaitingPatientModel {
-    bool? success;
-    int? responsecode;
+    int? responseCode;
+    bool? status;
     String? message;
-    List<dynamic>? data;
+    Data? data;
 
     HomeWaitingPatientModel({
-        this.success,
-        this.responsecode,
+        this.responseCode,
+        this.status,
         this.message,
         this.data,
     });
 
     factory HomeWaitingPatientModel.fromJson(Map<String, dynamic> json) => HomeWaitingPatientModel(
-        success: json["success"],
-        responsecode: json["responsecode"],
+        responseCode: json["responseCode"],
+        status: json["status"],
         message: json["message"],
-        data: json["data"] == null ? [] : List<dynamic>.from(json["data"]!.map((x) => x)),
+        data: json["data"] == null ? null : Data.fromJson(json["data"]),
     );
 
     Map<String, dynamic> toJson() => {
-        "success": success,
-        "responsecode": responsecode,
+        "responseCode": responseCode,
+        "status": status,
         "message": message,
-        "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x)),
+        "data": data?.toJson(),
+    };
+}
+
+class Data {
+    int? totalCount;
+    List<WaitingPatient>? waitingPatients;
+
+    Data({
+        this.totalCount,
+        this.waitingPatients,
+    });
+
+    factory Data.fromJson(Map<String, dynamic> json) => Data(
+        totalCount: json["totalCount"],
+        waitingPatients: json["waiting_patients"] == null ? [] : List<WaitingPatient>.from(json["waiting_patients"]!.map((x) => WaitingPatient.fromJson(x))),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "totalCount": totalCount,
+        "waiting_patients": waitingPatients == null ? [] : List<dynamic>.from(waitingPatients!.map((x) => x.toJson())),
+    };
+}
+
+class WaitingPatient {
+    int? patientId;
+    String? type;
+    DateTime? createdAt;
+    DateTime? updatedAt;
+    int? v;
+
+    WaitingPatient({
+        this.patientId,
+        this.type,
+        this.createdAt,
+        this.updatedAt,
+        this.v,
+    });
+
+    factory WaitingPatient.fromJson(Map<String, dynamic> json) => WaitingPatient(
+        patientId: json["patient_id"],
+        type: json["type"],
+        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+        v: json[" __v"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "patient_id": patientId,
+        "type": type,
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
+        " __v": v,
     };
 }

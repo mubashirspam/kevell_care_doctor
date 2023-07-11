@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kevell_care_dr/configure/api/endpoints.dart';
 import 'package:kevell_care_dr/features/login/data/models/login_model.dart';
+import '../../../../core/failiar/failiur_model.dart';
 import '../../../../core/failiar/main_failures.dart';
 
 import '../../domain/repositories/login_repository.dart';
@@ -36,11 +37,15 @@ class LoginRepoImpliment implements LoginRepository {
         log(result.toString());
 
         return Right(result);
+      }  else if (response.statusCode == 400 || response.statusCode == 401) {
+        final result = FailuerModel.fromJson(response.data);
+        return Left(
+            MainFailure.unauthorized(message: result.message ?? "Error"));
       } else {
         return const Left(MainFailure.serverFailure());
       }
     } catch (e) {
-      return const Left(MainFailure.unauthorized());
+      return const Left(MainFailure.clientFailure());
     }
     // } else {
     //   return const Left(MainFailure.clientFailure());

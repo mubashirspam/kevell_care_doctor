@@ -293,6 +293,7 @@ mixin _$SignupState {
   bool get isError => throw _privateConstructorUsedError;
   bool get hasValidationData => throw _privateConstructorUsedError;
   SignupModel? get singnupDetails => throw _privateConstructorUsedError;
+  String? get message => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignupStateCopyWith<SignupState> get copyWith =>
@@ -309,7 +310,8 @@ abstract class $SignupStateCopyWith<$Res> {
       {bool isLoading,
       bool isError,
       bool hasValidationData,
-      SignupModel? singnupDetails});
+      SignupModel? singnupDetails,
+      String? message});
 }
 
 /// @nodoc
@@ -329,6 +331,7 @@ class _$SignupStateCopyWithImpl<$Res, $Val extends SignupState>
     Object? isError = null,
     Object? hasValidationData = null,
     Object? singnupDetails = freezed,
+    Object? message = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -347,6 +350,10 @@ class _$SignupStateCopyWithImpl<$Res, $Val extends SignupState>
           ? _value.singnupDetails
           : singnupDetails // ignore: cast_nullable_to_non_nullable
               as SignupModel?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -363,7 +370,8 @@ abstract class _$$_SignupStateCopyWith<$Res>
       {bool isLoading,
       bool isError,
       bool hasValidationData,
-      SignupModel? singnupDetails});
+      SignupModel? singnupDetails,
+      String? message});
 }
 
 /// @nodoc
@@ -381,6 +389,7 @@ class __$$_SignupStateCopyWithImpl<$Res>
     Object? isError = null,
     Object? hasValidationData = null,
     Object? singnupDetails = freezed,
+    Object? message = freezed,
   }) {
     return _then(_$_SignupState(
       isLoading: null == isLoading
@@ -399,6 +408,10 @@ class __$$_SignupStateCopyWithImpl<$Res>
           ? _value.singnupDetails
           : singnupDetails // ignore: cast_nullable_to_non_nullable
               as SignupModel?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -410,7 +423,8 @@ class _$_SignupState implements _SignupState {
       {required this.isLoading,
       required this.isError,
       required this.hasValidationData,
-      required this.singnupDetails});
+      required this.singnupDetails,
+      required this.message});
 
   @override
   final bool isLoading;
@@ -420,10 +434,12 @@ class _$_SignupState implements _SignupState {
   final bool hasValidationData;
   @override
   final SignupModel? singnupDetails;
+  @override
+  final String? message;
 
   @override
   String toString() {
-    return 'SignupState(isLoading: $isLoading, isError: $isError, hasValidationData: $hasValidationData, singnupDetails: $singnupDetails)';
+    return 'SignupState(isLoading: $isLoading, isError: $isError, hasValidationData: $hasValidationData, singnupDetails: $singnupDetails, message: $message)';
   }
 
   @override
@@ -437,12 +453,13 @@ class _$_SignupState implements _SignupState {
             (identical(other.hasValidationData, hasValidationData) ||
                 other.hasValidationData == hasValidationData) &&
             (identical(other.singnupDetails, singnupDetails) ||
-                other.singnupDetails == singnupDetails));
+                other.singnupDetails == singnupDetails) &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, isLoading, isError, hasValidationData, singnupDetails);
+  int get hashCode => Object.hash(runtimeType, isLoading, isError,
+      hasValidationData, singnupDetails, message);
 
   @JsonKey(ignore: true)
   @override
@@ -456,7 +473,8 @@ abstract class _SignupState implements SignupState {
       {required final bool isLoading,
       required final bool isError,
       required final bool hasValidationData,
-      required final SignupModel? singnupDetails}) = _$_SignupState;
+      required final SignupModel? singnupDetails,
+      required final String? message}) = _$_SignupState;
 
   @override
   bool get isLoading;
@@ -466,6 +484,8 @@ abstract class _SignupState implements SignupState {
   bool get hasValidationData;
   @override
   SignupModel? get singnupDetails;
+  @override
+  String? get message;
   @override
   @JsonKey(ignore: true)
   _$$_SignupStateCopyWith<_$_SignupState> get copyWith =>

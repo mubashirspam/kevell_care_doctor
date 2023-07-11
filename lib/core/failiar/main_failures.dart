@@ -5,5 +5,7 @@ part 'main_failures.freezed.dart';
 class MainFailure with _$MainFailure {
   const factory MainFailure.clientFailure() = _ClientFailure;
   const factory MainFailure.serverFailure() = _ServerFailure;
-  const factory MainFailure.unauthorized() = _Unauthorized;
+  const factory MainFailure.unauthorized({
+    required String message,
+  }) = _Unauthorized;
 }
