@@ -6,7 +6,13 @@ import '../../../configure/color/main_color.dart';
 class ActiveAvatar extends StatelessWidget {
   final double? radius;
   final bool? isActive;
-  const ActiveAvatar({super.key, this.radius, this.isActive});
+  final String imageUrl;
+  const ActiveAvatar({
+    super.key,
+    this.radius,
+    this.isActive,
+    required this.imageUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +21,18 @@ class ActiveAvatar extends StatelessWidget {
         CircleAvatar(
           maxRadius: radius ?? 35,
           minRadius: radius ?? 35,
-          backgroundImage: const NetworkImage(
-              "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(100),
+            child: Image.network(
+              
+              imageUrl,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) => Icon(
+                Icons.image_not_supported,
+                color: context.theme.primary,
+              ),
+            ),
+          ),
         ),
         isActive ?? true
             ? Positioned(

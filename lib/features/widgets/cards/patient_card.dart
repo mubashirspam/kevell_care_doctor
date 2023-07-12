@@ -3,13 +3,19 @@ import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
 
 import '../avatar/active_avatar.dart';
 
-class PatentCard extends StatelessWidget {
+class PatientCard extends StatelessWidget {
   final String buttonName;
+  final String patientName;
+  final String purpose;
+  final String imgUrl;
   final VoidCallback onPressed;
-  const PatentCard({
+  const PatientCard({
     super.key,
     required this.buttonName,
     required this.onPressed,
+    required this.patientName,
+    required this.purpose,
+    required this.imgUrl,
   });
 
   @override
@@ -24,18 +30,20 @@ class PatentCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const ActiveAvatar(),
+          ActiveAvatar(
+            imageUrl: imgUrl,
+          ),
           const SizedBox(width: 15),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Johnny Greig",
+                patientName,
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
               Text(
-                "General Checkup",
+                purpose,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
             ],

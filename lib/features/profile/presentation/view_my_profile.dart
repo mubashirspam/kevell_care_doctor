@@ -30,12 +30,12 @@ class ViewMyProfile extends StatelessWidget {
           return const Center(child: LoadingWIdget());
         } else if (state.hasData) {
           return ViewMyProfileBlocBody(
-            address: state.result!.result!.first.address ?? "No Adress",
-            dob: state.result!.result!.first.dob.toString(),
-            email: state.result!.result!.first.emailid ?? "",
-            imgUrl: state.result!.result!.first.address ?? "",
-            mobile: state.result!.result!.first.mobileNo ?? "",
-            name: state.result!.result!.first.username ?? "",
+            address: state.result!.data!.address ?? "No Adress",
+            dob: state.result!.data!.dob.toString(),
+            email: state.result!.data!.email ?? "",
+            imgUrl: state.result!.data!.address ?? "",
+            mobile: state.result!.data!.mobile ?? "No mobile",
+            name: state.result!.data!.name ?? "",
           );
         } else if (state.isError) {
           return const Center(child: AppErrorWidget());

@@ -8,12 +8,11 @@ class ApiEndPoints {
 
   static const String updateProfile = "$baseUrl/doctor/api/register";
 
+  static const String homeStatus = "$baseUrl/register/api/doctorcountlist";
 
-    static const String homeStatus = "$baseUrl/register/api/doctorcountlist";
+  static const String homeWaitingPatient =
+      "$baseUrl/register/api/todayWaitingHallPatientsdetails";
 
-        static const String homeWaitingPatient = "$baseUrl/register/api/todayWaitingHallPatientsdetails";
+
+       static const String patientHistoryList = "$baseUrl/appointment/api/VisitedPatientReportdata";
 }
-
-
-
-

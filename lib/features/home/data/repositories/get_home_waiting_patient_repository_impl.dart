@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -46,7 +45,7 @@ class UpdateProfileRepoImpliment implements GetWaitingPatientRepository {
         log(result.toString());
 
         return Right(result);
-      }  else if (response.statusCode == 400 || response.statusCode == 401) {
+      } else if (response.statusCode == 400 || response.statusCode == 401) {
         final result = FailuerModel.fromJson(response.data);
         return Left(
             MainFailure.unauthorized(message: result.message ?? "Error"));
@@ -54,10 +53,15 @@ class UpdateProfileRepoImpliment implements GetWaitingPatientRepository {
         return const Left(MainFailure.serverFailure());
       }
     } catch (e) {
+      if (e is DioException) {
+        log(e.toString());
+        if (e.response?.statusCode == 400) {
+          final result = FailuerModel.fromJson(e.response!.data);
+          return Left(
+              MainFailure.unauthorized(message: result.message ?? "Error"));
+        }
+      }
       return const Left(MainFailure.clientFailure());
     }
-    // } else {
-    //   return const Left(MainFailure.clientFailure());
-    // }
   }
 }

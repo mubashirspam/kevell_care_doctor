@@ -9,14 +9,15 @@ class HistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SizedBox(
-        child: SingleChildScrollView(
-      child: Column(
-        children: [
-          HistoryRangeSelector(),
-          SizedBox(height: 20),
-          PatientList(),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            HistoryRangeSelector(),
+            SizedBox(height: 20),
+            PatientList(),
+          ],
+        ),
       ),
-    ));
+    );
   }
 }

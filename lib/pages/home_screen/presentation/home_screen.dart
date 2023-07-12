@@ -17,8 +17,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<HomeBloc>().add(const HomeEvent.getHomeStatus());
       context.read<HomeBloc>().add(const HomeEvent.getHomeWaitingPatient());
+      context.read<HomeBloc>().add(const HomeEvent.getHomeStatus());
     });
     return SizedBox(
       width: double.maxFinite,

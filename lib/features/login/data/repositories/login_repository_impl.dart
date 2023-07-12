@@ -12,17 +12,11 @@ import '../../domain/repositories/login_repository.dart';
 
 @LazySingleton(as: LoginRepository)
 class LoginRepoImpliment implements LoginRepository {
-  // final NetworkInfo networkInfo;
-
-  // LoginRepoImpliment({
-  //   required this.networkInfo,
-  // });
   @override
   Future<Either<MainFailure, LoginModel>> login({
     required String email,
     required String password,
   }) async {
-    // if (await networkInfo.isConnected) {
     try {
       final response = await Dio(BaseOptions()).get(
         ApiEndPoints.login,
@@ -37,7 +31,7 @@ class LoginRepoImpliment implements LoginRepository {
         log(result.toString());
 
         return Right(result);
-      }  else if (response.statusCode == 400 || response.statusCode == 401) {
+      } else if (response.statusCode == 400 || response.statusCode == 401) {
         final result = FailuerModel.fromJson(response.data);
         return Left(
             MainFailure.unauthorized(message: result.message ?? "Error"));
@@ -45,10 +39,16 @@ class LoginRepoImpliment implements LoginRepository {
         return const Left(MainFailure.serverFailure());
       }
     } catch (e) {
+      if (e is DioException) {
+        log(e.toString());
+        if (e.response?.statusCode == 400) {
+          log(e.toString());
+          final result = FailuerModel.fromJson(e.response!.data);
+          return Left(
+              MainFailure.unauthorized(message: result.message ?? "Error"));
+        }
+      }
       return const Left(MainFailure.clientFailure());
     }
-    // } else {
-    //   return const Left(MainFailure.clientFailure());
-    // }
   }
 }

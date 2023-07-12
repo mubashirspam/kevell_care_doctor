@@ -4,28 +4,25 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kevell_care_dr/configure/api/endpoints.dart';
-import 'package:kevell_care_dr/features/profile/data/models/profile_model.dart';
+import 'package:kevell_care_dr/features/history/data/model/history_patient_list_model.dart';
 import '../../../../configure/value/constant.dart';
 import '../../../../configure/value/secure_storage.dart';
 import '../../../../core/failiar/failiur_model.dart';
 import '../../../../core/failiar/main_failures.dart';
-// import '../../../../core/network/netwrok.dart';
-import '../../domain/repositories/get_profile_repository.dart';
 
-@LazySingleton(as: GetProfileRepository)
-class GetProfileRepoImpliment implements GetProfileRepository {
-  // final NetworkInfo networkInfo;
+import '../../domain/repositories/get_patient_history_list_repository.dart';
 
-  // GetProfileRepoImpliment({
-  //   required this.networkInfo,
-  // });
+@LazySingleton(as: GetPatientHistoryListRepository)
+class GetPatientHistoryListRepoImpliment
+    implements GetPatientHistoryListRepository {
   @override
-  Future<Either<MainFailure, ProfileModel>> getProfile() async {
-    // if (await networkInfo.isConnected) {
-
+  Future<Either<MainFailure, HistoryPatientListModel>> gePatientHistoryList({
+    required String fromDate,
+    required String toDate,
+  }) async {
     try {
       final token = await getTokenFromSS(secureStoreKey);
-      final mail = await getTokenFromSS(mailsecureStoreKey);
+      final id = await getTokenFromSS(drIdsecureStoreKey);
 
       final headers = {
         'Authorization': 'Bearer $token',
@@ -33,13 +30,17 @@ class GetProfileRepoImpliment implements GetProfileRepository {
       };
 
       final response = await Dio(BaseOptions()).get(
-        ApiEndPoints.getprofile,
+        ApiEndPoints.patientHistoryList,
         options: Options(headers: headers),
-        data: {'Emailid': mail},
+        data: {
+          'doctorId': int.parse(id.toString()),
+          "fromdate": fromDate,
+          "todate": toDate
+        },
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final result = ProfileModel.fromJson(response.data);
+        final result = HistoryPatientListModel.fromJson(response.data);
         log(result.toString());
 
         return Right(result);
@@ -51,12 +52,16 @@ class GetProfileRepoImpliment implements GetProfileRepository {
         return const Left(MainFailure.serverFailure());
       }
     } catch (e) {
-      
+      if (e is DioException) {
+        log(e.toString());
+        if (e.response?.statusCode == 400) {
+          log(e.toString());
+          final result = FailuerModel.fromJson(e.response!.data);
+          return Left(
+              MainFailure.unauthorized(message: result.message ?? "Error"));
+        }
+      }
       return const Left(MainFailure.clientFailure());
     }
-
-    // } else {
-    //   return const Left(MainFailure.clientFailure());
-    // }
   }
 }

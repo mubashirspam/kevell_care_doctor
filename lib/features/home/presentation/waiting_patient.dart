@@ -1,3 +1,5 @@
+import 'dart:js_interop';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kevell_care_dr/core/helper/toast.dart';
@@ -46,7 +48,7 @@ class WaitingPatient extends StatelessWidget {
           ]);
         }
         if (state.hasWaitingPatientData) {
-          if (state.waitingPatientResult!.data == null) {
+          if (state.waitingPatientResult!.data!.waitingPatients.isNull) {
             return MultiSliver(
               children: [
                 Container(
@@ -66,12 +68,18 @@ class WaitingPatient extends StatelessWidget {
 
           return SliverList(
             delegate: SliverChildBuilderDelegate(
-              childCount: 6,
+              childCount: state.waitingPatientResult!.data!.totalCount,
               (context, index) => WaitingPatientCard(
-                imageUrl: "",
+                imageUrl: state.waitingPatientResult!.data!
+                        .waitingPatients![index].profileImageUrl ??
+                    "",
                 isActive: index.isEven ? true : false,
-                name: "Johnny Greig",
-                statusMessage: "General Checkup",
+                name: state.waitingPatientResult!.data!.waitingPatients![index]
+                        .name ??
+                    "No name",
+                statusMessage: state.waitingPatientResult!.data!
+                        .waitingPatients![index].type ??
+                    "No name",
               ),
             ),
           );

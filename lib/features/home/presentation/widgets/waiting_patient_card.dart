@@ -30,7 +30,7 @@ class WaitingPatientCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-           ActiveAvatar(isActive: isActive),
+           ActiveAvatar(isActive: isActive,imageUrl: imageUrl,),
           const SizedBox(width: 15),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,

@@ -55,10 +55,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     });
 
     on<_GetHomeWaitingPatient>((event, emit) async {
-
-        if (state.hasWaitingPatientData) {
+      if (state.hasWaitingPatientData) {
         return;
       }
+
       emit(
         state.copyWith(
           isWaitingPatientLoading: true,

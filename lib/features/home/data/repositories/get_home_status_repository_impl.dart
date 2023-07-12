@@ -28,7 +28,6 @@ class GetProfileRepoImpliment implements GetHomeStatusRepository {
 
       final token = await getTokenFromSS(secureStoreKey);
       final id = await getTokenFromSS(drIdsecureStoreKey);
-      
 
       final headers = {
         'Authorization': 'Bearer $token',
@@ -38,7 +37,6 @@ class GetProfileRepoImpliment implements GetHomeStatusRepository {
       final response = await Dio(BaseOptions()).get(
         ApiEndPoints.homeStatus,
         options: Options(headers: headers),
-
         data: {'doctorId': int.parse(id.toString())},
       );
 
@@ -55,6 +53,15 @@ class GetProfileRepoImpliment implements GetHomeStatusRepository {
         return const Left(MainFailure.serverFailure());
       }
     } catch (e) {
+      if (e is DioException) {
+        log(e.toString());
+        if (e.response?.statusCode == 400) {
+           log(e.toString());
+          final result = FailuerModel.fromJson(e.response!.data);
+          return Left(
+              MainFailure.unauthorized(message: result.message ?? "Error"));
+        }
+      }
       return const Left(MainFailure.clientFailure());
     }
 

@@ -17,6 +17,7 @@ dependencies:
 
 
   # state management and dependency injections
+  
   dartz: ^0.10.1
   dio: ^5.2.1+1
   get_it: ^7.6.0
