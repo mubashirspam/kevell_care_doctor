@@ -13,6 +13,15 @@ class ApiEndPoints {
   static const String homeWaitingPatient =
       "$baseUrl/register/api/todayWaitingHallPatientsdetails";
 
+  static const String patientHistoryList =
+      "$baseUrl/appointment/api/VisitedPatientReportdata";
 
-       static const String patientHistoryList = "$baseUrl/appointment/api/VisitedPatientReportdata";
+  static const String getPrescription = "$baseUrl/users/api/medicinedata";
+  static const String createPrescription =
+      "$baseUrl/users/api/saveAndupdatemedicinedata";
+  static const String updatePrescription =
+      "$baseUrl/users/api/saveAndupdatemedicinedata";
+
+  static const String getPrescriptionSettings =
+      "$baseUrl/users/api/getdprescriptiontable";
 }

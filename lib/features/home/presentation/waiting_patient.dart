@@ -64,25 +64,25 @@ class WaitingPatient extends StatelessWidget {
                 )
               ],
             );
-          }
-
-          return SliverList(
-            delegate: SliverChildBuilderDelegate(
-              childCount: state.waitingPatientResult!.data!.totalCount,
-              (context, index) => WaitingPatientCard(
-                imageUrl: state.waitingPatientResult!.data!
-                        .waitingPatients![index].profileImageUrl ??
-                    "",
-                isActive: index.isEven ? true : false,
-                name: state.waitingPatientResult!.data!.waitingPatients![index]
-                        .name ??
-                    "No name",
-                statusMessage: state.waitingPatientResult!.data!
-                        .waitingPatients![index].type ??
-                    "No name",
+          } else {
+            return SliverList(
+              delegate: SliverChildBuilderDelegate(
+                childCount: state.waitingPatientResult!.data!.totalCount,
+                (context, index) => WaitingPatientCard(
+                  imageUrl: state.waitingPatientResult!.data!
+                          .waitingPatients![index].profileImageUrl ??
+                      "",
+                  isActive: index.isEven ? true : false,
+                  name: state.waitingPatientResult!.data!
+                          .waitingPatients![index].name ??
+                      "No name",
+                  statusMessage: state.waitingPatientResult!.data!
+                          .waitingPatients![index].type ??
+                      "No name",
+                ),
               ),
-            ),
-          );
+            );
+          }
         }
         return MultiSliver(children: const [Center(child: AppErrorWidget())]);
       },

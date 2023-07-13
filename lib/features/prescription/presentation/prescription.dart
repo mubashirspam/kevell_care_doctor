@@ -1,50 +1,97 @@
+import 'dart:js_interop';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
-import 'package:kevell_care_dr/features/prescription/presentation/widgets/edit_prescription.dart';
+
+import '../../../configure/value/constant.dart';
+import '../../../configure/value/secure_storage.dart';
+import '../../../core/helper/toast.dart';
+import '../../../pages/initialize/initialize.dart';
+import '../../widgets/error_widget.dart';
+import '../../widgets/loading_widget.dart';
+import 'bloc/precription_bloc.dart';
+import 'widgets/prescription_item_widget.dart';
 
 class Prescription extends StatelessWidget {
   const Prescription({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      shrinkWrap: true,
-      padding: const EdgeInsets.all(20).copyWith(bottom: 0),
-      itemCount: 3,
-      itemBuilder: (context, index) => ListTile(
-        contentPadding: const EdgeInsets.only(bottom: 5),
-        title: Text(
-          "Lorem ipsum dolor sit amet",
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-        subtitle: Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: Text(
-            "Lorem ipsum, dolor sit amet Lorem ipsum, dolor sit amet Lorem ipsum, dolor sit amet",
-            style: Theme.of(context).textTheme.titleSmall,
-          ),
-        ),
-        trailing: TextButton(
-          style: TextButton.styleFrom(
-            minimumSize:const Size(65, 30),
-            backgroundColor: context.theme.primary,
-            foregroundColor: context.theme.backround,
-          ),
-          child: const Text("Edit"),
-          onPressed: () => showModalBottomSheet(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            isScrollControlled: true,
+    return BlocConsumer<PrecriptionBloc, PrecriptionState>(
+      listener: (context, state) async {
+        if (state.unauthorized) {
+          Toast.showToast(
             context: context,
-            builder: (context) => const AddOrEditPrescriptionWidget(
-              isEdit: true,
+            message: "Unauthrized",
+          );
+          await deleteFromSS(secureStoreKey)
+              .then((value) => Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                      builder: (context) => const Initialize(),
+                    ),
+                    (route) => false,
+                  ));
+        } else if (state.isError) {
+          Toast.showToast(context: context, message: "Network Error");
+        }
+      },
+      listenWhen: (previous, current) {
+        return previous != current;
+      },
+      builder: (context, state) {
+        if (state.isGetLoading) {
+          return const Center(
+            child: LoadingWIdget(),
+          );
+        }
+
+        if (state.hasData) {
+          if (state.prescriptionResult!.data.isNull) {
+            return SizedBox(
+              child: Column(
+                children: [
+                  const SizedBox(height: 50),
+                  Icon(
+                    Icons.medical_services_outlined,
+                    size: 50,
+                    color: context.theme.inputFiled,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: Text('Their is no prescription added',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.titleLarge),
+                  ),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      minimumSize: const Size(65, 30),
+                      backgroundColor: context.theme.primary,
+                      foregroundColor: context.theme.backround,
+                    ),
+                    child: const Text("Edit"),
+                    onPressed: () {},
+                  )
+                ],
+              ),
+            );
+          }
+        } else {
+          return ListView.separated(
+            shrinkWrap: true,
+            padding: const EdgeInsets.all(20).copyWith(bottom: 0),
+            itemCount: 3,
+            itemBuilder: (context, index) => const PrescriptionItemWidget(
+              subTitle: "subtitle",
+              title: "titlw",
             ),
-          ),
-        ),
-      ),
-      separatorBuilder: (context, index) => Divider(
-        color: context.theme.textGrey,
-      ),
+            separatorBuilder: (context, index) => Divider(
+              color: context.theme.textGrey,
+            ),
+          );
+        }
+         return const Center(child: AppErrorWidget());
+      },
     );
   }
 }

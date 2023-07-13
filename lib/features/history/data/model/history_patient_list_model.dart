@@ -64,6 +64,7 @@ class Patient {
     int? patientId;
     String? name;
     String? type;
+     String? imageUrl;
     String? dayDateTime;
     DateTime? createdAt;
     DateTime? updatedAt;
@@ -76,6 +77,7 @@ class Patient {
         this.dayDateTime,
         this.createdAt,
         this.updatedAt,
+        this.imageUrl,
         this.v,
     });
 
@@ -83,6 +85,7 @@ class Patient {
         patientId: json["patient_id"],
         name: json["name"],
         type: json["type"],
+         imageUrl: json["profile_image_url"],
         dayDateTime: json["day_date_time"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
@@ -91,6 +94,7 @@ class Patient {
 
     Map<String, dynamic> toJson() => {
         "patient_id": patientId,
+        "profile_image_url":imageUrl,
         "name": name,
         "type": type,
         "day_date_time": dayDateTime,
