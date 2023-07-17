@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/features/prescription/presentation/prescription.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../features/prescription/presentation/bloc/precription_bloc.dart';
 import '../../../features/prescription/presentation/widgets/edit_prescription.dart';
 
 class PrescriptionScreen extends StatelessWidget {
@@ -10,6 +11,11 @@ class PrescriptionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context
+          .read<PrecriptionBloc>()
+          .add(const PrecriptionEvent.getPrescriptionList(appointmentId: 12));
+    });
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(

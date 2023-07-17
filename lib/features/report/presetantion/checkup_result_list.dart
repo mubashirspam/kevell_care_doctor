@@ -27,20 +27,25 @@ class CheckupReportResultList extends StatelessWidget {
         ]),
         CheckupResultCard(name: "Otoscop", onPress: () {}, children: [
           Row(
-              children: List.generate(
-                  4,
-                  (index) => Container(
-                        margin: const EdgeInsets.only(right: 10),
-                        height: 35,
-                        width: 35,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            image: const DecorationImage(
-                                image: NetworkImage(
-                                    "https://www.welchallyn.com/content/dam/welchallyn/images/students/Otoscopy-Pathologies/normal-tympanic-membrane.jpg"))),
-                      )))
+            children: List.generate(
+              4,
+              (index) => Container(
+                margin: const EdgeInsets.only(right: 10),
+                height: 35,
+                width: 35,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  image: const DecorationImage(
+                    image: NetworkImage(
+                      "https://www.welchallyn.com/content/dam/welchallyn/images/students/Otoscopy-Pathologies/normal-tympanic-membrane.jpg",
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          )
         ]),
-        Text("View All")
+        // Text("View All")
       ],
     );
   }

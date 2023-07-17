@@ -5,6 +5,8 @@ import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/features/widgets/input_field/dropdown_field.dart';
 import 'package:dr_kevell/features/widgets/input_field/input_field_widget.dart';
 
+import '../../widgets/calender/calnder.dart';
+
 class HealthInfoWidget extends StatelessWidget {
   const HealthInfoWidget({super.key});
 
@@ -60,9 +62,20 @@ class HealthInfoWidget extends StatelessWidget {
                   child: TextFieldWidget(
                     hintText: "01/04/2022",
                     keyboardType: TextInputType.datetime,
-                    suffixIcon: Icon(
-                      Icons.date_range_rounded,
-                      color: context.theme.primary,
+                    suffixIcon: GestureDetector(
+                      onTap: () => showDialog(
+                        context: context,
+                        builder: (context) => CustomDatePickerDialog(
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime.now(),
+                          lastDate: DateTime.now(),
+                          onDateTimeChanged: (onDateTimeChanged) {},
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.date_range_rounded,
+                        color: context.theme.primary,
+                      ),
                     ),
                     validate: (validate) {
                       return;
@@ -74,9 +87,20 @@ class HealthInfoWidget extends StatelessWidget {
                   child: TextFieldWidget(
                     hintText: "01/04/2022",
                     keyboardType: TextInputType.datetime,
-                    suffixIcon: Icon(
-                      Icons.date_range_rounded,
-                      color: context.theme.primary,
+                    suffixIcon: GestureDetector(
+                      onTap: () => showDialog(
+                        context: context,
+                        builder: (context) => CustomDatePickerDialog(
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime.now(),
+                          lastDate: DateTime.now(),
+                          onDateTimeChanged: (onDateTimeChanged) {},
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.date_range_rounded,
+                        color: context.theme.primary,
+                      ),
                     ),
                     validate: (validate) {
                       return;

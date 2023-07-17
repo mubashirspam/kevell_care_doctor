@@ -22,7 +22,7 @@ class CreatePrescriptionListRepoImpliment
   }) async {
     try {
       final token = await getTokenFromSS(secureStoreKey);
-      final id = await getTokenFromSS(drIdsecureStoreKey);
+
  final data = prescriptionModel.toJson();
       final headers = {
         'Authorization': 'Bearer $token',

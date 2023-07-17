@@ -20,7 +20,7 @@ class UpdatePrescriptionListRepoImpliment
   }) async {
     try {
       final token = await getTokenFromSS(secureStoreKey);
-      final id = await getTokenFromSS(drIdsecureStoreKey);
+
 
       final headers = {
         'Authorization': 'Bearer $token',

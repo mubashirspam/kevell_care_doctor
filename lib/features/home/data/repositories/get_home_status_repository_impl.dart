@@ -55,7 +55,7 @@ class GetProfileRepoImpliment implements GetHomeStatusRepository {
     } catch (e) {
       if (e is DioException) {
         log(e.toString());
-        if (e.response?.statusCode == 400) {
+        if (e.response?.statusCode == 400 ||e.response?.statusCode == 401) {
           log(e.toString());
           final result = FailuerModel.fromJson(e.response!.data);
           return Left(

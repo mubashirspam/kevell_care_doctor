@@ -4,6 +4,7 @@ import 'package:dr_kevell/configure/assets_manage/icons.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/pages/report/presentation/report_screen.dart';
 
+import '../../widgets/calender/calnder.dart';
 import '../../widgets/input_field/input_field_widget.dart';
 
 class AllCheckupHistory extends StatelessWidget {
@@ -65,9 +66,20 @@ class AllCheckupHistory extends StatelessWidget {
                     fillColor: context.theme.backround,
                     hintText: "01/04/2022",
                     keyboardType: TextInputType.datetime,
-                    suffixIcon: Icon(
-                      Icons.date_range_rounded,
-                      color: context.theme.primary,
+                    suffixIcon: GestureDetector(
+                      onTap: () => showDialog(
+                        context: context,
+                        builder: (context) => CustomDatePickerDialog(
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime.now(),
+                          lastDate: DateTime.now(),
+                          onDateTimeChanged: (onDateTimeChanged) {},
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.date_range_rounded,
+                        color: context.theme.primary,
+                      ),
                     ),
                     validate: (validate) {
                       return;
@@ -80,9 +92,20 @@ class AllCheckupHistory extends StatelessWidget {
                     fillColor: context.theme.backround,
                     hintText: "01/04/2022",
                     keyboardType: TextInputType.datetime,
-                    suffixIcon: Icon(
-                      Icons.date_range_rounded,
-                      color: context.theme.primary,
+                    suffixIcon: GestureDetector(
+                      onTap: () => showDialog(
+                        context: context,
+                        builder: (context) => CustomDatePickerDialog(
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime.now(),
+                          lastDate: DateTime.now(),
+                          onDateTimeChanged: (onDateTimeChanged) {},
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.date_range_rounded,
+                        color: context.theme.primary,
+                      ),
                     ),
                     validate: (validate) {
                       return;
@@ -96,7 +119,7 @@ class AllCheckupHistory extends StatelessWidget {
           SizedBox(
             width: double.maxFinite,
             child: Column(
-              children: List.generate(10, (index) => ReportItem()),
+              children: List.generate(10, (index) => const ReportItem()),
             ),
           )
         ],
@@ -134,7 +157,7 @@ class ReportItem extends StatelessWidget {
             ],
           ),
         ),
-        trailing: Icon(Icons.chevron_right),
+        trailing: const Icon(Icons.chevron_right),
       ),
     );
   }

@@ -55,7 +55,7 @@ class UpdateProfileRepoImpliment implements GetWaitingPatientRepository {
     } catch (e) {
       if (e is DioException) {
         log(e.toString());
-        if (e.response?.statusCode == 400) {
+        if (e.response?.statusCode == 400 ||e.response?.statusCode == 401) {
           final result = FailuerModel.fromJson(e.response!.data);
           return Left(
               MainFailure.unauthorized(message: result.message ?? "Error"));
