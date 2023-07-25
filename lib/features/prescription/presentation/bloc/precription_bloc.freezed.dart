@@ -20,9 +20,9 @@ mixin _$PrecriptionEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(int appointmentId) getPrescriptionList,
     required TResult Function() getPrescriptionSettings,
-    required TResult Function(PrescriptionModel prescriptionModel)
+    required TResult Function(PrescriptionElement prescriptionElement)
         createPrescription,
-    required TResult Function(PrescriptionModel prescriptionModel)
+    required TResult Function(PrescriptionElement prescriptionElement)
         updatePrescription,
   }) =>
       throw _privateConstructorUsedError;
@@ -30,16 +30,20 @@ mixin _$PrecriptionEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int appointmentId)? getPrescriptionList,
     TResult? Function()? getPrescriptionSettings,
-    TResult? Function(PrescriptionModel prescriptionModel)? createPrescription,
-    TResult? Function(PrescriptionModel prescriptionModel)? updatePrescription,
+    TResult? Function(PrescriptionElement prescriptionElement)?
+        createPrescription,
+    TResult? Function(PrescriptionElement prescriptionElement)?
+        updatePrescription,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int appointmentId)? getPrescriptionList,
     TResult Function()? getPrescriptionSettings,
-    TResult Function(PrescriptionModel prescriptionModel)? createPrescription,
-    TResult Function(PrescriptionModel prescriptionModel)? updatePrescription,
+    TResult Function(PrescriptionElement prescriptionElement)?
+        createPrescription,
+    TResult Function(PrescriptionElement prescriptionElement)?
+        updatePrescription,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -157,9 +161,9 @@ class _$_GetPrescriptionList implements _GetPrescriptionList {
   TResult when<TResult extends Object?>({
     required TResult Function(int appointmentId) getPrescriptionList,
     required TResult Function() getPrescriptionSettings,
-    required TResult Function(PrescriptionModel prescriptionModel)
+    required TResult Function(PrescriptionElement prescriptionElement)
         createPrescription,
-    required TResult Function(PrescriptionModel prescriptionModel)
+    required TResult Function(PrescriptionElement prescriptionElement)
         updatePrescription,
   }) {
     return getPrescriptionList(appointmentId);
@@ -170,8 +174,10 @@ class _$_GetPrescriptionList implements _GetPrescriptionList {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int appointmentId)? getPrescriptionList,
     TResult? Function()? getPrescriptionSettings,
-    TResult? Function(PrescriptionModel prescriptionModel)? createPrescription,
-    TResult? Function(PrescriptionModel prescriptionModel)? updatePrescription,
+    TResult? Function(PrescriptionElement prescriptionElement)?
+        createPrescription,
+    TResult? Function(PrescriptionElement prescriptionElement)?
+        updatePrescription,
   }) {
     return getPrescriptionList?.call(appointmentId);
   }
@@ -181,8 +187,10 @@ class _$_GetPrescriptionList implements _GetPrescriptionList {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int appointmentId)? getPrescriptionList,
     TResult Function()? getPrescriptionSettings,
-    TResult Function(PrescriptionModel prescriptionModel)? createPrescription,
-    TResult Function(PrescriptionModel prescriptionModel)? updatePrescription,
+    TResult Function(PrescriptionElement prescriptionElement)?
+        createPrescription,
+    TResult Function(PrescriptionElement prescriptionElement)?
+        updatePrescription,
     required TResult orElse(),
   }) {
     if (getPrescriptionList != null) {
@@ -281,9 +289,9 @@ class _$_GetPrescriptionSettings implements _GetPrescriptionSettings {
   TResult when<TResult extends Object?>({
     required TResult Function(int appointmentId) getPrescriptionList,
     required TResult Function() getPrescriptionSettings,
-    required TResult Function(PrescriptionModel prescriptionModel)
+    required TResult Function(PrescriptionElement prescriptionElement)
         createPrescription,
-    required TResult Function(PrescriptionModel prescriptionModel)
+    required TResult Function(PrescriptionElement prescriptionElement)
         updatePrescription,
   }) {
     return getPrescriptionSettings();
@@ -294,8 +302,10 @@ class _$_GetPrescriptionSettings implements _GetPrescriptionSettings {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int appointmentId)? getPrescriptionList,
     TResult? Function()? getPrescriptionSettings,
-    TResult? Function(PrescriptionModel prescriptionModel)? createPrescription,
-    TResult? Function(PrescriptionModel prescriptionModel)? updatePrescription,
+    TResult? Function(PrescriptionElement prescriptionElement)?
+        createPrescription,
+    TResult? Function(PrescriptionElement prescriptionElement)?
+        updatePrescription,
   }) {
     return getPrescriptionSettings?.call();
   }
@@ -305,8 +315,10 @@ class _$_GetPrescriptionSettings implements _GetPrescriptionSettings {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int appointmentId)? getPrescriptionList,
     TResult Function()? getPrescriptionSettings,
-    TResult Function(PrescriptionModel prescriptionModel)? createPrescription,
-    TResult Function(PrescriptionModel prescriptionModel)? updatePrescription,
+    TResult Function(PrescriptionElement prescriptionElement)?
+        createPrescription,
+    TResult Function(PrescriptionElement prescriptionElement)?
+        updatePrescription,
     required TResult orElse(),
   }) {
     if (getPrescriptionSettings != null) {
@@ -364,7 +376,7 @@ abstract class _$$_CreatePrescriptionCopyWith<$Res> {
           $Res Function(_$_CreatePrescription) then) =
       __$$_CreatePrescriptionCopyWithImpl<$Res>;
   @useResult
-  $Res call({PrescriptionModel prescriptionModel});
+  $Res call({PrescriptionElement prescriptionElement});
 }
 
 /// @nodoc
@@ -378,13 +390,13 @@ class __$$_CreatePrescriptionCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? prescriptionModel = null,
+    Object? prescriptionElement = null,
   }) {
     return _then(_$_CreatePrescription(
-      prescriptionModel: null == prescriptionModel
-          ? _value.prescriptionModel
-          : prescriptionModel // ignore: cast_nullable_to_non_nullable
-              as PrescriptionModel,
+      prescriptionElement: null == prescriptionElement
+          ? _value.prescriptionElement
+          : prescriptionElement // ignore: cast_nullable_to_non_nullable
+              as PrescriptionElement,
     ));
   }
 }
@@ -392,14 +404,14 @@ class __$$_CreatePrescriptionCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_CreatePrescription implements _CreatePrescription {
-  const _$_CreatePrescription({required this.prescriptionModel});
+  const _$_CreatePrescription({required this.prescriptionElement});
 
   @override
-  final PrescriptionModel prescriptionModel;
+  final PrescriptionElement prescriptionElement;
 
   @override
   String toString() {
-    return 'PrecriptionEvent.createPrescription(prescriptionModel: $prescriptionModel)';
+    return 'PrecriptionEvent.createPrescription(prescriptionElement: $prescriptionElement)';
   }
 
   @override
@@ -407,12 +419,12 @@ class _$_CreatePrescription implements _CreatePrescription {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CreatePrescription &&
-            (identical(other.prescriptionModel, prescriptionModel) ||
-                other.prescriptionModel == prescriptionModel));
+            (identical(other.prescriptionElement, prescriptionElement) ||
+                other.prescriptionElement == prescriptionElement));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, prescriptionModel);
+  int get hashCode => Object.hash(runtimeType, prescriptionElement);
 
   @JsonKey(ignore: true)
   @override
@@ -426,12 +438,12 @@ class _$_CreatePrescription implements _CreatePrescription {
   TResult when<TResult extends Object?>({
     required TResult Function(int appointmentId) getPrescriptionList,
     required TResult Function() getPrescriptionSettings,
-    required TResult Function(PrescriptionModel prescriptionModel)
+    required TResult Function(PrescriptionElement prescriptionElement)
         createPrescription,
-    required TResult Function(PrescriptionModel prescriptionModel)
+    required TResult Function(PrescriptionElement prescriptionElement)
         updatePrescription,
   }) {
-    return createPrescription(prescriptionModel);
+    return createPrescription(prescriptionElement);
   }
 
   @override
@@ -439,10 +451,12 @@ class _$_CreatePrescription implements _CreatePrescription {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int appointmentId)? getPrescriptionList,
     TResult? Function()? getPrescriptionSettings,
-    TResult? Function(PrescriptionModel prescriptionModel)? createPrescription,
-    TResult? Function(PrescriptionModel prescriptionModel)? updatePrescription,
+    TResult? Function(PrescriptionElement prescriptionElement)?
+        createPrescription,
+    TResult? Function(PrescriptionElement prescriptionElement)?
+        updatePrescription,
   }) {
-    return createPrescription?.call(prescriptionModel);
+    return createPrescription?.call(prescriptionElement);
   }
 
   @override
@@ -450,12 +464,14 @@ class _$_CreatePrescription implements _CreatePrescription {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int appointmentId)? getPrescriptionList,
     TResult Function()? getPrescriptionSettings,
-    TResult Function(PrescriptionModel prescriptionModel)? createPrescription,
-    TResult Function(PrescriptionModel prescriptionModel)? updatePrescription,
+    TResult Function(PrescriptionElement prescriptionElement)?
+        createPrescription,
+    TResult Function(PrescriptionElement prescriptionElement)?
+        updatePrescription,
     required TResult orElse(),
   }) {
     if (createPrescription != null) {
-      return createPrescription(prescriptionModel);
+      return createPrescription(prescriptionElement);
     }
     return orElse();
   }
@@ -501,10 +517,10 @@ class _$_CreatePrescription implements _CreatePrescription {
 
 abstract class _CreatePrescription implements PrecriptionEvent {
   const factory _CreatePrescription(
-          {required final PrescriptionModel prescriptionModel}) =
+          {required final PrescriptionElement prescriptionElement}) =
       _$_CreatePrescription;
 
-  PrescriptionModel get prescriptionModel;
+  PrescriptionElement get prescriptionElement;
   @JsonKey(ignore: true)
   _$$_CreatePrescriptionCopyWith<_$_CreatePrescription> get copyWith =>
       throw _privateConstructorUsedError;
@@ -516,7 +532,7 @@ abstract class _$$_UpdatePrescriptionCopyWith<$Res> {
           $Res Function(_$_UpdatePrescription) then) =
       __$$_UpdatePrescriptionCopyWithImpl<$Res>;
   @useResult
-  $Res call({PrescriptionModel prescriptionModel});
+  $Res call({PrescriptionElement prescriptionElement});
 }
 
 /// @nodoc
@@ -530,13 +546,13 @@ class __$$_UpdatePrescriptionCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? prescriptionModel = null,
+    Object? prescriptionElement = null,
   }) {
     return _then(_$_UpdatePrescription(
-      prescriptionModel: null == prescriptionModel
-          ? _value.prescriptionModel
-          : prescriptionModel // ignore: cast_nullable_to_non_nullable
-              as PrescriptionModel,
+      prescriptionElement: null == prescriptionElement
+          ? _value.prescriptionElement
+          : prescriptionElement // ignore: cast_nullable_to_non_nullable
+              as PrescriptionElement,
     ));
   }
 }
@@ -544,14 +560,14 @@ class __$$_UpdatePrescriptionCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_UpdatePrescription implements _UpdatePrescription {
-  const _$_UpdatePrescription({required this.prescriptionModel});
+  const _$_UpdatePrescription({required this.prescriptionElement});
 
   @override
-  final PrescriptionModel prescriptionModel;
+  final PrescriptionElement prescriptionElement;
 
   @override
   String toString() {
-    return 'PrecriptionEvent.updatePrescription(prescriptionModel: $prescriptionModel)';
+    return 'PrecriptionEvent.updatePrescription(prescriptionElement: $prescriptionElement)';
   }
 
   @override
@@ -559,12 +575,12 @@ class _$_UpdatePrescription implements _UpdatePrescription {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UpdatePrescription &&
-            (identical(other.prescriptionModel, prescriptionModel) ||
-                other.prescriptionModel == prescriptionModel));
+            (identical(other.prescriptionElement, prescriptionElement) ||
+                other.prescriptionElement == prescriptionElement));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, prescriptionModel);
+  int get hashCode => Object.hash(runtimeType, prescriptionElement);
 
   @JsonKey(ignore: true)
   @override
@@ -578,12 +594,12 @@ class _$_UpdatePrescription implements _UpdatePrescription {
   TResult when<TResult extends Object?>({
     required TResult Function(int appointmentId) getPrescriptionList,
     required TResult Function() getPrescriptionSettings,
-    required TResult Function(PrescriptionModel prescriptionModel)
+    required TResult Function(PrescriptionElement prescriptionElement)
         createPrescription,
-    required TResult Function(PrescriptionModel prescriptionModel)
+    required TResult Function(PrescriptionElement prescriptionElement)
         updatePrescription,
   }) {
-    return updatePrescription(prescriptionModel);
+    return updatePrescription(prescriptionElement);
   }
 
   @override
@@ -591,10 +607,12 @@ class _$_UpdatePrescription implements _UpdatePrescription {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int appointmentId)? getPrescriptionList,
     TResult? Function()? getPrescriptionSettings,
-    TResult? Function(PrescriptionModel prescriptionModel)? createPrescription,
-    TResult? Function(PrescriptionModel prescriptionModel)? updatePrescription,
+    TResult? Function(PrescriptionElement prescriptionElement)?
+        createPrescription,
+    TResult? Function(PrescriptionElement prescriptionElement)?
+        updatePrescription,
   }) {
-    return updatePrescription?.call(prescriptionModel);
+    return updatePrescription?.call(prescriptionElement);
   }
 
   @override
@@ -602,12 +620,14 @@ class _$_UpdatePrescription implements _UpdatePrescription {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int appointmentId)? getPrescriptionList,
     TResult Function()? getPrescriptionSettings,
-    TResult Function(PrescriptionModel prescriptionModel)? createPrescription,
-    TResult Function(PrescriptionModel prescriptionModel)? updatePrescription,
+    TResult Function(PrescriptionElement prescriptionElement)?
+        createPrescription,
+    TResult Function(PrescriptionElement prescriptionElement)?
+        updatePrescription,
     required TResult orElse(),
   }) {
     if (updatePrescription != null) {
-      return updatePrescription(prescriptionModel);
+      return updatePrescription(prescriptionElement);
     }
     return orElse();
   }
@@ -653,10 +673,10 @@ class _$_UpdatePrescription implements _UpdatePrescription {
 
 abstract class _UpdatePrescription implements PrecriptionEvent {
   const factory _UpdatePrescription(
-          {required final PrescriptionModel prescriptionModel}) =
+          {required final PrescriptionElement prescriptionElement}) =
       _$_UpdatePrescription;
 
-  PrescriptionModel get prescriptionModel;
+  PrescriptionElement get prescriptionElement;
   @JsonKey(ignore: true)
   _$$_UpdatePrescriptionCopyWith<_$_UpdatePrescription> get copyWith =>
       throw _privateConstructorUsedError;

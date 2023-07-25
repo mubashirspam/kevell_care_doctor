@@ -16,7 +16,8 @@ import '../../domain/repositories/get_prescription_list_repository.dart';
 class GetPrescriptionListRepoImpliment
     implements GetPrescriptionListRepository {
   @override
-  Future<Either<MainFailure, PrescriptionModel>> getPrescriptionList({required int appointmentId}) async {
+  Future<Either<MainFailure, PrescriptionModel>> getPrescriptionList(
+      {required int appointmentId}) async {
     try {
       final token = await getTokenFromSS(secureStoreKey);
       final id = await getTokenFromSS(drIdsecureStoreKey);
@@ -31,13 +32,13 @@ class GetPrescriptionListRepoImpliment
         options: Options(headers: headers),
         data: {
           'doctorID': int.parse(id.toString()),
-          "appointmentID":appointmentId
+          "appointmentID": appointmentId
         },
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = PrescriptionModel.fromJson(response.data);
-        log(result.toString());
+        log(result.data.toString());
 
         return Right(result);
       } else if (response.statusCode == 400 || response.statusCode == 401) {

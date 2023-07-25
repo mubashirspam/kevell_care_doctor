@@ -6,8 +6,10 @@ class PrecriptionEvent with _$PrecriptionEvent {
       {required int appointmentId}) = _GetPrescriptionList;
   const factory PrecriptionEvent.getPrescriptionSettings() =
       _GetPrescriptionSettings;
-  const factory PrecriptionEvent.createPrescription(
-      {required PrescriptionModel prescriptionModel}) = _CreatePrescription;
-  const factory PrecriptionEvent.updatePrescription(
-      {required PrescriptionModel prescriptionModel}) = _UpdatePrescription;
+  const factory PrecriptionEvent.createPrescription({
+    required PrescriptionElement prescriptionElement,
+  }) = _CreatePrescription;
+  const factory PrecriptionEvent.updatePrescription({
+    required PrescriptionElement prescriptionElement,
+  }) = _UpdatePrescription;
 }

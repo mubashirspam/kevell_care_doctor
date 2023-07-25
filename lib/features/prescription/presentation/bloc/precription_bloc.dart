@@ -141,7 +141,7 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
       );
 
       final response = await updatePrescriptionListRepository
-          .updatePrescriptionList(prescriptionModel: event.prescriptionModel);
+          .updatePrescriptionList(prescriptionElement: event.prescriptionElement);
 
       final result = response.fold(
         (failure) => state.copyWith(
@@ -174,7 +174,7 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
       );
 
       final response = await createPrescriptionListRepository
-          .createPrescriptionList(prescriptionModel: event.prescriptionModel);
+          .createPrescriptionList(prescriptionElement: event.prescriptionElement);
 
       final result = response.fold(
         (failure) => state.copyWith(

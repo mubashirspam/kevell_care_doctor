@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../widgets/buttons/text_button_widget.dart';
 import '../../../widgets/input_field/dropdown_field.dart';
 import '../../../widgets/input_field/input_field_widget.dart';
+import '../../data/model/prescription_list_model.dart' as list;
+import '../../data/model/prescription_settings_model.dart' as settings;
+import '../bloc/precription_bloc.dart';
 
 class AddOrEditPrescriptionWidget extends StatefulWidget {
   final bool isEdit;
-  const AddOrEditPrescriptionWidget({super.key, required this.isEdit});
+  final list.PrescriptionElement? prescriptionElement;
+  const AddOrEditPrescriptionWidget({
+    super.key,
+    required this.isEdit,
+    this.prescriptionElement,
+  });
 
   @override
   State<AddOrEditPrescriptionWidget> createState() =>
@@ -25,6 +34,8 @@ class _AddOrEditPrescriptionWidgetState
   TextEditingController remark = TextEditingController();
 
   bool isButtonDisabled = true;
+  int days = 0;
+  settings.Timeoftheday? selectedItem;
 
   void validateForm() {
     if (_formKey.currentState!.validate()) {
@@ -40,44 +51,47 @@ class _AddOrEditPrescriptionWidgetState
     }
   }
 
-  List<Map<String, dynamic>> timeOfTheDay = [
-    {
-      'Name': 'Morning',
-      'active': true,
-    },
-    {
-      'Name': 'Noon',
-      'active': false,
-    },
-    {
-      'Name': 'Night',
-      'active': true,
-    },
-    {
-      'Name': 'Evening',
-      'active': true,
-    }
-  ];
-  List<Map<String, dynamic>> toBeTaken = [
-    {
-      'Name': 'After Food',
-      'active': false,
-    },
-    {
-      'Name': 'Befor Food',
-      'active': true,
-    },
-  ];
+  // List<Map<String, dynamic>> timeOfTheDay = [
+  //   {
+  //     'Name': 'Morning',
+  //     'active': true,
+  //   },
+  //   {
+  //     'Name': 'Noon',
+  //     'active': false,
+  //   },
+  //   {
+  //     'Name': 'Night',
+  //     'active': true,
+  //   },
+  //   {
+  //     'Name': 'Evening',
+  //     'active': true,
+  //   }
+  // ];
+  // List<Map<String, dynamic>> toBeTaken = [
+  //   {
+  //     'Name': 'After Food',
+  //     'active': false,
+  //   },
+  //   {
+  //     'Name': 'Befor Food',
+  //     'active': true,
+  //   },
+  // ];
 
   @override
   void initState() {
     if (widget.isEdit) {
-      nameController = TextEditingController(text: "Mubashir");
-      daysController = TextEditingController(text: "03 Days");
+      nameController =
+          TextEditingController(text: "${widget.prescriptionElement!.name}");
+      daysController = TextEditingController(
+          text: "${widget.prescriptionElement!.duration}");
 
-      remark = TextEditingController(
-          text:
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis pharetra suspendisse nisl, et interdum. Morbi fames et justo, mauris, et, scelerisque in aenean odio. Sed egestas quis pellentesque consectetur leo, proin est, pellentesque lorem. ");
+      remark =
+          TextEditingController(text: "${widget.prescriptionElement!.remark}");
+
+      days = int.parse("${widget.prescriptionElement!.duration}");
     }
 
     super.initState();
@@ -124,11 +138,61 @@ class _AddOrEditPrescriptionWidgetState
               Text("Medicine type",
                   style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: 10),
-              DropDownFiledWidet(items: const [
-                DropdownMenuItem(
-                  child: Text("Oilment"),
-                ),
-              ], onChanged: (onChanged) {}),
+              BlocBuilder<PrecriptionBloc, PrecriptionState>(
+                builder: (context, state) {
+                  if (state.hasSettingsData) {
+                    List<settings.Timeoftheday> type = context
+                        .read<PrecriptionBloc>()
+                        .state
+                        .prescriptionSettingsResult!
+                        .data!
+                        .type!;
+
+                    // List<settings.Timeoftheday>? valueFrom = type
+                    //     .where((element) =>
+                    //         element.name == widget.prescriptionElement!.type)
+                    //     .toList();
+
+                    if (widget.isEdit) {
+                      return DropDownFiledWidet(
+                        items: type.map((settings.Timeoftheday item) {
+                          return DropdownMenuItem<settings.Timeoftheday>(
+                            value: item,
+                            enabled: true,
+                            child: Text(item.name ?? ""),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            selectedItem = newValue;
+                          });
+                        },
+                      );
+                    } else {
+                      return DropDownFiledWidet(
+                        value: type.first,
+                        items: type.map((settings.Timeoftheday item) {
+                          return DropdownMenuItem<settings.Timeoftheday>(
+                            value: item,
+                            enabled: true,
+                            child: Text(item.name ?? ""),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            selectedItem = newValue;
+                          });
+                        },
+                      );
+                    }
+                  }
+                  return DropDownFiledWidet(items: const [
+                    DropdownMenuItem(
+                      child: Text("Oilment"),
+                    ),
+                  ], onChanged: (onChanged) {});
+                },
+              ),
               const SizedBox(height: 20),
               Text(
                 "Duration days",
@@ -138,6 +202,14 @@ class _AddOrEditPrescriptionWidgetState
               Row(
                 children: [
                   GestureDetector(
+                    onTap: () => setState(() {
+                      if (days > 1) {
+                        days--;
+                      } else {
+                        days = 1;
+                      }
+                      daysController = TextEditingController(text: "$days");
+                    }),
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
@@ -160,9 +232,10 @@ class _AddOrEditPrescriptionWidgetState
                         textEditingController: daysController,
                         onChanged: (value) {
                           validateForm();
+                          setState(() => days = int.parse(value));
                         },
                         hintText: "Days",
-                        keyboardType: TextInputType.name,
+                        keyboardType: TextInputType.number,
                         validate: (name) {
                           if (name == null || name.isEmpty) {
                             return "Please enter number of days";
@@ -173,6 +246,14 @@ class _AddOrEditPrescriptionWidgetState
                     ),
                   ),
                   GestureDetector(
+                    onTap: () => setState(() {
+                      if (days < 30) {
+                        days++;
+                      } else {
+                        days == 30;
+                      }
+                      daysController = TextEditingController(text: "$days");
+                    }),
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
@@ -192,25 +273,45 @@ class _AddOrEditPrescriptionWidgetState
               Text("Time of the day",
                   style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: 10),
-              Wrap(
-                  children: List.generate(
-                      timeOfTheDay.length,
-                      (index) => chipItem(timeOfTheDay[index]['active'],
-                          timeOfTheDay[index]['Name']))),
+              BlocBuilder<PrecriptionBloc, PrecriptionState>(
+                builder: (context, state) {
+                  List<settings.Timeoftheday> timeoftheday = context
+                      .read<PrecriptionBloc>()
+                      .state
+                      .prescriptionSettingsResult!
+                      .data!
+                      .timeoftheday!;
+                  return Wrap(
+                      children: List.generate(
+                          timeoftheday.length,
+                          (index) => chipItem(false,
+                              timeoftheday[index].name ?? "Not mentioned")));
+                },
+              ),
               const SizedBox(height: 20),
               Text("To be Taken",
                   style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: 10),
-              Wrap(
-                  children: List.generate(
-                      toBeTaken.length,
-                      (index) => chipItem(toBeTaken[index]['active'],
-                          toBeTaken[index]['Name']))),
+              BlocBuilder<PrecriptionBloc, PrecriptionState>(
+                builder: (context, state) {
+                  List<settings.Timeoftheday> tobetaken = context
+                      .read<PrecriptionBloc>()
+                      .state
+                      .prescriptionSettingsResult!
+                      .data!
+                      .tobetaken!;
+                  return Wrap(
+                      children: List.generate(
+                          tobetaken.length,
+                          (index) => chipItem(false,
+                              tobetaken[index].name ?? "Not mentioned")));
+                },
+              ),
               const SizedBox(height: 20),
               Text("Remark", style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: 10),
               TextFieldWidget(
-                maxLines: 7,
+                maxLines: 5,
                 textEditingController: remark,
                 onChanged: (value) {
                   validateForm();
@@ -241,10 +342,33 @@ class _AddOrEditPrescriptionWidgetState
                     ),
                     const SizedBox(width: 10),
                     Expanded(
-                      child: TextButtonWidget(
-                        onPressed: () {},
-                        name: "Update",
-                        isLoading: false,
+                      child: BlocConsumer<PrecriptionBloc, PrecriptionState>(
+                        listener: (context, state) {},
+                        builder: (context, state) {
+                          return TextButtonWidget(
+                            onPressed: isButtonDisabled
+                                ? null
+                                : () {
+                                    if (widget.isEdit) {
+                                      context.read<PrecriptionBloc>().add(
+                                            PrecriptionEvent.updatePrescription(
+                                                prescriptionElement:
+                                                    list.PrescriptionElement()),
+                                          );
+                                    } else {
+                                      context.read<PrecriptionBloc>().add(
+                                            PrecriptionEvent.createPrescription(
+                                                prescriptionElement:
+                                                    list.PrescriptionElement()),
+                                          );
+                                    }
+                                  },
+                            name: widget.isEdit ? "Update" : "Create",
+                            isLoading: widget.isEdit
+                                ? state.isUpdateLoading
+                                : state.isCreateLoading,
+                          );
+                        },
                       ),
                     ),
                   ],

@@ -1,7 +1,9 @@
+import 'package:dr_kevell/features/checkup/presentation/bloc/checkup_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/features/checkup/presentation/stethoscope_widget.dart';
 import 'package:dr_kevell/features/checkup/presentation/temparature_widgtet.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../features/checkup/presentation/unloack.dart';
 import '../../../features/checkup/presentation/checkup_header.dart';
@@ -12,6 +14,11 @@ class PatientCheckupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context
+          .read<CheckupBloc>()
+          .add(const CheckupEvent.subscribe(topic: "KC_EC94CB6F61DC/app"));
+    });
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
@@ -36,13 +43,7 @@ class PatientCheckupScreen extends StatelessWidget {
         child: Column(
           children: [
             CheckupHeaderWidget(),
-            SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: UnloackWidget(),
-            ),
+            UnloackWidget(),
             TepamratureWidget(),
             StethoscopeWidget(),
             StethoscopeWidget(),

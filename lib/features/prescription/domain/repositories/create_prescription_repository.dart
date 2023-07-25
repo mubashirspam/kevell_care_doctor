@@ -5,6 +5,6 @@ import '../../../../core/failiar/main_failures.dart';
 
 abstract class CreatePrescriptionListRepository {
   Future<Either<MainFailure, PrescriptionModel>> createPrescriptionList({
-    required PrescriptionModel prescriptionModel,
+    required PrescriptionElement prescriptionElement,
   });
 }

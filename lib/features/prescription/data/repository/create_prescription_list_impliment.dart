@@ -18,12 +18,12 @@ class CreatePrescriptionListRepoImpliment
     implements CreatePrescriptionListRepository {
   @override
   Future<Either<MainFailure, PrescriptionModel>> createPrescriptionList({
-     required PrescriptionModel prescriptionModel,
+     required PrescriptionElement prescriptionElement,
   }) async {
     try {
       final token = await getTokenFromSS(secureStoreKey);
 
- final data = prescriptionModel.toJson();
+ final data = prescriptionElement.toJson();
       final headers = {
         'Authorization': 'Bearer $token',
         'Content-Type': 'application/json',

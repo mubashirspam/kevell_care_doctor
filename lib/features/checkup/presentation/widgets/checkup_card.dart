@@ -51,12 +51,15 @@ class CheckupCard extends StatelessWidget {
                       .headlineLarge!
                       .copyWith(fontSize: 24),
                 )),
-                CircleAvatar(
-                  minRadius: 25,
-                  maxRadius: 25,
-                  backgroundColor: context.theme.primary,
-                  child: const Center(
-                    child: Icon(Icons.play_arrow),
+                GestureDetector(
+                  onTap: onPress,
+                  child: CircleAvatar(
+                    minRadius: 25,
+                    maxRadius: 25,
+                    backgroundColor: context.theme.primary,
+                    child: const Center(
+                      child: Icon(Icons.play_arrow),
+                    ),
                   ),
                 ),
               ],

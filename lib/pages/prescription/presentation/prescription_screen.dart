@@ -14,7 +14,10 @@ class PrescriptionScreen extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context
           .read<PrecriptionBloc>()
-          .add(const PrecriptionEvent.getPrescriptionList(appointmentId: 12));
+          .add(const PrecriptionEvent.getPrescriptionList(appointmentId: 1013));
+      context
+          .read<PrecriptionBloc>()
+          .add(const PrecriptionEvent.getPrescriptionSettings());
     });
     return Scaffold(
       appBar: AppBar(

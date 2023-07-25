@@ -1,5 +1,6 @@
+import 'dart:developer';
 
-
+import 'package:dr_kevell/features/prescription/data/model/prescription_list_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
@@ -47,50 +48,63 @@ class Prescription extends StatelessWidget {
         }
 
         if (state.hasData) {
-          if (state.prescriptionResult!.data==null) {
-            return SizedBox(
-              child: Column(
-                children: [
-                  const SizedBox(height: 50),
-                  Icon(
-                    Icons.medical_services_outlined,
-                    size: 50,
-                    color: context.theme.inputFiled,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20),
-                    child: Text('Their is no prescription added',
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.titleLarge),
-                  ),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      minimumSize: const Size(65, 30),
-                      backgroundColor: context.theme.primary,
-                      foregroundColor: context.theme.backround,
+          log("message");
+
+          if (state.prescriptionResult!.data == null) {
+            return Center(
+              child: SizedBox(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 50),
+                    Icon(
+                      Icons.medical_services_outlined,
+                      size: 50,
+                      color: context.theme.inputFiled,
                     ),
-                    child: const Text("Edit"),
-                    onPressed: () {},
-                  )
-                ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: Text('Their is no prescription added',
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.titleLarge),
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        minimumSize: const Size(65, 30),
+                        backgroundColor: context.theme.primary,
+                        foregroundColor: context.theme.backround,
+                      ),
+                      child: const Text("Add prescription"),
+                      onPressed: () {},
+                    )
+                  ],
+                ),
+              ),
+            );
+          } else {
+            List<PrescriptionElement>? prescriptionElement = context
+                .read<PrecriptionBloc>()
+                .state
+                .prescriptionResult!
+                .data!
+                .prescriptions!
+                .first
+                .prescription!;
+            return ListView.separated(
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(20).copyWith(bottom: 0),
+              itemCount: prescriptionElement.length,
+              itemBuilder: (context, index) => PrescriptionItemWidget(
+                prescriptionElement: prescriptionElement[index],
+              ),
+              separatorBuilder: (context, index) => Divider(
+                color: context.theme.textGrey,
               ),
             );
           }
-        } else {
-          return ListView.separated(
-            shrinkWrap: true,
-            padding: const EdgeInsets.all(20).copyWith(bottom: 0),
-            itemCount: 3,
-            itemBuilder: (context, index) => const PrescriptionItemWidget(
-              subTitle: "subtitle",
-              title: "titlw",
-            ),
-            separatorBuilder: (context, index) => Divider(
-              color: context.theme.textGrey,
-            ),
-          );
         }
-         return const Center(child: AppErrorWidget());
+        return const Center(child: AppErrorWidget());
       },
     );
   }

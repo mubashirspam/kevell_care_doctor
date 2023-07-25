@@ -1,4 +1,5 @@
 import 'package:dr_kevell/features/history/presentation/bloc/history_bloc.dart';
+import 'package:dr_kevell/pages/patien_checkup/presentation/patient_checkup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +10,6 @@ import 'package:dr_kevell/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:dr_kevell/features/signup/presentation/bloc/signup_bloc.dart';
 import 'package:dr_kevell/pages/initialize/bloc/initialize_bloc.dart';
 import 'package:dr_kevell/pages/initialize/initialize.dart';
-
 import 'core/di/injectable.dart';
 import 'core/them/dark_theme.dart';
 import 'core/them/light_theme.dart';
@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (ctx) => getIt<CheckupBloc>()),
+        BlocProvider(create: (ctx) => getIt<CheckupBloc>()),
         BlocProvider(create: (ctx) => getIt<SignupBloc>()),
         BlocProvider(create: (ctx) => getIt<LoginBloc>()),
         BlocProvider(create: (ctx) => getIt<ProfileBloc>()),
@@ -40,13 +41,15 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => InitializeBloc()),
       ],
       child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          theme: lightTheme(),
-          darkTheme: darkTheme(),
-          themeMode: ThemeMode.light,
-          routes: route,
-          home: const Initialize()),
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: lightTheme(),
+        darkTheme: darkTheme(),
+        themeMode: ThemeMode.light,
+        routes: route,
+        // home: const Initialize(),
+        home: const PatientCheckupScreen(),
+      ),
     );
   }
 }

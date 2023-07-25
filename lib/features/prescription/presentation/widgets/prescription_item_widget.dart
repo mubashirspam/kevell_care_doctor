@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 
+import '../../data/model/prescription_list_model.dart';
 import 'edit_prescription.dart';
 
 class PrescriptionItemWidget extends StatelessWidget {
-  final String title;
-  final String subTitle;
+  final PrescriptionElement prescriptionElement;
   const PrescriptionItemWidget({
-    required this.subTitle,
-    required this.title,
+    required this.prescriptionElement,
     super.key,
   });
 
@@ -17,13 +16,13 @@ class PrescriptionItemWidget extends StatelessWidget {
     return ListTile(
       contentPadding: const EdgeInsets.only(bottom: 5),
       title: Text(
-        title,
+        prescriptionElement.name ?? "Medicin not Mentioned",
         style: Theme.of(context).textTheme.titleMedium,
       ),
       subtitle: Padding(
         padding: const EdgeInsets.only(top: 10),
         child: Text(
-          subTitle,
+          prescriptionElement.name ??  "No type mentioned",
           style: Theme.of(context).textTheme.titleSmall,
         ),
       ),
@@ -39,8 +38,9 @@ class PrescriptionItemWidget extends StatelessWidget {
           elevation: 0,
           isScrollControlled: true,
           context: context,
-          builder: (context) => const AddOrEditPrescriptionWidget(
+          builder: (context) =>  AddOrEditPrescriptionWidget(
             isEdit: true,
+            prescriptionElement: prescriptionElement,
           ),
         ),
       ),

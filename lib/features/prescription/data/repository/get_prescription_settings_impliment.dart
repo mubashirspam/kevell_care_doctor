@@ -15,7 +15,8 @@ import '../model/prescription_settings_model.dart';
 class GetPrescriptionSettingsRepoImpliment
     implements GetPrescriptionSettingsRepository {
   @override
-  Future<Either<MainFailure, PrescriptionSettingsModel>> getPrescriptionSettings() async {
+  Future<Either<MainFailure, PrescriptionSettingsModel>>
+      getPrescriptionSettings() async {
     try {
       final token = await getTokenFromSS(secureStoreKey);
       final id = await getTokenFromSS(drIdsecureStoreKey);

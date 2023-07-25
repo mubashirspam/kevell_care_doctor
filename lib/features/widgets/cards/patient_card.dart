@@ -31,24 +31,32 @@ class PatientCard extends StatelessWidget {
       child: Row(
         children: [
           ActiveAvatar(
+            radius: 30,
             imageUrl: imgUrl,
           ),
           const SizedBox(width: 15),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                patientName,
-                style: Theme.of(context).textTheme.headlineMedium,
+          Expanded(
+            child: SizedBox(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    patientName,
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    purpose,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium!
+                        .copyWith(fontSize: 10),
+                  ),
+                ],
               ),
-              Text(
-                purpose,
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-            ],
+            ),
           ),
-          const Spacer(),
           TextButton(
             style: TextButton.styleFrom(
               backgroundColor: context.theme.primary,
