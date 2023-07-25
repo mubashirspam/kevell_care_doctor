@@ -1,12 +1,24 @@
+import 'package:dr_kevell/core/them/custom_theme_extension.dart';
+import 'package:dr_kevell/features/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/features/checkup/presentation/widgets/checkup_card.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
-import '../data/model/MQTTAppState.dart';
+import '../../../configure/assets_manage/lottie.dart';
 import 'bloc/checkup_bloc.dart';
 
 class TepamratureWidget extends StatelessWidget {
-  const TepamratureWidget({super.key});
+  final String temparature;
+  final VoidCallback onpress;
+  final bool isReading;
+
+  const TepamratureWidget({
+    super.key,
+    required this.temparature,
+    required this.onpress,
+    required this.isReading,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,30 +27,24 @@ class TepamratureWidget extends StatelessWidget {
         return CheckupCard(
           // imageName: "imageName",
           name: "Body Temperature",
-          onPress: () {
-            state.isSucribed == true
-                ? context.read<CheckupBloc>().add(CheckupEvent.gettemperature(
-                        topic: "KC_EC94CB6F61DC/device",
-                        payload: {
-                          "id": "KC_EC94CB6F61DC",
-                          "patientID": "P8308",
-                          "doctorID": "D1204",
-                          "appointmentID": "AP123456",
-                          "type": "Doctor",
-                          "command": "device",
-                          "number": 2,
-                          "date": DateTime.now().millisecondsSinceEpoch
-                        }))
-                : null;
-          },
+          onPress: onpress,
           children: [
-            Text(MQTTAppState().getReceivedJson['data'] == null
-                ? "Reading..."
-                : "${MQTTAppState().getReceivedJson['data']['content']}"),
-            Text(
-              "0.00°F",
-              style: Theme.of(context).textTheme.headlineLarge,
-            )
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "$temparature°F",
+                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                        color:
+                            isReading ? context.theme.textPrimary : Colors.red,
+                      ),
+                ),
+                isReading
+                    ? Lottie.asset(AppLottie.loading,
+                        fit: BoxFit.contain, height: 60)
+                    : const SizedBox()
+              ],
+            ),
           ],
         );
       },
