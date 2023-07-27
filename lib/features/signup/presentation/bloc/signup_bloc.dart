@@ -15,6 +15,9 @@ part 'signup_bloc.freezed.dart';
 class SignupBloc extends Bloc<SignupEvent, SignupState> {
   final SignupRepository signupRepository;
   SignupBloc(this.signupRepository) : super(SignupState.initial()) {
+
+
+    
     on<_Signup>(
       (event, emit) async {
         emit(state.copyWith(

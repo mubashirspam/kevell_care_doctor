@@ -8,14 +8,14 @@ import 'package:lottie/lottie.dart';
 import '../../../configure/assets_manage/lottie.dart';
 
 
-class TepamratureWidget extends StatelessWidget {
-  final String temparature;
+class Spo2Widget extends StatelessWidget {
+  final String spo2;
   final VoidCallback onpress;
   final bool isReading;
 
-  const TepamratureWidget({
+  const Spo2Widget({
     super.key,
-    required this.temparature,
+    required this.spo2,
     required this.onpress,
     required this.isReading,
   });
@@ -24,14 +24,14 @@ class TepamratureWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CheckupCard(
           // imageName: "imageName",
-          name: "Body Temperature",
+          name: "Spo2",
           onPress: onpress,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "$temparature°F",
+                  spo2,
                   style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                         color:
                             isReading ? context.theme.textPrimary : Colors.red,

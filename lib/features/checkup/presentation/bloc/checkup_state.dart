@@ -44,3 +44,5 @@ class CheckupState with _$CheckupState {
         otoscope: false,
       );
 }
+
+

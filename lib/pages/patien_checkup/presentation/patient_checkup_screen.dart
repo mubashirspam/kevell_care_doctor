@@ -5,11 +5,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
-import 'package:dr_kevell/features/checkup/presentation/stethoscope_widget.dart';
 import 'package:dr_kevell/features/checkup/presentation/temparature_widgtet.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 import '../../../core/helper/toast.dart';
+import '../../../features/checkup/presentation/spo_widget.dart';
 import '../../../features/checkup/presentation/unloack.dart';
 import '../../../features/checkup/presentation/checkup_header.dart';
 
@@ -32,10 +32,13 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
   bool isUnloacking = false;
 
   bool tReading = false;
+  bool sp02Reading = false;
 
   Map<String, dynamic> dataMap = {};
 
   String temparature = "0.00";
+  String sop2 = "0.00";
+  
 
   final String broker = "broker.hivemq.com";
   final int port = 1883;
@@ -132,7 +135,23 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
           }
 
           log(temparature);
-        } else {
+        } else if (dataMap['number'] == "3" && dataMap['state'] == "device") {
+          isUnloacked = true;
+
+          if (dataMap['data']['content'] != null &&
+              dataMap['data']['type'] == "reading") {
+            sop2 = dataMap['data']['content'].toString();
+            sp02Reading = true;
+          }
+          if (dataMap['data']['content'] != null &&
+              dataMap['data']['type'] == "result") {
+            sp02Reading = false;
+          }
+
+          log(sop2);
+        }
+        
+         else {
           isUnloacking = false;
         }
       });
@@ -259,8 +278,23 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
                       context: context, message: "Please Unlock"),
               temparature: temparature,
             ),
-            const StethoscopeWidget(),
-            const StethoscopeWidget(),
+        Spo2Widget(isReading: sp02Reading,
+              onpress: isUnloacked
+                  ? () {
+                      publishMy({
+                        "id": "KC_EC94CB6F61DC",
+                        "patientID": "P8308",
+                        "doctorID": "D1204",
+                        "appointmentID": "AP123456",
+                        "type": "Doctor",
+                        "command": "device",
+                        "number": 3,
+                        "date": DateTime.now().millisecondsSinceEpoch
+                      }, "KC_EC94CB6F61DC/device");
+                    }
+                  : () => Toast.showToast(
+                      context: context, message: "Please Unlock"),
+              spo2: sop2,),
           ],
         ),
       ),

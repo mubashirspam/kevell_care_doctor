@@ -12,11 +12,7 @@ import '../../domain/repositories/signup_repository.dart';
 
 @LazySingleton(as: SignupRepository)
 class SignupRepoImpliment implements SignupRepository {
-  // final NetworkInfo networkInfo;
-
-  // SignupRepoImpliment({
-  //   required this.networkInfo,
-  // });
+ 
   @override
   Future<Either<MainFailure, SignupModel>> signup({
     required String email,
@@ -24,7 +20,7 @@ class SignupRepoImpliment implements SignupRepository {
     required String fullName,
     required String password,
   }) async {
-    // if (await networkInfo.isConnected) {
+
     try {
       final response = await Dio(BaseOptions()).post(
         ApiEndPoints.register,

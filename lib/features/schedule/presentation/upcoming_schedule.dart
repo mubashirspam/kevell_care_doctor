@@ -1,16 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/features/schedule/presentation/widgets/schedule_card_itm.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../widgets/error_widget.dart';
+import '../../widgets/loading_widget.dart';
+import 'bloc/schedule_bloc.dart';
 
 class UpcomingSchedule extends StatelessWidget {
   const UpcomingSchedule({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: List.generate(
-        5,
-        (index) => const ScheduleCard(isUpcoming: true),
-      ),
+    return BlocBuilder<ScheduleBloc, ScheduleState>(
+      builder: (context, state) {
+        if (state.isLoading) {
+          return const LoadingWIdget();
+        }
+        if (state.isError) {
+          return const AppErrorWidget();
+        }
+        if (state.hasData) {
+          return Column(
+            children: List.generate(
+              2,
+              (index) => const ScheduleCard(isUpcoming: false),
+            ),
+          );
+        }
+        return Column(
+          children: List.generate(
+            2,
+            (index) => const ScheduleCard(isUpcoming: true),
+          ),
+        );
+      },
     );
   }
 }

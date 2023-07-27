@@ -16,6 +16,7 @@ import 'core/them/dark_theme.dart';
 import 'core/them/light_theme.dart';
 import 'features/home/presentation/bloc/home_bloc.dart';
 import 'features/prescription/presentation/bloc/precription_bloc.dart';
+import 'features/schedule/presentation/bloc/schedule_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,7 +40,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (ctx) => getIt<HomeBloc>()),
         BlocProvider(create: (ctx) => getIt<HistoryBloc>()),
         BlocProvider(create: (ctx) => getIt<PrecriptionBloc>()),
-        BlocProvider(create: (context) => InitializeBloc()),
+        BlocProvider(create: (ctx) => getIt<ScheduleBloc>()),
+        BlocProvider(create: (ctx) => InitializeBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
