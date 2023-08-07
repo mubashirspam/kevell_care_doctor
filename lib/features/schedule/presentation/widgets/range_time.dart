@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../core/helper/date.dart';
+import '../bloc/schedule_bloc.dart';
 
 class DateRanger extends StatelessWidget {
   const DateRanger({
@@ -37,38 +41,56 @@ class DateRanger extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          GestureDetector(
-              onTap: () {
-                showDialog(
-                  CupertinoDatePicker(
-                    initialDateTime: time,
+          GestureDetector(onTap: () {
+            showDialog(
+              BlocBuilder<ScheduleBloc, ScheduleState>(
+                builder: (context, state) {
+                  return CupertinoDatePicker(
+                    initialDateTime: DateTime.now(),
                     mode: CupertinoDatePickerMode.time,
                     use24hFormat: true,
                     onDateTimeChanged: (DateTime newTime) {
-                      // setState(() => time = newTime);
+                      context.read<ScheduleBloc>().add(ScheduleEvent.pickTime(
+                            endTime: state.endTime,
+                            startTime: newTime,
+                          ));
                     },
-                  ),
-                );
-              },
-              child: timeSection(context, "13.00", true)),
+                  );
+                },
+              ),
+            );
+          }, child: BlocBuilder<ScheduleBloc, ScheduleState>(
+            builder: (context, state) {
+              return timeSection(context, extractTime(state.startTime), true);
+            },
+          )),
           const SizedBox(width: 40),
           IconButton(onPressed: () {}, icon: const Icon(Icons.chevron_right)),
           const SizedBox(width: 40),
-          GestureDetector(
-              onTap: () {
-                showDialog(
-                  CupertinoDatePicker(
-                    initialDateTime: time,
+          GestureDetector(onTap: () {
+            showDialog(
+              BlocBuilder<ScheduleBloc, ScheduleState>(
+                builder: (context, state) {
+                  return CupertinoDatePicker(
+                    initialDateTime: DateTime.now(),
                     mode: CupertinoDatePickerMode.time,
                     use24hFormat: true,
                     // This is called when the user changes the time.
                     onDateTimeChanged: (DateTime newTime) {
-                      // setState(() => time = newTime);
+                      context.read<ScheduleBloc>().add(ScheduleEvent.pickTime(
+                            endTime: newTime,
+                            startTime: state.startTime,
+                          ));
                     },
-                  ),
-                );
-              },
-              child: timeSection(context, "13.00", false)),
+                  );
+                },
+              ),
+            );
+          }, child: BlocBuilder<ScheduleBloc, ScheduleState>(
+            builder: (context, state) {
+              return timeSection(context, extractTime(state.endTime), false);
+            },
+          )),
         ],
       ),
     );

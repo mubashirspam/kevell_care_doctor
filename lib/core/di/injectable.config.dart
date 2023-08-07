@@ -69,10 +69,10 @@ import '../../features/schedule/data/repositories/create_schedule_repository_imp
     as _i6;
 import '../../features/schedule/data/repositories/get_schedule_repository_impl.dart'
     as _i18;
+import '../../features/schedule/domain/repositories/create_schedule_repository.dart'
+    as _i5;
 import '../../features/schedule/domain/repositories/get_schedule_repository.dart'
     as _i17;
-import '../../features/schedule/domain/repositories/update_profile_repository.dart'
-    as _i5;
 import '../../features/schedule/presentation/bloc/schedule_bloc.dart' as _i25;
 import '../../features/signup/data/repositories/signup_repository_impl.dart'
     as _i27;

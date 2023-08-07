@@ -3,12 +3,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 
 import '../../../../configure/assets_manage/icons.dart';
+import '../../../../core/helper/date.dart';
+import '../../data/models/schedule_model.dart';
 
 class ScheduleCard extends StatelessWidget {
   final bool isUpcoming;
+  final Schedule schedule;
   const ScheduleCard({
     super.key,
     required this.isUpcoming,
+    required this.schedule,
   });
 
   @override
@@ -25,17 +29,17 @@ class ScheduleCard extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              margin: const EdgeInsets.only(left: 5, right: 15),
-              padding: const EdgeInsets.all(10),
+              margin: const EdgeInsets.only(left: 0, right: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: context.theme.primary,
               ),
-              child: const Center(
+              child: Center(
                 child: Text(
-                  "03 \nApr ",
+                  formatDateForSchedule(schedule.days!),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -49,15 +53,39 @@ class ScheduleCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "13.00-15.00",
-                      style: TextStyle(
-                        color: context.theme.textPrimary,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    Row(
+                      children: [
+                        Text.rich(
+                          TextSpan(
+                            text: "${extractTime(schedule.starttime!)} : ",
+                            children: [
+                              TextSpan(
+                                text: extractTime(schedule.starttime!),
+                              ),
+                            ],
+                          ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineLarge!
+                              .copyWith(fontSize: 16),
+                        ),
+                        const SizedBox(width: 5),
+                        Chip(
+                          backgroundColor: context.theme.primary,
+                          label: Text(
+                            "${schedule.dailylimitcount}",
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(
+                                  color: Colors.white,
+                                ),
+                          ),
+                        )
+                      ],
                     ),
                     Text(
-                      "Patient Consultant",
+                      schedule.type!,
                       style: TextStyle(
                         color: context.theme.textPrimary,
                       ),

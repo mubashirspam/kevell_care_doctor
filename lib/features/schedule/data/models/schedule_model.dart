@@ -37,63 +37,91 @@ class ScheduleModel {
 }
 
 class Data {
-    List<Hedule>? todyaShedule;
-    List<Hedule>? upcomingSchedule;
+    List<Schedule>? todayschedule;
+    List<Schedule>? upcomingschedule;
 
     Data({
-        this.todyaShedule,
-        this.upcomingSchedule,
+        this.todayschedule,
+        this.upcomingschedule,
     });
 
     factory Data.fromJson(Map<String, dynamic> json) => Data(
-        todyaShedule: json["todya_shedule"] == null ? [] : List<Hedule>.from(json["todya_shedule"]!.map((x) => Hedule.fromJson(x))),
-        upcomingSchedule: json["upcoming_schedule"] == null ? [] : List<Hedule>.from(json["upcoming_schedule"]!.map((x) => Hedule.fromJson(x))),
+        todayschedule: json["todayschedule"] == null ? [] : List<Schedule>.from(json["todayschedule"]!.map((x) => Schedule.fromJson(x))),
+        upcomingschedule: json["upcomingschedule"] == null ? [] : List<Schedule>.from(json["upcomingschedule"]!.map((x) => Schedule.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
-        "todya_shedule": todyaShedule == null ? [] : List<dynamic>.from(todyaShedule!.map((x) => x.toJson())),
-        "upcoming_schedule": upcomingSchedule == null ? [] : List<dynamic>.from(upcomingSchedule!.map((x) => x.toJson())),
+        "todayschedule": todayschedule == null ? [] : List<dynamic>.from(todayschedule!.map((x) => x.toJson())),
+        "upcomingschedule": upcomingschedule == null ? [] : List<dynamic>.from(upcomingschedule!.map((x) => x.toJson())),
     };
 }
 
-class Hedule {
-    String? scheduleId;
-    int? doctorId;
+class Schedule {
+    int? id;
+    String? doctorId;
+    DateTime? starttime;
+    DateTime? endtime;
+    DateTime? startdate;
+    DateTime? enddate;
+    String? dailylimitcount;
+    int? timeperPatient;
     String? type;
-    String? duration;
-    DateTime? date;
+    String? month;
+    String? year;
+    DateTime? days;
     DateTime? createdAt;
     DateTime? updatedAt;
     int? v;
 
-    Hedule({
-        this.scheduleId,
+    Schedule({
+        this.id,
         this.doctorId,
+        this.starttime,
+        this.endtime,
+        this.startdate,
+        this.enddate,
+        this.dailylimitcount,
+        this.timeperPatient,
         this.type,
-        this.duration,
-        this.date,
+        this.month,
+        this.year,
+        this.days,
         this.createdAt,
         this.updatedAt,
         this.v,
     });
 
-    factory Hedule.fromJson(Map<String, dynamic> json) => Hedule(
-        scheduleId: json["Schedule_id"],
+    factory Schedule.fromJson(Map<String, dynamic> json) => Schedule(
+        id: json["_id"],
         doctorId: json["doctor_id"],
+        starttime: json["starttime"] == null ? null : DateTime.parse(json["starttime"]),
+        endtime: json["endtime"] == null ? null : DateTime.parse(json["endtime"]),
+        startdate: json["startdate"] == null ? null : DateTime.parse(json["startdate"]),
+        enddate: json["enddate"] == null ? null : DateTime.parse(json["enddate"]),
+        dailylimitcount: json["dailylimitcount"],
+        timeperPatient: json["timeperPatient"],
         type: json["type"],
-        duration: json["duration"],
-        date: json["Date"] == null ? null : DateTime.parse(json["Date"]),
+        month: json["month"],
+        year: json["year"],
+        days: json["Days"] == null ? null : DateTime.parse(json["Days"]),
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         v: json["__v"],
     );
 
     Map<String, dynamic> toJson() => {
-        "Schedule_id": scheduleId,
+        "_id": id,
         "doctor_id": doctorId,
+        "starttime": starttime?.toIso8601String(),
+        "endtime": endtime?.toIso8601String(),
+        "startdate": "${startdate!.year.toString().padLeft(4, '0')}-${startdate!.month.toString().padLeft(2, '0')}-${startdate!.day.toString().padLeft(2, '0')}",
+        "enddate": "${enddate!.year.toString().padLeft(4, '0')}-${enddate!.month.toString().padLeft(2, '0')}-${enddate!.day.toString().padLeft(2, '0')}",
+        "dailylimitcount": dailylimitcount,
+        "timeperPatient": timeperPatient,
         "type": type,
-        "duration": duration,
-        "Date": date?.toIso8601String(),
+        "month": month,
+        "year": year,
+        "Days": "${days!.year.toString().padLeft(4, '0')}-${days!.month.toString().padLeft(2, '0')}-${days!.day.toString().padLeft(2, '0')}",
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
         "__v": v,

@@ -85,7 +85,38 @@ class StatusCardWidget extends StatelessWidget {
         } else if (state.isError) {
           return const AppErrorWidget();
         }
-        return const SizedBox(height: 20);
+        // return const SizedBox(height: 20);
+        return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            child: Row(
+              children: [
+                Expanded(
+                  child: StatusCards(
+                      count: "02",
+                      color: const [
+                        Color(0xFFB9F8DB),
+                        Color(0xFF44EC9F),
+                      ],
+                      statusName: "You attended the patients"
+                          .toString()),
+                ),
+                const SizedBox(
+                  width: 15,
+                ),
+               const Expanded(
+                  child: StatusCards(
+                      count:
+                          "08",
+                      color:  [
+                        Color(0xFFDEC9F8),
+                        Color(0xFFA76EEC),
+                      ],
+                      statusName:
+                          "Today your attending patients"),
+                ),
+              ],
+            ),
+          );
       },
     );
   }

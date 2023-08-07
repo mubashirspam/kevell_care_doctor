@@ -9,14 +9,30 @@ class ScheduleState with _$ScheduleState {
     required bool hasData,
     required bool isError,
     required ScheduleModel? result,
+    required CreateScheduleModel? createResponse,
+    required int numberOfPatient,
+    required DateTime startDate,
+    required DateTime endDate,
+    required DateTime startTime,
+    required DateTime endTime,
+    required int timeForSinglePatient,
   }) = _ScheduleState;
 
-  factory ScheduleState.initial() => const ScheduleState(
+  factory ScheduleState.initial() => ScheduleState(
         isLoading: false,
         isCreateLoading: false,
         unauthorized: false,
         isError: false,
         hasData: false,
         result: null,
+        createResponse: null,
+        numberOfPatient: 3,
+        startDate: DateTime.now().add(const Duration(days: 1)),
+        endDate: DateTime.now().add(const Duration(days: 5)),
+        startTime: DateTime(DateTime.now().year, DateTime.now().month,
+            DateTime.now().day, 10, 0),
+        endTime: DateTime(DateTime.now().year, DateTime.now().month,
+            DateTime.now().day, 13, 0),
+        timeForSinglePatient: 60,
       );
 }

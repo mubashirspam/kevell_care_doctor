@@ -9,29 +9,31 @@ import '../../../../configure/value/constant.dart';
 import '../../../../configure/value/secure_storage.dart';
 import '../../../../core/failiar/failiur_model.dart';
 import '../../../../core/failiar/main_failures.dart';
-// import '../../../../core/network/netwrok.dart';
 import '../../domain/repositories/get_schedule_repository.dart';
 
 @LazySingleton(as: GetScheduleRepository)
 class GetScheduleRepoImpliment implements GetScheduleRepository {
-
   @override
   Future<Either<MainFailure, ScheduleModel>> getSchedule() async {
-   
-
     try {
-      final token = await getTokenFromSS(secureStoreKey);
-      final mail = await getTokenFromSS(mailsecureStoreKey);
+      // final token = await getTokenFromSS(secureStoreKey);
+      // final id = await getTokenFromSS(drIdsecureStoreKey);
 
-      final headers = {
-        'Authorization': 'Bearer $token',
-        'Content-Type': 'application/json',
-      };
+      // final headers = {
+      //   'Authorization': 'Bearer $token',
+      //   'Content-Type': 'application/json',
+      // };
+
+// production
+      // final response = await Dio(BaseOptions()).get(
+      //   ApiEndPoints.getSchedule,
+      //   options: Options(headers: headers),
+      //   data: {'doctor_id': id},
+      // );
 
       final response = await Dio(BaseOptions()).get(
-        ApiEndPoints.getprofile,
-        options: Options(headers: headers),
-        data: {'Emailid': mail},
+        ApiEndPoints.getSchedule,
+        data: {'doctor_id': 1009},
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
@@ -49,9 +51,5 @@ class GetScheduleRepoImpliment implements GetScheduleRepository {
     } catch (e) {
       return const Left(MainFailure.clientFailure());
     }
-
-    // } else {
-    //   return const Left(MainFailure.clientFailure());
-    // }
   }
 }

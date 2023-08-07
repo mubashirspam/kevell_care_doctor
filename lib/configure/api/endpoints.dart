@@ -19,9 +19,25 @@ class ApiEndPoints {
   static const String getPrescription = "$baseUrl/users/api/medicinedata";
   static const String createPrescription =
       "$baseUrl/users/api/saveAndupdatemedicinedata";
+
   static const String updatePrescription =
       "$baseUrl/users/api/saveAndupdatemedicinedata";
 
   static const String getPrescriptionSettings =
       "$baseUrl/users/api/getdprescriptiontable";
+
+
+
+
+  static const String getSchedule =
+      "$baseUrl/doctor/api/getdoctorschedule";
+
+
+        static const String createSchedule =
+      "$baseUrl/doctor/api/createdoctorschedule";
+
+
+
+
+     
 }

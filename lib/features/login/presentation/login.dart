@@ -114,7 +114,8 @@ class _LoginWidgetState extends State<LoginWidget> {
             ),
             const SizedBox(height: 20),
             GestureDetector(
-              onTap: () =>Navigator.of(context).pushNamed(  SignupScreen.routeName),
+              onTap: () =>
+                  Navigator.of(context).pushNamed(SignupScreen.routeName),
               child: RichText(
                 text: TextSpan(
                   style: const TextStyle(color: Colors.black, fontSize: 16),
@@ -152,9 +153,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                     addTokenToSS(
                         secureStoreKey, state.loginDetails!.data!.token!);
 
-
-                    addToSS(
-                        nameKey, state.loginDetails!.data!.name!);
+                    addToSS(nameKey, state.loginDetails!.data!.name!);
 
                     Toast.showToast(
                       context: context,

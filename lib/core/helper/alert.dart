@@ -20,4 +20,38 @@ class Alert {
     );
     showAlert(context: context, message: message);
   }
+
+
+  
 }
+
+
+
+
+
+class SuccessDialog extends StatelessWidget {
+  final String message;
+
+  const SuccessDialog({super.key, required this.message});
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Icon(
+        Icons.check_circle,
+        color: Colors.green,
+        size: 50,
+      ),
+      content: Text(message),
+      actions: [
+        ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: const Text('OK'),
+        ),
+      ],
+    );
+  }
+}
+

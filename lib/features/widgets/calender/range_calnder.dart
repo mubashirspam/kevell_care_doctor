@@ -3,7 +3,13 @@ import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class RangeCalnderWidget extends StatelessWidget {
-  const RangeCalnderWidget({super.key});
+  final Function function;
+  final Function(DateRangePickerSelectionChangedArgs)? onSelectionChanged;
+  const RangeCalnderWidget({
+    super.key,
+    required this.function,
+    required this.onSelectionChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +38,14 @@ class RangeCalnderWidget extends StatelessWidget {
           endRangeSelectionColor: context.theme.primary,
           startRangeSelectionColor: context.theme.primary,
           toggleDaySelection: true,
-          onSelectionChanged: (_) {},
+          onSelectionChanged: onSelectionChanged,
           selectionMode: DateRangePickerSelectionMode.range,
-          initialSelectedRange: PickerDateRange(
-              DateTime.now().subtract(const Duration(days: 4)),
-              DateTime.now().add(const Duration(days: 3))),
+
+          initialDisplayDate: DateTime.now(),
+          maxDate: DateTime.now().add(const Duration(days: 5)),
+          enablePastDates: false,
+          // initialSelectedRange: PickerDateRange(
+          //     DateTime.now(), DateTime.now().add(const Duration(days: 4))),
         ),
       ),
     );

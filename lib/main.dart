@@ -52,6 +52,7 @@ class MyApp extends StatelessWidget {
         routes: route,
         // home: const Initialize(),
         home: const PatientCheckupScreen(),
+        initialRoute: "/dashboard",
       ),
     );
   }
