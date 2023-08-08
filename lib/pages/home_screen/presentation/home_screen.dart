@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:dr_kevell/configure/assets_manage/images.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/features/home/presentation/waiting_patient.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
+import '../../../features/home/presentation/bloc/home_bloc.dart';
 import '../../../features/home/presentation/home_search.dart';
 import '../../../features/home/presentation/satus_card_widget.dart';
 import '../../../features/widgets/cards/schedule_your_time_lead_widget.dart';
@@ -17,8 +19,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // context.read<HomeBloc>().add(const HomeEvent.getHomeWaitingPatient());
-      // context.read<HomeBloc>().add(const HomeEvent.getHomeStatus());
+      context.read<HomeBloc>().add(const HomeEvent.getHomeWaitingPatient());
+      context.read<HomeBloc>().add(const HomeEvent.getHomeStatus());
     });
     return SizedBox(
       width: double.maxFinite,

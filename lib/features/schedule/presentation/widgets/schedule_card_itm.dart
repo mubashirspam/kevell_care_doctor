@@ -8,7 +8,7 @@ import '../../data/models/schedule_model.dart';
 
 class ScheduleCard extends StatelessWidget {
   final bool isUpcoming;
-  final Schedule schedule;
+  final Upcomingschedule schedule;
   const ScheduleCard({
     super.key,
     required this.isUpcoming,
@@ -57,10 +57,10 @@ class ScheduleCard extends StatelessWidget {
                       children: [
                         Text.rich(
                           TextSpan(
-                            text: "${extractTime(schedule.starttime!)} : ",
+                            text: "${schedule.starttime!} : ",
                             children: [
                               TextSpan(
-                                text: extractTime(schedule.starttime!),
+                                text: schedule.starttime!,
                               ),
                             ],
                           ),

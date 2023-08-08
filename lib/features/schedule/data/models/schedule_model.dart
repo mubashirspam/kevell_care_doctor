@@ -37,8 +37,8 @@ class ScheduleModel {
 }
 
 class Data {
-    List<Schedule>? todayschedule;
-    List<Schedule>? upcomingschedule;
+    List<dynamic>? todayschedule;
+    List<Upcomingschedule>? upcomingschedule;
 
     Data({
         this.todayschedule,
@@ -46,25 +46,24 @@ class Data {
     });
 
     factory Data.fromJson(Map<String, dynamic> json) => Data(
-        todayschedule: json["todayschedule"] == null ? [] : List<Schedule>.from(json["todayschedule"]!.map((x) => Schedule.fromJson(x))),
-        upcomingschedule: json["upcomingschedule"] == null ? [] : List<Schedule>.from(json["upcomingschedule"]!.map((x) => Schedule.fromJson(x))),
+        todayschedule: json["todayschedule"] == null ? [] : List<dynamic>.from(json["todayschedule"]!.map((x) => x)),
+        upcomingschedule: json["upcomingschedule"] == null ? [] : List<Upcomingschedule>.from(json["upcomingschedule"]!.map((x) => Upcomingschedule.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
-        "todayschedule": todayschedule == null ? [] : List<dynamic>.from(todayschedule!.map((x) => x.toJson())),
+        "todayschedule": todayschedule == null ? [] : List<dynamic>.from(todayschedule!.map((x) => x)),
         "upcomingschedule": upcomingschedule == null ? [] : List<dynamic>.from(upcomingschedule!.map((x) => x.toJson())),
     };
 }
 
-class Schedule {
+class Upcomingschedule {
     int? id;
     String? doctorId;
-    DateTime? starttime;
-    DateTime? endtime;
+    String? starttime;
+    String? endtime;
     DateTime? startdate;
     DateTime? enddate;
     String? dailylimitcount;
-    int? timeperPatient;
     String? type;
     String? month;
     String? year;
@@ -73,7 +72,7 @@ class Schedule {
     DateTime? updatedAt;
     int? v;
 
-    Schedule({
+    Upcomingschedule({
         this.id,
         this.doctorId,
         this.starttime,
@@ -81,7 +80,6 @@ class Schedule {
         this.startdate,
         this.enddate,
         this.dailylimitcount,
-        this.timeperPatient,
         this.type,
         this.month,
         this.year,
@@ -91,15 +89,14 @@ class Schedule {
         this.v,
     });
 
-    factory Schedule.fromJson(Map<String, dynamic> json) => Schedule(
+    factory Upcomingschedule.fromJson(Map<String, dynamic> json) => Upcomingschedule(
         id: json["_id"],
         doctorId: json["doctor_id"],
-        starttime: json["starttime"] == null ? null : DateTime.parse(json["starttime"]),
-        endtime: json["endtime"] == null ? null : DateTime.parse(json["endtime"]),
+        starttime: json["starttime"],
+        endtime: json["endtime"],
         startdate: json["startdate"] == null ? null : DateTime.parse(json["startdate"]),
         enddate: json["enddate"] == null ? null : DateTime.parse(json["enddate"]),
         dailylimitcount: json["dailylimitcount"],
-        timeperPatient: json["timeperPatient"],
         type: json["type"],
         month: json["month"],
         year: json["year"],
@@ -112,12 +109,11 @@ class Schedule {
     Map<String, dynamic> toJson() => {
         "_id": id,
         "doctor_id": doctorId,
-        "starttime": starttime?.toIso8601String(),
-        "endtime": endtime?.toIso8601String(),
+        "starttime": starttime,
+        "endtime": endtime,
         "startdate": "${startdate!.year.toString().padLeft(4, '0')}-${startdate!.month.toString().padLeft(2, '0')}-${startdate!.day.toString().padLeft(2, '0')}",
         "enddate": "${enddate!.year.toString().padLeft(4, '0')}-${enddate!.month.toString().padLeft(2, '0')}-${enddate!.day.toString().padLeft(2, '0')}",
         "dailylimitcount": dailylimitcount,
-        "timeperPatient": timeperPatient,
         "type": type,
         "month": month,
         "year": year,

@@ -82,18 +82,7 @@ class WaitingPatient extends StatelessWidget {
             );
           }
         }
-        // return MultiSliver(children: const [Center(child: AppErrorWidget())]);
-        return SliverList(
-          delegate: SliverChildBuilderDelegate(
-            childCount: 5,
-            (context, index) => WaitingPatientCard(
-              imageUrl: "",
-              isActive: index.isEven ? true : false,
-              name: "Patient name",
-              statusMessage: "Normal Checkup",
-            ),
-          ),
-        );
+        return MultiSliver(children: const [Center(child: AppErrorWidget())]);
       },
     );
   }

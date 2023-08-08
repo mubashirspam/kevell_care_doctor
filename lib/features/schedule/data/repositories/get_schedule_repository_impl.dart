@@ -17,7 +17,7 @@ class GetScheduleRepoImpliment implements GetScheduleRepository {
   Future<Either<MainFailure, ScheduleModel>> getSchedule() async {
     try {
       // final token = await getTokenFromSS(secureStoreKey);
-      // final id = await getTokenFromSS(drIdsecureStoreKey);
+      final id = await getTokenFromSS(drIdsecureStoreKey);
 
       // final headers = {
       //   'Authorization': 'Bearer $token',
@@ -33,7 +33,7 @@ class GetScheduleRepoImpliment implements GetScheduleRepository {
 
       final response = await Dio(BaseOptions()).get(
         ApiEndPoints.getSchedule,
-        data: {'doctor_id': 1009},
+        data: {'doctor_id': id},
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {

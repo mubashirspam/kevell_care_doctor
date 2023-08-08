@@ -31,7 +31,7 @@ class DateRanger extends StatelessWidget {
       );
     }
 
-    DateTime time = DateTime(2016, 5, 10, 22, 35);
+
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),

@@ -50,9 +50,9 @@ class MyApp extends StatelessWidget {
         darkTheme: darkTheme(),
         themeMode: ThemeMode.light,
         routes: route,
-        // home: const Initialize(),
-        home: const PatientCheckupScreen(),
-        initialRoute: "/dashboard",
+        home: const Initialize(),
+        // home: const PatientCheckupScreen(),
+        // initialRoute: "/dashboard",
       ),
     );
   }
