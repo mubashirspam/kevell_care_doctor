@@ -20,19 +20,6 @@ class UpcomingSchedule extends StatelessWidget {
         }
         if (state.isError) {
           return const AppErrorWidget();
-          // return Column(
-          //   children: List.generate(
-          //     3,
-          //     (index) => ScheduleCard(
-          //       isUpcoming: false,
-          //       schedule: Schedule(
-          //           date: DateTime.now(),
-          //           duration: "13.00-15.00",
-          //           type: "patient_consult",
-          //           dailylimitcount: "3"),
-          //     ),
-          //   ),
-          // );
         }
         if (state.hasData) {
           ScheduleModel result = context.read<ScheduleBloc>().state.result!;
@@ -55,7 +42,7 @@ class UpcomingSchedule extends StatelessWidget {
               children: List.generate(
                 result.data!.upcomingschedule!.length,
                 (index) => ScheduleCard(
-                  isUpcoming: false,
+                isTodays: false,
                   schedule: result.data!.upcomingschedule![index],
                 ),
               ),

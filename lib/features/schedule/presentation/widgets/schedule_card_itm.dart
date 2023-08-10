@@ -1,18 +1,25 @@
+import 'dart:developer';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 
 import '../../../../configure/assets_manage/icons.dart';
 import '../../../../core/helper/date.dart';
 import '../../data/models/schedule_model.dart';
+import '../bloc/schedule_bloc.dart';
 
 class ScheduleCard extends StatelessWidget {
-  final bool isUpcoming;
-  final Upcomingschedule schedule;
+  final Schedule schedule;
+
+  final bool isTodays;
+
   const ScheduleCard({
     super.key,
-    required this.isUpcoming,
     required this.schedule,
+    required this.isTodays,
   });
 
   @override
@@ -57,10 +64,10 @@ class ScheduleCard extends StatelessWidget {
                       children: [
                         Text.rich(
                           TextSpan(
-                            text: "${schedule.starttime!} : ",
+                            text: "${extractTime(schedule.starttime!)} : ",
                             children: [
                               TextSpan(
-                                text: schedule.starttime!,
+                                text: extractTime(schedule.endtime!),
                               ),
                             ],
                           ),
@@ -94,10 +101,44 @@ class ScheduleCard extends StatelessWidget {
                 ),
               ),
             ),
-            SvgPicture.asset(AppIcons.edit),
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: SvgPicture.asset(AppIcons.delete),
+            isTodays
+                ? const SizedBox()
+                : InkWell(onTap: () {}, child: SvgPicture.asset(AppIcons.edit)),
+            BlocConsumer<ScheduleBloc, ScheduleState>(
+              listener: (context, state) async {
+                if (!state.isDeleteLoading && state.isDeleted) {
+                  log("Deleted succsessfully");
+
+                  context.read<ScheduleBloc>().add(
+                        const ScheduleEvent.getSchedule(),
+                      );
+                }
+              },
+              builder: (context, state) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: state.isDeleteLoading
+                      ? SizedBox(
+                          height: 15,
+                          width: 15,
+                          child: CupertinoActivityIndicator(
+                            color: context.theme.primary,
+                          ),
+                        )
+                      : InkWell(
+                          onTap: () {
+                            context.read<ScheduleBloc>().add(
+                                  ScheduleEvent.deleteSchedule(
+                                    id: schedule.id.toString(),
+                                  ),
+                                );
+                          },
+                          child: SvgPicture.asset(
+                            AppIcons.delete,
+                          ),
+                        ),
+                );
+              },
             ),
           ],
         ),

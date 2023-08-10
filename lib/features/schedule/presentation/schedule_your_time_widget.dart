@@ -10,6 +10,8 @@ import 'package:dr_kevell/features/widgets/buttons/text_button_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
+import '../../../configure/value/constant.dart';
+import '../../../configure/value/secure_storage.dart';
 import '../../../core/helper/date.dart';
 import 'bloc/schedule_bloc.dart';
 
@@ -176,35 +178,60 @@ class ScheduleYourTimeWidget extends StatelessWidget {
                   flex: 2,
                   child: BlocConsumer<ScheduleBloc, ScheduleState>(
                     listener: (context, state) {
-                      if (!state.isCreateLoading &&
-                          state.createResponse != null) {
+                      if ( state.isCreated) {
+                        log("Created Sucsessfully");
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
                             return const SuccessDialog(
-                                message: "Successfully scheduled your time");
+                              message: "Scheduled Your Time Succsessfully",
+                            );
                           },
                         );
+
+                        // selectedIndexNorifier.value == 1;
                       }
+                      // if (state.isError && !state.isCreateLoading &&!state.isCreated) {
+                      //   showDialog(
+                      //     context: context,
+                      //     builder: (BuildContext context) {
+                      //       return const ErrorDialog(
+                      //         message: "Already Scheduled Your Time",
+                      //       );
+                      //     },
+                      //   );
+                      // }
                     },
                     builder: (context, state) {
                       return TextButtonWidget(
                         fgColor: Colors.white,
                         name: "Schedule",
-                        onPressed: () => context
-                            .read<ScheduleBloc>()
-                            .add(ScheduleEvent.createSchedule(
-                              schedulePayload: SchedulePayload(
-                                  dailylimitcount: state.numberOfPatient.toString(),
-                                  startingDate:dateFormatToYYYYMMdd(state.startDate) ,
-                                  starttime: state.startTime,
-                                  endingDate: dateFormatToYYYYMMdd(state.endDate),
-                                  endtime: state.endTime,
-                                  doctorId: 1010,
-                                  timeperPatient: state.timeForSinglePatient,
-                                  type: "patient_consult"
-                                  ),
-                            )),
+                        onPressed: () async {
+                          await getTokenFromSS(drIdsecureStoreKey)
+                              .then((value) {
+                            if (value != null) {
+                              final id = int.parse(value);
+                              context.read<ScheduleBloc>().add(
+                                    ScheduleEvent.createSchedule(
+                                      schedulePayload: SchedulePayload(
+                                          dailylimitcount:
+                                              state.numberOfPatient.toString(),
+                                          startingDate: dateFormatToYYYYMMdd(
+                                              state.startDate),
+                                          starttime:
+                                             state.startTime,
+                                          endingDate: dateFormatToYYYYMMdd(
+                                              state.endDate),
+                                          endtime:state.endTime,
+                                          doctorId: id,
+                                          timeperPatient:
+                                              state.timeForSinglePatient,
+                                          type: "patient_consult"),
+                                    ),
+                                  );
+                            } else {}
+                          });
+                        },
                         isLoading: state.isCreateLoading,
                       );
                     },

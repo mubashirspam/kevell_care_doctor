@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dr_kevell/pages/patien_checkup/presentation/patient_checkup_screen.dart';
+import 'package:dr_kevell/pages/checkup/presentation/patient_checkup_screen.dart';
 import 'package:dr_kevell/pages/profile/presentation/my_profile_screen.dart';
 import 'package:dr_kevell/pages/profile/presentation/profile_screen.dart';
 import 'package:dr_kevell/pages/report/presentation/report_screen.dart';

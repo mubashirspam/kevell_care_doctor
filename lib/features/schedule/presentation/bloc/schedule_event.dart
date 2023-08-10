@@ -3,9 +3,8 @@ part of 'schedule_bloc.dart';
 @freezed
 class ScheduleEvent with _$ScheduleEvent {
   const factory ScheduleEvent.getSchedule() = _GetSchedule;
-  const factory ScheduleEvent.createSchedule({
-  required SchedulePayload schedulePayload
-  }) = _CreateSchedule;
+  const factory ScheduleEvent.createSchedule(
+      {required SchedulePayload schedulePayload}) = _CreateSchedule;
 
   const factory ScheduleEvent.increment() = _Increment;
   const factory ScheduleEvent.decrement() = _Decrement;
@@ -19,4 +18,7 @@ class ScheduleEvent with _$ScheduleEvent {
     required DateTime startTime,
     required DateTime endTime,
   }) = _PickTime;
+
+  const factory ScheduleEvent.deleteSchedule({required String id}) =
+      _DeleteSchedule;
 }

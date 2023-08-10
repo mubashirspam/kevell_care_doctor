@@ -10,10 +10,10 @@ class ScheduleYourTimeLeadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 0),
       padding: const EdgeInsets.symmetric(horizontal: 15),
       height: 50,
-      width: 200,
+      width: double.maxFinite,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         gradient: const LinearGradient(
@@ -32,10 +32,9 @@ class ScheduleYourTimeLeadingWidget extends StatelessWidget {
           Expanded(
             child: Text(
               "Schedule your time today",
-              style:
-                  Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: context.theme.backround,
-                      ),
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    color: context.theme.backround,
+                  ),
             ),
           ),
           Icon(

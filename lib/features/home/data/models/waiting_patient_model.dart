@@ -57,10 +57,9 @@ class Data {
 }
 
 class WaitingPatient {
-    String? patientId;
+    int? patientId;
     String? name;
     String? type;
-    String? profileImageUrl;
     DateTime? createdAt;
     DateTime? updatedAt;
     int? v;
@@ -69,7 +68,6 @@ class WaitingPatient {
         this.patientId,
         this.name,
         this.type,
-        this.profileImageUrl,
         this.createdAt,
         this.updatedAt,
         this.v,
@@ -79,19 +77,17 @@ class WaitingPatient {
         patientId: json["patient_id"],
         name: json["name"],
         type: json["type"],
-        profileImageUrl: json["profile_image_url"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-        v: json["__v"],
+        v: json[" __v"],
     );
 
     Map<String, dynamic> toJson() => {
         "patient_id": patientId,
         "name": name,
         "type": type,
-        "profile_image_url": profileImageUrl,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
-        "__v": v,
+        " __v": v,
     };
 }

@@ -76,7 +76,10 @@ class HomeScreen extends StatelessWidget {
               ),
               const SliverPinnedHeader(child: HomeSearchWidget()),
               MultiSliver(children: [
-                const ScheduleYourTimeLeadingWidget(),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: ScheduleYourTimeLeadingWidget(),
+                ),
                 const StatusCardWidget(),
                 Padding(
                   padding: const EdgeInsets.only(left: 20, bottom: 20),
@@ -95,5 +98,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-

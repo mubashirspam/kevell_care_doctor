@@ -47,28 +47,38 @@ class WaitingPatient extends StatelessWidget {
         }
         if (state.hasWaitingPatientData) {
           if (state.waitingPatientResult!.data!.waitingPatients!.isEmpty) {
-            return MultiSliver(
-              children: [
-                Container(
-                  height: 200,
-                  width: 200,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage(
-                              "https://static.vecteezy.com/system/resources/thumbnails/005/006/031/small/no-result-data-document-or-file-not-found-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-etc-vector.jpg"))),
-                  child: const Text(
-                    "No Appoiment Found",
-                  ),
-                )
-              ],
+            // return MultiSliver(
+            //   children: [
+            //     Container(
+            //       height: 200,
+            //       width: 200,
+            //       decoration: const BoxDecoration(
+            //           image: DecorationImage(
+            //               image: NetworkImage(
+            //                   "https://static.vecteezy.com/system/resources/thumbnails/005/006/031/small/no-result-data-document-or-file-not-found-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-etc-vector.jpg"))),
+            //       child: const Text(
+            //         "No Appoiment Found",
+            //       ),
+            //     )
+            //   ],
+            // );
+            return SliverList(
+              delegate: SliverChildBuilderDelegate(
+                childCount: 1,
+                (context, index) => const WaitingPatientCard(
+                  imageUrl: "",
+                  isActive: false,
+                  name: "No name",
+                  statusMessage: "No name",
+                ),
+              ),
             );
           } else {
             return SliverList(
               delegate: SliverChildBuilderDelegate(
                 childCount: state.waitingPatientResult!.data!.totalCount,
                 (context, index) => WaitingPatientCard(
-                  imageUrl: state.waitingPatientResult!.data!
-                          .waitingPatients![index].profileImageUrl ??
+                  imageUrl: 
                       "",
                   isActive: index.isEven ? true : false,
                   name: state.waitingPatientResult!.data!

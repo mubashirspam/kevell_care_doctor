@@ -21,5 +21,9 @@ String extractTime(DateTime timestamp) {
   return DateFormat('HH:mm').format(timestamp);
 }
 
+String formatTime(DateTime dateTime) {
+  return "${dateTime.hour.toString().padLeft(2, '0')}.${dateTime.minute.toString().padLeft(2, '0')}";
+}
+
 
 

@@ -35,6 +35,8 @@ dependencies:
   lottie: ^2.4.0
   internet_connection_checker_plus: ^1.0.1
   flutter_secure_storage: ^8.0.0
+  syncfusion_flutter_charts: ^21.2.10
+  
 
 dev_dependencies:
   flutter_test:

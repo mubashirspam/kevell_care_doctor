@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+
 import 'package:dr_kevell/features/widgets/error_widget.dart';
 import 'package:dr_kevell/features/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
@@ -14,39 +17,47 @@ class TodayeSchedule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ScheduleBloc, ScheduleState>(
-      builder: (context, state) {
-        if (state.isLoading) {
-          return const LoadingWIdget();
-        }
-        if (state.isError) {
-          return const AppErrorWidget();
-        }
-        if (state.hasData) {
-          ScheduleModel result = context.read<ScheduleBloc>().state.result!;
 
-          if (result.data!.todayschedule?.isEmpty ?? true) {
-            return Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: Text(
-                    "No Schedule Found",
-                    style: Theme.of(context).textTheme.titleLarge,
+      builder: (context, state) {
+        return BlocBuilder<ScheduleBloc, ScheduleState>(
+          builder: (context, state) {
+            if (state.isLoading) {
+              return const LoadingWIdget();
+            }
+            if (state.isError) {
+              return const AppErrorWidget();
+            }
+            if (state.hasData) {
+              ScheduleModel result = context.read<ScheduleBloc>().state.result!;
+
+              if (result.data!.todayschedule?.isEmpty ?? true) {
+                return Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: Text(
+                        "No Schedule Found",
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                    ),
+                    const ScheduleYourTimeLeadingWidget()
+                  ],
+                );
+              } else {
+                return Column(
+                  children: List.generate(
+                    result.data!.todayschedule!.length,
+                    (index) => ScheduleCard(
+                      schedule: result.data!.todayschedule![index],
+                    isTodays: true,
+                    ),
                   ),
-                ),
-                const ScheduleYourTimeLeadingWidget()
-              ],
-            );
-          } else {
-            return Column(
-              children: List.generate(
-                result.data!.todayschedule!.length,
-                (index) =>  ScheduleCard(isUpcoming: false ,schedule:  result.data!.todayschedule![index],),
-              ),
-            );
-          }
-        }
-        return const ScheduleYourTimeLeadingWidget();
+                );
+              }
+            }
+            return const ScheduleYourTimeLeadingWidget();
+          },
+        );
       },
     );
   }

@@ -4,16 +4,14 @@ import 'package:dr_kevell/features/schedule/presentation/today_shedule.dart';
 import 'package:dr_kevell/features/schedule/presentation/upcoming_schedule.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 class ScheduleScreen extends StatelessWidget {
   static const routeName = '/schedule-screen';
   const ScheduleScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<ScheduleBloc>().add(const ScheduleEvent.getSchedule());
-
     });
     return SizedBox(
       width: double.maxFinite,
@@ -28,6 +26,7 @@ class ScheduleScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             const TodayeSchedule(),
+            const SizedBox(height: 20),
             Text(
               "Upcoming Schedule ",
               style: Theme.of(context).textTheme.titleMedium,

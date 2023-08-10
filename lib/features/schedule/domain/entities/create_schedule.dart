@@ -1,8 +1,3 @@
-import 'dart:convert';
-
-String schedulePayloadToJson(SchedulePayload data) =>
-    json.encode(data.toJson());
-
 class SchedulePayload {
   int? doctorId;
   DateTime? starttime;
@@ -10,7 +5,6 @@ class SchedulePayload {
   DateTime? endtime;
   String? startingDate;
   String? endingDate;
-
   int? timeperPatient;
   String? dailylimitcount;
 
@@ -28,8 +22,8 @@ class SchedulePayload {
   Map<String, dynamic> toJson() => {
         "doctor_id": doctorId,
         "type": type,
-        "starttime": starttime?.toIso8601String(),
-        "endtime": endtime?.toIso8601String(),
+        "starttime": starttime,
+        "endtime": endtime,
         "StartingDate": startingDate,
         "EndingDate": endingDate,
         "timeperPatient": timeperPatient,

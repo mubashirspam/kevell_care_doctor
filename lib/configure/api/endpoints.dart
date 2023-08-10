@@ -37,6 +37,10 @@ class ApiEndPoints {
       "$baseUrl/doctor/api/createdoctorschedule";
 
 
+              static const String deleteSchedule =
+      "$baseUrl/doctor/api/deletedoctorschedule";
+
+
 
 
      

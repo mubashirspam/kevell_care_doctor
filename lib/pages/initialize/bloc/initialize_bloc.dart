@@ -27,7 +27,7 @@ class InitializeBloc extends Bloc<InitializeEvent, InitializeState> {
       emit(
         state.copyWith(
           isLoading: true,
-          isToken: false,
+        
         ),
       );
 

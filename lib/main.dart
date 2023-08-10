@@ -1,5 +1,5 @@
 import 'package:dr_kevell/features/history/presentation/bloc/history_bloc.dart';
-import 'package:dr_kevell/pages/patien_checkup/presentation/patient_checkup_screen.dart';
+import 'package:dr_kevell/pages/checkup/presentation/patient_checkup_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

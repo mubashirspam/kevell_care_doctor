@@ -2,18 +2,22 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'dart:math' as m;
 
+import 'package:dr_kevell/features/checkup/presentation/ecg_widget.dart';
+import 'package:dr_kevell/features/checkup/presentation/gsr_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/features/checkup/presentation/temparature_widgtet.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 import '../../../core/helper/toast.dart';
+import '../../../features/checkup/presentation/postion_widget.dart';
 import '../../../features/checkup/presentation/spo_widget.dart';
 import '../../../features/checkup/presentation/unloack.dart';
 import '../../../features/checkup/presentation/checkup_header.dart';
 
-import 'dart:math' as m;
+import '../../../features/checkup/presentation/widgets/ecg_graph.dart';
 
 class PatientCheckupScreen extends StatefulWidget {
   static const routeName = '/patient-checup-screen';
@@ -33,12 +37,27 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
 
   bool tReading = false;
   bool sp02Reading = false;
+  bool ecgReading = false;
+  bool gsrReading = false;
+
+  bool postionReading = false;
 
   Map<String, dynamic> dataMap = {};
 
   String temparature = "0.00";
   String sop2 = "0.00";
-  
+
+  String heartBeat = "0";
+
+  String position = "";
+
+  int ecgIndex = 0;
+
+  List<ECGData> ecgData = [];
+  List<int> voltageValues = [];
+
+  List<ECGData> gsrData = [];
+  List<int> gsrVoltageValues = [];
 
   final String broker = "broker.hivemq.com";
   final int port = 1883;
@@ -135,12 +154,40 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
           }
 
           log(temparature);
+        } else if (dataMap['number'] == "4" && dataMap['state'] == "device") {
+          isUnloacked = true;
+
+          if (dataMap['data']['content'] != null &&
+              dataMap['data']['type'] == "reading") {
+            if (dataMap['data']['content'].toString() == "1") {
+              position = "Standing";
+            }
+            if (dataMap['data']['content'].toString() == "2") {
+              position = "Lying";
+            }
+            if (dataMap['data']['content'].toString() == "3") {
+              position = "Leftside-lying";
+            }
+            if (dataMap['data']['content'].toString() == "4") {
+              position = "Rightside-Lying";
+            }
+
+            postionReading = true;
+          }
+          if (dataMap['data']['content'] != null &&
+              dataMap['data']['type'] == "result") {
+            postionReading = false;
+          }
+
+          log(position);
         } else if (dataMap['number'] == "3" && dataMap['state'] == "device") {
           isUnloacked = true;
 
           if (dataMap['data']['content'] != null &&
               dataMap['data']['type'] == "reading") {
             sop2 = dataMap['data']['content'].toString();
+            heartBeat = dataMap['data']['heart_rate'].toString();
+
             sp02Reading = true;
           }
           if (dataMap['data']['content'] != null &&
@@ -149,9 +196,67 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
           }
 
           log(sop2);
-        }
-        
-         else {
+        } else if (dataMap['number'] == "6" && dataMap['state'] == "device") {
+          isUnloacked = true;
+
+          if (dataMap['data']['content'] != null &&
+              dataMap['data']['type'] == "reading") {
+            // ecg = dataMap['data']['content'].toString();
+            voltageValues.clear();
+            ecgData.clear();
+
+            voltageValues = dataMap['data']['content']
+                .toString()
+                .split(',')
+                .where((element) => element.isNotEmpty)
+                .map((e) => int.parse(e))
+                .toList();
+            for (int i = 0; i < voltageValues.length; i++) {
+              ecgIndex++;
+
+              ecgData.add(ECGData(
+                time: ecgIndex,
+                voltage: voltageValues[i],
+              ));
+            }
+
+            ecgReading = true;
+          }
+          if (dataMap['data']['content'] != null &&
+              dataMap['data']['type'] == "result") {
+            ecgReading = false;
+          }
+        } else if (dataMap['number'] == "8" && dataMap['state'] == "device") {
+          isUnloacked = true;
+
+          if (dataMap['data']['content'] != null &&
+              dataMap['data']['type'] == "reading") {
+            // ecg = dataMap['data']['content'].toString();
+            gsrVoltageValues.clear();
+            gsrData.clear();
+
+            gsrVoltageValues = dataMap['data']['content']
+                .toString()
+                .split(',')
+                .where((element) => element.isNotEmpty)
+                .map((e) => int.parse(e))
+                .toList();
+            for (int i = 0; i < gsrVoltageValues.length; i++) {
+              ecgIndex++;
+
+              gsrData.add(ECGData(
+                time: ecgIndex,
+                voltage: gsrVoltageValues[i],
+              ));
+            }
+
+            gsrReading = true;
+          }
+          if (dataMap['data']['content'] != null &&
+              dataMap['data']['type'] == "result") {
+            gsrReading = false;
+          }
+        } else {
           isUnloacking = false;
         }
       });
@@ -278,7 +383,10 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
                       context: context, message: "Please Unlock"),
               temparature: temparature,
             ),
-        Spo2Widget(isReading: sp02Reading,
+            Spo2Widget(
+              isReading: sp02Reading,
+              heartBeat: heartBeat,
+              spo2: sop2,
               onpress: isUnloacked
                   ? () {
                       publishMy({
@@ -294,7 +402,66 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
                     }
                   : () => Toast.showToast(
                       context: context, message: "Please Unlock"),
-              spo2: sop2,),
+            ),
+            EcgWidget(
+              data: ecgData,
+              isReading: ecgReading,
+              onpress: isUnloacked
+                  ? () {
+                      publishMy({
+                        "id": "KC_EC94CB6F61DC",
+                        "patientID": "P8308",
+                        "doctorID": "D1204",
+                        "appointmentID": "AP123456",
+                        "type": "Doctor",
+                        "command": "device",
+                        "number": 6,
+                        "date": DateTime.now().millisecondsSinceEpoch
+                      }, "KC_EC94CB6F61DC/device");
+                    }
+                  : () => Toast.showToast(
+                      context: context, message: "Please Unlock"),
+              ecg: "",
+            ),
+            GSRgWidget(
+              isReading: gsrReading,
+              data: gsrData,
+              onpress: isUnloacked
+                  ? () {
+                      publishMy({
+                        "id": "KC_EC94CB6F61DC",
+                        "patientID": "P8308",
+                        "doctorID": "D1204",
+                        "appointmentID": "AP123456",
+                        "type": "Doctor",
+                        "command": "device",
+                        "number": 8,
+                        "date": DateTime.now().millisecondsSinceEpoch
+                      }, "KC_EC94CB6F61DC/device");
+                    }
+                  : () => Toast.showToast(
+                      context: context, message: "Please Unlock"),
+              gsr: temparature,
+            ),
+            PositionWidget(
+              isReading: tReading,
+              onpress: isUnloacked
+                  ? () {
+                      publishMy({
+                        "id": "KC_EC94CB6F61DC",
+                        "patientID": "P8308",
+                        "doctorID": "D1204",
+                        "appointmentID": "AP123456",
+                        "type": "Doctor",
+                        "command": "device",
+                        "number": 2,
+                        "date": DateTime.now().millisecondsSinceEpoch
+                      }, "KC_EC94CB6F61DC/device");
+                    }
+                  : () => Toast.showToast(
+                      context: context, message: "Please Unlock"),
+              position: position,
+            ),
           ],
         ),
       ),

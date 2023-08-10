@@ -11,7 +11,7 @@ class InitializeState with _$InitializeState {
 
   factory InitializeState.initial() => const InitializeState(
         isLoading: false,
-        isToken: false,
+        isToken: true,
         connectionStatus: false,
         // helpCenter: null,
       );

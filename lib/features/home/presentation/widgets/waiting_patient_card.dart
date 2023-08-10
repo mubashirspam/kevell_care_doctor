@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 
-import '../../../../pages/patien_checkup/presentation/patient_checkup_screen.dart';
+import '../../../../pages/checkup/presentation/patient_checkup_screen.dart';
 import '../../../widgets/avatar/active_avatar.dart';
 
 class WaitingPatientCard extends StatelessWidget {
