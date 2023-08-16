@@ -24,6 +24,8 @@ mixin _$PrecriptionEvent {
         createPrescription,
     required TResult Function(PrescriptionElement prescriptionElement)
         updatePrescription,
+    required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
+    required TResult Function(List<DataObjec> data) selectTobetaken,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,6 +36,8 @@ mixin _$PrecriptionEvent {
         createPrescription,
     TResult? Function(PrescriptionElement prescriptionElement)?
         updatePrescription,
+    TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
+    TResult? Function(List<DataObjec> data)? selectTobetaken,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +48,8 @@ mixin _$PrecriptionEvent {
         createPrescription,
     TResult Function(PrescriptionElement prescriptionElement)?
         updatePrescription,
+    TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
+    TResult Function(List<DataObjec> data)? selectTobetaken,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +60,8 @@ mixin _$PrecriptionEvent {
         getPrescriptionSettings,
     required TResult Function(_CreatePrescription value) createPrescription,
     required TResult Function(_UpdatePrescription value) updatePrescription,
+    required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
+    required TResult Function(_SelectTobetaken value) selectTobetaken,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,6 +70,8 @@ mixin _$PrecriptionEvent {
     TResult? Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult? Function(_CreatePrescription value)? createPrescription,
     TResult? Function(_UpdatePrescription value)? updatePrescription,
+    TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
+    TResult? Function(_SelectTobetaken value)? selectTobetaken,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,6 +80,8 @@ mixin _$PrecriptionEvent {
     TResult Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult Function(_CreatePrescription value)? createPrescription,
     TResult Function(_UpdatePrescription value)? updatePrescription,
+    TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
+    TResult Function(_SelectTobetaken value)? selectTobetaken,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -165,6 +177,8 @@ class _$_GetPrescriptionList implements _GetPrescriptionList {
         createPrescription,
     required TResult Function(PrescriptionElement prescriptionElement)
         updatePrescription,
+    required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
+    required TResult Function(List<DataObjec> data) selectTobetaken,
   }) {
     return getPrescriptionList(appointmentId);
   }
@@ -178,6 +192,8 @@ class _$_GetPrescriptionList implements _GetPrescriptionList {
         createPrescription,
     TResult? Function(PrescriptionElement prescriptionElement)?
         updatePrescription,
+    TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
+    TResult? Function(List<DataObjec> data)? selectTobetaken,
   }) {
     return getPrescriptionList?.call(appointmentId);
   }
@@ -191,6 +207,8 @@ class _$_GetPrescriptionList implements _GetPrescriptionList {
         createPrescription,
     TResult Function(PrescriptionElement prescriptionElement)?
         updatePrescription,
+    TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
+    TResult Function(List<DataObjec> data)? selectTobetaken,
     required TResult orElse(),
   }) {
     if (getPrescriptionList != null) {
@@ -207,6 +225,8 @@ class _$_GetPrescriptionList implements _GetPrescriptionList {
         getPrescriptionSettings,
     required TResult Function(_CreatePrescription value) createPrescription,
     required TResult Function(_UpdatePrescription value) updatePrescription,
+    required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
+    required TResult Function(_SelectTobetaken value) selectTobetaken,
   }) {
     return getPrescriptionList(this);
   }
@@ -218,6 +238,8 @@ class _$_GetPrescriptionList implements _GetPrescriptionList {
     TResult? Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult? Function(_CreatePrescription value)? createPrescription,
     TResult? Function(_UpdatePrescription value)? updatePrescription,
+    TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
+    TResult? Function(_SelectTobetaken value)? selectTobetaken,
   }) {
     return getPrescriptionList?.call(this);
   }
@@ -229,6 +251,8 @@ class _$_GetPrescriptionList implements _GetPrescriptionList {
     TResult Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult Function(_CreatePrescription value)? createPrescription,
     TResult Function(_UpdatePrescription value)? updatePrescription,
+    TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
+    TResult Function(_SelectTobetaken value)? selectTobetaken,
     required TResult orElse(),
   }) {
     if (getPrescriptionList != null) {
@@ -293,6 +317,8 @@ class _$_GetPrescriptionSettings implements _GetPrescriptionSettings {
         createPrescription,
     required TResult Function(PrescriptionElement prescriptionElement)
         updatePrescription,
+    required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
+    required TResult Function(List<DataObjec> data) selectTobetaken,
   }) {
     return getPrescriptionSettings();
   }
@@ -306,6 +332,8 @@ class _$_GetPrescriptionSettings implements _GetPrescriptionSettings {
         createPrescription,
     TResult? Function(PrescriptionElement prescriptionElement)?
         updatePrescription,
+    TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
+    TResult? Function(List<DataObjec> data)? selectTobetaken,
   }) {
     return getPrescriptionSettings?.call();
   }
@@ -319,6 +347,8 @@ class _$_GetPrescriptionSettings implements _GetPrescriptionSettings {
         createPrescription,
     TResult Function(PrescriptionElement prescriptionElement)?
         updatePrescription,
+    TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
+    TResult Function(List<DataObjec> data)? selectTobetaken,
     required TResult orElse(),
   }) {
     if (getPrescriptionSettings != null) {
@@ -335,6 +365,8 @@ class _$_GetPrescriptionSettings implements _GetPrescriptionSettings {
         getPrescriptionSettings,
     required TResult Function(_CreatePrescription value) createPrescription,
     required TResult Function(_UpdatePrescription value) updatePrescription,
+    required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
+    required TResult Function(_SelectTobetaken value) selectTobetaken,
   }) {
     return getPrescriptionSettings(this);
   }
@@ -346,6 +378,8 @@ class _$_GetPrescriptionSettings implements _GetPrescriptionSettings {
     TResult? Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult? Function(_CreatePrescription value)? createPrescription,
     TResult? Function(_UpdatePrescription value)? updatePrescription,
+    TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
+    TResult? Function(_SelectTobetaken value)? selectTobetaken,
   }) {
     return getPrescriptionSettings?.call(this);
   }
@@ -357,6 +391,8 @@ class _$_GetPrescriptionSettings implements _GetPrescriptionSettings {
     TResult Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult Function(_CreatePrescription value)? createPrescription,
     TResult Function(_UpdatePrescription value)? updatePrescription,
+    TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
+    TResult Function(_SelectTobetaken value)? selectTobetaken,
     required TResult orElse(),
   }) {
     if (getPrescriptionSettings != null) {
@@ -442,6 +478,8 @@ class _$_CreatePrescription implements _CreatePrescription {
         createPrescription,
     required TResult Function(PrescriptionElement prescriptionElement)
         updatePrescription,
+    required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
+    required TResult Function(List<DataObjec> data) selectTobetaken,
   }) {
     return createPrescription(prescriptionElement);
   }
@@ -455,6 +493,8 @@ class _$_CreatePrescription implements _CreatePrescription {
         createPrescription,
     TResult? Function(PrescriptionElement prescriptionElement)?
         updatePrescription,
+    TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
+    TResult? Function(List<DataObjec> data)? selectTobetaken,
   }) {
     return createPrescription?.call(prescriptionElement);
   }
@@ -468,6 +508,8 @@ class _$_CreatePrescription implements _CreatePrescription {
         createPrescription,
     TResult Function(PrescriptionElement prescriptionElement)?
         updatePrescription,
+    TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
+    TResult Function(List<DataObjec> data)? selectTobetaken,
     required TResult orElse(),
   }) {
     if (createPrescription != null) {
@@ -484,6 +526,8 @@ class _$_CreatePrescription implements _CreatePrescription {
         getPrescriptionSettings,
     required TResult Function(_CreatePrescription value) createPrescription,
     required TResult Function(_UpdatePrescription value) updatePrescription,
+    required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
+    required TResult Function(_SelectTobetaken value) selectTobetaken,
   }) {
     return createPrescription(this);
   }
@@ -495,6 +539,8 @@ class _$_CreatePrescription implements _CreatePrescription {
     TResult? Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult? Function(_CreatePrescription value)? createPrescription,
     TResult? Function(_UpdatePrescription value)? updatePrescription,
+    TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
+    TResult? Function(_SelectTobetaken value)? selectTobetaken,
   }) {
     return createPrescription?.call(this);
   }
@@ -506,6 +552,8 @@ class _$_CreatePrescription implements _CreatePrescription {
     TResult Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult Function(_CreatePrescription value)? createPrescription,
     TResult Function(_UpdatePrescription value)? updatePrescription,
+    TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
+    TResult Function(_SelectTobetaken value)? selectTobetaken,
     required TResult orElse(),
   }) {
     if (createPrescription != null) {
@@ -598,6 +646,8 @@ class _$_UpdatePrescription implements _UpdatePrescription {
         createPrescription,
     required TResult Function(PrescriptionElement prescriptionElement)
         updatePrescription,
+    required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
+    required TResult Function(List<DataObjec> data) selectTobetaken,
   }) {
     return updatePrescription(prescriptionElement);
   }
@@ -611,6 +661,8 @@ class _$_UpdatePrescription implements _UpdatePrescription {
         createPrescription,
     TResult? Function(PrescriptionElement prescriptionElement)?
         updatePrescription,
+    TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
+    TResult? Function(List<DataObjec> data)? selectTobetaken,
   }) {
     return updatePrescription?.call(prescriptionElement);
   }
@@ -624,6 +676,8 @@ class _$_UpdatePrescription implements _UpdatePrescription {
         createPrescription,
     TResult Function(PrescriptionElement prescriptionElement)?
         updatePrescription,
+    TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
+    TResult Function(List<DataObjec> data)? selectTobetaken,
     required TResult orElse(),
   }) {
     if (updatePrescription != null) {
@@ -640,6 +694,8 @@ class _$_UpdatePrescription implements _UpdatePrescription {
         getPrescriptionSettings,
     required TResult Function(_CreatePrescription value) createPrescription,
     required TResult Function(_UpdatePrescription value) updatePrescription,
+    required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
+    required TResult Function(_SelectTobetaken value) selectTobetaken,
   }) {
     return updatePrescription(this);
   }
@@ -651,6 +707,8 @@ class _$_UpdatePrescription implements _UpdatePrescription {
     TResult? Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult? Function(_CreatePrescription value)? createPrescription,
     TResult? Function(_UpdatePrescription value)? updatePrescription,
+    TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
+    TResult? Function(_SelectTobetaken value)? selectTobetaken,
   }) {
     return updatePrescription?.call(this);
   }
@@ -662,6 +720,8 @@ class _$_UpdatePrescription implements _UpdatePrescription {
     TResult Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult Function(_CreatePrescription value)? createPrescription,
     TResult Function(_UpdatePrescription value)? updatePrescription,
+    TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
+    TResult Function(_SelectTobetaken value)? selectTobetaken,
     required TResult orElse(),
   }) {
     if (updatePrescription != null) {
@@ -683,6 +743,351 @@ abstract class _UpdatePrescription implements PrecriptionEvent {
 }
 
 /// @nodoc
+abstract class _$$_SelectTimeOfTheDayCopyWith<$Res> {
+  factory _$$_SelectTimeOfTheDayCopyWith(_$_SelectTimeOfTheDay value,
+          $Res Function(_$_SelectTimeOfTheDay) then) =
+      __$$_SelectTimeOfTheDayCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<DataObjec> data});
+}
+
+/// @nodoc
+class __$$_SelectTimeOfTheDayCopyWithImpl<$Res>
+    extends _$PrecriptionEventCopyWithImpl<$Res, _$_SelectTimeOfTheDay>
+    implements _$$_SelectTimeOfTheDayCopyWith<$Res> {
+  __$$_SelectTimeOfTheDayCopyWithImpl(
+      _$_SelectTimeOfTheDay _value, $Res Function(_$_SelectTimeOfTheDay) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$_SelectTimeOfTheDay(
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<DataObjec>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SelectTimeOfTheDay implements _SelectTimeOfTheDay {
+  const _$_SelectTimeOfTheDay({required final List<DataObjec> data})
+      : _data = data;
+
+  final List<DataObjec> _data;
+  @override
+  List<DataObjec> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  @override
+  String toString() {
+    return 'PrecriptionEvent.selectTimeOfTheDay(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SelectTimeOfTheDay &&
+            const DeepCollectionEquality().equals(other._data, _data));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SelectTimeOfTheDayCopyWith<_$_SelectTimeOfTheDay> get copyWith =>
+      __$$_SelectTimeOfTheDayCopyWithImpl<_$_SelectTimeOfTheDay>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int appointmentId) getPrescriptionList,
+    required TResult Function() getPrescriptionSettings,
+    required TResult Function(PrescriptionElement prescriptionElement)
+        createPrescription,
+    required TResult Function(PrescriptionElement prescriptionElement)
+        updatePrescription,
+    required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
+    required TResult Function(List<DataObjec> data) selectTobetaken,
+  }) {
+    return selectTimeOfTheDay(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int appointmentId)? getPrescriptionList,
+    TResult? Function()? getPrescriptionSettings,
+    TResult? Function(PrescriptionElement prescriptionElement)?
+        createPrescription,
+    TResult? Function(PrescriptionElement prescriptionElement)?
+        updatePrescription,
+    TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
+    TResult? Function(List<DataObjec> data)? selectTobetaken,
+  }) {
+    return selectTimeOfTheDay?.call(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int appointmentId)? getPrescriptionList,
+    TResult Function()? getPrescriptionSettings,
+    TResult Function(PrescriptionElement prescriptionElement)?
+        createPrescription,
+    TResult Function(PrescriptionElement prescriptionElement)?
+        updatePrescription,
+    TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
+    TResult Function(List<DataObjec> data)? selectTobetaken,
+    required TResult orElse(),
+  }) {
+    if (selectTimeOfTheDay != null) {
+      return selectTimeOfTheDay(data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetPrescriptionList value) getPrescriptionList,
+    required TResult Function(_GetPrescriptionSettings value)
+        getPrescriptionSettings,
+    required TResult Function(_CreatePrescription value) createPrescription,
+    required TResult Function(_UpdatePrescription value) updatePrescription,
+    required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
+    required TResult Function(_SelectTobetaken value) selectTobetaken,
+  }) {
+    return selectTimeOfTheDay(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetPrescriptionList value)? getPrescriptionList,
+    TResult? Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
+    TResult? Function(_CreatePrescription value)? createPrescription,
+    TResult? Function(_UpdatePrescription value)? updatePrescription,
+    TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
+    TResult? Function(_SelectTobetaken value)? selectTobetaken,
+  }) {
+    return selectTimeOfTheDay?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetPrescriptionList value)? getPrescriptionList,
+    TResult Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
+    TResult Function(_CreatePrescription value)? createPrescription,
+    TResult Function(_UpdatePrescription value)? updatePrescription,
+    TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
+    TResult Function(_SelectTobetaken value)? selectTobetaken,
+    required TResult orElse(),
+  }) {
+    if (selectTimeOfTheDay != null) {
+      return selectTimeOfTheDay(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectTimeOfTheDay implements PrecriptionEvent {
+  const factory _SelectTimeOfTheDay({required final List<DataObjec> data}) =
+      _$_SelectTimeOfTheDay;
+
+  List<DataObjec> get data;
+  @JsonKey(ignore: true)
+  _$$_SelectTimeOfTheDayCopyWith<_$_SelectTimeOfTheDay> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_SelectTobetakenCopyWith<$Res> {
+  factory _$$_SelectTobetakenCopyWith(
+          _$_SelectTobetaken value, $Res Function(_$_SelectTobetaken) then) =
+      __$$_SelectTobetakenCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<DataObjec> data});
+}
+
+/// @nodoc
+class __$$_SelectTobetakenCopyWithImpl<$Res>
+    extends _$PrecriptionEventCopyWithImpl<$Res, _$_SelectTobetaken>
+    implements _$$_SelectTobetakenCopyWith<$Res> {
+  __$$_SelectTobetakenCopyWithImpl(
+      _$_SelectTobetaken _value, $Res Function(_$_SelectTobetaken) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$_SelectTobetaken(
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<DataObjec>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SelectTobetaken implements _SelectTobetaken {
+  const _$_SelectTobetaken({required final List<DataObjec> data})
+      : _data = data;
+
+  final List<DataObjec> _data;
+  @override
+  List<DataObjec> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  @override
+  String toString() {
+    return 'PrecriptionEvent.selectTobetaken(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SelectTobetaken &&
+            const DeepCollectionEquality().equals(other._data, _data));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SelectTobetakenCopyWith<_$_SelectTobetaken> get copyWith =>
+      __$$_SelectTobetakenCopyWithImpl<_$_SelectTobetaken>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int appointmentId) getPrescriptionList,
+    required TResult Function() getPrescriptionSettings,
+    required TResult Function(PrescriptionElement prescriptionElement)
+        createPrescription,
+    required TResult Function(PrescriptionElement prescriptionElement)
+        updatePrescription,
+    required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
+    required TResult Function(List<DataObjec> data) selectTobetaken,
+  }) {
+    return selectTobetaken(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int appointmentId)? getPrescriptionList,
+    TResult? Function()? getPrescriptionSettings,
+    TResult? Function(PrescriptionElement prescriptionElement)?
+        createPrescription,
+    TResult? Function(PrescriptionElement prescriptionElement)?
+        updatePrescription,
+    TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
+    TResult? Function(List<DataObjec> data)? selectTobetaken,
+  }) {
+    return selectTobetaken?.call(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int appointmentId)? getPrescriptionList,
+    TResult Function()? getPrescriptionSettings,
+    TResult Function(PrescriptionElement prescriptionElement)?
+        createPrescription,
+    TResult Function(PrescriptionElement prescriptionElement)?
+        updatePrescription,
+    TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
+    TResult Function(List<DataObjec> data)? selectTobetaken,
+    required TResult orElse(),
+  }) {
+    if (selectTobetaken != null) {
+      return selectTobetaken(data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetPrescriptionList value) getPrescriptionList,
+    required TResult Function(_GetPrescriptionSettings value)
+        getPrescriptionSettings,
+    required TResult Function(_CreatePrescription value) createPrescription,
+    required TResult Function(_UpdatePrescription value) updatePrescription,
+    required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
+    required TResult Function(_SelectTobetaken value) selectTobetaken,
+  }) {
+    return selectTobetaken(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetPrescriptionList value)? getPrescriptionList,
+    TResult? Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
+    TResult? Function(_CreatePrescription value)? createPrescription,
+    TResult? Function(_UpdatePrescription value)? updatePrescription,
+    TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
+    TResult? Function(_SelectTobetaken value)? selectTobetaken,
+  }) {
+    return selectTobetaken?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetPrescriptionList value)? getPrescriptionList,
+    TResult Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
+    TResult Function(_CreatePrescription value)? createPrescription,
+    TResult Function(_UpdatePrescription value)? updatePrescription,
+    TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
+    TResult Function(_SelectTobetaken value)? selectTobetaken,
+    required TResult orElse(),
+  }) {
+    if (selectTobetaken != null) {
+      return selectTobetaken(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectTobetaken implements PrecriptionEvent {
+  const factory _SelectTobetaken({required final List<DataObjec> data}) =
+      _$_SelectTobetaken;
+
+  List<DataObjec> get data;
+  @JsonKey(ignore: true)
+  _$$_SelectTobetakenCopyWith<_$_SelectTobetaken> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$PrecriptionState {
   bool get isGetLoading => throw _privateConstructorUsedError;
   bool get isGetSettingsLoading => throw _privateConstructorUsedError;
@@ -693,6 +1098,8 @@ mixin _$PrecriptionState {
   bool get hasData => throw _privateConstructorUsedError;
   bool get hasSettingsData => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
+  List<DataObjec>? get tobeTakeData => throw _privateConstructorUsedError;
+  List<DataObjec>? get timeoftheDayData => throw _privateConstructorUsedError;
   PrescriptionModel? get prescriptionResult =>
       throw _privateConstructorUsedError;
   PrescriptionSettingsModel? get prescriptionSettingsResult =>
@@ -719,6 +1126,8 @@ abstract class $PrecriptionStateCopyWith<$Res> {
       bool hasData,
       bool hasSettingsData,
       String? message,
+      List<DataObjec>? tobeTakeData,
+      List<DataObjec>? timeoftheDayData,
       PrescriptionModel? prescriptionResult,
       PrescriptionSettingsModel? prescriptionSettingsResult});
 }
@@ -745,6 +1154,8 @@ class _$PrecriptionStateCopyWithImpl<$Res, $Val extends PrecriptionState>
     Object? hasData = null,
     Object? hasSettingsData = null,
     Object? message = freezed,
+    Object? tobeTakeData = freezed,
+    Object? timeoftheDayData = freezed,
     Object? prescriptionResult = freezed,
     Object? prescriptionSettingsResult = freezed,
   }) {
@@ -785,6 +1196,14 @@ class _$PrecriptionStateCopyWithImpl<$Res, $Val extends PrecriptionState>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
+      tobeTakeData: freezed == tobeTakeData
+          ? _value.tobeTakeData
+          : tobeTakeData // ignore: cast_nullable_to_non_nullable
+              as List<DataObjec>?,
+      timeoftheDayData: freezed == timeoftheDayData
+          ? _value.timeoftheDayData
+          : timeoftheDayData // ignore: cast_nullable_to_non_nullable
+              as List<DataObjec>?,
       prescriptionResult: freezed == prescriptionResult
           ? _value.prescriptionResult
           : prescriptionResult // ignore: cast_nullable_to_non_nullable
@@ -815,6 +1234,8 @@ abstract class _$$_PrecriptionStateCopyWith<$Res>
       bool hasData,
       bool hasSettingsData,
       String? message,
+      List<DataObjec>? tobeTakeData,
+      List<DataObjec>? timeoftheDayData,
       PrescriptionModel? prescriptionResult,
       PrescriptionSettingsModel? prescriptionSettingsResult});
 }
@@ -839,6 +1260,8 @@ class __$$_PrecriptionStateCopyWithImpl<$Res>
     Object? hasData = null,
     Object? hasSettingsData = null,
     Object? message = freezed,
+    Object? tobeTakeData = freezed,
+    Object? timeoftheDayData = freezed,
     Object? prescriptionResult = freezed,
     Object? prescriptionSettingsResult = freezed,
   }) {
@@ -879,6 +1302,14 @@ class __$$_PrecriptionStateCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
+      tobeTakeData: freezed == tobeTakeData
+          ? _value._tobeTakeData
+          : tobeTakeData // ignore: cast_nullable_to_non_nullable
+              as List<DataObjec>?,
+      timeoftheDayData: freezed == timeoftheDayData
+          ? _value._timeoftheDayData
+          : timeoftheDayData // ignore: cast_nullable_to_non_nullable
+              as List<DataObjec>?,
       prescriptionResult: freezed == prescriptionResult
           ? _value.prescriptionResult
           : prescriptionResult // ignore: cast_nullable_to_non_nullable
@@ -904,8 +1335,12 @@ class _$_PrecriptionState implements _PrecriptionState {
       required this.hasData,
       required this.hasSettingsData,
       required this.message,
+      required final List<DataObjec>? tobeTakeData,
+      required final List<DataObjec>? timeoftheDayData,
       this.prescriptionResult,
-      this.prescriptionSettingsResult});
+      this.prescriptionSettingsResult})
+      : _tobeTakeData = tobeTakeData,
+        _timeoftheDayData = timeoftheDayData;
 
   @override
   final bool isGetLoading;
@@ -925,6 +1360,27 @@ class _$_PrecriptionState implements _PrecriptionState {
   final bool hasSettingsData;
   @override
   final String? message;
+  final List<DataObjec>? _tobeTakeData;
+  @override
+  List<DataObjec>? get tobeTakeData {
+    final value = _tobeTakeData;
+    if (value == null) return null;
+    if (_tobeTakeData is EqualUnmodifiableListView) return _tobeTakeData;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<DataObjec>? _timeoftheDayData;
+  @override
+  List<DataObjec>? get timeoftheDayData {
+    final value = _timeoftheDayData;
+    if (value == null) return null;
+    if (_timeoftheDayData is EqualUnmodifiableListView)
+      return _timeoftheDayData;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final PrescriptionModel? prescriptionResult;
   @override
@@ -932,7 +1388,7 @@ class _$_PrecriptionState implements _PrecriptionState {
 
   @override
   String toString() {
-    return 'PrecriptionState(isGetLoading: $isGetLoading, isGetSettingsLoading: $isGetSettingsLoading, isUpdateLoading: $isUpdateLoading, isCreateLoading: $isCreateLoading, unauthorized: $unauthorized, isError: $isError, hasData: $hasData, hasSettingsData: $hasSettingsData, message: $message, prescriptionResult: $prescriptionResult, prescriptionSettingsResult: $prescriptionSettingsResult)';
+    return 'PrecriptionState(isGetLoading: $isGetLoading, isGetSettingsLoading: $isGetSettingsLoading, isUpdateLoading: $isUpdateLoading, isCreateLoading: $isCreateLoading, unauthorized: $unauthorized, isError: $isError, hasData: $hasData, hasSettingsData: $hasSettingsData, message: $message, tobeTakeData: $tobeTakeData, timeoftheDayData: $timeoftheDayData, prescriptionResult: $prescriptionResult, prescriptionSettingsResult: $prescriptionSettingsResult)';
   }
 
   @override
@@ -955,6 +1411,10 @@ class _$_PrecriptionState implements _PrecriptionState {
             (identical(other.hasSettingsData, hasSettingsData) ||
                 other.hasSettingsData == hasSettingsData) &&
             (identical(other.message, message) || other.message == message) &&
+            const DeepCollectionEquality()
+                .equals(other._tobeTakeData, _tobeTakeData) &&
+            const DeepCollectionEquality()
+                .equals(other._timeoftheDayData, _timeoftheDayData) &&
             (identical(other.prescriptionResult, prescriptionResult) ||
                 other.prescriptionResult == prescriptionResult) &&
             (identical(other.prescriptionSettingsResult,
@@ -975,6 +1435,8 @@ class _$_PrecriptionState implements _PrecriptionState {
       hasData,
       hasSettingsData,
       message,
+      const DeepCollectionEquality().hash(_tobeTakeData),
+      const DeepCollectionEquality().hash(_timeoftheDayData),
       prescriptionResult,
       prescriptionSettingsResult);
 
@@ -996,6 +1458,8 @@ abstract class _PrecriptionState implements PrecriptionState {
           required final bool hasData,
           required final bool hasSettingsData,
           required final String? message,
+          required final List<DataObjec>? tobeTakeData,
+          required final List<DataObjec>? timeoftheDayData,
           final PrescriptionModel? prescriptionResult,
           final PrescriptionSettingsModel? prescriptionSettingsResult}) =
       _$_PrecriptionState;
@@ -1018,6 +1482,10 @@ abstract class _PrecriptionState implements PrecriptionState {
   bool get hasSettingsData;
   @override
   String? get message;
+  @override
+  List<DataObjec>? get tobeTakeData;
+  @override
+  List<DataObjec>? get timeoftheDayData;
   @override
   PrescriptionModel? get prescriptionResult;
   @override

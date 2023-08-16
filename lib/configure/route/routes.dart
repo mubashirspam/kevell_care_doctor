@@ -12,20 +12,22 @@ import '../../pages/login_scrren/presentation/login_screen.dart';
 import '../../pages/schedule/presentation/schedule_your_time.dart';
 import '../../pages/signup_screen/presentation/lsignup_screen.dart';
 
-
-
-
-final Map<String, Widget Function(BuildContext)> route = {
+final Map<String, Widget Function(BuildContext ctx)> route = {
   LoginScreen.routeName: (ctx) => const LoginScreen(),
   SignupScreen.routeName: (ctx) => const SignupScreen(),
   Dashboard.routeName: (ctx) => const Dashboard(),
   ScheduleYourTime.routeName: (ctx) => const ScheduleYourTime(),
   ProfileScreen.routeName: (ctx) => const ProfileScreen(),
   MyProfileScreen.routeName: (ctx) => const MyProfileScreen(),
-  PrescriptionScreen.routeName: (ctx) => const PrescriptionScreen(),
+  PrescriptionScreen.routeName: (ctx) =>  PrescriptionScreen(
+           checkupDetalis:
+            ModalRoute.of(ctx)!.settings.arguments as Map<String, String>,
+  ),
   ChatingScreen.routeName: (ctx) => const ChatingScreen(),
-  PatientCheckupScreen.routeName: (ctx) => const PatientCheckupScreen(),
+  PatientCheckupScreen.routeName: (ctx) => PatientCheckupScreen(
+        checkupDetalis:
+            ModalRoute.of(ctx)!.settings.arguments as Map<String, String>,
+      ),
   PersonHistroyScreen.routeName: (ctx) => const PersonHistroyScreen(),
   ReportScreen.routeName: (ctx) => const ReportScreen(),
-  
 };

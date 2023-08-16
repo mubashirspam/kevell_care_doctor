@@ -12,4 +12,12 @@ class PrecriptionEvent with _$PrecriptionEvent {
   const factory PrecriptionEvent.updatePrescription({
     required PrescriptionElement prescriptionElement,
   }) = _UpdatePrescription;
+
+  const factory PrecriptionEvent.selectTimeOfTheDay({
+    required List <DataObjec> data,
+  }) = _SelectTimeOfTheDay;
+
+  const factory PrecriptionEvent.selectTobetaken({
+    required List <DataObjec> data,
+  }) = _SelectTobetaken;
 }

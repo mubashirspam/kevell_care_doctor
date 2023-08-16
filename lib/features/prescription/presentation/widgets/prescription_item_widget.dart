@@ -22,7 +22,7 @@ class PrescriptionItemWidget extends StatelessWidget {
       subtitle: Padding(
         padding: const EdgeInsets.only(top: 10),
         child: Text(
-          prescriptionElement.name ??  "No type mentioned",
+          prescriptionElement.type ?? "No type mentioned",
           style: Theme.of(context).textTheme.titleSmall,
         ),
       ),
@@ -38,9 +38,14 @@ class PrescriptionItemWidget extends StatelessWidget {
           elevation: 0,
           isScrollControlled: true,
           context: context,
-          builder: (context) =>  AddOrEditPrescriptionWidget(
+          builder: (context) => AddOrEditPrescriptionWidget(
             isEdit: true,
             prescriptionElement: prescriptionElement,
+            checkupDetalis: {
+                // 'patientID': patientID,
+                // 'doctorID': doctorID,
+                // 'appointmentID': appointmentID,
+              },
           ),
         ),
       ),

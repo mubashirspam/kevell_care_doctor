@@ -23,9 +23,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc(this.getHomeStatusRepository, this.getWaitingPatientRepository)
       : super(HomeState.initial()) {
     on<_GetHomeStatus>((event, emit) async {
-      if (state.hasStatusData) {
-        return;
-      }
+      // if (state.hasStatusData) {
+      //   return;
+      // }
 
       emit(
         state.copyWith(
@@ -55,9 +55,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     });
 
     on<_GetHomeWaitingPatient>((event, emit) async {
-      if (state.hasWaitingPatientData) {
-        return;
-      }
+      // if (state.hasWaitingPatientData) {
+      //   return;
+      // }
 
       emit(
         state.copyWith(

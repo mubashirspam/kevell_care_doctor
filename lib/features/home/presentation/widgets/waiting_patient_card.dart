@@ -8,6 +8,9 @@ class WaitingPatientCard extends StatelessWidget {
   final String name;
   final String statusMessage;
   final String imageUrl;
+  final String patientID;
+  final String doctorID;
+  final String appointmentID;
   final bool isActive;
 
   const WaitingPatientCard({
@@ -15,6 +18,9 @@ class WaitingPatientCard extends StatelessWidget {
     required this.isActive,
     required this.name,
     required this.statusMessage,
+    required this.appointmentID,
+    required this.doctorID,
+    required this.patientID,
     super.key,
   });
 
@@ -54,8 +60,14 @@ class WaitingPatientCard extends StatelessWidget {
             style: TextButton.styleFrom(
               backgroundColor: context.theme.primary,
             ),
-            onPressed: () =>
-                Navigator.of(context).pushNamed(PatientCheckupScreen.routeName),
+            onPressed: () => Navigator.of(context).pushNamed(
+              PatientCheckupScreen.routeName,
+              arguments: {
+                'patientID': patientID,
+                'doctorID': doctorID,
+                'appointmentID': appointmentID,
+              },
+            ),
             child: Text(
               "Attand",
               style: Theme.of(context).textTheme.titleLarge!.copyWith(

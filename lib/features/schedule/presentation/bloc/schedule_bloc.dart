@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/helper/alert.dart';
 import '../../data/models/create_schedule_model.dart';
 import '../../data/models/delete_schedule_model.dart';
 import '../../data/models/schedule_model.dart';
@@ -28,9 +27,9 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
     this.deleteScheduleRepository,
   ) : super(ScheduleState.initial()) {
     on<_GetSchedule>((event, emit) async {
-      if (state.hasData) {
-        return;
-      }
+      // if (state.hasData) {
+      //   return;
+      // }
       emit(
         state.copyWith(
           isLoading: true,
@@ -45,7 +44,7 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
         (failure) => state.copyWith(
           isLoading: false,
           isError: true,
-            isDeleted: false,
+            
         ),
         (success) => state.copyWith(
           isError: false,
@@ -111,7 +110,7 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
           isDeleted: true,
           isDeleteLoading: false,
           hasData: false,
-          deleteResponse: success,
+          // deleteResponse: success,
           // result: state.result,
         ),
       );

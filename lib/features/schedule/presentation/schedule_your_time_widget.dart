@@ -154,7 +154,7 @@ class ScheduleYourTimeWidget extends StatelessWidget {
           BlocBuilder<ScheduleBloc, ScheduleState>(
             builder: (context, state) {
               return Text(
-                "Time Alloted for Each patient : ${state.timeForSinglePatient} Hr",
+                "Time Alloted for Each patient : ${state.timeForSinglePatient} MIN",
                 style: Theme.of(context)
                     .textTheme
                     .titleLarge!
@@ -183,10 +183,12 @@ class ScheduleYourTimeWidget extends StatelessWidget {
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
-                            return const SuccessDialog(
+                            return  SuccessDialog(
                               message: "Scheduled Your Time Succsessfully",
+                              onpress: ()=> Navigator.of(context).pop(),
                             );
                           },
+
                         );
 
                         // selectedIndexNorifier.value == 1;
@@ -219,10 +221,10 @@ class ScheduleYourTimeWidget extends StatelessWidget {
                                           startingDate: dateFormatToYYYYMMdd(
                                               state.startDate),
                                           starttime:
-                                             state.startTime,
+                                             state.startTime.toIso8601String(),
                                           endingDate: dateFormatToYYYYMMdd(
                                               state.endDate),
-                                          endtime:state.endTime,
+                                          endtime:state.endTime.toIso8601String(),
                                           doctorId: id,
                                           timeperPatient:
                                               state.timeForSinglePatient,

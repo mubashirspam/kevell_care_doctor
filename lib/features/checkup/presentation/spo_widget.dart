@@ -33,7 +33,8 @@ class Spo2Widget extends StatelessWidget {
           children: [
             Text(
               "Spo2 : $spo2",
-              style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    fontSize: 18,
                     color: isReading ? context.theme.textPrimary : Colors.red,
                   ),
             ),
@@ -48,7 +49,8 @@ class Spo2Widget extends StatelessWidget {
           children: [
             Text(
               "Heart Rate : $heartBeat",
-              style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  fontSize: 18,
                     color: isReading ? context.theme.textPrimary : Colors.red,
                   ),
             ),

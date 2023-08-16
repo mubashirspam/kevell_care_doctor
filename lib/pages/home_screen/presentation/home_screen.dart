@@ -84,7 +84,7 @@ class HomeScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 20, bottom: 20),
                   child: Text(
-                    "Waiting patients",
+                    "Today waiting patients",
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ),

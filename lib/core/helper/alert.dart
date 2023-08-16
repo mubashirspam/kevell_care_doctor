@@ -21,32 +21,6 @@ class Alert {
   }
 }
 
-class SuccessDialog extends StatelessWidget {
-  final String message;
-
-  const SuccessDialog({super.key, required this.message});
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: const Icon(
-        Icons.check_circle,
-        color: Colors.green,
-        size: 50,
-      ),
-      content: Text(message),
-      actions: [
-        ElevatedButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: const Text('OK'),
-        ),
-      ],
-    );
-  }
-}
-
 class ErrorDialog extends StatelessWidget {
   final String message;
 
@@ -88,15 +62,17 @@ class DeleteConfirmationDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title:  isDeleted?  const Icon(
-        Icons.check_circle,
-        color: Colors.green,
-        size: 50,
-      ) :  const Icon(
-        Icons.warning,
-        color: Colors.orange,
-        size: 50,
-      ),
+      title: isDeleted
+          ? const Icon(
+              Icons.check_circle,
+              color: Colors.green,
+              size: 50,
+            )
+          : const Icon(
+              Icons.warning,
+              color: Colors.orange,
+              size: 50,
+            ),
       content: Text(message),
       actions: [
         TextButton(
@@ -110,7 +86,7 @@ class DeleteConfirmationDialog extends StatelessWidget {
             onDelete(); // Trigger the delete function
             Navigator.of(context).pop(); // Close the dialog
           },
-          child:   Text( isDeleted? "Ok" :'Yes, Delete'),
+          child: Text(isDeleted ? "Ok" : 'Yes, Delete'),
         ),
       ],
     );
@@ -130,6 +106,42 @@ class DeletingProgressDialog extends StatelessWidget {
           Text("Deleting..."),
         ],
       ),
+    );
+  }
+}
+
+class SuccessDialog extends StatelessWidget {
+  final VoidCallback onpress;
+  final String message;
+  const SuccessDialog({
+    super.key,
+    required this.onpress,
+    required this.message,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Appointment Completed'),
+      content:  Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+       const  Center(
+              child: Icon(
+            Icons.check,
+            color: Colors.green,
+            size: 100,
+          )),
+         const SizedBox(height: 20),
+          Text(message),
+        ],
+      ),
+      actions: [
+        ElevatedButton(
+          onPressed: onpress,
+          child:const Text('OK'),
+        ),
+      ],
     );
   }
 }

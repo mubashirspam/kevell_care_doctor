@@ -28,10 +28,6 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
     this.updatePrescriptionListRepository,
   ) : super(PrecriptionState.initial()) {
     on<_GetPrescriptionList>((event, emit) async {
-      if (state.hasData) {
-        return;
-      }
-
       emit(
         state.copyWith(
           isGetLoading: true,
@@ -126,6 +122,21 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
       emit(result);
     });
 
+    on<_SelectTimeOfTheDay>((event, emit) async {
+      emit(
+        state.copyWith(
+          timeoftheDayData: event.data,
+        ),
+      );
+    });
+    on<_SelectTobetaken>((event, emit) async {
+      emit(
+        state.copyWith(
+          tobeTakeData: event.data,
+        ),
+      );
+    });
+
     on<_UpdatePrescription>((event, emit) async {
       if (state.hasSettingsData) {
         return;
@@ -140,8 +151,9 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
         ),
       );
 
-      final response = await updatePrescriptionListRepository
-          .updatePrescriptionList(prescriptionElement: event.prescriptionElement);
+      final response =
+          await updatePrescriptionListRepository.updatePrescriptionList(
+              prescriptionElement: event.prescriptionElement);
 
       final result = response.fold(
         (failure) => state.copyWith(
@@ -160,10 +172,6 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
     });
 
     on<_CreatePrescription>((event, emit) async {
-      if (state.hasSettingsData) {
-        return;
-      }
-
       emit(
         state.copyWith(
           isCreateLoading: true,
@@ -173,8 +181,9 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
         ),
       );
 
-      final response = await createPrescriptionListRepository
-          .createPrescriptionList(prescriptionElement: event.prescriptionElement);
+      final response =
+          await createPrescriptionListRepository.createPrescriptionList(
+              prescriptionElement: event.prescriptionElement);
 
       final result = response.fold(
         (failure) => state.copyWith(

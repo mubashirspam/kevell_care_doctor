@@ -21,6 +21,7 @@ class GetPrescriptionListRepoImpliment
     try {
       final token = await getTokenFromSS(secureStoreKey);
       final id = await getTokenFromSS(drIdsecureStoreKey);
+      log("drid == $id");
 
       final headers = {
         'Authorization': 'Bearer $token',
@@ -38,7 +39,7 @@ class GetPrescriptionListRepoImpliment
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = PrescriptionModel.fromJson(response.data);
-        log(result.data.toString());
+        log(result.toString());
 
         return Right(result);
       } else if (response.statusCode == 400 || response.statusCode == 401) {

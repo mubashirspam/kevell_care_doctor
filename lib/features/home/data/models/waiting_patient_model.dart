@@ -58,6 +58,8 @@ class Data {
 
 class WaitingPatient {
     int? patientId;
+    int? doctorId;
+    int? appointmentId;
     String? name;
     String? type;
     DateTime? createdAt;
@@ -66,6 +68,8 @@ class WaitingPatient {
 
     WaitingPatient({
         this.patientId,
+        this.doctorId,
+        this.appointmentId,
         this.name,
         this.type,
         this.createdAt,
@@ -75,6 +79,8 @@ class WaitingPatient {
 
     factory WaitingPatient.fromJson(Map<String, dynamic> json) => WaitingPatient(
         patientId: json["patient_id"],
+        doctorId: json["doctor_id"],
+        appointmentId: json["appointment_id"],
         name: json["name"],
         type: json["type"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
@@ -84,6 +90,8 @@ class WaitingPatient {
 
     Map<String, dynamic> toJson() => {
         "patient_id": patientId,
+        "doctor_id": doctorId,
+        "appointment_id": appointmentId,
         "name": name,
         "type": type,
         "createdAt": createdAt?.toIso8601String(),

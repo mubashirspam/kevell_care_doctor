@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/features/prescription/presentation/prescription.dart';
@@ -7,14 +9,20 @@ import '../../../features/prescription/presentation/widgets/edit_prescription.da
 
 class PrescriptionScreen extends StatelessWidget {
   static const routeName = '/prescription-screen';
-  const PrescriptionScreen({super.key});
+
+  final Map<String, String> checkupDetalis;
+  const PrescriptionScreen({
+    super.key,
+    required this.checkupDetalis,
+  });
 
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context
-          .read<PrecriptionBloc>()
-          .add(const PrecriptionEvent.getPrescriptionList(appointmentId: 1013));
+      final appointmentID = checkupDetalis['appointmentID']!;
+      log("appointmentID == $appointmentID");
+      context.read<PrecriptionBloc>().add(PrecriptionEvent.getPrescriptionList(
+          appointmentId: int.parse(appointmentID)));
       context
           .read<PrecriptionBloc>()
           .add(const PrecriptionEvent.getPrescriptionSettings());
@@ -50,7 +58,8 @@ class PrescriptionScreen extends StatelessWidget {
                 elevation: 0,
                 isScrollControlled: true,
                 context: context,
-                builder: (context) => const AddOrEditPrescriptionWidget(
+                builder: (context) => AddOrEditPrescriptionWidget(
+                  checkupDetalis: checkupDetalis,
                   isEdit: false,
                 ),
               ),

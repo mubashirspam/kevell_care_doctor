@@ -105,8 +105,8 @@ class ScheduleCard extends StatelessWidget {
                 ? const SizedBox()
                 : InkWell(onTap: () {}, child: SvgPicture.asset(AppIcons.edit)),
             BlocConsumer<ScheduleBloc, ScheduleState>(
-              listener: (context, state) async {
-                if (!state.isDeleteLoading && state.isDeleted) {
+              listener: (context, stated) async {
+                if (stated.isDeleted) {
                   log("Deleted succsessfully");
 
                   context.read<ScheduleBloc>().add(

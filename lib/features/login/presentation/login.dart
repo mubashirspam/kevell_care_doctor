@@ -29,6 +29,11 @@ class _LoginWidgetState extends State<LoginWidget> {
   TextEditingController passwordController =
       TextEditingController(text: "1111111");
 
+  //       TextEditingController emailController =
+  //     TextEditingController();
+  // TextEditingController passwordController =
+  //     TextEditingController();
+
   bool isButtonDisabled = true;
   bool isPasswordVisible = true;
 
@@ -167,11 +172,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                       (route) => false,
                     );
                   }
-
-                  Toast.showToast(
-                    context: context,
-                    message: "Error Occured",
-                  );
 
                   log("Token : ${state.loginDetails!.data?.token}");
                   log("id : ${state.loginDetails!.data?.id}");

@@ -6,12 +6,16 @@ import 'dart:math' as m;
 
 import 'package:dr_kevell/features/checkup/presentation/ecg_widget.dart';
 import 'package:dr_kevell/features/checkup/presentation/gsr_widget.dart';
+import 'package:dr_kevell/pages/prescription/presentation/prescription_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/features/checkup/presentation/temparature_widgtet.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
+import '../../../core/helper/alert.dart';
 import '../../../core/helper/toast.dart';
+import '../../../features/checkup/presentation/pause_and_submit_widget.dart';
 import '../../../features/checkup/presentation/postion_widget.dart';
 import '../../../features/checkup/presentation/spo_widget.dart';
 import '../../../features/checkup/presentation/unloack.dart';
@@ -21,7 +25,13 @@ import '../../../features/checkup/presentation/widgets/ecg_graph.dart';
 
 class PatientCheckupScreen extends StatefulWidget {
   static const routeName = '/patient-checup-screen';
-  const PatientCheckupScreen({super.key});
+
+  final Map<String, String> checkupDetalis;
+
+  const PatientCheckupScreen({
+    super.key,
+    required this.checkupDetalis,
+  });
 
   @override
   State<PatientCheckupScreen> createState() => _PatientCheckupScreenState();
@@ -39,18 +49,14 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
   bool sp02Reading = false;
   bool ecgReading = false;
   bool gsrReading = false;
-
   bool postionReading = false;
 
   Map<String, dynamic> dataMap = {};
 
   String temparature = "0.00";
   String sop2 = "0.00";
-
   String heartBeat = "0";
-
   String position = "";
-
   int ecgIndex = 0;
 
   List<ECGData> ecgData = [];
@@ -301,10 +307,22 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
     );
   }
 
+  String patientID = "";
+  String doctorID = "";
+  String appointmentID = "";
+
   @override
   void dispose() {
     _timer?.cancel();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    patientID = widget.checkupDetalis['patientID']!;
+    doctorID = widget.checkupDetalis['doctorID']!;
+    appointmentID = widget.checkupDetalis['appointmentID']!;
+    super.initState();
   }
 
   @override
@@ -349,9 +367,9 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
                       startTimer();
                       publishMy({
                         "id": "KC_EC94CB6F61DC",
-                        "patientID": "P8308",
-                        "doctorID": "D1204",
-                        "appointmentID": "AP123456",
+                        "patientID": patientID,
+                        "doctorID": doctorID,
+                        "appointmentID": appointmentID,
                         "type": "Doctor",
                         "command": "unlock",
                         "number": 0,
@@ -370,9 +388,9 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
                   ? () {
                       publishMy({
                         "id": "KC_EC94CB6F61DC",
-                        "patientID": "P8308",
-                        "doctorID": "D1204",
-                        "appointmentID": "AP123456",
+                        "patientID": patientID,
+                        "doctorID": doctorID,
+                        "appointmentID": appointmentID,
                         "type": "Doctor",
                         "command": "device",
                         "number": 2,
@@ -391,9 +409,9 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
                   ? () {
                       publishMy({
                         "id": "KC_EC94CB6F61DC",
-                        "patientID": "P8308",
-                        "doctorID": "D1204",
-                        "appointmentID": "AP123456",
+                        "patientID": patientID,
+                        "doctorID": doctorID,
+                        "appointmentID": appointmentID,
                         "type": "Doctor",
                         "command": "device",
                         "number": 3,
@@ -410,9 +428,9 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
                   ? () {
                       publishMy({
                         "id": "KC_EC94CB6F61DC",
-                        "patientID": "P8308",
-                        "doctorID": "D1204",
-                        "appointmentID": "AP123456",
+                        "patientID": patientID,
+                        "doctorID": doctorID,
+                        "appointmentID": appointmentID,
                         "type": "Doctor",
                         "command": "device",
                         "number": 6,
@@ -430,9 +448,9 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
                   ? () {
                       publishMy({
                         "id": "KC_EC94CB6F61DC",
-                        "patientID": "P8308",
-                        "doctorID": "D1204",
-                        "appointmentID": "AP123456",
+                        "patientID": patientID,
+                        "doctorID": doctorID,
+                        "appointmentID": appointmentID,
                         "type": "Doctor",
                         "command": "device",
                         "number": 8,
@@ -449,12 +467,12 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
                   ? () {
                       publishMy({
                         "id": "KC_EC94CB6F61DC",
-                        "patientID": "P8308",
-                        "doctorID": "D1204",
-                        "appointmentID": "AP123456",
+                        "patientID": patientID,
+                        "doctorID": doctorID,
+                        "appointmentID": appointmentID,
                         "type": "Doctor",
                         "command": "device",
-                        "number": 2,
+                        "number": 4,
                         "date": DateTime.now().millisecondsSinceEpoch
                       }, "KC_EC94CB6F61DC/device");
                     }
@@ -462,6 +480,47 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
                       context: context, message: "Please Unlock"),
               position: position,
             ),
+            PauseAndSubmitWidget(
+              stopAndShow: isUnloacked
+                  ? () {
+                      unSubscribe("KC_EC94CB6F61DC/app");
+                      _client!.disconnect();
+                      setState(() {
+                        isUnloacked = false;
+                        isConnected = false;
+                      });
+
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (context) => SuccessDialog(
+                          message:
+                              "Successfully completed your appointment.\nPlease add a prescription for the patient to take medication.",
+                          onpress: () =>
+                              Navigator.of(context).pushReplacementNamed(
+                            PrescriptionScreen.routeName,
+                            arguments: widget.checkupDetalis,
+                          ),
+                        ),
+                      );
+                    }
+                  : null,
+              pause: isUnloacked
+                  ? () {
+                      publishMy({
+                        "id": "KC_EC94CB6F61DC",
+                        "patientID": patientID,
+                        "doctorID": doctorID,
+                        "appointmentID": appointmentID,
+                        "type": "Doctor",
+                        "command": "device",
+                        "number": 0,
+                        "date": DateTime.now().millisecondsSinceEpoch
+                      }, "KC_EC94CB6F61DC/device");
+                    }
+                  : () => Toast.showToast(
+                      context: context, message: "Please Unlock"),
+            )
           ],
         ),
       ),

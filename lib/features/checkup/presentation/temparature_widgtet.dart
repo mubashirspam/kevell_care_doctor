@@ -7,7 +7,6 @@ import 'package:lottie/lottie.dart';
 
 import '../../../configure/assets_manage/lottie.dart';
 
-
 class TepamratureWidget extends StatelessWidget {
   final String temparature;
   final VoidCallback onpress;
@@ -23,27 +22,27 @@ class TepamratureWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CheckupCard(
-          // imageName: "imageName",
-          name: "Body Temperature",
-          onPress: onpress,
+      // imageName: "imageName",
+      name: "Body Temperature",
+      onPress: onpress,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "$temparature°F",
-                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                        color:
-                            isReading ? context.theme.textPrimary : Colors.red,
-                      ),
-                ),
-                isReading
-                    ? Lottie.asset(AppLottie.loading,
-                        fit: BoxFit.contain, height: 60)
-                    : const SizedBox()
-              ],
+            Text(
+              "$temparature°F",
+              style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                    fontSize: 18,
+                    color: isReading ? context.theme.textPrimary : Colors.red,
+                  ),
             ),
+            isReading
+                ? Lottie.asset(AppLottie.loading,
+                    fit: BoxFit.contain, height: 60)
+                : const SizedBox()
           ],
-        );
+        ),
+      ],
+    );
   }
 }

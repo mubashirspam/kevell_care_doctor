@@ -18,20 +18,17 @@ class ActiveAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        CircleAvatar(
-          maxRadius: radius ?? 35,
-          minRadius: radius ?? 35,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(100),
-            child: Image.network(
-              imageUrl,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) => Icon(
-                Icons.image_not_supported,
-                color: context.theme.primary,
-              ),
-            ),
-          ),
+        Container(
+          height: radius ?? 60,
+          width: radius ?? 60,
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                image: NetworkImage(
+                  imageUrl,
+                ),
+                fit: BoxFit.cover,
+              )),
         ),
         isActive ?? true
             ? Positioned(

@@ -1,8 +1,8 @@
 class SchedulePayload {
   int? doctorId;
-  DateTime? starttime;
+  String? starttime;
   String? type;
-  DateTime? endtime;
+  String? endtime;
   String? startingDate;
   String? endingDate;
   int? timeperPatient;

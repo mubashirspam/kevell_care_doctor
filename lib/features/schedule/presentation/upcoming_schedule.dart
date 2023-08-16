@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dr_kevell/features/widgets/error_widget.dart';
 import 'package:dr_kevell/features/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +15,17 @@ class UpcomingSchedule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ScheduleBloc, ScheduleState>(
+    return BlocConsumer<ScheduleBloc, ScheduleState>(
+      listener: (context, stated) async {
+        if (stated.isDeleted) {
+          log("Deleted succsessfully");
+
+         
+        }
+      },
+      buildWhen: (previous, current) {
+        return previous != current;
+      },
       builder: (context, state) {
         if (state.isLoading) {
           return const LoadingWIdget();
@@ -42,7 +54,7 @@ class UpcomingSchedule extends StatelessWidget {
               children: List.generate(
                 result.data!.upcomingschedule!.length,
                 (index) => ScheduleCard(
-                isTodays: false,
+                  isTodays: false,
                   schedule: result.data!.upcomingschedule![index],
                 ),
               ),

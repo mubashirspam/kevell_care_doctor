@@ -37,9 +37,9 @@ class PrescriptionSettingsModel {
 }
 
 class Data {
-    List<Timeoftheday>? type;
-    List<Timeoftheday>? timeoftheday;
-    List<Timeoftheday>? tobetaken;
+    List<DataObjec>? type;
+    List<DataObjec>? timeoftheday;
+    List<DataObjec>? tobetaken;
     int? v;
 
     Data({
@@ -50,9 +50,9 @@ class Data {
     });
 
     factory Data.fromJson(Map<String, dynamic> json) => Data(
-        type: json["type"] == null ? [] : List<Timeoftheday>.from(json["type"]!.map((x) => Timeoftheday.fromJson(x))),
-        timeoftheday: json["timeoftheday"] == null ? [] : List<Timeoftheday>.from(json["timeoftheday"]!.map((x) => Timeoftheday.fromJson(x))),
-        tobetaken: json["tobetaken"] == null ? [] : List<Timeoftheday>.from(json["tobetaken"]!.map((x) => Timeoftheday.fromJson(x))),
+        type: json["type"] == null ? [] : List<DataObjec>.from(json["type"]!.map((x) => DataObjec.fromJson(x))),
+        timeoftheday: json["timeoftheday"] == null ? [] : List<DataObjec>.from(json["timeoftheday"]!.map((x) => DataObjec.fromJson(x))),
+        tobetaken: json["tobetaken"] == null ? [] : List<DataObjec>.from(json["tobetaken"]!.map((x) => DataObjec.fromJson(x))),
         v: json["__v"],
     );
 
@@ -64,22 +64,28 @@ class Data {
     };
 }
 
-class Timeoftheday {
+class DataObjec {
     int? id;
     String? name;
+    bool ?status;
 
-    Timeoftheday({
+    DataObjec({
         this.id,
         this.name,
+        this.status,
     });
 
-    factory Timeoftheday.fromJson(Map<String, dynamic> json) => Timeoftheday(
+    factory DataObjec.fromJson(Map<String, dynamic> json) => DataObjec(
         id: json["_id"],
         name: json["name"],
+        status:json["status"]??false
+        
     );
 
     Map<String, dynamic> toJson() => {
         "_id": id,
         "name": name,
+        "status":status
+
     };
 }

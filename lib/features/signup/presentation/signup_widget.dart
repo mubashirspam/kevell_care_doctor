@@ -153,12 +153,12 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             const SizedBox(height: 20),
             BlocConsumer<SignupBloc, SignupState>(
               listener: (context, state) {
-                if (!state.isLoading && state.isError) {
-                  Toast.showToast(
-                    context: context,
-                    message: state.message ?? "",
-                  );
-                }
+                // if (!state.isLoading && state.isError) {
+                //   Toast.showToast(
+                //     context: context,
+                //     message: state.message ?? "",
+                //   );
+                // }
                 if (!state.isLoading && state.hasValidationData) {
                   showDialog(
                     context: context,

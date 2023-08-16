@@ -12,6 +12,8 @@ class PrecriptionState with _$PrecriptionState {
     required bool hasData,
     required bool hasSettingsData,
     required String? message,
+    required List<DataObjec>? tobeTakeData,
+     required List<DataObjec>? timeoftheDayData,
     PrescriptionModel? prescriptionResult,
     PrescriptionSettingsModel? prescriptionSettingsResult,
   }) = _PrecriptionState;
@@ -27,6 +29,8 @@ class PrecriptionState with _$PrecriptionState {
         prescriptionSettingsResult: null,
         isUpdateLoading: false,
         hasSettingsData: false,
+        tobeTakeData: null,
+          timeoftheDayData: null,
         message: null,
       );
 }

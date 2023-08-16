@@ -12,6 +12,7 @@ import '../../../pages/initialize/initialize.dart';
 import '../../widgets/error_widget.dart';
 import '../../widgets/loading_widget.dart';
 import 'bloc/precription_bloc.dart';
+import 'widgets/edit_prescription.dart';
 import 'widgets/prescription_item_widget.dart';
 
 class Prescription extends StatelessWidget {
@@ -50,7 +51,9 @@ class Prescription extends StatelessWidget {
         if (state.hasData) {
           log("message");
 
-          if (state.prescriptionResult!.data == null) {
+          log("${state.prescriptionResult!.data!.prescriptions!.length}");
+
+          if (state.prescriptionResult!.data!.totalCount == null) {
             return Center(
               child: SizedBox(
                 child: Column(
@@ -69,15 +72,6 @@ class Prescription extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.titleLarge),
                     ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        minimumSize: const Size(65, 30),
-                        backgroundColor: context.theme.primary,
-                        foregroundColor: context.theme.backround,
-                      ),
-                      child: const Text("Add prescription"),
-                      onPressed: () {},
-                    )
                   ],
                 ),
               ),

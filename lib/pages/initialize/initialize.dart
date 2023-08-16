@@ -5,6 +5,8 @@ import 'package:dr_kevell/pages/dashborad/presentation/dashborad.dart';
 import 'package:dr_kevell/pages/initialize/bloc/initialize_bloc.dart';
 import 'package:dr_kevell/pages/login_scrren/presentation/login_screen.dart';
 
+import '../dashborad/presentation/widgets/bottom_navigation.dart';
+
 class Initialize extends StatelessWidget {
   const Initialize({super.key});
 
@@ -25,6 +27,7 @@ class Initialize extends StatelessWidget {
         } else if (state.isToken) {
           return const Dashboard();
         } else if (!state.isToken) {
+           selectedIndexNorifier.value==0;
           return const LoginScreen();
         } else {
           return const Scaffold(body: Center(child: LoadingWIdget()));

@@ -6,16 +6,19 @@ import '../../../widgets/buttons/text_button_widget.dart';
 import '../../../widgets/input_field/dropdown_field.dart';
 import '../../../widgets/input_field/input_field_widget.dart';
 import '../../data/model/prescription_list_model.dart' as list;
+import '../../data/model/prescription_list_model.dart';
 import '../../data/model/prescription_settings_model.dart' as settings;
 import '../bloc/precription_bloc.dart';
 
 class AddOrEditPrescriptionWidget extends StatefulWidget {
   final bool isEdit;
+  final Map<String, String> checkupDetalis;
   final list.PrescriptionElement? prescriptionElement;
   const AddOrEditPrescriptionWidget({
     super.key,
     required this.isEdit,
     this.prescriptionElement,
+    required this.checkupDetalis,
   });
 
   @override
@@ -35,7 +38,9 @@ class _AddOrEditPrescriptionWidgetState
 
   bool isButtonDisabled = true;
   int days = 0;
-  settings.Timeoftheday? selectedItem;
+  settings.DataObjec? selectedItem;
+
+  String selectedType = "Tablet";
 
   void validateForm() {
     if (_formKey.currentState!.validate()) {
@@ -51,34 +56,34 @@ class _AddOrEditPrescriptionWidgetState
     }
   }
 
-  // List<Map<String, dynamic>> timeOfTheDay = [
-  //   {
-  //     'Name': 'Morning',
-  //     'active': true,
-  //   },
-  //   {
-  //     'Name': 'Noon',
-  //     'active': false,
-  //   },
-  //   {
-  //     'Name': 'Night',
-  //     'active': true,
-  //   },
-  //   {
-  //     'Name': 'Evening',
-  //     'active': true,
-  //   }
-  // ];
-  // List<Map<String, dynamic>> toBeTaken = [
-  //   {
-  //     'Name': 'After Food',
-  //     'active': false,
-  //   },
-  //   {
-  //     'Name': 'Befor Food',
-  //     'active': true,
-  //   },
-  // ];
+  List<Timeoftheday> timeOfTheDay = [
+    Timeoftheday(
+      name: "Morning",
+      value: false,
+    ),
+    Timeoftheday(
+      name: "Noon",
+      value: false,
+    ),
+    Timeoftheday(
+      name: "Evening",
+      value: false,
+    ),
+    Timeoftheday(
+      name: "Night",
+      value: false,
+    ),
+  ];
+  List<Timeoftheday> toBeTaken = [
+    Timeoftheday(
+      name: "After Food",
+      value: false,
+    ),
+    Timeoftheday(
+      name: "Befor Food",
+      value: false,
+    ),
+  ];
 
   @override
   void initState() {
@@ -92,6 +97,11 @@ class _AddOrEditPrescriptionWidgetState
           TextEditingController(text: "${widget.prescriptionElement!.remark}");
 
       days = int.parse("${widget.prescriptionElement!.duration}");
+
+      selectedType = "${widget.prescriptionElement!.type}";
+
+      timeOfTheDay = widget.prescriptionElement!.timeoftheday!;
+      toBeTaken = widget.prescriptionElement!.tobetaken!;
     }
 
     super.initState();
@@ -141,7 +151,7 @@ class _AddOrEditPrescriptionWidgetState
               BlocBuilder<PrecriptionBloc, PrecriptionState>(
                 builder: (context, state) {
                   if (state.hasSettingsData) {
-                    List<settings.Timeoftheday> type = context
+                    List<settings.DataObjec> type = context
                         .read<PrecriptionBloc>()
                         .state
                         .prescriptionSettingsResult!
@@ -155,8 +165,8 @@ class _AddOrEditPrescriptionWidgetState
 
                     if (widget.isEdit) {
                       return DropDownFiledWidet(
-                        items: type.map((settings.Timeoftheday item) {
-                          return DropdownMenuItem<settings.Timeoftheday>(
+                        items: type.map((settings.DataObjec item) {
+                          return DropdownMenuItem<settings.DataObjec>(
                             value: item,
                             enabled: true,
                             child: Text(item.name ?? ""),
@@ -171,8 +181,8 @@ class _AddOrEditPrescriptionWidgetState
                     } else {
                       return DropDownFiledWidet(
                         value: type.first,
-                        items: type.map((settings.Timeoftheday item) {
-                          return DropdownMenuItem<settings.Timeoftheday>(
+                        items: type.map((settings.DataObjec item) {
+                          return DropdownMenuItem<settings.DataObjec>(
                             value: item,
                             enabled: true,
                             child: Text(item.name ?? ""),
@@ -181,6 +191,7 @@ class _AddOrEditPrescriptionWidgetState
                         onChanged: (newValue) {
                           setState(() {
                             selectedItem = newValue;
+                            selectedType = newValue.name;
                           });
                         },
                       );
@@ -273,39 +284,74 @@ class _AddOrEditPrescriptionWidgetState
               Text("Time of the day",
                   style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: 10),
-              BlocBuilder<PrecriptionBloc, PrecriptionState>(
-                builder: (context, state) {
-                  List<settings.Timeoftheday> timeoftheday = context
-                      .read<PrecriptionBloc>()
-                      .state
-                      .prescriptionSettingsResult!
-                      .data!
-                      .timeoftheday!;
-                  return Wrap(
-                      children: List.generate(
-                          timeoftheday.length,
-                          (index) => chipItem(false,
-                              timeoftheday[index].name ?? "Not mentioned")));
-                },
+              // BlocBuilder<PrecriptionBloc, PrecriptionState>(
+              //   builder: (context, state) {
+              //     List<settings.DataObjec> timeoftheday = context
+              //         .read<PrecriptionBloc>()
+              //         .state
+              //         .prescriptionSettingsResult!
+              //         .data!
+              //         .timeoftheday!;
+              //     return Wrap(
+              //         children: List.generate(
+              //             timeoftheday.length,
+              //             (index) => InkWell(
+
+              //               child: chipItem(false,
+              //                   timeoftheday[index].name ?? "Not mentioned"),
+              //             )));
+              //   },
+              // ),
+
+              Wrap(
+                children: List.generate(
+                  timeOfTheDay.length,
+                  (index) => InkWell(
+                    onTap: () {
+                      setState(() {
+                        timeOfTheDay[index].value = !timeOfTheDay[index].value!;
+                      });
+                    },
+                    child: chipItem(timeOfTheDay[index].value!,
+                        timeOfTheDay[index].name ?? "Not mentioned"),
+                  ),
+                ),
               ),
+
               const SizedBox(height: 20),
               Text("To be Taken",
                   style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: 10),
-              BlocBuilder<PrecriptionBloc, PrecriptionState>(
-                builder: (context, state) {
-                  List<settings.Timeoftheday> tobetaken = context
-                      .read<PrecriptionBloc>()
-                      .state
-                      .prescriptionSettingsResult!
-                      .data!
-                      .tobetaken!;
-                  return Wrap(
-                      children: List.generate(
-                          tobetaken.length,
-                          (index) => chipItem(false,
-                              tobetaken[index].name ?? "Not mentioned")));
-                },
+              // BlocBuilder<PrecriptionBloc, PrecriptionState>(
+              //   builder: (context, state) {
+              //     List<settings.DataObjec> tobetaken = context
+              //         .read<PrecriptionBloc>()
+              //         .state
+              //         .prescriptionSettingsResult!
+              //         .data!
+              //         .tobetaken!;
+              //     return Wrap(
+              //         children: List.generate(
+              //             tobetaken.length,
+              //             (index) => InkWell(
+              //                   child: chipItem(false,
+              //                       tobetaken[index].name ?? "Not mentioned"),
+              //                 )));
+              //   },
+              // ),
+              Wrap(
+                children: List.generate(
+                  toBeTaken.length,
+                  (index) => InkWell(
+                    onTap: () {
+                      setState(() {
+                        toBeTaken[index].value = !toBeTaken[index].value!;
+                      });
+                    },
+                    child: chipItem(toBeTaken[index].value!,
+                        toBeTaken[index].name ?? "Not mentioned"),
+                  ),
+                ),
               ),
               const SizedBox(height: 20),
               Text("Remark", style: Theme.of(context).textTheme.titleLarge),
@@ -349,17 +395,56 @@ class _AddOrEditPrescriptionWidgetState
                             onPressed: isButtonDisabled
                                 ? null
                                 : () {
+                             
+
                                     if (widget.isEdit) {
                                       context.read<PrecriptionBloc>().add(
                                             PrecriptionEvent.updatePrescription(
-                                                prescriptionElement:
-                                                    list.PrescriptionElement()),
+                                              prescriptionElement:
+                                                  list.PrescriptionElement(
+                                                appointmentId:
+                                                    widget
+                                                    .prescriptionElement!.appointmentId,
+                                                doctorId:widget
+                                                    .prescriptionElement!.doctorId,
+                                                pno: widget
+                                                    .prescriptionElement!.pno!,
+                                                duration:
+                                                    daysController.value.text,
+                                                name: nameController.value.text,
+                                                patientId:widget
+                                                    .prescriptionElement!.patientId,
+                                                remark: remark.value.text,
+                                                timeoftheday: timeOfTheDay,
+                                                tobetaken: toBeTaken,
+                                                type: selectedType,
+                                              ),
+                                            ),
                                           );
                                     } else {
+                                             final patientID =
+                                        widget.checkupDetalis['patientID']!;
+                                    final doctorID =
+                                        widget.checkupDetalis['doctorID']!;
+                                    final appointmentID =
+                                        widget.checkupDetalis['appointmentID']!;
                                       context.read<PrecriptionBloc>().add(
                                             PrecriptionEvent.createPrescription(
-                                                prescriptionElement:
-                                                    list.PrescriptionElement()),
+                                              prescriptionElement:
+                                                  list.PrescriptionElement(
+                                                appointmentId:
+                                                    int.parse(appointmentID),
+                                                doctorId: int.parse(doctorID),
+                                                duration:
+                                                    daysController.value.text,
+                                                name: nameController.value.text,
+                                                patientId: int.parse(patientID),
+                                                remark: remark.value.text,
+                                                timeoftheday: timeOfTheDay,
+                                                tobetaken: toBeTaken,
+                                                type: selectedType,
+                                              ),
+                                            ),
                                           );
                                     }
                                   },
