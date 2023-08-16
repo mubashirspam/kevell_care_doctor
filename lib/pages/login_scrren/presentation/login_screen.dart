@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:kevell_care_dr/configure/assets_manage/images.dart';
 import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
-
+import 'package:kevell_care_dr/pages/signup_screen/presentation/lsignup_screen.dart';
 import '../../../features/login/presentation/login.dart';
-import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatelessWidget {
+  static const routeName = '/login-screen';
   const LoginScreen({super.key});
 
   @override
@@ -14,40 +15,41 @@ class LoginScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: SafeArea(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Row(
+              Row(
                 children: [
-                  Text(
-                    "Login ",
-                    style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  const Image(
+                    height: 45,
+                    width: 45,
+                    image: AssetImage(AppImg.logo),
                   ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text("Login ",
+                      style: Theme.of(context).textTheme.headlineLarge),
                 ],
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 35),
               const LoginWidget(),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, top: 20),
-                child: GestureDetector(
-                  onTap: () => context.go('/signup'),
-                  child: RichText(
-                    text: TextSpan(
-                      style: const TextStyle(color: Colors.black, fontSize: 16),
-                      text: "Don’t have an account yet? ",
-                      children: [
-                        TextSpan(
-                          text: "Sign up.",
-                          style: TextStyle(
-                              color: context.theme.primary,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
+              const SizedBox(height: 20),
+              GestureDetector(
+                onTap: () =>
+                    Navigator.of(context).pushNamed(SignupScreen.routeName),
+                child: RichText(
+                  text: TextSpan(
+                    style: const TextStyle(color: Colors.black, fontSize: 16),
+                    text: "Don’t have an account yet? ",
+                    children: [
+                      TextSpan(
+                        text: "Sign up.",
+                        style: TextStyle(
+                            color: context.theme.primary,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
                   ),
                 ),
               )
@@ -58,3 +60,7 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
+
+
+
+

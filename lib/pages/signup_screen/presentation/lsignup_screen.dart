@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:kevell_care_dr/core/them/custom_theme_extension.dart';
+import 'package:kevell_care_dr/pages/login_scrren/presentation/login_screen.dart';
 
+import '../../../configure/assets_manage/images.dart';
 import '../../../features/signup/presentation/signup_widget.dart';
 
-
-
 class SignupScreen extends StatelessWidget {
+    static const routeName = '/signup-screen';
   const SignupScreen({super.key});
 
   @override
@@ -16,27 +16,31 @@ class SignupScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: SafeArea(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Row(
+              Row(
                 children: [
-                  Text(
-                    "Signup ",
-                    style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  const Image(
+                    height: 45,
+                    width: 45,
+                    image: AssetImage(AppImg.logo),
                   ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text("Signup ",
+                      style: Theme.of(context).textTheme.headlineLarge),
                 ],
               ),
-              const SizedBox(height: 30,),
+              const SizedBox(
+                height: 20,
+              ),
               const SignUpWidget(),
               Padding(
-                padding: const EdgeInsets.only(left: 20, top: 20),
+                padding: const EdgeInsets.only(top: 20),
                 child: GestureDetector(
-                  onTap: () => context.go('/'),
+                  onTap: () => Navigator.of(context).pushNamedAndRemoveUntil(LoginScreen.routeName , (route) => false),
                   child: RichText(
                     text: TextSpan(
                       style: const TextStyle(color: Colors.black, fontSize: 16),
