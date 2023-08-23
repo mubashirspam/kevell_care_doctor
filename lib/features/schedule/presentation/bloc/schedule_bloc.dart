@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -224,8 +224,8 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
     Duration totalDuration = endTime.difference(startTime);
     int totalMinutes = totalDuration.inMinutes;
     int timeForEachPatient = totalMinutes ~/ totalPatients;
-    String formattedTime =
-        '${timeForEachPatient ~/ 60}:${timeForEachPatient % 60}';
+    // String formattedTime =
+    //     '${timeForEachPatient ~/ 60}:${timeForEachPatient % 60}';
 
     return timeForEachPatient;
   }
