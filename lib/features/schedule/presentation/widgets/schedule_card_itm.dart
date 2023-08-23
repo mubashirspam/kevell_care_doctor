@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:dr_kevell/features/schedule/presentation/edit_schedule.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 
 import '../../../../configure/assets_manage/icons.dart';
+import '../../../../core/helper/alert.dart';
 import '../../../../core/helper/date.dart';
 import '../../data/models/schedule_model.dart';
 import '../bloc/schedule_bloc.dart';
@@ -14,12 +16,15 @@ import '../bloc/schedule_bloc.dart';
 class ScheduleCard extends StatelessWidget {
   final Schedule schedule;
 
+  final bool isDeleteLoading;
+
   final bool isTodays;
 
   const ScheduleCard({
     super.key,
     required this.schedule,
     required this.isTodays,
+    required this.isDeleteLoading,
   });
 
   @override
@@ -103,42 +108,65 @@ class ScheduleCard extends StatelessWidget {
             ),
             isTodays
                 ? const SizedBox()
-                : InkWell(onTap: () {}, child: SvgPicture.asset(AppIcons.edit)),
-            BlocConsumer<ScheduleBloc, ScheduleState>(
-              listener: (context, stated) async {
-                if (stated.isDeleted) {
-                  log("Deleted succsessfully");
-
-                  context.read<ScheduleBloc>().add(
-                        const ScheduleEvent.getSchedule(),
-                      );
-                }
-              },
-              builder: (context, state) {
-                return Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: state.isDeleteLoading
-                      ? SizedBox(
-                          height: 15,
-                          width: 15,
-                          child: CupertinoActivityIndicator(
-                            color: context.theme.primary,
-                          ),
-                        )
-                      : InkWell(
-                          onTap: () {
-                            context.read<ScheduleBloc>().add(
-                                  ScheduleEvent.deleteSchedule(
-                                    id: schedule.id.toString(),
-                                  ),
-                                );
-                          },
-                          child: SvgPicture.asset(
-                            AppIcons.delete,
-                          ),
+                : InkWell(
+                    onTap: () {
+                      showModalBottomSheet(
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                        isScrollControlled: true,
+                        context: context,
+                        builder: (context) => EditScheduleWidget(
+                          schedule: schedule,
                         ),
-                );
-              },
+                      );
+                    },
+                    child: SvgPicture.asset(AppIcons.edit)),
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: isDeleteLoading
+                  ? SizedBox(
+                      height: 15,
+                      width: 15,
+                      child: CupertinoActivityIndicator(
+                        color: context.theme.primary,
+                      ),
+                    )
+                  : InkWell(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return BlocBuilder<ScheduleBloc, ScheduleState>(
+                              builder: (context, state) {
+                                log(state.isDeleted.toString());
+                                return MyCustomAlertDialog(
+                                  successMessage: "Successfully deleted your schedule.",
+                                  questionMesage: 'Are you sure you want to delete the schedule?',
+                                  okPressed: () {
+                                    context.read<ScheduleBloc>().add(
+                                          const ScheduleEvent.getSchedule(),
+                                        );
+                                    Navigator.of(context).pop();
+                                  },
+                                  onPress: () {
+                                    context.read<ScheduleBloc>().add(
+                                          ScheduleEvent.deleteSchedule(
+                                            id: schedule.id.toString(),
+                                          ),
+                                        );
+                                  },
+                                  isLoading: state.isDeleteLoading,
+                                  isCompleted: state.isDeleted,
+                                );
+                              },
+                            );
+                          },
+                        );
+                      },
+                      child: SvgPicture.asset(
+                        AppIcons.delete,
+                      ),
+                    ),
             ),
           ],
         ),

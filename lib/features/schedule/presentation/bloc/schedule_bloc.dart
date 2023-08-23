@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -6,10 +8,13 @@ import 'package:injectable/injectable.dart';
 import '../../data/models/create_schedule_model.dart';
 import '../../data/models/delete_schedule_model.dart';
 import '../../data/models/schedule_model.dart';
+import '../../data/models/update_schedul_model.dart';
 import '../../domain/entities/create_schedule.dart';
+import '../../domain/entities/update_schedule.dart';
 import '../../domain/repositories/delete_schdule_repository.dart';
 import '../../domain/repositories/get_schedule_repository.dart';
 import '../../domain/repositories/create_schedule_repository.dart';
+import '../../domain/repositories/update_schedule_repository.dart';
 
 part 'schedule_event.dart';
 part 'schedule_state.dart';
@@ -20,19 +25,20 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
   final GetScheduleRepository getScheduleRepository;
   final CreateScheduleRepository createScheduleRepository;
   final DeleteScheduleRepository deleteScheduleRepository;
+  final UpdateScheduleRepository updatedScheduleRepository;
 
   ScheduleBloc(
     this.getScheduleRepository,
     this.createScheduleRepository,
     this.deleteScheduleRepository,
+    this.updatedScheduleRepository,
   ) : super(ScheduleState.initial()) {
     on<_GetSchedule>((event, emit) async {
-      // if (state.hasData) {
-      //   return;
-      // }
       emit(
         state.copyWith(
           isLoading: true,
+          isDeleted: false,
+          isCreated: false,
           isError: false,
           hasData: false,
         ),
@@ -44,7 +50,6 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
         (failure) => state.copyWith(
           isLoading: false,
           isError: true,
-            
         ),
         (success) => state.copyWith(
           isError: false,
@@ -73,6 +78,7 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
       final result = response.fold(
         (failure) => state.copyWith(
           isCreateLoading: false,
+          isCreated: false,
           hasData: false,
           isError: true,
         ),
@@ -86,6 +92,39 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
       );
       emit(result);
     });
+
+    on<_UpdateSchedule>((event, emit) async {
+      emit(
+        state.copyWith(
+          isUpdateLoading: true,
+          hasData: false,
+          createResponse: null,
+          isUpdated: false,
+          isError: false,
+        ),
+      );
+
+      final response = await updatedScheduleRepository.updateSchedule(
+          schedulePayload: event.schedulePayload);
+
+      final result = response.fold(
+        (failure) => state.copyWith(
+          isUpdateLoading: false,
+          isUpdated: false,
+          hasData: false,
+          isError: true,
+        ),
+        (success) => state.copyWith(
+          isError: false,
+          isUpdateLoading: false,
+          isUpdated: true,
+          updateResponse: success,
+          hasData: false,
+        ),
+      );
+      emit(result);
+    });
+
     on<_DeleteSchedule>((event, emit) async {
       emit(
         state.copyWith(
@@ -99,6 +138,8 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
       final response =
           await deleteScheduleRepository.deleteSchedule(id: event.id);
 
+      log("deleted called ===============");
+
       final result = response.fold(
         (failure) => state.copyWith(
           isDeleteLoading: false,
@@ -106,12 +147,9 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
           isError: true,
         ),
         (success) => state.copyWith(
-          isError: false,
-          isDeleted: true,
           isDeleteLoading: false,
-          hasData: false,
-          // deleteResponse: success,
-          // result: state.result,
+          isDeleted: true,
+          deleteResponse: success,
         ),
       );
       emit(result);
@@ -123,12 +161,14 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
             calculateTimeForEachPatient(state.startTime, state.endTime, 1);
         emit(state.copyWith(
           numberOfPatient: 1,
+          isCreated: false,
           timeForSinglePatient: timeePatient,
         ));
       } else {
         final timeePatient = calculateTimeForEachPatient(
             state.startTime, state.endTime, state.numberOfPatient - 1);
         emit(state.copyWith(
+          isCreated: false,
           numberOfPatient: state.numberOfPatient - 1,
           timeForSinglePatient: timeePatient,
         ));
@@ -142,12 +182,17 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
 
         emit(state.copyWith(
           numberOfPatient: 10,
+          isCreated: false,
           timeForSinglePatient: timeePatient,
         ));
       } else {
         final timeePatient = calculateTimeForEachPatient(
-            state.startTime, state.endTime, state.numberOfPatient + 1);
+          state.startTime,
+          state.endTime,
+          state.numberOfPatient + 1,
+        );
         emit(state.copyWith(
+          isCreated: false,
           numberOfPatient: state.numberOfPatient + 1,
           timeForSinglePatient: timeePatient,
         ));
@@ -158,6 +203,7 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
       emit(state.copyWith(
         startDate: event.startDate,
         endDate: event.endDate,
+        isCreated: false,
       ));
     });
 
@@ -167,6 +213,7 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
       emit(state.copyWith(
         startTime: event.startTime,
         endTime: event.endTime,
+        isCreated: false,
         timeForSinglePatient: timeePatient,
       ));
     });

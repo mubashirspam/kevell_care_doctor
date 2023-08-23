@@ -12,9 +12,11 @@ class HistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<HistoryBloc>().add(HistoryEvent.gePatientHistoryList(
-          fromDate: dateFormatToYYYYMMdd(DateTime.now()),
-          toDate: dateFormatToYYYYMMdd(DateTime.now())));
+      context.read<HistoryBloc>().add(
+            HistoryEvent.gePatientHistoryList(
+                fromDate: dateFormatToYYYYMMdd(DateTime.now()),
+                toDate: dateFormatToYYYYMMdd(DateTime.now())),
+          );
     });
     return const SizedBox(
       child: SingleChildScrollView(

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dr_kevell/features/prescription/data/model/prescription_list_model.dart';
+import 'package:dr_kevell/features/widgets/buttons/text_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
@@ -12,11 +13,14 @@ import '../../../pages/initialize/initialize.dart';
 import '../../widgets/error_widget.dart';
 import '../../widgets/loading_widget.dart';
 import 'bloc/precription_bloc.dart';
-import 'widgets/edit_prescription.dart';
 import 'widgets/prescription_item_widget.dart';
 
 class Prescription extends StatelessWidget {
-  const Prescription({super.key});
+  final int appointmentID;
+  const Prescription({
+    super.key,
+    required this.appointmentID,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +39,7 @@ class Prescription extends StatelessWidget {
                     (route) => false,
                   ));
         } else if (state.isError) {
-          Toast.showToast(context: context, message: "Network Error");
+          // Toast.showToast(context: context, message: "Network Error");
         }
       },
       listenWhen: (previous, current) {
@@ -85,6 +89,7 @@ class Prescription extends StatelessWidget {
                 .prescriptions!
                 .first
                 .prescription!;
+            log(prescriptionElement.length.toString());
             return ListView.separated(
               shrinkWrap: true,
               padding: const EdgeInsets.all(20).copyWith(bottom: 0),
@@ -98,7 +103,18 @@ class Prescription extends StatelessWidget {
             );
           }
         }
-        return const Center(child: AppErrorWidget());
+        return Padding(
+          padding: const EdgeInsets.all(20),
+          child: TextButtonWidget(
+            name: "Refresh",
+            onPressed: () {
+              context.read<PrecriptionBloc>().add(
+                  PrecriptionEvent.getPrescriptionList(
+                      appointmentId: appointmentID));
+            },
+            isLoading: state.isGetLoading,
+          ),
+        );
       },
     );
   }

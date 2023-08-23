@@ -6,6 +6,9 @@ class ScheduleEvent with _$ScheduleEvent {
   const factory ScheduleEvent.createSchedule(
       {required SchedulePayload schedulePayload}) = _CreateSchedule;
 
+  const factory ScheduleEvent.updateSchedule(
+      {required UpdateSchedulePayload schedulePayload}) = _UpdateSchedule;
+
   const factory ScheduleEvent.increment() = _Increment;
   const factory ScheduleEvent.decrement() = _Decrement;
 

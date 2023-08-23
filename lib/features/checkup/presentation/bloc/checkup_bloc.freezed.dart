@@ -45,6 +45,8 @@ mixin _$CheckupEvent {
         getstethoscope,
     required TResult Function(String topic, Map<String, dynamic> payload)
         getotoscope,
+    required TResult Function(String patientId, String appoinmentId)
+        endAppoinment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -67,6 +69,7 @@ mixin _$CheckupEvent {
     TResult? Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult? Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult? Function(String patientId, String appoinmentId)? endAppoinment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -89,6 +92,7 @@ mixin _$CheckupEvent {
     TResult Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult Function(String patientId, String appoinmentId)? endAppoinment,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -109,6 +113,7 @@ mixin _$CheckupEvent {
     required TResult Function(_Getglucose value) getglucose,
     required TResult Function(_Getstethoscope value) getstethoscope,
     required TResult Function(_Getotoscope value) getotoscope,
+    required TResult Function(_EndAppoinment value) endAppoinment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -128,6 +133,7 @@ mixin _$CheckupEvent {
     TResult? Function(_Getglucose value)? getglucose,
     TResult? Function(_Getstethoscope value)? getstethoscope,
     TResult? Function(_Getotoscope value)? getotoscope,
+    TResult? Function(_EndAppoinment value)? endAppoinment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -147,6 +153,7 @@ mixin _$CheckupEvent {
     TResult Function(_Getglucose value)? getglucose,
     TResult Function(_Getstethoscope value)? getstethoscope,
     TResult Function(_Getotoscope value)? getotoscope,
+    TResult Function(_EndAppoinment value)? endAppoinment,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -278,6 +285,8 @@ class _$_UnloackKIt implements _UnloackKIt {
         getstethoscope,
     required TResult Function(String topic, Map<String, dynamic> payload)
         getotoscope,
+    required TResult Function(String patientId, String appoinmentId)
+        endAppoinment,
   }) {
     return unlockKit(payload, topic);
   }
@@ -303,6 +312,7 @@ class _$_UnloackKIt implements _UnloackKIt {
     TResult? Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult? Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult? Function(String patientId, String appoinmentId)? endAppoinment,
   }) {
     return unlockKit?.call(payload, topic);
   }
@@ -328,6 +338,7 @@ class _$_UnloackKIt implements _UnloackKIt {
     TResult Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult Function(String patientId, String appoinmentId)? endAppoinment,
     required TResult orElse(),
   }) {
     if (unlockKit != null) {
@@ -354,6 +365,7 @@ class _$_UnloackKIt implements _UnloackKIt {
     required TResult Function(_Getglucose value) getglucose,
     required TResult Function(_Getstethoscope value) getstethoscope,
     required TResult Function(_Getotoscope value) getotoscope,
+    required TResult Function(_EndAppoinment value) endAppoinment,
   }) {
     return unlockKit(this);
   }
@@ -376,6 +388,7 @@ class _$_UnloackKIt implements _UnloackKIt {
     TResult? Function(_Getglucose value)? getglucose,
     TResult? Function(_Getstethoscope value)? getstethoscope,
     TResult? Function(_Getotoscope value)? getotoscope,
+    TResult? Function(_EndAppoinment value)? endAppoinment,
   }) {
     return unlockKit?.call(this);
   }
@@ -398,6 +411,7 @@ class _$_UnloackKIt implements _UnloackKIt {
     TResult Function(_Getglucose value)? getglucose,
     TResult Function(_Getstethoscope value)? getstethoscope,
     TResult Function(_Getotoscope value)? getotoscope,
+    TResult Function(_EndAppoinment value)? endAppoinment,
     required TResult orElse(),
   }) {
     if (unlockKit != null) {
@@ -510,6 +524,8 @@ class _$_LoackKIt implements _LoackKIt {
         getstethoscope,
     required TResult Function(String topic, Map<String, dynamic> payload)
         getotoscope,
+    required TResult Function(String patientId, String appoinmentId)
+        endAppoinment,
   }) {
     return lockKit(topic);
   }
@@ -535,6 +551,7 @@ class _$_LoackKIt implements _LoackKIt {
     TResult? Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult? Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult? Function(String patientId, String appoinmentId)? endAppoinment,
   }) {
     return lockKit?.call(topic);
   }
@@ -560,6 +577,7 @@ class _$_LoackKIt implements _LoackKIt {
     TResult Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult Function(String patientId, String appoinmentId)? endAppoinment,
     required TResult orElse(),
   }) {
     if (lockKit != null) {
@@ -586,6 +604,7 @@ class _$_LoackKIt implements _LoackKIt {
     required TResult Function(_Getglucose value) getglucose,
     required TResult Function(_Getstethoscope value) getstethoscope,
     required TResult Function(_Getotoscope value) getotoscope,
+    required TResult Function(_EndAppoinment value) endAppoinment,
   }) {
     return lockKit(this);
   }
@@ -608,6 +627,7 @@ class _$_LoackKIt implements _LoackKIt {
     TResult? Function(_Getglucose value)? getglucose,
     TResult? Function(_Getstethoscope value)? getstethoscope,
     TResult? Function(_Getotoscope value)? getotoscope,
+    TResult? Function(_EndAppoinment value)? endAppoinment,
   }) {
     return lockKit?.call(this);
   }
@@ -630,6 +650,7 @@ class _$_LoackKIt implements _LoackKIt {
     TResult Function(_Getglucose value)? getglucose,
     TResult Function(_Getstethoscope value)? getstethoscope,
     TResult Function(_Getotoscope value)? getotoscope,
+    TResult Function(_EndAppoinment value)? endAppoinment,
     required TResult orElse(),
   }) {
     if (lockKit != null) {
@@ -739,6 +760,8 @@ class _$_Subscribe implements _Subscribe {
         getstethoscope,
     required TResult Function(String topic, Map<String, dynamic> payload)
         getotoscope,
+    required TResult Function(String patientId, String appoinmentId)
+        endAppoinment,
   }) {
     return subscribe(topic);
   }
@@ -764,6 +787,7 @@ class _$_Subscribe implements _Subscribe {
     TResult? Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult? Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult? Function(String patientId, String appoinmentId)? endAppoinment,
   }) {
     return subscribe?.call(topic);
   }
@@ -789,6 +813,7 @@ class _$_Subscribe implements _Subscribe {
     TResult Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult Function(String patientId, String appoinmentId)? endAppoinment,
     required TResult orElse(),
   }) {
     if (subscribe != null) {
@@ -815,6 +840,7 @@ class _$_Subscribe implements _Subscribe {
     required TResult Function(_Getglucose value) getglucose,
     required TResult Function(_Getstethoscope value) getstethoscope,
     required TResult Function(_Getotoscope value) getotoscope,
+    required TResult Function(_EndAppoinment value) endAppoinment,
   }) {
     return subscribe(this);
   }
@@ -837,6 +863,7 @@ class _$_Subscribe implements _Subscribe {
     TResult? Function(_Getglucose value)? getglucose,
     TResult? Function(_Getstethoscope value)? getstethoscope,
     TResult? Function(_Getotoscope value)? getotoscope,
+    TResult? Function(_EndAppoinment value)? endAppoinment,
   }) {
     return subscribe?.call(this);
   }
@@ -859,6 +886,7 @@ class _$_Subscribe implements _Subscribe {
     TResult Function(_Getglucose value)? getglucose,
     TResult Function(_Getstethoscope value)? getstethoscope,
     TResult Function(_Getotoscope value)? getotoscope,
+    TResult Function(_EndAppoinment value)? endAppoinment,
     required TResult orElse(),
   }) {
     if (subscribe != null) {
@@ -973,6 +1001,8 @@ class _$_Getdth implements _Getdth {
         getstethoscope,
     required TResult Function(String topic, Map<String, dynamic> payload)
         getotoscope,
+    required TResult Function(String patientId, String appoinmentId)
+        endAppoinment,
   }) {
     return getdth(payload);
   }
@@ -998,6 +1028,7 @@ class _$_Getdth implements _Getdth {
     TResult? Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult? Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult? Function(String patientId, String appoinmentId)? endAppoinment,
   }) {
     return getdth?.call(payload);
   }
@@ -1023,6 +1054,7 @@ class _$_Getdth implements _Getdth {
     TResult Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult Function(String patientId, String appoinmentId)? endAppoinment,
     required TResult orElse(),
   }) {
     if (getdth != null) {
@@ -1049,6 +1081,7 @@ class _$_Getdth implements _Getdth {
     required TResult Function(_Getglucose value) getglucose,
     required TResult Function(_Getstethoscope value) getstethoscope,
     required TResult Function(_Getotoscope value) getotoscope,
+    required TResult Function(_EndAppoinment value) endAppoinment,
   }) {
     return getdth(this);
   }
@@ -1071,6 +1104,7 @@ class _$_Getdth implements _Getdth {
     TResult? Function(_Getglucose value)? getglucose,
     TResult? Function(_Getstethoscope value)? getstethoscope,
     TResult? Function(_Getotoscope value)? getotoscope,
+    TResult? Function(_EndAppoinment value)? endAppoinment,
   }) {
     return getdth?.call(this);
   }
@@ -1093,6 +1127,7 @@ class _$_Getdth implements _Getdth {
     TResult Function(_Getglucose value)? getglucose,
     TResult Function(_Getstethoscope value)? getstethoscope,
     TResult Function(_Getotoscope value)? getotoscope,
+    TResult Function(_EndAppoinment value)? endAppoinment,
     required TResult orElse(),
   }) {
     if (getdth != null) {
@@ -1219,6 +1254,8 @@ class _$_Gettemperature implements _Gettemperature {
         getstethoscope,
     required TResult Function(String topic, Map<String, dynamic> payload)
         getotoscope,
+    required TResult Function(String patientId, String appoinmentId)
+        endAppoinment,
   }) {
     return gettemperature(topic, payload);
   }
@@ -1244,6 +1281,7 @@ class _$_Gettemperature implements _Gettemperature {
     TResult? Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult? Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult? Function(String patientId, String appoinmentId)? endAppoinment,
   }) {
     return gettemperature?.call(topic, payload);
   }
@@ -1269,6 +1307,7 @@ class _$_Gettemperature implements _Gettemperature {
     TResult Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult Function(String patientId, String appoinmentId)? endAppoinment,
     required TResult orElse(),
   }) {
     if (gettemperature != null) {
@@ -1295,6 +1334,7 @@ class _$_Gettemperature implements _Gettemperature {
     required TResult Function(_Getglucose value) getglucose,
     required TResult Function(_Getstethoscope value) getstethoscope,
     required TResult Function(_Getotoscope value) getotoscope,
+    required TResult Function(_EndAppoinment value) endAppoinment,
   }) {
     return gettemperature(this);
   }
@@ -1317,6 +1357,7 @@ class _$_Gettemperature implements _Gettemperature {
     TResult? Function(_Getglucose value)? getglucose,
     TResult? Function(_Getstethoscope value)? getstethoscope,
     TResult? Function(_Getotoscope value)? getotoscope,
+    TResult? Function(_EndAppoinment value)? endAppoinment,
   }) {
     return gettemperature?.call(this);
   }
@@ -1339,6 +1380,7 @@ class _$_Gettemperature implements _Gettemperature {
     TResult Function(_Getglucose value)? getglucose,
     TResult Function(_Getstethoscope value)? getstethoscope,
     TResult Function(_Getotoscope value)? getotoscope,
+    TResult Function(_EndAppoinment value)? endAppoinment,
     required TResult orElse(),
   }) {
     if (gettemperature != null) {
@@ -1466,6 +1508,8 @@ class _$_Getspo2 implements _Getspo2 {
         getstethoscope,
     required TResult Function(String topic, Map<String, dynamic> payload)
         getotoscope,
+    required TResult Function(String patientId, String appoinmentId)
+        endAppoinment,
   }) {
     return getspo2(topic, payload);
   }
@@ -1491,6 +1535,7 @@ class _$_Getspo2 implements _Getspo2 {
     TResult? Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult? Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult? Function(String patientId, String appoinmentId)? endAppoinment,
   }) {
     return getspo2?.call(topic, payload);
   }
@@ -1516,6 +1561,7 @@ class _$_Getspo2 implements _Getspo2 {
     TResult Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult Function(String patientId, String appoinmentId)? endAppoinment,
     required TResult orElse(),
   }) {
     if (getspo2 != null) {
@@ -1542,6 +1588,7 @@ class _$_Getspo2 implements _Getspo2 {
     required TResult Function(_Getglucose value) getglucose,
     required TResult Function(_Getstethoscope value) getstethoscope,
     required TResult Function(_Getotoscope value) getotoscope,
+    required TResult Function(_EndAppoinment value) endAppoinment,
   }) {
     return getspo2(this);
   }
@@ -1564,6 +1611,7 @@ class _$_Getspo2 implements _Getspo2 {
     TResult? Function(_Getglucose value)? getglucose,
     TResult? Function(_Getstethoscope value)? getstethoscope,
     TResult? Function(_Getotoscope value)? getotoscope,
+    TResult? Function(_EndAppoinment value)? endAppoinment,
   }) {
     return getspo2?.call(this);
   }
@@ -1586,6 +1634,7 @@ class _$_Getspo2 implements _Getspo2 {
     TResult Function(_Getglucose value)? getglucose,
     TResult Function(_Getstethoscope value)? getstethoscope,
     TResult Function(_Getotoscope value)? getotoscope,
+    TResult Function(_EndAppoinment value)? endAppoinment,
     required TResult orElse(),
   }) {
     if (getspo2 != null) {
@@ -1714,6 +1763,8 @@ class _$_Getposition implements _Getposition {
         getstethoscope,
     required TResult Function(String topic, Map<String, dynamic> payload)
         getotoscope,
+    required TResult Function(String patientId, String appoinmentId)
+        endAppoinment,
   }) {
     return getposition(topic, payload);
   }
@@ -1739,6 +1790,7 @@ class _$_Getposition implements _Getposition {
     TResult? Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult? Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult? Function(String patientId, String appoinmentId)? endAppoinment,
   }) {
     return getposition?.call(topic, payload);
   }
@@ -1764,6 +1816,7 @@ class _$_Getposition implements _Getposition {
     TResult Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult Function(String patientId, String appoinmentId)? endAppoinment,
     required TResult orElse(),
   }) {
     if (getposition != null) {
@@ -1790,6 +1843,7 @@ class _$_Getposition implements _Getposition {
     required TResult Function(_Getglucose value) getglucose,
     required TResult Function(_Getstethoscope value) getstethoscope,
     required TResult Function(_Getotoscope value) getotoscope,
+    required TResult Function(_EndAppoinment value) endAppoinment,
   }) {
     return getposition(this);
   }
@@ -1812,6 +1866,7 @@ class _$_Getposition implements _Getposition {
     TResult? Function(_Getglucose value)? getglucose,
     TResult? Function(_Getstethoscope value)? getstethoscope,
     TResult? Function(_Getotoscope value)? getotoscope,
+    TResult? Function(_EndAppoinment value)? endAppoinment,
   }) {
     return getposition?.call(this);
   }
@@ -1834,6 +1889,7 @@ class _$_Getposition implements _Getposition {
     TResult Function(_Getglucose value)? getglucose,
     TResult Function(_Getstethoscope value)? getstethoscope,
     TResult Function(_Getotoscope value)? getotoscope,
+    TResult Function(_EndAppoinment value)? endAppoinment,
     required TResult orElse(),
   }) {
     if (getposition != null) {
@@ -1962,6 +2018,8 @@ class _$_GetbloodPresure implements _GetbloodPresure {
         getstethoscope,
     required TResult Function(String topic, Map<String, dynamic> payload)
         getotoscope,
+    required TResult Function(String patientId, String appoinmentId)
+        endAppoinment,
   }) {
     return getbloodPresure(topic, payload);
   }
@@ -1987,6 +2045,7 @@ class _$_GetbloodPresure implements _GetbloodPresure {
     TResult? Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult? Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult? Function(String patientId, String appoinmentId)? endAppoinment,
   }) {
     return getbloodPresure?.call(topic, payload);
   }
@@ -2012,6 +2071,7 @@ class _$_GetbloodPresure implements _GetbloodPresure {
     TResult Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult Function(String patientId, String appoinmentId)? endAppoinment,
     required TResult orElse(),
   }) {
     if (getbloodPresure != null) {
@@ -2038,6 +2098,7 @@ class _$_GetbloodPresure implements _GetbloodPresure {
     required TResult Function(_Getglucose value) getglucose,
     required TResult Function(_Getstethoscope value) getstethoscope,
     required TResult Function(_Getotoscope value) getotoscope,
+    required TResult Function(_EndAppoinment value) endAppoinment,
   }) {
     return getbloodPresure(this);
   }
@@ -2060,6 +2121,7 @@ class _$_GetbloodPresure implements _GetbloodPresure {
     TResult? Function(_Getglucose value)? getglucose,
     TResult? Function(_Getstethoscope value)? getstethoscope,
     TResult? Function(_Getotoscope value)? getotoscope,
+    TResult? Function(_EndAppoinment value)? endAppoinment,
   }) {
     return getbloodPresure?.call(this);
   }
@@ -2082,6 +2144,7 @@ class _$_GetbloodPresure implements _GetbloodPresure {
     TResult Function(_Getglucose value)? getglucose,
     TResult Function(_Getstethoscope value)? getstethoscope,
     TResult Function(_Getotoscope value)? getotoscope,
+    TResult Function(_EndAppoinment value)? endAppoinment,
     required TResult orElse(),
   }) {
     if (getbloodPresure != null) {
@@ -2208,6 +2271,8 @@ class _$_Getecg implements _Getecg {
         getstethoscope,
     required TResult Function(String topic, Map<String, dynamic> payload)
         getotoscope,
+    required TResult Function(String patientId, String appoinmentId)
+        endAppoinment,
   }) {
     return getecg(topic, payload);
   }
@@ -2233,6 +2298,7 @@ class _$_Getecg implements _Getecg {
     TResult? Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult? Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult? Function(String patientId, String appoinmentId)? endAppoinment,
   }) {
     return getecg?.call(topic, payload);
   }
@@ -2258,6 +2324,7 @@ class _$_Getecg implements _Getecg {
     TResult Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult Function(String patientId, String appoinmentId)? endAppoinment,
     required TResult orElse(),
   }) {
     if (getecg != null) {
@@ -2284,6 +2351,7 @@ class _$_Getecg implements _Getecg {
     required TResult Function(_Getglucose value) getglucose,
     required TResult Function(_Getstethoscope value) getstethoscope,
     required TResult Function(_Getotoscope value) getotoscope,
+    required TResult Function(_EndAppoinment value) endAppoinment,
   }) {
     return getecg(this);
   }
@@ -2306,6 +2374,7 @@ class _$_Getecg implements _Getecg {
     TResult? Function(_Getglucose value)? getglucose,
     TResult? Function(_Getstethoscope value)? getstethoscope,
     TResult? Function(_Getotoscope value)? getotoscope,
+    TResult? Function(_EndAppoinment value)? endAppoinment,
   }) {
     return getecg?.call(this);
   }
@@ -2328,6 +2397,7 @@ class _$_Getecg implements _Getecg {
     TResult Function(_Getglucose value)? getglucose,
     TResult Function(_Getstethoscope value)? getstethoscope,
     TResult Function(_Getotoscope value)? getotoscope,
+    TResult Function(_EndAppoinment value)? endAppoinment,
     required TResult orElse(),
   }) {
     if (getecg != null) {
@@ -2454,6 +2524,8 @@ class _$_Getemg implements _Getemg {
         getstethoscope,
     required TResult Function(String topic, Map<String, dynamic> payload)
         getotoscope,
+    required TResult Function(String patientId, String appoinmentId)
+        endAppoinment,
   }) {
     return getemg(topic, payload);
   }
@@ -2479,6 +2551,7 @@ class _$_Getemg implements _Getemg {
     TResult? Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult? Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult? Function(String patientId, String appoinmentId)? endAppoinment,
   }) {
     return getemg?.call(topic, payload);
   }
@@ -2504,6 +2577,7 @@ class _$_Getemg implements _Getemg {
     TResult Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult Function(String patientId, String appoinmentId)? endAppoinment,
     required TResult orElse(),
   }) {
     if (getemg != null) {
@@ -2530,6 +2604,7 @@ class _$_Getemg implements _Getemg {
     required TResult Function(_Getglucose value) getglucose,
     required TResult Function(_Getstethoscope value) getstethoscope,
     required TResult Function(_Getotoscope value) getotoscope,
+    required TResult Function(_EndAppoinment value) endAppoinment,
   }) {
     return getemg(this);
   }
@@ -2552,6 +2627,7 @@ class _$_Getemg implements _Getemg {
     TResult? Function(_Getglucose value)? getglucose,
     TResult? Function(_Getstethoscope value)? getstethoscope,
     TResult? Function(_Getotoscope value)? getotoscope,
+    TResult? Function(_EndAppoinment value)? endAppoinment,
   }) {
     return getemg?.call(this);
   }
@@ -2574,6 +2650,7 @@ class _$_Getemg implements _Getemg {
     TResult Function(_Getglucose value)? getglucose,
     TResult Function(_Getstethoscope value)? getstethoscope,
     TResult Function(_Getotoscope value)? getotoscope,
+    TResult Function(_EndAppoinment value)? endAppoinment,
     required TResult orElse(),
   }) {
     if (getemg != null) {
@@ -2700,6 +2777,8 @@ class _$_Getgsr implements _Getgsr {
         getstethoscope,
     required TResult Function(String topic, Map<String, dynamic> payload)
         getotoscope,
+    required TResult Function(String patientId, String appoinmentId)
+        endAppoinment,
   }) {
     return getgsr(topic, payload);
   }
@@ -2725,6 +2804,7 @@ class _$_Getgsr implements _Getgsr {
     TResult? Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult? Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult? Function(String patientId, String appoinmentId)? endAppoinment,
   }) {
     return getgsr?.call(topic, payload);
   }
@@ -2750,6 +2830,7 @@ class _$_Getgsr implements _Getgsr {
     TResult Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult Function(String patientId, String appoinmentId)? endAppoinment,
     required TResult orElse(),
   }) {
     if (getgsr != null) {
@@ -2776,6 +2857,7 @@ class _$_Getgsr implements _Getgsr {
     required TResult Function(_Getglucose value) getglucose,
     required TResult Function(_Getstethoscope value) getstethoscope,
     required TResult Function(_Getotoscope value) getotoscope,
+    required TResult Function(_EndAppoinment value) endAppoinment,
   }) {
     return getgsr(this);
   }
@@ -2798,6 +2880,7 @@ class _$_Getgsr implements _Getgsr {
     TResult? Function(_Getglucose value)? getglucose,
     TResult? Function(_Getstethoscope value)? getstethoscope,
     TResult? Function(_Getotoscope value)? getotoscope,
+    TResult? Function(_EndAppoinment value)? endAppoinment,
   }) {
     return getgsr?.call(this);
   }
@@ -2820,6 +2903,7 @@ class _$_Getgsr implements _Getgsr {
     TResult Function(_Getglucose value)? getglucose,
     TResult Function(_Getstethoscope value)? getstethoscope,
     TResult Function(_Getotoscope value)? getotoscope,
+    TResult Function(_EndAppoinment value)? endAppoinment,
     required TResult orElse(),
   }) {
     if (getgsr != null) {
@@ -2946,6 +3030,8 @@ class _$_Getbmi implements _Getbmi {
         getstethoscope,
     required TResult Function(String topic, Map<String, dynamic> payload)
         getotoscope,
+    required TResult Function(String patientId, String appoinmentId)
+        endAppoinment,
   }) {
     return getbmi(topic, payload);
   }
@@ -2971,6 +3057,7 @@ class _$_Getbmi implements _Getbmi {
     TResult? Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult? Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult? Function(String patientId, String appoinmentId)? endAppoinment,
   }) {
     return getbmi?.call(topic, payload);
   }
@@ -2996,6 +3083,7 @@ class _$_Getbmi implements _Getbmi {
     TResult Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult Function(String patientId, String appoinmentId)? endAppoinment,
     required TResult orElse(),
   }) {
     if (getbmi != null) {
@@ -3022,6 +3110,7 @@ class _$_Getbmi implements _Getbmi {
     required TResult Function(_Getglucose value) getglucose,
     required TResult Function(_Getstethoscope value) getstethoscope,
     required TResult Function(_Getotoscope value) getotoscope,
+    required TResult Function(_EndAppoinment value) endAppoinment,
   }) {
     return getbmi(this);
   }
@@ -3044,6 +3133,7 @@ class _$_Getbmi implements _Getbmi {
     TResult? Function(_Getglucose value)? getglucose,
     TResult? Function(_Getstethoscope value)? getstethoscope,
     TResult? Function(_Getotoscope value)? getotoscope,
+    TResult? Function(_EndAppoinment value)? endAppoinment,
   }) {
     return getbmi?.call(this);
   }
@@ -3066,6 +3156,7 @@ class _$_Getbmi implements _Getbmi {
     TResult Function(_Getglucose value)? getglucose,
     TResult Function(_Getstethoscope value)? getstethoscope,
     TResult Function(_Getotoscope value)? getotoscope,
+    TResult Function(_EndAppoinment value)? endAppoinment,
     required TResult orElse(),
   }) {
     if (getbmi != null) {
@@ -3194,6 +3285,8 @@ class _$_Getglucose implements _Getglucose {
         getstethoscope,
     required TResult Function(String topic, Map<String, dynamic> payload)
         getotoscope,
+    required TResult Function(String patientId, String appoinmentId)
+        endAppoinment,
   }) {
     return getglucose(topic, payload);
   }
@@ -3219,6 +3312,7 @@ class _$_Getglucose implements _Getglucose {
     TResult? Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult? Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult? Function(String patientId, String appoinmentId)? endAppoinment,
   }) {
     return getglucose?.call(topic, payload);
   }
@@ -3244,6 +3338,7 @@ class _$_Getglucose implements _Getglucose {
     TResult Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult Function(String patientId, String appoinmentId)? endAppoinment,
     required TResult orElse(),
   }) {
     if (getglucose != null) {
@@ -3270,6 +3365,7 @@ class _$_Getglucose implements _Getglucose {
     required TResult Function(_Getglucose value) getglucose,
     required TResult Function(_Getstethoscope value) getstethoscope,
     required TResult Function(_Getotoscope value) getotoscope,
+    required TResult Function(_EndAppoinment value) endAppoinment,
   }) {
     return getglucose(this);
   }
@@ -3292,6 +3388,7 @@ class _$_Getglucose implements _Getglucose {
     TResult? Function(_Getglucose value)? getglucose,
     TResult? Function(_Getstethoscope value)? getstethoscope,
     TResult? Function(_Getotoscope value)? getotoscope,
+    TResult? Function(_EndAppoinment value)? endAppoinment,
   }) {
     return getglucose?.call(this);
   }
@@ -3314,6 +3411,7 @@ class _$_Getglucose implements _Getglucose {
     TResult Function(_Getglucose value)? getglucose,
     TResult Function(_Getstethoscope value)? getstethoscope,
     TResult Function(_Getotoscope value)? getotoscope,
+    TResult Function(_EndAppoinment value)? endAppoinment,
     required TResult orElse(),
   }) {
     if (getglucose != null) {
@@ -3442,6 +3540,8 @@ class _$_Getstethoscope implements _Getstethoscope {
         getstethoscope,
     required TResult Function(String topic, Map<String, dynamic> payload)
         getotoscope,
+    required TResult Function(String patientId, String appoinmentId)
+        endAppoinment,
   }) {
     return getstethoscope(topic, payload);
   }
@@ -3467,6 +3567,7 @@ class _$_Getstethoscope implements _Getstethoscope {
     TResult? Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult? Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult? Function(String patientId, String appoinmentId)? endAppoinment,
   }) {
     return getstethoscope?.call(topic, payload);
   }
@@ -3492,6 +3593,7 @@ class _$_Getstethoscope implements _Getstethoscope {
     TResult Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult Function(String patientId, String appoinmentId)? endAppoinment,
     required TResult orElse(),
   }) {
     if (getstethoscope != null) {
@@ -3518,6 +3620,7 @@ class _$_Getstethoscope implements _Getstethoscope {
     required TResult Function(_Getglucose value) getglucose,
     required TResult Function(_Getstethoscope value) getstethoscope,
     required TResult Function(_Getotoscope value) getotoscope,
+    required TResult Function(_EndAppoinment value) endAppoinment,
   }) {
     return getstethoscope(this);
   }
@@ -3540,6 +3643,7 @@ class _$_Getstethoscope implements _Getstethoscope {
     TResult? Function(_Getglucose value)? getglucose,
     TResult? Function(_Getstethoscope value)? getstethoscope,
     TResult? Function(_Getotoscope value)? getotoscope,
+    TResult? Function(_EndAppoinment value)? endAppoinment,
   }) {
     return getstethoscope?.call(this);
   }
@@ -3562,6 +3666,7 @@ class _$_Getstethoscope implements _Getstethoscope {
     TResult Function(_Getglucose value)? getglucose,
     TResult Function(_Getstethoscope value)? getstethoscope,
     TResult Function(_Getotoscope value)? getotoscope,
+    TResult Function(_EndAppoinment value)? endAppoinment,
     required TResult orElse(),
   }) {
     if (getstethoscope != null) {
@@ -3690,6 +3795,8 @@ class _$_Getotoscope implements _Getotoscope {
         getstethoscope,
     required TResult Function(String topic, Map<String, dynamic> payload)
         getotoscope,
+    required TResult Function(String patientId, String appoinmentId)
+        endAppoinment,
   }) {
     return getotoscope(topic, payload);
   }
@@ -3715,6 +3822,7 @@ class _$_Getotoscope implements _Getotoscope {
     TResult? Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult? Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult? Function(String patientId, String appoinmentId)? endAppoinment,
   }) {
     return getotoscope?.call(topic, payload);
   }
@@ -3740,6 +3848,7 @@ class _$_Getotoscope implements _Getotoscope {
     TResult Function(String topic, Map<String, dynamic> payload)?
         getstethoscope,
     TResult Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult Function(String patientId, String appoinmentId)? endAppoinment,
     required TResult orElse(),
   }) {
     if (getotoscope != null) {
@@ -3766,6 +3875,7 @@ class _$_Getotoscope implements _Getotoscope {
     required TResult Function(_Getglucose value) getglucose,
     required TResult Function(_Getstethoscope value) getstethoscope,
     required TResult Function(_Getotoscope value) getotoscope,
+    required TResult Function(_EndAppoinment value) endAppoinment,
   }) {
     return getotoscope(this);
   }
@@ -3788,6 +3898,7 @@ class _$_Getotoscope implements _Getotoscope {
     TResult? Function(_Getglucose value)? getglucose,
     TResult? Function(_Getstethoscope value)? getstethoscope,
     TResult? Function(_Getotoscope value)? getotoscope,
+    TResult? Function(_EndAppoinment value)? endAppoinment,
   }) {
     return getotoscope?.call(this);
   }
@@ -3810,6 +3921,7 @@ class _$_Getotoscope implements _Getotoscope {
     TResult Function(_Getglucose value)? getglucose,
     TResult Function(_Getstethoscope value)? getstethoscope,
     TResult Function(_Getotoscope value)? getotoscope,
+    TResult Function(_EndAppoinment value)? endAppoinment,
     required TResult orElse(),
   }) {
     if (getotoscope != null) {
@@ -3828,6 +3940,255 @@ abstract class _Getotoscope implements CheckupEvent {
   Map<String, dynamic> get payload;
   @JsonKey(ignore: true)
   _$$_GetotoscopeCopyWith<_$_Getotoscope> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_EndAppoinmentCopyWith<$Res> {
+  factory _$$_EndAppoinmentCopyWith(
+          _$_EndAppoinment value, $Res Function(_$_EndAppoinment) then) =
+      __$$_EndAppoinmentCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String patientId, String appoinmentId});
+}
+
+/// @nodoc
+class __$$_EndAppoinmentCopyWithImpl<$Res>
+    extends _$CheckupEventCopyWithImpl<$Res, _$_EndAppoinment>
+    implements _$$_EndAppoinmentCopyWith<$Res> {
+  __$$_EndAppoinmentCopyWithImpl(
+      _$_EndAppoinment _value, $Res Function(_$_EndAppoinment) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? patientId = null,
+    Object? appoinmentId = null,
+  }) {
+    return _then(_$_EndAppoinment(
+      patientId: null == patientId
+          ? _value.patientId
+          : patientId // ignore: cast_nullable_to_non_nullable
+              as String,
+      appoinmentId: null == appoinmentId
+          ? _value.appoinmentId
+          : appoinmentId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_EndAppoinment implements _EndAppoinment {
+  const _$_EndAppoinment({required this.patientId, required this.appoinmentId});
+
+  @override
+  final String patientId;
+  @override
+  final String appoinmentId;
+
+  @override
+  String toString() {
+    return 'CheckupEvent.endAppoinment(patientId: $patientId, appoinmentId: $appoinmentId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_EndAppoinment &&
+            (identical(other.patientId, patientId) ||
+                other.patientId == patientId) &&
+            (identical(other.appoinmentId, appoinmentId) ||
+                other.appoinmentId == appoinmentId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, patientId, appoinmentId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_EndAppoinmentCopyWith<_$_EndAppoinment> get copyWith =>
+      __$$_EndAppoinmentCopyWithImpl<_$_EndAppoinment>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Map<String, dynamic> payload, String topic)
+        unlockKit,
+    required TResult Function(String topic) lockKit,
+    required TResult Function(String topic) subscribe,
+    required TResult Function(Map<String, dynamic> payload) getdth,
+    required TResult Function(String topic, Map<String, dynamic> payload)
+        gettemperature,
+    required TResult Function(String topic, Map<String, dynamic> payload)
+        getspo2,
+    required TResult Function(String topic, Map<String, dynamic> payload)
+        getposition,
+    required TResult Function(String topic, Map<String, dynamic> payload)
+        getbloodPresure,
+    required TResult Function(String topic, Map<String, dynamic> payload)
+        getecg,
+    required TResult Function(String topic, Map<String, dynamic> payload)
+        getemg,
+    required TResult Function(String topic, Map<String, dynamic> payload)
+        getgsr,
+    required TResult Function(String topic, Map<String, dynamic> payload)
+        getbmi,
+    required TResult Function(String topic, Map<String, dynamic> payload)
+        getglucose,
+    required TResult Function(String topic, Map<String, dynamic> payload)
+        getstethoscope,
+    required TResult Function(String topic, Map<String, dynamic> payload)
+        getotoscope,
+    required TResult Function(String patientId, String appoinmentId)
+        endAppoinment,
+  }) {
+    return endAppoinment(patientId, appoinmentId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Map<String, dynamic> payload, String topic)? unlockKit,
+    TResult? Function(String topic)? lockKit,
+    TResult? Function(String topic)? subscribe,
+    TResult? Function(Map<String, dynamic> payload)? getdth,
+    TResult? Function(String topic, Map<String, dynamic> payload)?
+        gettemperature,
+    TResult? Function(String topic, Map<String, dynamic> payload)? getspo2,
+    TResult? Function(String topic, Map<String, dynamic> payload)? getposition,
+    TResult? Function(String topic, Map<String, dynamic> payload)?
+        getbloodPresure,
+    TResult? Function(String topic, Map<String, dynamic> payload)? getecg,
+    TResult? Function(String topic, Map<String, dynamic> payload)? getemg,
+    TResult? Function(String topic, Map<String, dynamic> payload)? getgsr,
+    TResult? Function(String topic, Map<String, dynamic> payload)? getbmi,
+    TResult? Function(String topic, Map<String, dynamic> payload)? getglucose,
+    TResult? Function(String topic, Map<String, dynamic> payload)?
+        getstethoscope,
+    TResult? Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult? Function(String patientId, String appoinmentId)? endAppoinment,
+  }) {
+    return endAppoinment?.call(patientId, appoinmentId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Map<String, dynamic> payload, String topic)? unlockKit,
+    TResult Function(String topic)? lockKit,
+    TResult Function(String topic)? subscribe,
+    TResult Function(Map<String, dynamic> payload)? getdth,
+    TResult Function(String topic, Map<String, dynamic> payload)?
+        gettemperature,
+    TResult Function(String topic, Map<String, dynamic> payload)? getspo2,
+    TResult Function(String topic, Map<String, dynamic> payload)? getposition,
+    TResult Function(String topic, Map<String, dynamic> payload)?
+        getbloodPresure,
+    TResult Function(String topic, Map<String, dynamic> payload)? getecg,
+    TResult Function(String topic, Map<String, dynamic> payload)? getemg,
+    TResult Function(String topic, Map<String, dynamic> payload)? getgsr,
+    TResult Function(String topic, Map<String, dynamic> payload)? getbmi,
+    TResult Function(String topic, Map<String, dynamic> payload)? getglucose,
+    TResult Function(String topic, Map<String, dynamic> payload)?
+        getstethoscope,
+    TResult Function(String topic, Map<String, dynamic> payload)? getotoscope,
+    TResult Function(String patientId, String appoinmentId)? endAppoinment,
+    required TResult orElse(),
+  }) {
+    if (endAppoinment != null) {
+      return endAppoinment(patientId, appoinmentId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UnloackKIt value) unlockKit,
+    required TResult Function(_LoackKIt value) lockKit,
+    required TResult Function(_Subscribe value) subscribe,
+    required TResult Function(_Getdth value) getdth,
+    required TResult Function(_Gettemperature value) gettemperature,
+    required TResult Function(_Getspo2 value) getspo2,
+    required TResult Function(_Getposition value) getposition,
+    required TResult Function(_GetbloodPresure value) getbloodPresure,
+    required TResult Function(_Getecg value) getecg,
+    required TResult Function(_Getemg value) getemg,
+    required TResult Function(_Getgsr value) getgsr,
+    required TResult Function(_Getbmi value) getbmi,
+    required TResult Function(_Getglucose value) getglucose,
+    required TResult Function(_Getstethoscope value) getstethoscope,
+    required TResult Function(_Getotoscope value) getotoscope,
+    required TResult Function(_EndAppoinment value) endAppoinment,
+  }) {
+    return endAppoinment(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UnloackKIt value)? unlockKit,
+    TResult? Function(_LoackKIt value)? lockKit,
+    TResult? Function(_Subscribe value)? subscribe,
+    TResult? Function(_Getdth value)? getdth,
+    TResult? Function(_Gettemperature value)? gettemperature,
+    TResult? Function(_Getspo2 value)? getspo2,
+    TResult? Function(_Getposition value)? getposition,
+    TResult? Function(_GetbloodPresure value)? getbloodPresure,
+    TResult? Function(_Getecg value)? getecg,
+    TResult? Function(_Getemg value)? getemg,
+    TResult? Function(_Getgsr value)? getgsr,
+    TResult? Function(_Getbmi value)? getbmi,
+    TResult? Function(_Getglucose value)? getglucose,
+    TResult? Function(_Getstethoscope value)? getstethoscope,
+    TResult? Function(_Getotoscope value)? getotoscope,
+    TResult? Function(_EndAppoinment value)? endAppoinment,
+  }) {
+    return endAppoinment?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UnloackKIt value)? unlockKit,
+    TResult Function(_LoackKIt value)? lockKit,
+    TResult Function(_Subscribe value)? subscribe,
+    TResult Function(_Getdth value)? getdth,
+    TResult Function(_Gettemperature value)? gettemperature,
+    TResult Function(_Getspo2 value)? getspo2,
+    TResult Function(_Getposition value)? getposition,
+    TResult Function(_GetbloodPresure value)? getbloodPresure,
+    TResult Function(_Getecg value)? getecg,
+    TResult Function(_Getemg value)? getemg,
+    TResult Function(_Getgsr value)? getgsr,
+    TResult Function(_Getbmi value)? getbmi,
+    TResult Function(_Getglucose value)? getglucose,
+    TResult Function(_Getstethoscope value)? getstethoscope,
+    TResult Function(_Getotoscope value)? getotoscope,
+    TResult Function(_EndAppoinment value)? endAppoinment,
+    required TResult orElse(),
+  }) {
+    if (endAppoinment != null) {
+      return endAppoinment(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EndAppoinment implements CheckupEvent {
+  const factory _EndAppoinment(
+      {required final String patientId,
+      required final String appoinmentId}) = _$_EndAppoinment;
+
+  String get patientId;
+  String get appoinmentId;
+  @JsonKey(ignore: true)
+  _$$_EndAppoinmentCopyWith<_$_EndAppoinment> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -3851,6 +4212,9 @@ mixin _$CheckupState {
   bool get stethoscope => throw _privateConstructorUsedError;
   bool get otoscope => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
+  bool get hasData => throw _privateConstructorUsedError;
+  EndAppoinmentModel? get endAppoinmentResult =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CheckupStateCopyWith<CheckupState> get copyWith =>
@@ -3881,7 +4245,9 @@ abstract class $CheckupStateCopyWith<$Res> {
       bool glucose,
       bool stethoscope,
       bool otoscope,
-      String message});
+      String message,
+      bool hasData,
+      EndAppoinmentModel? endAppoinmentResult});
 }
 
 /// @nodoc
@@ -3915,6 +4281,8 @@ class _$CheckupStateCopyWithImpl<$Res, $Val extends CheckupState>
     Object? stethoscope = null,
     Object? otoscope = null,
     Object? message = null,
+    Object? hasData = null,
+    Object? endAppoinmentResult = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -3989,6 +4357,14 @@ class _$CheckupStateCopyWithImpl<$Res, $Val extends CheckupState>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
+      hasData: null == hasData
+          ? _value.hasData
+          : hasData // ignore: cast_nullable_to_non_nullable
+              as bool,
+      endAppoinmentResult: freezed == endAppoinmentResult
+          ? _value.endAppoinmentResult
+          : endAppoinmentResult // ignore: cast_nullable_to_non_nullable
+              as EndAppoinmentModel?,
     ) as $Val);
   }
 }
@@ -4019,7 +4395,9 @@ abstract class _$$_CheckupStateCopyWith<$Res>
       bool glucose,
       bool stethoscope,
       bool otoscope,
-      String message});
+      String message,
+      bool hasData,
+      EndAppoinmentModel? endAppoinmentResult});
 }
 
 /// @nodoc
@@ -4051,6 +4429,8 @@ class __$$_CheckupStateCopyWithImpl<$Res>
     Object? stethoscope = null,
     Object? otoscope = null,
     Object? message = null,
+    Object? hasData = null,
+    Object? endAppoinmentResult = freezed,
   }) {
     return _then(_$_CheckupState(
       isLoading: null == isLoading
@@ -4125,6 +4505,14 @@ class __$$_CheckupStateCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
+      hasData: null == hasData
+          ? _value.hasData
+          : hasData // ignore: cast_nullable_to_non_nullable
+              as bool,
+      endAppoinmentResult: freezed == endAppoinmentResult
+          ? _value.endAppoinmentResult
+          : endAppoinmentResult // ignore: cast_nullable_to_non_nullable
+              as EndAppoinmentModel?,
     ));
   }
 }
@@ -4150,7 +4538,9 @@ class _$_CheckupState implements _CheckupState {
       required this.glucose,
       required this.stethoscope,
       required this.otoscope,
-      required this.message});
+      required this.message,
+      required this.hasData,
+      required this.endAppoinmentResult});
 
   @override
   final bool isLoading;
@@ -4188,10 +4578,14 @@ class _$_CheckupState implements _CheckupState {
   final bool otoscope;
   @override
   final String message;
+  @override
+  final bool hasData;
+  @override
+  final EndAppoinmentModel? endAppoinmentResult;
 
   @override
   String toString() {
-    return 'CheckupState(isLoading: $isLoading, isConnected: $isConnected, isUnloacked: $isUnloacked, isSucribed: $isSucribed, error: $error, dth: $dth, temperature: $temperature, spo2: $spo2, position: $position, bloodPresure: $bloodPresure, ecg: $ecg, emg: $emg, gsr: $gsr, bmi: $bmi, glucose: $glucose, stethoscope: $stethoscope, otoscope: $otoscope, message: $message)';
+    return 'CheckupState(isLoading: $isLoading, isConnected: $isConnected, isUnloacked: $isUnloacked, isSucribed: $isSucribed, error: $error, dth: $dth, temperature: $temperature, spo2: $spo2, position: $position, bloodPresure: $bloodPresure, ecg: $ecg, emg: $emg, gsr: $gsr, bmi: $bmi, glucose: $glucose, stethoscope: $stethoscope, otoscope: $otoscope, message: $message, hasData: $hasData, endAppoinmentResult: $endAppoinmentResult)';
   }
 
   @override
@@ -4225,30 +4619,36 @@ class _$_CheckupState implements _CheckupState {
                 other.stethoscope == stethoscope) &&
             (identical(other.otoscope, otoscope) ||
                 other.otoscope == otoscope) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.hasData, hasData) || other.hasData == hasData) &&
+            (identical(other.endAppoinmentResult, endAppoinmentResult) ||
+                other.endAppoinmentResult == endAppoinmentResult));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      isLoading,
-      isConnected,
-      isUnloacked,
-      isSucribed,
-      error,
-      dth,
-      temperature,
-      spo2,
-      position,
-      bloodPresure,
-      ecg,
-      emg,
-      gsr,
-      bmi,
-      glucose,
-      stethoscope,
-      otoscope,
-      message);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        isLoading,
+        isConnected,
+        isUnloacked,
+        isSucribed,
+        error,
+        dth,
+        temperature,
+        spo2,
+        position,
+        bloodPresure,
+        ecg,
+        emg,
+        gsr,
+        bmi,
+        glucose,
+        stethoscope,
+        otoscope,
+        message,
+        hasData,
+        endAppoinmentResult
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -4259,24 +4659,27 @@ class _$_CheckupState implements _CheckupState {
 
 abstract class _CheckupState implements CheckupState {
   const factory _CheckupState(
-      {required final bool isLoading,
-      required final bool isConnected,
-      required final bool isUnloacked,
-      required final bool isSucribed,
-      required final bool error,
-      required final bool dth,
-      required final bool temperature,
-      required final bool spo2,
-      required final bool position,
-      required final bool bloodPresure,
-      required final bool ecg,
-      required final bool emg,
-      required final bool gsr,
-      required final bool bmi,
-      required final bool glucose,
-      required final bool stethoscope,
-      required final bool otoscope,
-      required final String message}) = _$_CheckupState;
+          {required final bool isLoading,
+          required final bool isConnected,
+          required final bool isUnloacked,
+          required final bool isSucribed,
+          required final bool error,
+          required final bool dth,
+          required final bool temperature,
+          required final bool spo2,
+          required final bool position,
+          required final bool bloodPresure,
+          required final bool ecg,
+          required final bool emg,
+          required final bool gsr,
+          required final bool bmi,
+          required final bool glucose,
+          required final bool stethoscope,
+          required final bool otoscope,
+          required final String message,
+          required final bool hasData,
+          required final EndAppoinmentModel? endAppoinmentResult}) =
+      _$_CheckupState;
 
   @override
   bool get isLoading;
@@ -4314,6 +4717,10 @@ abstract class _CheckupState implements CheckupState {
   bool get otoscope;
   @override
   String get message;
+  @override
+  bool get hasData;
+  @override
+  EndAppoinmentModel? get endAppoinmentResult;
   @override
   @JsonKey(ignore: true)
   _$$_CheckupStateCopyWith<_$_CheckupState> get copyWith =>

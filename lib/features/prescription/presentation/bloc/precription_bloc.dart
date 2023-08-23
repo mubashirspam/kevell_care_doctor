@@ -31,6 +31,8 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
       emit(
         state.copyWith(
           isGetLoading: true,
+          created: false,
+          updated: false,
           isError: false,
           unauthorized: false,
           hasData: false,
@@ -164,7 +166,9 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
         (success) => state.copyWith(
           isError: false,
           isUpdateLoading: false,
-          hasData: true,
+      
+           updated: true,
+          hasData: false,
           prescriptionResult: success,
         ),
       );
@@ -176,6 +180,7 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
         state.copyWith(
           isCreateLoading: true,
           isError: false,
+           created: false,
           unauthorized: false,
           hasData: false,
         ),
@@ -194,7 +199,8 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
         (success) => state.copyWith(
           isError: false,
           isCreateLoading: false,
-          hasData: true,
+          created: true,
+          hasData: false,
           prescriptionResult: success,
         ),
       );

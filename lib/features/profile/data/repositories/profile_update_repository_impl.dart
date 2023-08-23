@@ -20,31 +20,24 @@ class UpdateProfileRepoImpliment implements UpdateProfileRepository {
   // });
   @override
   Future<Either<MainFailure, ProfileModel>> updateProfile({
-    required String name,
-    required String dob,
-    required String address,
-    required String mobileNumber,
+    required Data profileData,
+  
   }) async {
     // if (await networkInfo.isConnected) {
     try {
       final token = await getTokenFromSS(secureStoreKey);
-      final id = await getTokenFromSS(drIdsecureStoreKey);
+
 
       final headers = {
         'Authorization': 'Bearer $token',
         'Content-Type': 'application/json',
       };
+      log(profileData.toJson().toString());
 
       final response = await Dio(BaseOptions()).post(
         ApiEndPoints.updateProfile,
         options: Options(headers: headers),
-        data: {
-          "id": int.parse("$id"),
-          "username": name,
-          "mobile": mobileNumber,
-          // "dob": dob,
-          "Address": address
-        },
+        data: profileData.toJson(),
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {

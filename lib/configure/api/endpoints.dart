@@ -6,7 +6,7 @@ class ApiEndPoints {
   static const String getprofile =
       "$baseUrl/doctor/api/getUserdetailsByIdAndEmail";
 
-  static const String updateProfile = "$baseUrl/doctor/api/register";
+  static const String updateProfile = "$baseUrl/doctor/api/profile";
 
   static const String homeStatus = "$baseUrl/register/api/doctorcountlist";
 
@@ -18,7 +18,6 @@ class ApiEndPoints {
 
   static const String getPrescription = "$baseUrl/users/api/medicinedata";
 
-  
   static const String createPrescription =
       "$baseUrl/users/api/saveAndupdatemedicinedata";
 
@@ -28,22 +27,22 @@ class ApiEndPoints {
   static const String getPrescriptionSettings =
       "$baseUrl/users/api/getdprescriptiontable";
 
+  static const String getSchedule = "$baseUrl/doctor/api/getdoctorschedule";
 
-
-
-  static const String getSchedule =
-      "$baseUrl/doctor/api/getdoctorschedule";
-
-
-        static const String createSchedule =
+  static const String createSchedule =
       "$baseUrl/doctor/api/createdoctorschedule";
 
+  static const String updateSchedule =
+      "$baseUrl/doctor/api/updatedoctorSchedule";
 
-              static const String deleteSchedule =
+  static const String deleteSchedule =
       "$baseUrl/doctor/api/deletedoctorschedule";
 
+  static const String patientreportgeneralinfo =
+      "$baseUrl/doctor/api/patientreportgeneralinfo";
 
+  static const String patientreport =
+      "$baseUrl/doctor/api/ViewPatientReport_new";
 
-
-     
+  static const String endAppoinment = "$baseUrl/doctor/api/Finishtheappoinment";
 }

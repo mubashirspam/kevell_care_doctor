@@ -10,7 +10,7 @@ import '../../../features/prescription/presentation/widgets/edit_prescription.da
 class PrescriptionScreen extends StatelessWidget {
   static const routeName = '/prescription-screen';
 
-  final Map<String, String> checkupDetalis;
+  final Map<String, dynamic> checkupDetalis;
   const PrescriptionScreen({
     super.key,
     required this.checkupDetalis,
@@ -21,8 +21,8 @@ class PrescriptionScreen extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final appointmentID = checkupDetalis['appointmentID']!;
       log("appointmentID == $appointmentID");
-      context.read<PrecriptionBloc>().add(PrecriptionEvent.getPrescriptionList(
-          appointmentId: int.parse(appointmentID)));
+      context.read<PrecriptionBloc>().add(
+          PrecriptionEvent.getPrescriptionList(appointmentId: appointmentID));
       context
           .read<PrecriptionBloc>()
           .add(const PrecriptionEvent.getPrescriptionSettings());
@@ -67,7 +67,15 @@ class PrescriptionScreen extends StatelessWidget {
             Icons.add,
             color: context.theme.backround,
           )),
-      body: const Prescription(),
+      body: RefreshIndicator(
+          onRefresh: () async {
+            context.read<PrecriptionBloc>().add(
+                PrecriptionEvent.getPrescriptionList(
+                    appointmentId: checkupDetalis['appointmentID']!));
+          },
+          child: Prescription(
+            appointmentID: checkupDetalis['appointmentID'],
+          )),
     );
   }
 }

@@ -15,9 +15,7 @@ class ViewMyProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<ProfileBloc>().add(const ProfileEvent.getProfile());
-    });
+  
     return BlocConsumer<ProfileBloc, ProfileState>(
       listener: (context, state) {
         if (state.unauthorized) {}
@@ -34,7 +32,7 @@ class ViewMyProfile extends StatelessWidget {
             dob: state.result!.data!.dob.toString(),
             email: state.result!.data!.email ?? "",
             imgUrl: state.result!.data!.address ?? "",
-            mobile: state.result!.data!.mobile ?? "No mobile",
+            mobile: state.result!.data!.mobileNo ?? "No mobile",
             name: state.result!.data!.name ?? "",
           );
         } else if (state.isError) {

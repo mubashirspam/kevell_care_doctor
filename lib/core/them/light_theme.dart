@@ -91,7 +91,7 @@ ThemeData lightTheme() {
         if (states.contains(MaterialState.disabled)) {
           return MainConfigColorsLightThem.textGrey.withOpacity(0.3);
         }
-        return MainConfigColorsLightThem.textGrey;
+        return MainConfigColorsLightThem.textPrimary;
       }),
       dayBackgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
         if (states.contains(MaterialState.selected)) {

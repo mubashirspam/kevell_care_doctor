@@ -48,6 +48,9 @@ class TodayeSchedule extends StatelessWidget {
                   children: List.generate(
                     result.data!.todayschedule!.length,
                     (index) => ScheduleCard(
+                      isDeleteLoading: false,
+               
+                  
                       schedule: result.data!.todayschedule![index],
                     isTodays: true,
                     ),

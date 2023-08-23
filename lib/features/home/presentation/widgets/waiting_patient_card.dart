@@ -11,6 +11,9 @@ class WaitingPatientCard extends StatelessWidget {
   final String patientID;
   final String doctorID;
   final String appointmentID;
+
+  final DateTime startTime;
+
   final bool isActive;
 
   const WaitingPatientCard({
@@ -21,6 +24,7 @@ class WaitingPatientCard extends StatelessWidget {
     required this.appointmentID,
     required this.doctorID,
     required this.patientID,
+    required this.startTime,
     super.key,
   });
 
@@ -60,14 +64,41 @@ class WaitingPatientCard extends StatelessWidget {
             style: TextButton.styleFrom(
               backgroundColor: context.theme.primary,
             ),
-            onPressed: () => Navigator.of(context).pushNamed(
-              PatientCheckupScreen.routeName,
-              arguments: {
-                'patientID': patientID,
-                'doctorID': doctorID,
-                'appointmentID': appointmentID,
-              },
-            ),
+            onPressed: () {
+              if (startTime.isBefore(DateTime.now())) {
+                Navigator.of(context).pushNamed(
+                  PatientCheckupScreen.routeName,
+                  arguments: {
+                    'patientID': patientID,
+                    'doctorID': doctorID,
+                    'appointmentID': appointmentID,
+                  },
+                );
+              } else {
+                Duration timeLeft = startTime.difference(DateTime.now());
+                String formattedTimeLeft =
+                    '${timeLeft.inMinutes} minutes and ${timeLeft.inSeconds % 60} seconds';
+
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Appointment Reminder'),
+                      content:
+                          Text('Your appointment is in $formattedTimeLeft.'),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('OK'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              }
+            },
             child: Text(
               "Attand",
               style: Theme.of(context).textTheme.titleLarge!.copyWith(

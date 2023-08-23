@@ -31,7 +31,6 @@ class PatientCard extends StatelessWidget {
       child: Row(
         children: [
           ActiveAvatar(
-            radius: 30,
             imageUrl: imgUrl,
           ),
           const SizedBox(width: 15),

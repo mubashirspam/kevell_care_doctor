@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:dr_kevell/core/helper/alert.dart';
+import 'package:dr_kevell/core/helper/toast.dart';
 import 'package:dr_kevell/features/schedule/domain/entities/create_schedule.dart';
+import 'package:dr_kevell/features/schedule/presentation/widgets/counter_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/features/widgets/calender/range_calnder.dart';
@@ -16,7 +18,9 @@ import '../../../core/helper/date.dart';
 import 'bloc/schedule_bloc.dart';
 
 class ScheduleYourTimeWidget extends StatelessWidget {
-  const ScheduleYourTimeWidget({super.key});
+  const ScheduleYourTimeWidget({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +40,7 @@ class ScheduleYourTimeWidget extends StatelessWidget {
                         (args.value as PickerDateRange).startDate;
                     final DateTime? endDate =
                         (args.value as PickerDateRange).endDate;
+
                     context.read<ScheduleBloc>().add(ScheduleEvent.pickDate(
                           endDate: endDate ?? state.endDate,
                           startDate: startDate ?? state.endDate,
@@ -84,68 +89,8 @@ class ScheduleYourTimeWidget extends StatelessWidget {
             child: Center(
               child: BlocBuilder<ScheduleBloc, ScheduleState>(
                 builder: (context, state) {
-                  return Row(
-                    children: [
-                      Expanded(
-                          child: Text("Select no. of Patient",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge!
-                                  .copyWith(color: context.theme.textPrimary))),
-                      InkWell(
-                        onTap: () => context
-                            .read<ScheduleBloc>()
-                            .add(const ScheduleEvent.decrement()),
-                        child: Container(
-                          margin: const EdgeInsets.only(right: 15),
-                          width: 30,
-                          height: 30,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: context.theme.primary,
-                          ),
-                          child: const Center(
-                            child: Text(
-                              "-",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Text(
-                        "${state.numberOfPatient}",
-                        style: TextStyle(
-                            color: context.theme.textPrimary,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      InkWell(
-                        onTap: () => context
-                            .read<ScheduleBloc>()
-                            .add(const ScheduleEvent.increment()),
-                        child: Container(
-                          margin: const EdgeInsets.only(left: 15),
-                          width: 30,
-                          height: 30,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: context.theme.primary,
-                          ),
-                          child: const Center(
-                            child: Text(
-                              "+",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                  return CounterWidget(
+                    value: "${state.numberOfPatient}",
                   );
                 },
               ),
@@ -178,31 +123,39 @@ class ScheduleYourTimeWidget extends StatelessWidget {
                   flex: 2,
                   child: BlocConsumer<ScheduleBloc, ScheduleState>(
                     listener: (context, state) {
-                      if ( state.isCreated) {
+                      if (state.isCreated) {
                         log("Created Sucsessfully");
+                        Navigator.of(context).pop();
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
-                            return  SuccessDialog(
+                            return SuccessDialog(
                               message: "Scheduled Your Time Succsessfully",
-                              onpress: ()=> Navigator.of(context).pop(),
+                              onpress: () {
+                                Navigator.of(context).pop();
+                                context
+                                    .read<ScheduleBloc>()
+                                    .add(const ScheduleEvent.getSchedule());
+                              },
                             );
                           },
-
                         );
 
                         // selectedIndexNorifier.value == 1;
                       }
-                      // if (state.isError && !state.isCreateLoading &&!state.isCreated) {
-                      //   showDialog(
-                      //     context: context,
-                      //     builder: (BuildContext context) {
-                      //       return const ErrorDialog(
-                      //         message: "Already Scheduled Your Time",
-                      //       );
-                      //     },
-                      //   );
-                      // }
+                      if (state.isError &&
+                          !state.isCreateLoading &&
+                          !state.isCreated) {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return const ErrorDialog(
+                              message:
+                                  "Already Scheduled Your Time with selected date please select diffrent date",
+                            );
+                          },
+                        );
+                      }
                     },
                     builder: (context, state) {
                       return TextButtonWidget(
@@ -213,24 +166,36 @@ class ScheduleYourTimeWidget extends StatelessWidget {
                               .then((value) {
                             if (value != null) {
                               final id = int.parse(value);
-                              context.read<ScheduleBloc>().add(
-                                    ScheduleEvent.createSchedule(
-                                      schedulePayload: SchedulePayload(
-                                          dailylimitcount:
-                                              state.numberOfPatient.toString(),
-                                          startingDate: dateFormatToYYYYMMdd(
-                                              state.startDate),
-                                          starttime:
-                                             state.startTime.toIso8601String(),
-                                          endingDate: dateFormatToYYYYMMdd(
-                                              state.endDate),
-                                          endtime:state.endTime.toIso8601String(),
-                                          doctorId: id,
-                                          timeperPatient:
-                                              state.timeForSinglePatient,
-                                          type: "patient_consult"),
-                                    ),
-                                  );
+
+                              Duration difference =
+                                  state.endDate.difference(state.startDate);
+                              if (difference.inDays < 5) {
+                                context.read<ScheduleBloc>().add(
+                                      ScheduleEvent.createSchedule(
+                                        schedulePayload: SchedulePayload(
+                                            dailylimitcount: state
+                                                .numberOfPatient
+                                                .toString(),
+                                            startingDate: dateFormatToYYYYMMdd(
+                                                state.startDate),
+                                            starttime: state.startTime
+                                                .toIso8601String(),
+                                            endingDate: dateFormatToYYYYMMdd(
+                                                state.endDate),
+                                            endtime:
+                                                state.endTime.toIso8601String(),
+                                            doctorId: id,
+                                            timeperPatient:
+                                                state.timeForSinglePatient,
+                                            type: "patient_consult"),
+                                      ),
+                                    );
+                              } else {
+                                Toast.showToast(
+                                    context: context,
+                                    message:
+                                        "Date range shuld be lesserthan 5");
+                              }
                             } else {}
                           });
                         },
@@ -245,3 +210,5 @@ class ScheduleYourTimeWidget extends StatelessWidget {
     );
   }
 }
+
+

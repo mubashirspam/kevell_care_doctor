@@ -123,25 +123,118 @@ class SuccessDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: const Text('Appointment Completed'),
-      content:  Column(
+      content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-       const  Center(
+          const Center(
               child: Icon(
             Icons.check,
             color: Colors.green,
             size: 100,
           )),
-         const SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text(message),
         ],
       ),
       actions: [
         ElevatedButton(
           onPressed: onpress,
-          child:const Text('OK'),
+          child: const Text('OK'),
         ),
       ],
+    );
+  }
+}
+
+class MyCustomAlertDialog extends StatelessWidget {
+  final bool isLoading;
+  final bool isCompleted;
+  final VoidCallback onPress;
+  final VoidCallback okPressed;
+
+  final String questionMesage;
+    final String successMessage;
+
+
+  const MyCustomAlertDialog({
+    super.key,
+    required this.isLoading,
+    required this.isCompleted,
+    required this.onPress,
+    required this.okPressed,
+    required this.questionMesage,
+    required this.successMessage,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(24),
+      ),
+      elevation: 8,
+      backgroundColor: Colors.transparent,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(24),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 10,
+              offset: Offset(0, 5),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (isLoading)
+              const CircularProgressIndicator()
+            else if (isCompleted)
+              Column(
+                children: [
+                  Text(
+                    successMessage,
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: okPressed,
+                    child: const Text('OK'),
+                  ),
+                ],
+              )
+            else
+              Column(
+                children: [
+                  Text(
+                    questionMesage,
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: onPress,
+                        child: const Text('Yes, sure'),
+                      ),
+                      const SizedBox(width: 16),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('Cancel'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+          ],
+        ),
+      ),
     );
   }
 }

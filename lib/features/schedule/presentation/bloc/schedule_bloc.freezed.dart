@@ -20,6 +20,8 @@ mixin _$ScheduleEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getSchedule,
     required TResult Function(SchedulePayload schedulePayload) createSchedule,
+    required TResult Function(UpdateSchedulePayload schedulePayload)
+        updateSchedule,
     required TResult Function() increment,
     required TResult Function() decrement,
     required TResult Function(DateTime startDate, DateTime endDate) pickDate,
@@ -31,6 +33,7 @@ mixin _$ScheduleEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getSchedule,
     TResult? Function(SchedulePayload schedulePayload)? createSchedule,
+    TResult? Function(UpdateSchedulePayload schedulePayload)? updateSchedule,
     TResult? Function()? increment,
     TResult? Function()? decrement,
     TResult? Function(DateTime startDate, DateTime endDate)? pickDate,
@@ -42,6 +45,7 @@ mixin _$ScheduleEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getSchedule,
     TResult Function(SchedulePayload schedulePayload)? createSchedule,
+    TResult Function(UpdateSchedulePayload schedulePayload)? updateSchedule,
     TResult Function()? increment,
     TResult Function()? decrement,
     TResult Function(DateTime startDate, DateTime endDate)? pickDate,
@@ -54,6 +58,7 @@ mixin _$ScheduleEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetSchedule value) getSchedule,
     required TResult Function(_CreateSchedule value) createSchedule,
+    required TResult Function(_UpdateSchedule value) updateSchedule,
     required TResult Function(_Increment value) increment,
     required TResult Function(_Decrement value) decrement,
     required TResult Function(_PickDate value) pickDate,
@@ -65,6 +70,7 @@ mixin _$ScheduleEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetSchedule value)? getSchedule,
     TResult? Function(_CreateSchedule value)? createSchedule,
+    TResult? Function(_UpdateSchedule value)? updateSchedule,
     TResult? Function(_Increment value)? increment,
     TResult? Function(_Decrement value)? decrement,
     TResult? Function(_PickDate value)? pickDate,
@@ -76,6 +82,7 @@ mixin _$ScheduleEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetSchedule value)? getSchedule,
     TResult Function(_CreateSchedule value)? createSchedule,
+    TResult Function(_UpdateSchedule value)? updateSchedule,
     TResult Function(_Increment value)? increment,
     TResult Function(_Decrement value)? decrement,
     TResult Function(_PickDate value)? pickDate,
@@ -144,6 +151,8 @@ class _$_GetSchedule implements _GetSchedule {
   TResult when<TResult extends Object?>({
     required TResult Function() getSchedule,
     required TResult Function(SchedulePayload schedulePayload) createSchedule,
+    required TResult Function(UpdateSchedulePayload schedulePayload)
+        updateSchedule,
     required TResult Function() increment,
     required TResult Function() decrement,
     required TResult Function(DateTime startDate, DateTime endDate) pickDate,
@@ -158,6 +167,7 @@ class _$_GetSchedule implements _GetSchedule {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getSchedule,
     TResult? Function(SchedulePayload schedulePayload)? createSchedule,
+    TResult? Function(UpdateSchedulePayload schedulePayload)? updateSchedule,
     TResult? Function()? increment,
     TResult? Function()? decrement,
     TResult? Function(DateTime startDate, DateTime endDate)? pickDate,
@@ -172,6 +182,7 @@ class _$_GetSchedule implements _GetSchedule {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getSchedule,
     TResult Function(SchedulePayload schedulePayload)? createSchedule,
+    TResult Function(UpdateSchedulePayload schedulePayload)? updateSchedule,
     TResult Function()? increment,
     TResult Function()? decrement,
     TResult Function(DateTime startDate, DateTime endDate)? pickDate,
@@ -190,6 +201,7 @@ class _$_GetSchedule implements _GetSchedule {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetSchedule value) getSchedule,
     required TResult Function(_CreateSchedule value) createSchedule,
+    required TResult Function(_UpdateSchedule value) updateSchedule,
     required TResult Function(_Increment value) increment,
     required TResult Function(_Decrement value) decrement,
     required TResult Function(_PickDate value) pickDate,
@@ -204,6 +216,7 @@ class _$_GetSchedule implements _GetSchedule {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetSchedule value)? getSchedule,
     TResult? Function(_CreateSchedule value)? createSchedule,
+    TResult? Function(_UpdateSchedule value)? updateSchedule,
     TResult? Function(_Increment value)? increment,
     TResult? Function(_Decrement value)? decrement,
     TResult? Function(_PickDate value)? pickDate,
@@ -218,6 +231,7 @@ class _$_GetSchedule implements _GetSchedule {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetSchedule value)? getSchedule,
     TResult Function(_CreateSchedule value)? createSchedule,
+    TResult Function(_UpdateSchedule value)? updateSchedule,
     TResult Function(_Increment value)? increment,
     TResult Function(_Decrement value)? decrement,
     TResult Function(_PickDate value)? pickDate,
@@ -303,6 +317,8 @@ class _$_CreateSchedule implements _CreateSchedule {
   TResult when<TResult extends Object?>({
     required TResult Function() getSchedule,
     required TResult Function(SchedulePayload schedulePayload) createSchedule,
+    required TResult Function(UpdateSchedulePayload schedulePayload)
+        updateSchedule,
     required TResult Function() increment,
     required TResult Function() decrement,
     required TResult Function(DateTime startDate, DateTime endDate) pickDate,
@@ -317,6 +333,7 @@ class _$_CreateSchedule implements _CreateSchedule {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getSchedule,
     TResult? Function(SchedulePayload schedulePayload)? createSchedule,
+    TResult? Function(UpdateSchedulePayload schedulePayload)? updateSchedule,
     TResult? Function()? increment,
     TResult? Function()? decrement,
     TResult? Function(DateTime startDate, DateTime endDate)? pickDate,
@@ -331,6 +348,7 @@ class _$_CreateSchedule implements _CreateSchedule {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getSchedule,
     TResult Function(SchedulePayload schedulePayload)? createSchedule,
+    TResult Function(UpdateSchedulePayload schedulePayload)? updateSchedule,
     TResult Function()? increment,
     TResult Function()? decrement,
     TResult Function(DateTime startDate, DateTime endDate)? pickDate,
@@ -349,6 +367,7 @@ class _$_CreateSchedule implements _CreateSchedule {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetSchedule value) getSchedule,
     required TResult Function(_CreateSchedule value) createSchedule,
+    required TResult Function(_UpdateSchedule value) updateSchedule,
     required TResult Function(_Increment value) increment,
     required TResult Function(_Decrement value) decrement,
     required TResult Function(_PickDate value) pickDate,
@@ -363,6 +382,7 @@ class _$_CreateSchedule implements _CreateSchedule {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetSchedule value)? getSchedule,
     TResult? Function(_CreateSchedule value)? createSchedule,
+    TResult? Function(_UpdateSchedule value)? updateSchedule,
     TResult? Function(_Increment value)? increment,
     TResult? Function(_Decrement value)? decrement,
     TResult? Function(_PickDate value)? pickDate,
@@ -377,6 +397,7 @@ class _$_CreateSchedule implements _CreateSchedule {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetSchedule value)? getSchedule,
     TResult Function(_CreateSchedule value)? createSchedule,
+    TResult Function(_UpdateSchedule value)? updateSchedule,
     TResult Function(_Increment value)? increment,
     TResult Function(_Decrement value)? decrement,
     TResult Function(_PickDate value)? pickDate,
@@ -398,6 +419,179 @@ abstract class _CreateSchedule implements ScheduleEvent {
   SchedulePayload get schedulePayload;
   @JsonKey(ignore: true)
   _$$_CreateScheduleCopyWith<_$_CreateSchedule> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UpdateScheduleCopyWith<$Res> {
+  factory _$$_UpdateScheduleCopyWith(
+          _$_UpdateSchedule value, $Res Function(_$_UpdateSchedule) then) =
+      __$$_UpdateScheduleCopyWithImpl<$Res>;
+  @useResult
+  $Res call({UpdateSchedulePayload schedulePayload});
+}
+
+/// @nodoc
+class __$$_UpdateScheduleCopyWithImpl<$Res>
+    extends _$ScheduleEventCopyWithImpl<$Res, _$_UpdateSchedule>
+    implements _$$_UpdateScheduleCopyWith<$Res> {
+  __$$_UpdateScheduleCopyWithImpl(
+      _$_UpdateSchedule _value, $Res Function(_$_UpdateSchedule) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? schedulePayload = null,
+  }) {
+    return _then(_$_UpdateSchedule(
+      schedulePayload: null == schedulePayload
+          ? _value.schedulePayload
+          : schedulePayload // ignore: cast_nullable_to_non_nullable
+              as UpdateSchedulePayload,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UpdateSchedule implements _UpdateSchedule {
+  const _$_UpdateSchedule({required this.schedulePayload});
+
+  @override
+  final UpdateSchedulePayload schedulePayload;
+
+  @override
+  String toString() {
+    return 'ScheduleEvent.updateSchedule(schedulePayload: $schedulePayload)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateSchedule &&
+            (identical(other.schedulePayload, schedulePayload) ||
+                other.schedulePayload == schedulePayload));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, schedulePayload);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UpdateScheduleCopyWith<_$_UpdateSchedule> get copyWith =>
+      __$$_UpdateScheduleCopyWithImpl<_$_UpdateSchedule>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getSchedule,
+    required TResult Function(SchedulePayload schedulePayload) createSchedule,
+    required TResult Function(UpdateSchedulePayload schedulePayload)
+        updateSchedule,
+    required TResult Function() increment,
+    required TResult Function() decrement,
+    required TResult Function(DateTime startDate, DateTime endDate) pickDate,
+    required TResult Function(DateTime startTime, DateTime endTime) pickTime,
+    required TResult Function(String id) deleteSchedule,
+  }) {
+    return updateSchedule(schedulePayload);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getSchedule,
+    TResult? Function(SchedulePayload schedulePayload)? createSchedule,
+    TResult? Function(UpdateSchedulePayload schedulePayload)? updateSchedule,
+    TResult? Function()? increment,
+    TResult? Function()? decrement,
+    TResult? Function(DateTime startDate, DateTime endDate)? pickDate,
+    TResult? Function(DateTime startTime, DateTime endTime)? pickTime,
+    TResult? Function(String id)? deleteSchedule,
+  }) {
+    return updateSchedule?.call(schedulePayload);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getSchedule,
+    TResult Function(SchedulePayload schedulePayload)? createSchedule,
+    TResult Function(UpdateSchedulePayload schedulePayload)? updateSchedule,
+    TResult Function()? increment,
+    TResult Function()? decrement,
+    TResult Function(DateTime startDate, DateTime endDate)? pickDate,
+    TResult Function(DateTime startTime, DateTime endTime)? pickTime,
+    TResult Function(String id)? deleteSchedule,
+    required TResult orElse(),
+  }) {
+    if (updateSchedule != null) {
+      return updateSchedule(schedulePayload);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetSchedule value) getSchedule,
+    required TResult Function(_CreateSchedule value) createSchedule,
+    required TResult Function(_UpdateSchedule value) updateSchedule,
+    required TResult Function(_Increment value) increment,
+    required TResult Function(_Decrement value) decrement,
+    required TResult Function(_PickDate value) pickDate,
+    required TResult Function(_PickTime value) pickTime,
+    required TResult Function(_DeleteSchedule value) deleteSchedule,
+  }) {
+    return updateSchedule(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetSchedule value)? getSchedule,
+    TResult? Function(_CreateSchedule value)? createSchedule,
+    TResult? Function(_UpdateSchedule value)? updateSchedule,
+    TResult? Function(_Increment value)? increment,
+    TResult? Function(_Decrement value)? decrement,
+    TResult? Function(_PickDate value)? pickDate,
+    TResult? Function(_PickTime value)? pickTime,
+    TResult? Function(_DeleteSchedule value)? deleteSchedule,
+  }) {
+    return updateSchedule?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetSchedule value)? getSchedule,
+    TResult Function(_CreateSchedule value)? createSchedule,
+    TResult Function(_UpdateSchedule value)? updateSchedule,
+    TResult Function(_Increment value)? increment,
+    TResult Function(_Decrement value)? decrement,
+    TResult Function(_PickDate value)? pickDate,
+    TResult Function(_PickTime value)? pickTime,
+    TResult Function(_DeleteSchedule value)? deleteSchedule,
+    required TResult orElse(),
+  }) {
+    if (updateSchedule != null) {
+      return updateSchedule(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateSchedule implements ScheduleEvent {
+  const factory _UpdateSchedule(
+          {required final UpdateSchedulePayload schedulePayload}) =
+      _$_UpdateSchedule;
+
+  UpdateSchedulePayload get schedulePayload;
+  @JsonKey(ignore: true)
+  _$$_UpdateScheduleCopyWith<_$_UpdateSchedule> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -441,6 +635,8 @@ class _$_Increment implements _Increment {
   TResult when<TResult extends Object?>({
     required TResult Function() getSchedule,
     required TResult Function(SchedulePayload schedulePayload) createSchedule,
+    required TResult Function(UpdateSchedulePayload schedulePayload)
+        updateSchedule,
     required TResult Function() increment,
     required TResult Function() decrement,
     required TResult Function(DateTime startDate, DateTime endDate) pickDate,
@@ -455,6 +651,7 @@ class _$_Increment implements _Increment {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getSchedule,
     TResult? Function(SchedulePayload schedulePayload)? createSchedule,
+    TResult? Function(UpdateSchedulePayload schedulePayload)? updateSchedule,
     TResult? Function()? increment,
     TResult? Function()? decrement,
     TResult? Function(DateTime startDate, DateTime endDate)? pickDate,
@@ -469,6 +666,7 @@ class _$_Increment implements _Increment {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getSchedule,
     TResult Function(SchedulePayload schedulePayload)? createSchedule,
+    TResult Function(UpdateSchedulePayload schedulePayload)? updateSchedule,
     TResult Function()? increment,
     TResult Function()? decrement,
     TResult Function(DateTime startDate, DateTime endDate)? pickDate,
@@ -487,6 +685,7 @@ class _$_Increment implements _Increment {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetSchedule value) getSchedule,
     required TResult Function(_CreateSchedule value) createSchedule,
+    required TResult Function(_UpdateSchedule value) updateSchedule,
     required TResult Function(_Increment value) increment,
     required TResult Function(_Decrement value) decrement,
     required TResult Function(_PickDate value) pickDate,
@@ -501,6 +700,7 @@ class _$_Increment implements _Increment {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetSchedule value)? getSchedule,
     TResult? Function(_CreateSchedule value)? createSchedule,
+    TResult? Function(_UpdateSchedule value)? updateSchedule,
     TResult? Function(_Increment value)? increment,
     TResult? Function(_Decrement value)? decrement,
     TResult? Function(_PickDate value)? pickDate,
@@ -515,6 +715,7 @@ class _$_Increment implements _Increment {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetSchedule value)? getSchedule,
     TResult Function(_CreateSchedule value)? createSchedule,
+    TResult Function(_UpdateSchedule value)? updateSchedule,
     TResult Function(_Increment value)? increment,
     TResult Function(_Decrement value)? decrement,
     TResult Function(_PickDate value)? pickDate,
@@ -573,6 +774,8 @@ class _$_Decrement implements _Decrement {
   TResult when<TResult extends Object?>({
     required TResult Function() getSchedule,
     required TResult Function(SchedulePayload schedulePayload) createSchedule,
+    required TResult Function(UpdateSchedulePayload schedulePayload)
+        updateSchedule,
     required TResult Function() increment,
     required TResult Function() decrement,
     required TResult Function(DateTime startDate, DateTime endDate) pickDate,
@@ -587,6 +790,7 @@ class _$_Decrement implements _Decrement {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getSchedule,
     TResult? Function(SchedulePayload schedulePayload)? createSchedule,
+    TResult? Function(UpdateSchedulePayload schedulePayload)? updateSchedule,
     TResult? Function()? increment,
     TResult? Function()? decrement,
     TResult? Function(DateTime startDate, DateTime endDate)? pickDate,
@@ -601,6 +805,7 @@ class _$_Decrement implements _Decrement {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getSchedule,
     TResult Function(SchedulePayload schedulePayload)? createSchedule,
+    TResult Function(UpdateSchedulePayload schedulePayload)? updateSchedule,
     TResult Function()? increment,
     TResult Function()? decrement,
     TResult Function(DateTime startDate, DateTime endDate)? pickDate,
@@ -619,6 +824,7 @@ class _$_Decrement implements _Decrement {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetSchedule value) getSchedule,
     required TResult Function(_CreateSchedule value) createSchedule,
+    required TResult Function(_UpdateSchedule value) updateSchedule,
     required TResult Function(_Increment value) increment,
     required TResult Function(_Decrement value) decrement,
     required TResult Function(_PickDate value) pickDate,
@@ -633,6 +839,7 @@ class _$_Decrement implements _Decrement {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetSchedule value)? getSchedule,
     TResult? Function(_CreateSchedule value)? createSchedule,
+    TResult? Function(_UpdateSchedule value)? updateSchedule,
     TResult? Function(_Increment value)? increment,
     TResult? Function(_Decrement value)? decrement,
     TResult? Function(_PickDate value)? pickDate,
@@ -647,6 +854,7 @@ class _$_Decrement implements _Decrement {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetSchedule value)? getSchedule,
     TResult Function(_CreateSchedule value)? createSchedule,
+    TResult Function(_UpdateSchedule value)? updateSchedule,
     TResult Function(_Increment value)? increment,
     TResult Function(_Decrement value)? decrement,
     TResult Function(_PickDate value)? pickDate,
@@ -740,6 +948,8 @@ class _$_PickDate implements _PickDate {
   TResult when<TResult extends Object?>({
     required TResult Function() getSchedule,
     required TResult Function(SchedulePayload schedulePayload) createSchedule,
+    required TResult Function(UpdateSchedulePayload schedulePayload)
+        updateSchedule,
     required TResult Function() increment,
     required TResult Function() decrement,
     required TResult Function(DateTime startDate, DateTime endDate) pickDate,
@@ -754,6 +964,7 @@ class _$_PickDate implements _PickDate {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getSchedule,
     TResult? Function(SchedulePayload schedulePayload)? createSchedule,
+    TResult? Function(UpdateSchedulePayload schedulePayload)? updateSchedule,
     TResult? Function()? increment,
     TResult? Function()? decrement,
     TResult? Function(DateTime startDate, DateTime endDate)? pickDate,
@@ -768,6 +979,7 @@ class _$_PickDate implements _PickDate {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getSchedule,
     TResult Function(SchedulePayload schedulePayload)? createSchedule,
+    TResult Function(UpdateSchedulePayload schedulePayload)? updateSchedule,
     TResult Function()? increment,
     TResult Function()? decrement,
     TResult Function(DateTime startDate, DateTime endDate)? pickDate,
@@ -786,6 +998,7 @@ class _$_PickDate implements _PickDate {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetSchedule value) getSchedule,
     required TResult Function(_CreateSchedule value) createSchedule,
+    required TResult Function(_UpdateSchedule value) updateSchedule,
     required TResult Function(_Increment value) increment,
     required TResult Function(_Decrement value) decrement,
     required TResult Function(_PickDate value) pickDate,
@@ -800,6 +1013,7 @@ class _$_PickDate implements _PickDate {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetSchedule value)? getSchedule,
     TResult? Function(_CreateSchedule value)? createSchedule,
+    TResult? Function(_UpdateSchedule value)? updateSchedule,
     TResult? Function(_Increment value)? increment,
     TResult? Function(_Decrement value)? decrement,
     TResult? Function(_PickDate value)? pickDate,
@@ -814,6 +1028,7 @@ class _$_PickDate implements _PickDate {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetSchedule value)? getSchedule,
     TResult Function(_CreateSchedule value)? createSchedule,
+    TResult Function(_UpdateSchedule value)? updateSchedule,
     TResult Function(_Increment value)? increment,
     TResult Function(_Decrement value)? decrement,
     TResult Function(_PickDate value)? pickDate,
@@ -915,6 +1130,8 @@ class _$_PickTime implements _PickTime {
   TResult when<TResult extends Object?>({
     required TResult Function() getSchedule,
     required TResult Function(SchedulePayload schedulePayload) createSchedule,
+    required TResult Function(UpdateSchedulePayload schedulePayload)
+        updateSchedule,
     required TResult Function() increment,
     required TResult Function() decrement,
     required TResult Function(DateTime startDate, DateTime endDate) pickDate,
@@ -929,6 +1146,7 @@ class _$_PickTime implements _PickTime {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getSchedule,
     TResult? Function(SchedulePayload schedulePayload)? createSchedule,
+    TResult? Function(UpdateSchedulePayload schedulePayload)? updateSchedule,
     TResult? Function()? increment,
     TResult? Function()? decrement,
     TResult? Function(DateTime startDate, DateTime endDate)? pickDate,
@@ -943,6 +1161,7 @@ class _$_PickTime implements _PickTime {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getSchedule,
     TResult Function(SchedulePayload schedulePayload)? createSchedule,
+    TResult Function(UpdateSchedulePayload schedulePayload)? updateSchedule,
     TResult Function()? increment,
     TResult Function()? decrement,
     TResult Function(DateTime startDate, DateTime endDate)? pickDate,
@@ -961,6 +1180,7 @@ class _$_PickTime implements _PickTime {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetSchedule value) getSchedule,
     required TResult Function(_CreateSchedule value) createSchedule,
+    required TResult Function(_UpdateSchedule value) updateSchedule,
     required TResult Function(_Increment value) increment,
     required TResult Function(_Decrement value) decrement,
     required TResult Function(_PickDate value) pickDate,
@@ -975,6 +1195,7 @@ class _$_PickTime implements _PickTime {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetSchedule value)? getSchedule,
     TResult? Function(_CreateSchedule value)? createSchedule,
+    TResult? Function(_UpdateSchedule value)? updateSchedule,
     TResult? Function(_Increment value)? increment,
     TResult? Function(_Decrement value)? decrement,
     TResult? Function(_PickDate value)? pickDate,
@@ -989,6 +1210,7 @@ class _$_PickTime implements _PickTime {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetSchedule value)? getSchedule,
     TResult Function(_CreateSchedule value)? createSchedule,
+    TResult Function(_UpdateSchedule value)? updateSchedule,
     TResult Function(_Increment value)? increment,
     TResult Function(_Decrement value)? decrement,
     TResult Function(_PickDate value)? pickDate,
@@ -1081,6 +1303,8 @@ class _$_DeleteSchedule implements _DeleteSchedule {
   TResult when<TResult extends Object?>({
     required TResult Function() getSchedule,
     required TResult Function(SchedulePayload schedulePayload) createSchedule,
+    required TResult Function(UpdateSchedulePayload schedulePayload)
+        updateSchedule,
     required TResult Function() increment,
     required TResult Function() decrement,
     required TResult Function(DateTime startDate, DateTime endDate) pickDate,
@@ -1095,6 +1319,7 @@ class _$_DeleteSchedule implements _DeleteSchedule {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getSchedule,
     TResult? Function(SchedulePayload schedulePayload)? createSchedule,
+    TResult? Function(UpdateSchedulePayload schedulePayload)? updateSchedule,
     TResult? Function()? increment,
     TResult? Function()? decrement,
     TResult? Function(DateTime startDate, DateTime endDate)? pickDate,
@@ -1109,6 +1334,7 @@ class _$_DeleteSchedule implements _DeleteSchedule {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getSchedule,
     TResult Function(SchedulePayload schedulePayload)? createSchedule,
+    TResult Function(UpdateSchedulePayload schedulePayload)? updateSchedule,
     TResult Function()? increment,
     TResult Function()? decrement,
     TResult Function(DateTime startDate, DateTime endDate)? pickDate,
@@ -1127,6 +1353,7 @@ class _$_DeleteSchedule implements _DeleteSchedule {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetSchedule value) getSchedule,
     required TResult Function(_CreateSchedule value) createSchedule,
+    required TResult Function(_UpdateSchedule value) updateSchedule,
     required TResult Function(_Increment value) increment,
     required TResult Function(_Decrement value) decrement,
     required TResult Function(_PickDate value) pickDate,
@@ -1141,6 +1368,7 @@ class _$_DeleteSchedule implements _DeleteSchedule {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetSchedule value)? getSchedule,
     TResult? Function(_CreateSchedule value)? createSchedule,
+    TResult? Function(_UpdateSchedule value)? updateSchedule,
     TResult? Function(_Increment value)? increment,
     TResult? Function(_Decrement value)? decrement,
     TResult? Function(_PickDate value)? pickDate,
@@ -1155,6 +1383,7 @@ class _$_DeleteSchedule implements _DeleteSchedule {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetSchedule value)? getSchedule,
     TResult Function(_CreateSchedule value)? createSchedule,
+    TResult Function(_UpdateSchedule value)? updateSchedule,
     TResult Function(_Increment value)? increment,
     TResult Function(_Decrement value)? decrement,
     TResult Function(_PickDate value)? pickDate,
@@ -1182,15 +1411,18 @@ abstract class _DeleteSchedule implements ScheduleEvent {
 mixin _$ScheduleState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isCreateLoading => throw _privateConstructorUsedError;
+  bool get isUpdateLoading => throw _privateConstructorUsedError;
   bool get isDeleteLoading => throw _privateConstructorUsedError;
   bool get isDeleted => throw _privateConstructorUsedError;
   bool get isCreated => throw _privateConstructorUsedError;
+  bool get isUpdated => throw _privateConstructorUsedError;
   bool get unauthorized => throw _privateConstructorUsedError;
   bool get hasData => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
   ScheduleModel? get result => throw _privateConstructorUsedError;
   CreateScheduleModel? get createResponse => throw _privateConstructorUsedError;
   DeleteScheduleModel? get deleteResponse => throw _privateConstructorUsedError;
+  UpdateScheduleModel? get updateResponse => throw _privateConstructorUsedError;
   int get numberOfPatient => throw _privateConstructorUsedError;
   DateTime get startDate => throw _privateConstructorUsedError;
   DateTime get endDate => throw _privateConstructorUsedError;
@@ -1212,15 +1444,18 @@ abstract class $ScheduleStateCopyWith<$Res> {
   $Res call(
       {bool isLoading,
       bool isCreateLoading,
+      bool isUpdateLoading,
       bool isDeleteLoading,
       bool isDeleted,
       bool isCreated,
+      bool isUpdated,
       bool unauthorized,
       bool hasData,
       bool isError,
       ScheduleModel? result,
       CreateScheduleModel? createResponse,
       DeleteScheduleModel? deleteResponse,
+      UpdateScheduleModel? updateResponse,
       int numberOfPatient,
       DateTime startDate,
       DateTime endDate,
@@ -1244,15 +1479,18 @@ class _$ScheduleStateCopyWithImpl<$Res, $Val extends ScheduleState>
   $Res call({
     Object? isLoading = null,
     Object? isCreateLoading = null,
+    Object? isUpdateLoading = null,
     Object? isDeleteLoading = null,
     Object? isDeleted = null,
     Object? isCreated = null,
+    Object? isUpdated = null,
     Object? unauthorized = null,
     Object? hasData = null,
     Object? isError = null,
     Object? result = freezed,
     Object? createResponse = freezed,
     Object? deleteResponse = freezed,
+    Object? updateResponse = freezed,
     Object? numberOfPatient = null,
     Object? startDate = null,
     Object? endDate = null,
@@ -1269,6 +1507,10 @@ class _$ScheduleStateCopyWithImpl<$Res, $Val extends ScheduleState>
           ? _value.isCreateLoading
           : isCreateLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isUpdateLoading: null == isUpdateLoading
+          ? _value.isUpdateLoading
+          : isUpdateLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       isDeleteLoading: null == isDeleteLoading
           ? _value.isDeleteLoading
           : isDeleteLoading // ignore: cast_nullable_to_non_nullable
@@ -1280,6 +1522,10 @@ class _$ScheduleStateCopyWithImpl<$Res, $Val extends ScheduleState>
       isCreated: null == isCreated
           ? _value.isCreated
           : isCreated // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isUpdated: null == isUpdated
+          ? _value.isUpdated
+          : isUpdated // ignore: cast_nullable_to_non_nullable
               as bool,
       unauthorized: null == unauthorized
           ? _value.unauthorized
@@ -1305,6 +1551,10 @@ class _$ScheduleStateCopyWithImpl<$Res, $Val extends ScheduleState>
           ? _value.deleteResponse
           : deleteResponse // ignore: cast_nullable_to_non_nullable
               as DeleteScheduleModel?,
+      updateResponse: freezed == updateResponse
+          ? _value.updateResponse
+          : updateResponse // ignore: cast_nullable_to_non_nullable
+              as UpdateScheduleModel?,
       numberOfPatient: null == numberOfPatient
           ? _value.numberOfPatient
           : numberOfPatient // ignore: cast_nullable_to_non_nullable
@@ -1344,15 +1594,18 @@ abstract class _$$_ScheduleStateCopyWith<$Res>
   $Res call(
       {bool isLoading,
       bool isCreateLoading,
+      bool isUpdateLoading,
       bool isDeleteLoading,
       bool isDeleted,
       bool isCreated,
+      bool isUpdated,
       bool unauthorized,
       bool hasData,
       bool isError,
       ScheduleModel? result,
       CreateScheduleModel? createResponse,
       DeleteScheduleModel? deleteResponse,
+      UpdateScheduleModel? updateResponse,
       int numberOfPatient,
       DateTime startDate,
       DateTime endDate,
@@ -1374,15 +1627,18 @@ class __$$_ScheduleStateCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? isCreateLoading = null,
+    Object? isUpdateLoading = null,
     Object? isDeleteLoading = null,
     Object? isDeleted = null,
     Object? isCreated = null,
+    Object? isUpdated = null,
     Object? unauthorized = null,
     Object? hasData = null,
     Object? isError = null,
     Object? result = freezed,
     Object? createResponse = freezed,
     Object? deleteResponse = freezed,
+    Object? updateResponse = freezed,
     Object? numberOfPatient = null,
     Object? startDate = null,
     Object? endDate = null,
@@ -1399,6 +1655,10 @@ class __$$_ScheduleStateCopyWithImpl<$Res>
           ? _value.isCreateLoading
           : isCreateLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isUpdateLoading: null == isUpdateLoading
+          ? _value.isUpdateLoading
+          : isUpdateLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       isDeleteLoading: null == isDeleteLoading
           ? _value.isDeleteLoading
           : isDeleteLoading // ignore: cast_nullable_to_non_nullable
@@ -1410,6 +1670,10 @@ class __$$_ScheduleStateCopyWithImpl<$Res>
       isCreated: null == isCreated
           ? _value.isCreated
           : isCreated // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isUpdated: null == isUpdated
+          ? _value.isUpdated
+          : isUpdated // ignore: cast_nullable_to_non_nullable
               as bool,
       unauthorized: null == unauthorized
           ? _value.unauthorized
@@ -1435,6 +1699,10 @@ class __$$_ScheduleStateCopyWithImpl<$Res>
           ? _value.deleteResponse
           : deleteResponse // ignore: cast_nullable_to_non_nullable
               as DeleteScheduleModel?,
+      updateResponse: freezed == updateResponse
+          ? _value.updateResponse
+          : updateResponse // ignore: cast_nullable_to_non_nullable
+              as UpdateScheduleModel?,
       numberOfPatient: null == numberOfPatient
           ? _value.numberOfPatient
           : numberOfPatient // ignore: cast_nullable_to_non_nullable
@@ -1469,15 +1737,18 @@ class _$_ScheduleState implements _ScheduleState {
   const _$_ScheduleState(
       {required this.isLoading,
       required this.isCreateLoading,
+      required this.isUpdateLoading,
       required this.isDeleteLoading,
       required this.isDeleted,
       required this.isCreated,
+      required this.isUpdated,
       required this.unauthorized,
       required this.hasData,
       required this.isError,
       required this.result,
       required this.createResponse,
       required this.deleteResponse,
+      required this.updateResponse,
       required this.numberOfPatient,
       required this.startDate,
       required this.endDate,
@@ -1490,11 +1761,15 @@ class _$_ScheduleState implements _ScheduleState {
   @override
   final bool isCreateLoading;
   @override
+  final bool isUpdateLoading;
+  @override
   final bool isDeleteLoading;
   @override
   final bool isDeleted;
   @override
   final bool isCreated;
+  @override
+  final bool isUpdated;
   @override
   final bool unauthorized;
   @override
@@ -1507,6 +1782,8 @@ class _$_ScheduleState implements _ScheduleState {
   final CreateScheduleModel? createResponse;
   @override
   final DeleteScheduleModel? deleteResponse;
+  @override
+  final UpdateScheduleModel? updateResponse;
   @override
   final int numberOfPatient;
   @override
@@ -1522,7 +1799,7 @@ class _$_ScheduleState implements _ScheduleState {
 
   @override
   String toString() {
-    return 'ScheduleState(isLoading: $isLoading, isCreateLoading: $isCreateLoading, isDeleteLoading: $isDeleteLoading, isDeleted: $isDeleted, isCreated: $isCreated, unauthorized: $unauthorized, hasData: $hasData, isError: $isError, result: $result, createResponse: $createResponse, deleteResponse: $deleteResponse, numberOfPatient: $numberOfPatient, startDate: $startDate, endDate: $endDate, startTime: $startTime, endTime: $endTime, timeForSinglePatient: $timeForSinglePatient)';
+    return 'ScheduleState(isLoading: $isLoading, isCreateLoading: $isCreateLoading, isUpdateLoading: $isUpdateLoading, isDeleteLoading: $isDeleteLoading, isDeleted: $isDeleted, isCreated: $isCreated, isUpdated: $isUpdated, unauthorized: $unauthorized, hasData: $hasData, isError: $isError, result: $result, createResponse: $createResponse, deleteResponse: $deleteResponse, updateResponse: $updateResponse, numberOfPatient: $numberOfPatient, startDate: $startDate, endDate: $endDate, startTime: $startTime, endTime: $endTime, timeForSinglePatient: $timeForSinglePatient)';
   }
 
   @override
@@ -1534,12 +1811,16 @@ class _$_ScheduleState implements _ScheduleState {
                 other.isLoading == isLoading) &&
             (identical(other.isCreateLoading, isCreateLoading) ||
                 other.isCreateLoading == isCreateLoading) &&
+            (identical(other.isUpdateLoading, isUpdateLoading) ||
+                other.isUpdateLoading == isUpdateLoading) &&
             (identical(other.isDeleteLoading, isDeleteLoading) ||
                 other.isDeleteLoading == isDeleteLoading) &&
             (identical(other.isDeleted, isDeleted) ||
                 other.isDeleted == isDeleted) &&
             (identical(other.isCreated, isCreated) ||
                 other.isCreated == isCreated) &&
+            (identical(other.isUpdated, isUpdated) ||
+                other.isUpdated == isUpdated) &&
             (identical(other.unauthorized, unauthorized) ||
                 other.unauthorized == unauthorized) &&
             (identical(other.hasData, hasData) || other.hasData == hasData) &&
@@ -1549,6 +1830,8 @@ class _$_ScheduleState implements _ScheduleState {
                 other.createResponse == createResponse) &&
             (identical(other.deleteResponse, deleteResponse) ||
                 other.deleteResponse == deleteResponse) &&
+            (identical(other.updateResponse, updateResponse) ||
+                other.updateResponse == updateResponse) &&
             (identical(other.numberOfPatient, numberOfPatient) ||
                 other.numberOfPatient == numberOfPatient) &&
             (identical(other.startDate, startDate) ||
@@ -1562,25 +1845,29 @@ class _$_ScheduleState implements _ScheduleState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      isLoading,
-      isCreateLoading,
-      isDeleteLoading,
-      isDeleted,
-      isCreated,
-      unauthorized,
-      hasData,
-      isError,
-      result,
-      createResponse,
-      deleteResponse,
-      numberOfPatient,
-      startDate,
-      endDate,
-      startTime,
-      endTime,
-      timeForSinglePatient);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        isLoading,
+        isCreateLoading,
+        isUpdateLoading,
+        isDeleteLoading,
+        isDeleted,
+        isCreated,
+        isUpdated,
+        unauthorized,
+        hasData,
+        isError,
+        result,
+        createResponse,
+        deleteResponse,
+        updateResponse,
+        numberOfPatient,
+        startDate,
+        endDate,
+        startTime,
+        endTime,
+        timeForSinglePatient
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -1593,15 +1880,18 @@ abstract class _ScheduleState implements ScheduleState {
   const factory _ScheduleState(
       {required final bool isLoading,
       required final bool isCreateLoading,
+      required final bool isUpdateLoading,
       required final bool isDeleteLoading,
       required final bool isDeleted,
       required final bool isCreated,
+      required final bool isUpdated,
       required final bool unauthorized,
       required final bool hasData,
       required final bool isError,
       required final ScheduleModel? result,
       required final CreateScheduleModel? createResponse,
       required final DeleteScheduleModel? deleteResponse,
+      required final UpdateScheduleModel? updateResponse,
       required final int numberOfPatient,
       required final DateTime startDate,
       required final DateTime endDate,
@@ -1614,11 +1904,15 @@ abstract class _ScheduleState implements ScheduleState {
   @override
   bool get isCreateLoading;
   @override
+  bool get isUpdateLoading;
+  @override
   bool get isDeleteLoading;
   @override
   bool get isDeleted;
   @override
   bool get isCreated;
+  @override
+  bool get isUpdated;
   @override
   bool get unauthorized;
   @override
@@ -1631,6 +1925,8 @@ abstract class _ScheduleState implements ScheduleState {
   CreateScheduleModel? get createResponse;
   @override
   DeleteScheduleModel? get deleteResponse;
+  @override
+  UpdateScheduleModel? get updateResponse;
   @override
   int get numberOfPatient;
   @override

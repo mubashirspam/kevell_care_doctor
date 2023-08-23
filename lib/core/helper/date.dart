@@ -25,5 +25,6 @@ String formatTime(DateTime dateTime) {
   return "${dateTime.hour.toString().padLeft(2, '0')}.${dateTime.minute.toString().padLeft(2, '0')}";
 }
 
-
-
+String dateFormatToYYYYMMddWithDay(DateTime inputDate) {
+  return DateFormat("dd/MM/yyyy, EEEE").format(inputDate);
+}

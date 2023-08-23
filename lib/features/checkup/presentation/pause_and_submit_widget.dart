@@ -6,7 +6,7 @@ import '../../widgets/buttons/text_button_widget.dart';
 
 class PauseAndSubmitWidget extends StatelessWidget {
   final VoidCallback pause;
-  final VoidCallback ? stopAndShow;
+  final VoidCallback? stopAndShow;
   const PauseAndSubmitWidget({
     required this.pause,
     required this.stopAndShow,

@@ -31,8 +31,6 @@ class DateRanger extends StatelessWidget {
       );
     }
 
-
-
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
       decoration: BoxDecoration(
@@ -46,14 +44,18 @@ class DateRanger extends StatelessWidget {
               BlocBuilder<ScheduleBloc, ScheduleState>(
                 builder: (context, state) {
                   return CupertinoDatePicker(
-                    initialDateTime: DateTime.now(),
+                    initialDateTime: state.startTime,
                     mode: CupertinoDatePickerMode.time,
                     use24hFormat: true,
                     onDateTimeChanged: (DateTime newTime) {
-                      context.read<ScheduleBloc>().add(ScheduleEvent.pickTime(
-                            endTime: state.endTime,
-                            startTime: newTime,
-                          ));
+                      Duration difference = newTime.difference(state.endTime);
+
+                      if (difference.inMinutes < 10) {
+                        context.read<ScheduleBloc>().add(ScheduleEvent.pickTime(
+                              endTime: state.endTime,
+                              startTime: newTime,
+                            ));
+                      }
                     },
                   );
                 },
@@ -72,15 +74,18 @@ class DateRanger extends StatelessWidget {
               BlocBuilder<ScheduleBloc, ScheduleState>(
                 builder: (context, state) {
                   return CupertinoDatePicker(
-                    initialDateTime: DateTime.now(),
+                    initialDateTime: state.endTime,
                     mode: CupertinoDatePickerMode.time,
                     use24hFormat: true,
-                    // This is called when the user changes the time.
                     onDateTimeChanged: (DateTime newTime) {
-                      context.read<ScheduleBloc>().add(ScheduleEvent.pickTime(
-                            endTime: newTime,
-                            startTime: state.startTime,
-                          ));
+                      Duration difference = newTime.difference(state.startTime);
+
+                      if (difference.inMinutes > 10) {
+                        context.read<ScheduleBloc>().add(ScheduleEvent.pickTime(
+                              endTime: newTime,
+                              startTime: state.startTime,
+                            ));
+                      }
                     },
                   );
                 },

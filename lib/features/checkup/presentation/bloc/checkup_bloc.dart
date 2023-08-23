@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:dr_kevell/features/checkup/data/model/end_appoinment_model.dart';
+import 'package:dr_kevell/features/checkup/domain/repository/end_appoinment_repository.dart';
 import 'package:dr_kevell/features/checkup/domain/repository/unlock_mqtt_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -18,12 +20,16 @@ class CheckupBloc extends Bloc<CheckupEvent, CheckupState> {
 
   final SubscribeRepository subscribeRepository;
   final UnloackRepository unloackRepository;
-  CheckupBloc(this.subscribeRepository, this.unloackRepository)
-      : super(CheckupState.initial()) {
+  final EndAppoinmentRepository endAppoinmentRepository;
+  CheckupBloc(
+    this.subscribeRepository,
+    this.unloackRepository,
+    this.endAppoinmentRepository,
+  ) : super(CheckupState.initial()) {
     on<_Subscribe>((event, emit) async {
       emit(
         state.copyWith(
-          isLoading: true,
+          // isLoading: true,
           message: "Connecting...",
         ),
       );
@@ -39,7 +45,7 @@ class CheckupBloc extends Bloc<CheckupEvent, CheckupState> {
         emit(
           state.copyWith(
             error: false,
-            isLoading: false,
+            // isLoading: false,
             isConnected: false,
             isSucribed: false,
           ),
@@ -50,7 +56,7 @@ class CheckupBloc extends Bloc<CheckupEvent, CheckupState> {
         emit(
           state.copyWith(
             error: false,
-            isLoading: false,
+            // isLoading: false,
             isConnected: true,
             isSucribed: true,
           ),
@@ -94,6 +100,35 @@ class CheckupBloc extends Bloc<CheckupEvent, CheckupState> {
           isUnloacked: true,
         ),
       );
+    });
+
+    on<_EndAppoinment>((event, emit) async {
+      if (state.hasData) {
+        return;
+      }
+      emit(
+        state.copyWith(
+          isLoading: true,
+          error: false,
+        ),
+      );
+
+      final response = await endAppoinmentRepository.endAppoinment(
+          appoinmentId: event.appoinmentId, patientId: event.patientId);
+
+      final result = response.fold(
+        (failure) => state.copyWith(
+          isLoading: false,
+          error: true,
+        ),
+        (success) => state.copyWith(
+          error: false,
+          isLoading: false,
+          hasData: true,
+          endAppoinmentResult: success,
+        ),
+      );
+      emit(result);
     });
   }
 }

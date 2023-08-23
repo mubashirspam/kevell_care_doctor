@@ -40,12 +40,8 @@ class RangeCalnderWidget extends StatelessWidget {
           toggleDaySelection: true,
           onSelectionChanged: onSelectionChanged,
           selectionMode: DateRangePickerSelectionMode.range,
-
           initialDisplayDate: DateTime.now(),
-          maxDate: DateTime.now().add(const Duration(days: 5)),
           enablePastDates: false,
-          // initialSelectedRange: PickerDateRange(
-          //     DateTime.now(), DateTime.now().add(const Duration(days: 4))),
         ),
       ),
     );

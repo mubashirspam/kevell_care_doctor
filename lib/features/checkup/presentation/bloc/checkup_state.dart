@@ -21,10 +21,12 @@ class CheckupState with _$CheckupState {
     required bool stethoscope,
     required bool otoscope,
     required String message,
+    required bool hasData,
+    required EndAppoinmentModel? endAppoinmentResult,
   }) = _CheckupState;
 
   factory CheckupState.initial() => const CheckupState(
-        isLoading: true,
+        isLoading: false,
         isConnected: false,
         isSucribed: false,
         error: false,
@@ -42,7 +44,7 @@ class CheckupState with _$CheckupState {
         glucose: false,
         stethoscope: false,
         otoscope: false,
+        hasData: false,
+        endAppoinmentResult: null,
       );
 }
-
-

@@ -21,7 +21,6 @@ class GetPrescriptionListRepoImpliment
     try {
       final token = await getTokenFromSS(secureStoreKey);
       final id = await getTokenFromSS(drIdsecureStoreKey);
-      log("drid == $id");
 
       final headers = {
         'Authorization': 'Bearer $token',
@@ -29,13 +28,9 @@ class GetPrescriptionListRepoImpliment
       };
 
       final response = await Dio(BaseOptions()).get(
-        ApiEndPoints.getPrescription,
-        options: Options(headers: headers),
-        data: {
-          'doctorID': int.parse(id.toString()),
-          "appointmentID": appointmentId
-        },
-      );
+          ApiEndPoints.getPrescription,
+          options: Options(headers: headers),
+          data: {"doctorID": int.parse(id!), "appointmentID": appointmentId});
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = PrescriptionModel.fromJson(response.data);

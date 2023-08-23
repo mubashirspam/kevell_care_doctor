@@ -1,11 +1,18 @@
-import 'package:dr_kevell/features/report/presetantion/prescription_reports.dart';
+import 'package:dr_kevell/features/report/data/model/report_model.dart'
+    as report;
 import 'package:flutter/material.dart';
-import 'package:dr_kevell/features/report/presetantion/checkup_result_list.dart';
-import 'package:dr_kevell/pages/report/presentation/widgets/report_appbar.dart';
+
+import '../../../features/checkup/presentation/end_appoinment_report_screen.dart';
+import '../../../features/report/presetantion/prescription_reports.dart';
+import 'widgets/report_appbar.dart';
 
 class ReportScreen extends StatelessWidget {
+  final report.Datum data;
   static const routeName = '/report';
-  const ReportScreen({super.key});
+  const ReportScreen({
+    super.key,
+    required this.data,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +37,24 @@ class ReportScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ),
-            const CheckupReportResultList(),
+            data.temperatureinfo!.data != null
+                ? ResultCard(
+                    parameter: "Temprature",
+                    value: data.temperatureinfo!.data!.content!,
+                  )
+                : const SizedBox(),
+            data.spO2Info!.data != null
+                ? ResultCard(
+                    parameter: "Spo2",
+                    value: data.spO2Info!.data!.content!,
+                  )
+                : const SizedBox(),
+            data.spO2Info!.data != null
+                ? ResultCard(
+                    parameter: "Heart rate",
+                    value: data.spO2Info!.data!.heartRate!,
+                  )
+                : const SizedBox(),
             Padding(
               padding: const EdgeInsets.all(20).copyWith(top: 0),
               child: Text(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
+import 'package:flutter/services.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final TextInputType keyboardType;
@@ -19,9 +20,12 @@ class TextFieldWidget extends StatelessWidget {
   final String? labelText;
   final int? maxLines;
   // final void Function (String value) onSaved;
+    final List<TextInputFormatter>? inputFormatters;
 
   const TextFieldWidget({
+    
     super.key,
+    this.inputFormatters,
     this.onTap,
     this.autoValidateMode,
     this.prefixIcon,

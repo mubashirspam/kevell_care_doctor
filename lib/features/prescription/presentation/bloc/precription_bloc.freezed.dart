@@ -1093,6 +1093,8 @@ mixin _$PrecriptionState {
   bool get isGetSettingsLoading => throw _privateConstructorUsedError;
   bool get isUpdateLoading => throw _privateConstructorUsedError;
   bool get isCreateLoading => throw _privateConstructorUsedError;
+  bool get updated => throw _privateConstructorUsedError;
+  bool get created => throw _privateConstructorUsedError;
   bool get unauthorized => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
   bool get hasData => throw _privateConstructorUsedError;
@@ -1121,6 +1123,8 @@ abstract class $PrecriptionStateCopyWith<$Res> {
       bool isGetSettingsLoading,
       bool isUpdateLoading,
       bool isCreateLoading,
+      bool updated,
+      bool created,
       bool unauthorized,
       bool isError,
       bool hasData,
@@ -1149,6 +1153,8 @@ class _$PrecriptionStateCopyWithImpl<$Res, $Val extends PrecriptionState>
     Object? isGetSettingsLoading = null,
     Object? isUpdateLoading = null,
     Object? isCreateLoading = null,
+    Object? updated = null,
+    Object? created = null,
     Object? unauthorized = null,
     Object? isError = null,
     Object? hasData = null,
@@ -1175,6 +1181,14 @@ class _$PrecriptionStateCopyWithImpl<$Res, $Val extends PrecriptionState>
       isCreateLoading: null == isCreateLoading
           ? _value.isCreateLoading
           : isCreateLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      updated: null == updated
+          ? _value.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as bool,
+      created: null == created
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
               as bool,
       unauthorized: null == unauthorized
           ? _value.unauthorized
@@ -1229,6 +1243,8 @@ abstract class _$$_PrecriptionStateCopyWith<$Res>
       bool isGetSettingsLoading,
       bool isUpdateLoading,
       bool isCreateLoading,
+      bool updated,
+      bool created,
       bool unauthorized,
       bool isError,
       bool hasData,
@@ -1255,6 +1271,8 @@ class __$$_PrecriptionStateCopyWithImpl<$Res>
     Object? isGetSettingsLoading = null,
     Object? isUpdateLoading = null,
     Object? isCreateLoading = null,
+    Object? updated = null,
+    Object? created = null,
     Object? unauthorized = null,
     Object? isError = null,
     Object? hasData = null,
@@ -1281,6 +1299,14 @@ class __$$_PrecriptionStateCopyWithImpl<$Res>
       isCreateLoading: null == isCreateLoading
           ? _value.isCreateLoading
           : isCreateLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      updated: null == updated
+          ? _value.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as bool,
+      created: null == created
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
               as bool,
       unauthorized: null == unauthorized
           ? _value.unauthorized
@@ -1330,6 +1356,8 @@ class _$_PrecriptionState implements _PrecriptionState {
       required this.isGetSettingsLoading,
       required this.isUpdateLoading,
       required this.isCreateLoading,
+      required this.updated,
+      required this.created,
       required this.unauthorized,
       required this.isError,
       required this.hasData,
@@ -1350,6 +1378,10 @@ class _$_PrecriptionState implements _PrecriptionState {
   final bool isUpdateLoading;
   @override
   final bool isCreateLoading;
+  @override
+  final bool updated;
+  @override
+  final bool created;
   @override
   final bool unauthorized;
   @override
@@ -1388,7 +1420,7 @@ class _$_PrecriptionState implements _PrecriptionState {
 
   @override
   String toString() {
-    return 'PrecriptionState(isGetLoading: $isGetLoading, isGetSettingsLoading: $isGetSettingsLoading, isUpdateLoading: $isUpdateLoading, isCreateLoading: $isCreateLoading, unauthorized: $unauthorized, isError: $isError, hasData: $hasData, hasSettingsData: $hasSettingsData, message: $message, tobeTakeData: $tobeTakeData, timeoftheDayData: $timeoftheDayData, prescriptionResult: $prescriptionResult, prescriptionSettingsResult: $prescriptionSettingsResult)';
+    return 'PrecriptionState(isGetLoading: $isGetLoading, isGetSettingsLoading: $isGetSettingsLoading, isUpdateLoading: $isUpdateLoading, isCreateLoading: $isCreateLoading, updated: $updated, created: $created, unauthorized: $unauthorized, isError: $isError, hasData: $hasData, hasSettingsData: $hasSettingsData, message: $message, tobeTakeData: $tobeTakeData, timeoftheDayData: $timeoftheDayData, prescriptionResult: $prescriptionResult, prescriptionSettingsResult: $prescriptionSettingsResult)';
   }
 
   @override
@@ -1404,6 +1436,8 @@ class _$_PrecriptionState implements _PrecriptionState {
                 other.isUpdateLoading == isUpdateLoading) &&
             (identical(other.isCreateLoading, isCreateLoading) ||
                 other.isCreateLoading == isCreateLoading) &&
+            (identical(other.updated, updated) || other.updated == updated) &&
+            (identical(other.created, created) || other.created == created) &&
             (identical(other.unauthorized, unauthorized) ||
                 other.unauthorized == unauthorized) &&
             (identical(other.isError, isError) || other.isError == isError) &&
@@ -1430,6 +1464,8 @@ class _$_PrecriptionState implements _PrecriptionState {
       isGetSettingsLoading,
       isUpdateLoading,
       isCreateLoading,
+      updated,
+      created,
       unauthorized,
       isError,
       hasData,
@@ -1453,6 +1489,8 @@ abstract class _PrecriptionState implements PrecriptionState {
           required final bool isGetSettingsLoading,
           required final bool isUpdateLoading,
           required final bool isCreateLoading,
+          required final bool updated,
+          required final bool created,
           required final bool unauthorized,
           required final bool isError,
           required final bool hasData,
@@ -1472,6 +1510,10 @@ abstract class _PrecriptionState implements PrecriptionState {
   bool get isUpdateLoading;
   @override
   bool get isCreateLoading;
+  @override
+  bool get updated;
+  @override
+  bool get created;
   @override
   bool get unauthorized;
   @override

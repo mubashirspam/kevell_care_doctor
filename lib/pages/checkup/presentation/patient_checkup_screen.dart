@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'dart:math' as m;
 
+import 'package:dr_kevell/features/checkup/presentation/end_appoinment_report_screen.dart';
 import 'package:dr_kevell/features/checkup/presentation/ecg_widget.dart';
 import 'package:dr_kevell/features/checkup/presentation/gsr_widget.dart';
 import 'package:dr_kevell/pages/prescription/presentation/prescription_screen.dart';
@@ -11,10 +12,12 @@ import 'package:dr_kevell/pages/prescription/presentation/prescription_screen.da
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/features/checkup/presentation/temparature_widgtet.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 import '../../../core/helper/alert.dart';
 import '../../../core/helper/toast.dart';
+import '../../../features/checkup/presentation/bloc/checkup_bloc.dart';
 import '../../../features/checkup/presentation/pause_and_submit_widget.dart';
 import '../../../features/checkup/presentation/postion_widget.dart';
 import '../../../features/checkup/presentation/spo_widget.dart';
@@ -307,9 +310,9 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
     );
   }
 
-  String patientID = "";
-  String doctorID = "";
-  String appointmentID = "";
+  int patientID = 0;
+  int doctorID = 0;
+  int appointmentID = 0;
 
   @override
   void dispose() {
@@ -319,9 +322,9 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
 
   @override
   void initState() {
-    patientID = widget.checkupDetalis['patientID']!;
-    doctorID = widget.checkupDetalis['doctorID']!;
-    appointmentID = widget.checkupDetalis['appointmentID']!;
+    patientID = int.parse(widget.checkupDetalis['patientID']!);
+    doctorID = int.parse(widget.checkupDetalis['doctorID']!);
+    appointmentID = int.parse(widget.checkupDetalis['appointmentID']!);
     super.initState();
   }
 
@@ -490,17 +493,48 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
                         isConnected = false;
                       });
 
+                      log(widget.checkupDetalis.toString());
+
                       showDialog(
                         context: context,
                         barrierDismissible: false,
-                        builder: (context) => SuccessDialog(
-                          message:
-                              "Successfully completed your appointment.\nPlease add a prescription for the patient to take medication.",
-                          onpress: () =>
-                              Navigator.of(context).pushReplacementNamed(
-                            PrescriptionScreen.routeName,
-                            arguments: widget.checkupDetalis,
-                          ),
+                        builder: (context) =>
+                            BlocConsumer<CheckupBloc, CheckupState>(
+                          listener: (context, state) {
+                            // TODO: implement listener
+                          },
+                          builder: (context, state) {
+                            return MyCustomAlertDialog(
+                                questionMesage:
+                                    "Are you wnat to submit the Appoinments ?",
+                                isCompleted: state.hasData,
+                                isLoading: state.isLoading,
+                                okPressed: () {
+                                  Navigator.of(context).pushAndRemoveUntil(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const AppoinmentsEndReportScrenn(),
+                                      ),
+                                      (route) => false);
+                                },
+                                successMessage:
+                                    "Successfully completed your appointment.\nPlease add a prescription for the patient to take medication.",
+                                onPress: () {
+                                  context.read<CheckupBloc>().add(
+                                        CheckupEvent.endAppoinment(
+                                          appoinmentId: widget
+                                              .checkupDetalis['appointmentID']!,
+                                          patientId: widget
+                                              .checkupDetalis['patientID']!,
+                                        ),
+                                      );
+                                }
+
+                                // onpress: () {
+                                //   Navigator.of(context).pop();
+                                // },
+                                );
+                          },
                         ),
                       );
                     }
@@ -520,7 +554,7 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
                     }
                   : () => Toast.showToast(
                       context: context, message: "Please Unlock"),
-            )
+            ),
           ],
         ),
       ),

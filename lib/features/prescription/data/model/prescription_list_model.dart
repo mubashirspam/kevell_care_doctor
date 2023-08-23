@@ -58,96 +58,20 @@ class Data {
 
 class Prescription {
     int? id;
-    int? patientId;
-    String? patientid;
-    String? patientname;
-    String? reasonformeetingdoctor;
-    DateTime? appointmentstarttime;
-    DateTime? appointmentendtime;
-    int? doctornameid;
-    String? doctorname;
-    String? appointmentlocation;
-    DateTime? appointmentdate;
-    List<dynamic>? preexistingdisease;
-    bool? isvisited;
-    String? date;
-    int? userdoctorrating;
-    String? userdoctorcommand;
-    DateTime? createdAt;
-    DateTime? updatedAt;
-    int? sno;
-    int? v;
     List<PrescriptionElement>? prescription;
 
     Prescription({
         this.id,
-        this.patientId,
-        this.patientid,
-        this.patientname,
-        this.reasonformeetingdoctor,
-        this.appointmentstarttime,
-        this.appointmentendtime,
-        this.doctornameid,
-        this.doctorname,
-        this.appointmentlocation,
-        this.appointmentdate,
-        this.preexistingdisease,
-        this.isvisited,
-        this.date,
-        this.userdoctorrating,
-        this.userdoctorcommand,
-        this.createdAt,
-        this.updatedAt,
-        this.sno,
-        this.v,
         this.prescription,
     });
 
     factory Prescription.fromJson(Map<String, dynamic> json) => Prescription(
         id: json["_id"],
-        patientId: json["patientId"],
-        patientid: json["patientid"],
-        patientname: json["patientname"],
-        reasonformeetingdoctor: json["Reasonformeetingdoctor"],
-        appointmentstarttime: json["appointmentstarttime"] == null ? null : DateTime.parse(json["appointmentstarttime"]),
-        appointmentendtime: json["appointmentendtime"] == null ? null : DateTime.parse(json["appointmentendtime"]),
-        doctornameid: json["doctornameid"],
-        doctorname: json["doctorname"],
-        appointmentlocation: json["appointmentlocation"],
-        appointmentdate: json["appointmentdate"] == null ? null : DateTime.parse(json["appointmentdate"]),
-        preexistingdisease: json["preexistingdisease"] == null ? [] : List<dynamic>.from(json["preexistingdisease"]!.map((x) => x)),
-        isvisited: json["isvisited"],
-        date: json["date"],
-        userdoctorrating: json["userdoctorrating"],
-        userdoctorcommand: json["userdoctorcommand"],
-        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-        sno: json["sno"],
-        v: json["__v"],
         prescription: json["prescription"] == null ? [] : List<PrescriptionElement>.from(json["prescription"]!.map((x) => PrescriptionElement.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
         "_id": id,
-        "patientId": patientId,
-        "patientid": patientid,
-        "patientname": patientname,
-        "Reasonformeetingdoctor": reasonformeetingdoctor,
-        "appointmentstarttime": appointmentstarttime?.toIso8601String(),
-        "appointmentendtime": appointmentendtime?.toIso8601String(),
-        "doctornameid": doctornameid,
-        "doctorname": doctorname,
-        "appointmentlocation": appointmentlocation,
-        "appointmentdate": "${appointmentdate!.year.toString().padLeft(4, '0')}-${appointmentdate!.month.toString().padLeft(2, '0')}-${appointmentdate!.day.toString().padLeft(2, '0')}",
-        "preexistingdisease": preexistingdisease == null ? [] : List<dynamic>.from(preexistingdisease!.map((x) => x)),
-        "isvisited": isvisited,
-        "date": date,
-        "userdoctorrating": userdoctorrating,
-        "userdoctorcommand": userdoctorcommand,
-        "createdAt": createdAt?.toIso8601String(),
-        "updatedAt": updatedAt?.toIso8601String(),
-        "sno": sno,
-        "__v": v,
         "prescription": prescription == null ? [] : List<dynamic>.from(prescription!.map((x) => x.toJson())),
     };
 }

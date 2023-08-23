@@ -19,10 +19,10 @@ class WaitingPatient extends StatelessWidget {
     return BlocConsumer<HomeBloc, HomeState>(
       listener: (context, state) async {
         if (state.unauthorized) {
-          Toast.showToast(
-            context: context,
-            message: "Unauthrized",
-          );
+          // Toast.showToast(
+          //   context: context,
+          //   message: "Unauthrized",
+          // );
           await deleteFromSS(secureStoreKey)
               .then((value) => Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
@@ -78,6 +78,8 @@ class WaitingPatient extends StatelessWidget {
               delegate: SliverChildBuilderDelegate(
                 childCount: state.waitingPatientResult!.data!.totalCount,
                 (context, index) => WaitingPatientCard(
+                  startTime: state.waitingPatientResult!.data!
+                      .waitingPatients![index].appointmentstarttime!,
                   imageUrl:
                       "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
                   isActive: index.isEven ? true : false,
@@ -87,12 +89,15 @@ class WaitingPatient extends StatelessWidget {
                   statusMessage: state.waitingPatientResult!.data!
                           .waitingPatients![index].type ??
                       "No name",
-                      appointmentID: state.waitingPatientResult!.data!
-                          .waitingPatients![index].appointmentId!.toString(),
-                      doctorID: state.waitingPatientResult!.data!
-                          .waitingPatients![index].doctorId!.toString(),
-                      patientID: state.waitingPatientResult!.data!
-                          .waitingPatients![index].patientId.toString(),
+                  appointmentID: state.waitingPatientResult!.data!
+                      .waitingPatients![index].appointmentId!
+                      .toString(),
+                  doctorID: state.waitingPatientResult!.data!
+                      .waitingPatients![index].doctorId!
+                      .toString(),
+                  patientID: state.waitingPatientResult!.data!
+                      .waitingPatients![index].patientId
+                      .toString(),
                 ),
               ),
             );

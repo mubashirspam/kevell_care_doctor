@@ -54,16 +54,16 @@ class Data {
 
 class Deleteshedule {
     int? id;
-    String? doctorId;
+    int? doctorId;
     DateTime? startdate;
     DateTime? enddate;
-    String? dailylimitcount;
+    int? dailylimitcount;
     String? type;
     String? month;
     String? year;
     DateTime? days;
-    String? starttime;
-    String? endtime;
+    DateTime? starttime;
+    DateTime? endtime;
     int? timeperPatient;
     DateTime? createdAt;
     DateTime? updatedAt;
@@ -97,8 +97,8 @@ class Deleteshedule {
         month: json["month"],
         year: json["year"],
         days: json["Days"] == null ? null : DateTime.parse(json["Days"]),
-        starttime: json["starttime"],
-        endtime: json["endtime"],
+        starttime: json["starttime"] == null ? null : DateTime.parse(json["starttime"]),
+        endtime: json["endtime"] == null ? null : DateTime.parse(json["endtime"]),
         timeperPatient: json["timeperPatient"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
@@ -115,8 +115,8 @@ class Deleteshedule {
         "month": month,
         "year": year,
         "Days": "${days!.year.toString().padLeft(4, '0')}-${days!.month.toString().padLeft(2, '0')}-${days!.day.toString().padLeft(2, '0')}",
-        "starttime": starttime,
-        "endtime": endtime,
+        "starttime": starttime?.toIso8601String(),
+        "endtime": endtime?.toIso8601String(),
         "timeperPatient": timeperPatient,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),

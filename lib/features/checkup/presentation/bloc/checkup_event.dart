@@ -11,7 +11,8 @@ class CheckupEvent with _$CheckupEvent {
   const factory CheckupEvent.getdth({required Map<String, dynamic> payload}) =
       _Getdth;
   const factory CheckupEvent.gettemperature(
-      {required String topic,required Map<String, dynamic> payload}) = _Gettemperature;
+      {required String topic,
+      required Map<String, dynamic> payload}) = _Gettemperature;
   const factory CheckupEvent.getspo2(
       {required String topic,
       required Map<String, dynamic> payload}) = _Getspo2;
@@ -38,4 +39,8 @@ class CheckupEvent with _$CheckupEvent {
   const factory CheckupEvent.getotoscope(
       {required String topic,
       required Map<String, dynamic> payload}) = _Getotoscope;
+
+  const factory CheckupEvent.endAppoinment(
+      {required String patientId,
+      required String appoinmentId}) = _EndAppoinment;
 }

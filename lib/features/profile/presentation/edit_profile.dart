@@ -1,11 +1,15 @@
+import 'package:dr_kevell/features/profile/data/models/profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dr_kevell/core/helper/date.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 
+import '../../../core/helper/date_formater.dart';
+import '../../../core/helper/date_validater.dart';
 import '../../../core/helper/toast.dart';
 import '../../../core/helper/validater.dart';
 import '../../widgets/buttons/text_button_widget.dart';
+import '../../widgets/calender/calnder.dart';
 import '../../widgets/input_field/input_field_widget.dart';
 import 'bloc/profile_bloc.dart';
 
@@ -56,7 +60,7 @@ class _EditMyProfileState extends State<EditMyProfile> {
   void initState() {
     nameController = TextEditingController(text: widget.name);
     dobController = TextEditingController(
-        text: dateFormatToDDmonthYYYY(widget.dob.toString()));
+        text: dateFormatToddmmyyyy(DateTime.parse(widget.dob.toString())));
     mobileController = TextEditingController(text: widget.mobile);
     addressController = TextEditingController(text: widget.adress);
     super.initState();
@@ -81,9 +85,8 @@ class _EditMyProfileState extends State<EditMyProfile> {
               Toast.showToast(
                   context: context, message: "Profile Updated Successfully");
 
-                              Navigator.of(context).pop();
+              Navigator.of(context).pop();
             }
-
           },
           builder: (context, state) {
             return Form(
@@ -141,17 +144,43 @@ class _EditMyProfileState extends State<EditMyProfile> {
                     const SizedBox(height: 10),
                     TextFieldWidget(
                       textEditingController: dobController,
-                      onChanged: (value) {
-                        validateForm();
-                      },
-                      hintText: "Dob",
+                      hintText: "12/12/2023",
+                      inputFormatters: [DateInputFormatter()],
+                      validate: DateValidator.validateDate,
                       keyboardType: TextInputType.datetime,
-                      validate: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Please enter a dob";
-                        }
-                        return null; // Return null if validation succeeds
-                      },
+                      suffixIcon: GestureDetector(
+                        onTap: () => showDialog(
+                          context: context,
+                          builder: (context) =>
+                              BlocBuilder<ProfileBloc, ProfileState>(
+                            builder: (context, state) {
+                              return CustomDatePickerDialog(
+                                initialDate: DateTime.parse(
+                                    widget.dob ?? DateTime.now().toString()),
+                                firstDate: DateTime(1920, 9, 7, 17, 30),
+                                lastDate: DateTime.now(),
+                                onDateTimeChanged: (onDateTimeChanged) {
+                                  context
+                                      .read<ProfileBloc>()
+                                      .add(ProfileEvent.pickDate(
+                                        date: onDateTimeChanged,
+                                      ));
+
+                                  dobController = TextEditingController(
+                                      text: dateFormatToddmmyyyy(
+                                          onDateTimeChanged));
+
+                                  // Navigator.of(context).pop();
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                        child: Icon(
+                          Icons.calendar_month,
+                          color: context.theme.primary,
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 20),
                     Text("Address",
@@ -194,12 +223,19 @@ class _EditMyProfileState extends State<EditMyProfile> {
                                   : () {
                                       context.read<ProfileBloc>().add(
                                             ProfileEvent.updateProfile(
-                                              address:
-                                                  addressController.value.text,
-                                              dob: dobController.value.text,
-                                              mobileNumber:
-                                                  mobileController.text,
-                                              name: nameController.value.text,
+                                              profileData: Data(
+                                                  registeredUserId: state
+                                                      .result!
+                                                      .data!
+                                                      .registeredUserId,
+                                                  address: addressController
+                                                      .value.text,
+                                                  dob: state.date,
+                                                  
+                                                  name:
+                                                      nameController.value.text,
+                                                  mobileNo: mobileController
+                                                      .value.text),
                                             ),
                                           );
                                     },

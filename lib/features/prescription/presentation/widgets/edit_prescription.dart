@@ -12,7 +12,7 @@ import '../bloc/precription_bloc.dart';
 
 class AddOrEditPrescriptionWidget extends StatefulWidget {
   final bool isEdit;
-  final Map<String, String> checkupDetalis;
+  final Map<String, dynamic> checkupDetalis;
   final list.PrescriptionElement? prescriptionElement;
   const AddOrEditPrescriptionWidget({
     super.key,
@@ -389,31 +389,40 @@ class _AddOrEditPrescriptionWidgetState
                     const SizedBox(width: 10),
                     Expanded(
                       child: BlocConsumer<PrecriptionBloc, PrecriptionState>(
-                        listener: (context, state) {},
+                        listener: (context, state) {
+                          if (state.created) {
+                            // context
+                            //     .read<PrecriptionBloc>()
+                            //     .add(PrecriptionEvent.getPrescriptionList(
+                            //       appointmentId: widget
+                            //           .prescriptionElement!.appointmentId!,
+                            //     ));
+                          }
+                        },
                         builder: (context, state) {
                           return TextButtonWidget(
                             onPressed: isButtonDisabled
                                 ? null
                                 : () {
-                             
-
                                     if (widget.isEdit) {
                                       context.read<PrecriptionBloc>().add(
                                             PrecriptionEvent.updatePrescription(
                                               prescriptionElement:
                                                   list.PrescriptionElement(
-                                                appointmentId:
-                                                    widget
-                                                    .prescriptionElement!.appointmentId,
-                                                doctorId:widget
-                                                    .prescriptionElement!.doctorId,
+                                                appointmentId: widget
+                                                    .prescriptionElement!
+                                                    .appointmentId,
+                                                doctorId: widget
+                                                    .prescriptionElement!
+                                                    .doctorId,
                                                 pno: widget
                                                     .prescriptionElement!.pno!,
                                                 duration:
                                                     daysController.value.text,
                                                 name: nameController.value.text,
-                                                patientId:widget
-                                                    .prescriptionElement!.patientId,
+                                                patientId: widget
+                                                    .prescriptionElement!
+                                                    .patientId,
                                                 remark: remark.value.text,
                                                 timeoftheday: timeOfTheDay,
                                                 tobetaken: toBeTaken,
@@ -422,23 +431,22 @@ class _AddOrEditPrescriptionWidgetState
                                             ),
                                           );
                                     } else {
-                                             final patientID =
-                                        widget.checkupDetalis['patientID']!;
-                                    final doctorID =
-                                        widget.checkupDetalis['doctorID']!;
-                                    final appointmentID =
-                                        widget.checkupDetalis['appointmentID']!;
+                                      final patientID =
+                                          widget.checkupDetalis['patientID']!;
+                                      final doctorID =
+                                          widget.checkupDetalis['doctorID']!;
+                                      final appointmentID = widget
+                                          .checkupDetalis['appointmentID']!;
                                       context.read<PrecriptionBloc>().add(
                                             PrecriptionEvent.createPrescription(
                                               prescriptionElement:
                                                   list.PrescriptionElement(
-                                                appointmentId:
-                                                    int.parse(appointmentID),
-                                                doctorId: int.parse(doctorID),
+                                                appointmentId: appointmentID,
+                                                doctorId: doctorID,
                                                 duration:
                                                     daysController.value.text,
                                                 name: nameController.value.text,
-                                                patientId: int.parse(patientID),
+                                                patientId: patientID,
                                                 remark: remark.value.text,
                                                 timeoftheday: timeOfTheDay,
                                                 tobetaken: toBeTaken,

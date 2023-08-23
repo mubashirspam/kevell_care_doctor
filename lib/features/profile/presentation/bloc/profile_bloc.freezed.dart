@@ -19,25 +19,22 @@ mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getProfile,
-    required TResult Function(
-            String name, String dob, String address, String mobileNumber)
-        updateProfile,
+    required TResult Function(Data profileData) updateProfile,
+    required TResult Function(DateTime date) pickDate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getProfile,
-    TResult? Function(
-            String name, String dob, String address, String mobileNumber)?
-        updateProfile,
+    TResult? Function(Data profileData)? updateProfile,
+    TResult? Function(DateTime date)? pickDate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getProfile,
-    TResult Function(
-            String name, String dob, String address, String mobileNumber)?
-        updateProfile,
+    TResult Function(Data profileData)? updateProfile,
+    TResult Function(DateTime date)? pickDate,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -45,18 +42,21 @@ mixin _$ProfileEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetProfile value) getProfile,
     required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_PickDate value) pickDate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetProfile value)? getProfile,
     TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_PickDate value)? pickDate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetProfile value)? getProfile,
     TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_PickDate value)? pickDate,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,9 +119,8 @@ class _$_GetProfile implements _GetProfile {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getProfile,
-    required TResult Function(
-            String name, String dob, String address, String mobileNumber)
-        updateProfile,
+    required TResult Function(Data profileData) updateProfile,
+    required TResult Function(DateTime date) pickDate,
   }) {
     return getProfile();
   }
@@ -130,9 +129,8 @@ class _$_GetProfile implements _GetProfile {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getProfile,
-    TResult? Function(
-            String name, String dob, String address, String mobileNumber)?
-        updateProfile,
+    TResult? Function(Data profileData)? updateProfile,
+    TResult? Function(DateTime date)? pickDate,
   }) {
     return getProfile?.call();
   }
@@ -141,9 +139,8 @@ class _$_GetProfile implements _GetProfile {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getProfile,
-    TResult Function(
-            String name, String dob, String address, String mobileNumber)?
-        updateProfile,
+    TResult Function(Data profileData)? updateProfile,
+    TResult Function(DateTime date)? pickDate,
     required TResult orElse(),
   }) {
     if (getProfile != null) {
@@ -157,6 +154,7 @@ class _$_GetProfile implements _GetProfile {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetProfile value) getProfile,
     required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_PickDate value) pickDate,
   }) {
     return getProfile(this);
   }
@@ -166,6 +164,7 @@ class _$_GetProfile implements _GetProfile {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetProfile value)? getProfile,
     TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_PickDate value)? pickDate,
   }) {
     return getProfile?.call(this);
   }
@@ -175,6 +174,7 @@ class _$_GetProfile implements _GetProfile {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetProfile value)? getProfile,
     TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_PickDate value)? pickDate,
     required TResult orElse(),
   }) {
     if (getProfile != null) {
@@ -194,7 +194,7 @@ abstract class _$$_UpdateProfileCopyWith<$Res> {
           _$_UpdateProfile value, $Res Function(_$_UpdateProfile) then) =
       __$$_UpdateProfileCopyWithImpl<$Res>;
   @useResult
-  $Res call({String name, String dob, String address, String mobileNumber});
+  $Res call({Data profileData});
 }
 
 /// @nodoc
@@ -208,28 +208,13 @@ class __$$_UpdateProfileCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? dob = null,
-    Object? address = null,
-    Object? mobileNumber = null,
+    Object? profileData = null,
   }) {
     return _then(_$_UpdateProfile(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      dob: null == dob
-          ? _value.dob
-          : dob // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      mobileNumber: null == mobileNumber
-          ? _value.mobileNumber
-          : mobileNumber // ignore: cast_nullable_to_non_nullable
-              as String,
+      profileData: null == profileData
+          ? _value.profileData
+          : profileData // ignore: cast_nullable_to_non_nullable
+              as Data,
     ));
   }
 }
@@ -237,24 +222,14 @@ class __$$_UpdateProfileCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_UpdateProfile implements _UpdateProfile {
-  const _$_UpdateProfile(
-      {required this.name,
-      required this.dob,
-      required this.address,
-      required this.mobileNumber});
+  const _$_UpdateProfile({required this.profileData});
 
   @override
-  final String name;
-  @override
-  final String dob;
-  @override
-  final String address;
-  @override
-  final String mobileNumber;
+  final Data profileData;
 
   @override
   String toString() {
-    return 'ProfileEvent.updateProfile(name: $name, dob: $dob, address: $address, mobileNumber: $mobileNumber)';
+    return 'ProfileEvent.updateProfile(profileData: $profileData)';
   }
 
   @override
@@ -262,16 +237,12 @@ class _$_UpdateProfile implements _UpdateProfile {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UpdateProfile &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.dob, dob) || other.dob == dob) &&
-            (identical(other.address, address) || other.address == address) &&
-            (identical(other.mobileNumber, mobileNumber) ||
-                other.mobileNumber == mobileNumber));
+            (identical(other.profileData, profileData) ||
+                other.profileData == profileData));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, dob, address, mobileNumber);
+  int get hashCode => Object.hash(runtimeType, profileData);
 
   @JsonKey(ignore: true)
   @override
@@ -283,35 +254,32 @@ class _$_UpdateProfile implements _UpdateProfile {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getProfile,
-    required TResult Function(
-            String name, String dob, String address, String mobileNumber)
-        updateProfile,
+    required TResult Function(Data profileData) updateProfile,
+    required TResult Function(DateTime date) pickDate,
   }) {
-    return updateProfile(name, dob, address, mobileNumber);
+    return updateProfile(profileData);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getProfile,
-    TResult? Function(
-            String name, String dob, String address, String mobileNumber)?
-        updateProfile,
+    TResult? Function(Data profileData)? updateProfile,
+    TResult? Function(DateTime date)? pickDate,
   }) {
-    return updateProfile?.call(name, dob, address, mobileNumber);
+    return updateProfile?.call(profileData);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getProfile,
-    TResult Function(
-            String name, String dob, String address, String mobileNumber)?
-        updateProfile,
+    TResult Function(Data profileData)? updateProfile,
+    TResult Function(DateTime date)? pickDate,
     required TResult orElse(),
   }) {
     if (updateProfile != null) {
-      return updateProfile(name, dob, address, mobileNumber);
+      return updateProfile(profileData);
     }
     return orElse();
   }
@@ -321,6 +289,7 @@ class _$_UpdateProfile implements _UpdateProfile {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetProfile value) getProfile,
     required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_PickDate value) pickDate,
   }) {
     return updateProfile(this);
   }
@@ -330,6 +299,7 @@ class _$_UpdateProfile implements _UpdateProfile {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetProfile value)? getProfile,
     TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_PickDate value)? pickDate,
   }) {
     return updateProfile?.call(this);
   }
@@ -339,6 +309,7 @@ class _$_UpdateProfile implements _UpdateProfile {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetProfile value)? getProfile,
     TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_PickDate value)? pickDate,
     required TResult orElse(),
   }) {
     if (updateProfile != null) {
@@ -349,18 +320,151 @@ class _$_UpdateProfile implements _UpdateProfile {
 }
 
 abstract class _UpdateProfile implements ProfileEvent {
-  const factory _UpdateProfile(
-      {required final String name,
-      required final String dob,
-      required final String address,
-      required final String mobileNumber}) = _$_UpdateProfile;
+  const factory _UpdateProfile({required final Data profileData}) =
+      _$_UpdateProfile;
 
-  String get name;
-  String get dob;
-  String get address;
-  String get mobileNumber;
+  Data get profileData;
   @JsonKey(ignore: true)
   _$$_UpdateProfileCopyWith<_$_UpdateProfile> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_PickDateCopyWith<$Res> {
+  factory _$$_PickDateCopyWith(
+          _$_PickDate value, $Res Function(_$_PickDate) then) =
+      __$$_PickDateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime date});
+}
+
+/// @nodoc
+class __$$_PickDateCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$_PickDate>
+    implements _$$_PickDateCopyWith<$Res> {
+  __$$_PickDateCopyWithImpl(
+      _$_PickDate _value, $Res Function(_$_PickDate) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? date = null,
+  }) {
+    return _then(_$_PickDate(
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_PickDate implements _PickDate {
+  const _$_PickDate({required this.date});
+
+  @override
+  final DateTime date;
+
+  @override
+  String toString() {
+    return 'ProfileEvent.pickDate(date: $date)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PickDate &&
+            (identical(other.date, date) || other.date == date));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, date);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_PickDateCopyWith<_$_PickDate> get copyWith =>
+      __$$_PickDateCopyWithImpl<_$_PickDate>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getProfile,
+    required TResult Function(Data profileData) updateProfile,
+    required TResult Function(DateTime date) pickDate,
+  }) {
+    return pickDate(date);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getProfile,
+    TResult? Function(Data profileData)? updateProfile,
+    TResult? Function(DateTime date)? pickDate,
+  }) {
+    return pickDate?.call(date);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getProfile,
+    TResult Function(Data profileData)? updateProfile,
+    TResult Function(DateTime date)? pickDate,
+    required TResult orElse(),
+  }) {
+    if (pickDate != null) {
+      return pickDate(date);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetProfile value) getProfile,
+    required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_PickDate value) pickDate,
+  }) {
+    return pickDate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetProfile value)? getProfile,
+    TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_PickDate value)? pickDate,
+  }) {
+    return pickDate?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetProfile value)? getProfile,
+    TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_PickDate value)? pickDate,
+    required TResult orElse(),
+  }) {
+    if (pickDate != null) {
+      return pickDate(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PickDate implements ProfileEvent {
+  const factory _PickDate({required final DateTime date}) = _$_PickDate;
+
+  DateTime get date;
+  @JsonKey(ignore: true)
+  _$$_PickDateCopyWith<_$_PickDate> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -372,6 +476,7 @@ mixin _$ProfileState {
   bool get hasData => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
   ProfileModel? get result => throw _privateConstructorUsedError;
+  DateTime get date => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileStateCopyWith<ProfileState> get copyWith =>
@@ -390,7 +495,8 @@ abstract class $ProfileStateCopyWith<$Res> {
       bool unauthorized,
       bool hasData,
       bool isError,
-      ProfileModel? result});
+      ProfileModel? result,
+      DateTime date});
 }
 
 /// @nodoc
@@ -412,6 +518,7 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
     Object? hasData = null,
     Object? isError = null,
     Object? result = freezed,
+    Object? date = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -438,6 +545,10 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
               as ProfileModel?,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -456,7 +567,8 @@ abstract class _$$_ProfileStateCopyWith<$Res>
       bool unauthorized,
       bool hasData,
       bool isError,
-      ProfileModel? result});
+      ProfileModel? result,
+      DateTime date});
 }
 
 /// @nodoc
@@ -476,6 +588,7 @@ class __$$_ProfileStateCopyWithImpl<$Res>
     Object? hasData = null,
     Object? isError = null,
     Object? result = freezed,
+    Object? date = null,
   }) {
     return _then(_$_ProfileState(
       isLoading: null == isLoading
@@ -502,6 +615,10 @@ class __$$_ProfileStateCopyWithImpl<$Res>
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
               as ProfileModel?,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -515,7 +632,8 @@ class _$_ProfileState implements _ProfileState {
       required this.unauthorized,
       required this.hasData,
       required this.isError,
-      required this.result});
+      required this.result,
+      required this.date});
 
   @override
   final bool isLoading;
@@ -529,10 +647,12 @@ class _$_ProfileState implements _ProfileState {
   final bool isError;
   @override
   final ProfileModel? result;
+  @override
+  final DateTime date;
 
   @override
   String toString() {
-    return 'ProfileState(isLoading: $isLoading, isUpdateLoading: $isUpdateLoading, unauthorized: $unauthorized, hasData: $hasData, isError: $isError, result: $result)';
+    return 'ProfileState(isLoading: $isLoading, isUpdateLoading: $isUpdateLoading, unauthorized: $unauthorized, hasData: $hasData, isError: $isError, result: $result, date: $date)';
   }
 
   @override
@@ -548,12 +668,13 @@ class _$_ProfileState implements _ProfileState {
                 other.unauthorized == unauthorized) &&
             (identical(other.hasData, hasData) || other.hasData == hasData) &&
             (identical(other.isError, isError) || other.isError == isError) &&
-            (identical(other.result, result) || other.result == result));
+            (identical(other.result, result) || other.result == result) &&
+            (identical(other.date, date) || other.date == date));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, isLoading, isUpdateLoading,
-      unauthorized, hasData, isError, result);
+      unauthorized, hasData, isError, result, date);
 
   @JsonKey(ignore: true)
   @override
@@ -569,7 +690,8 @@ abstract class _ProfileState implements ProfileState {
       required final bool unauthorized,
       required final bool hasData,
       required final bool isError,
-      required final ProfileModel? result}) = _$_ProfileState;
+      required final ProfileModel? result,
+      required final DateTime date}) = _$_ProfileState;
 
   @override
   bool get isLoading;
@@ -583,6 +705,8 @@ abstract class _ProfileState implements ProfileState {
   bool get isError;
   @override
   ProfileModel? get result;
+  @override
+  DateTime get date;
   @override
   @JsonKey(ignore: true)
   _$$_ProfileStateCopyWith<_$_ProfileState> get copyWith =>

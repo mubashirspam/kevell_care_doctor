@@ -5,6 +5,8 @@ import 'package:dr_kevell/pages/profile/presentation/profile_screen.dart';
 import 'package:dr_kevell/pages/report/presentation/report_screen.dart';
 import '../../pages/chat/presentation/chating_screen.dart';
 import '../../pages/history/presentation/single_person_history_screen.dart';
+import 'package:dr_kevell/features/report/data/model/report_model.dart'
+    as report;
 
 import '../../pages/prescription/presentation/prescription_screen.dart';
 import '../../pages/dashborad/presentation/dashborad.dart';
@@ -19,15 +21,20 @@ final Map<String, Widget Function(BuildContext ctx)> route = {
   ScheduleYourTime.routeName: (ctx) => const ScheduleYourTime(),
   ProfileScreen.routeName: (ctx) => const ProfileScreen(),
   MyProfileScreen.routeName: (ctx) => const MyProfileScreen(),
-  PrescriptionScreen.routeName: (ctx) =>  PrescriptionScreen(
-           checkupDetalis:
-            ModalRoute.of(ctx)!.settings.arguments as Map<String, String>,
-  ),
+  PrescriptionScreen.routeName: (ctx) => PrescriptionScreen(
+        checkupDetalis:
+            ModalRoute.of(ctx)!.settings.arguments as Map<String, dynamic>,
+      ),
   ChatingScreen.routeName: (ctx) => const ChatingScreen(),
   PatientCheckupScreen.routeName: (ctx) => PatientCheckupScreen(
         checkupDetalis:
             ModalRoute.of(ctx)!.settings.arguments as Map<String, String>,
       ),
-  PersonHistroyScreen.routeName: (ctx) => const PersonHistroyScreen(),
-  ReportScreen.routeName: (ctx) => const ReportScreen(),
+  PersonHistroyScreen.routeName: (ctx) => PersonHistroyScreen(
+        patientIdWithName:
+            ModalRoute.of(ctx)!.settings.arguments as Map<String, dynamic>,
+      ),
+  ReportScreen.routeName: (ctx) => ReportScreen(
+        data: ModalRoute.of(ctx)!.settings.arguments as report.Datum,
+      ),
 };
