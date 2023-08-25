@@ -6,7 +6,9 @@ import 'package:dr_kevell/features/widgets/avatar/active_avatar.dart';
 
 
 class CheckupHeaderWidget extends StatelessWidget {
-  const CheckupHeaderWidget({super.key});
+
+
+  const CheckupHeaderWidget({super.key });
 
   @override
   Widget build(BuildContext context) {

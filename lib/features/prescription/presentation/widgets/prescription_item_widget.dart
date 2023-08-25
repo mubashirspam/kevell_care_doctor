@@ -1,3 +1,4 @@
+import 'package:dr_kevell/configure/color/main_color.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 
@@ -13,40 +14,70 @@ class PrescriptionItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: const EdgeInsets.only(bottom: 5),
-      title: Text(
-        prescriptionElement.name ?? "Medicin not Mentioned",
-        style: Theme.of(context).textTheme.titleMedium,
-      ),
-      subtitle: Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: Text(
-          prescriptionElement.type ?? "No type mentioned",
-          style: Theme.of(context).textTheme.titleSmall,
+    return Card(
+      margin: const EdgeInsets.only(top: 15),
+      color: context.theme.secondary,
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(
+          12,
         ),
       ),
-      trailing: TextButton(
-        style: TextButton.styleFrom(
-          minimumSize: const Size(65, 30),
-          backgroundColor: context.theme.primary,
-          foregroundColor: context.theme.backround,
-        ),
-        child: const Text("Edit"),
-        onPressed: () => showModalBottomSheet(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          isScrollControlled: true,
-          context: context,
-          builder: (context) => AddOrEditPrescriptionWidget(
-            isEdit: true,
-            prescriptionElement: prescriptionElement,
-            checkupDetalis: {
-                // 'patientID': patientID,
-                // 'doctorID': doctorID,
-                // 'appointmentID': appointmentID,
-              },
-          ),
+      child: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    prescriptionElement.name ?? "Medicin not Mentioned",
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium!
+                        .copyWith(color: context.theme.textPrimary),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Text(
+                      prescriptionElement.type ?? "No type mentioned",
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            IconButton(
+              icon: Icon(Icons.edit, color: context.theme.primary),
+              onPressed: () => showModalBottomSheet(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                isScrollControlled: true,
+                context: context,
+                builder: (context) => AddOrEditPrescriptionWidget(
+                  isEdit: true,
+                  prescriptionElement: prescriptionElement,
+                  checkupDetalis: const {},
+                ),
+              ),
+            ),
+            IconButton(
+              icon: const Icon(Icons.delete,
+                  color: MainConfigColorsDarkThem.danger),
+              onPressed: () => showModalBottomSheet(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                isScrollControlled: true,
+                context: context,
+                builder: (context) => AddOrEditPrescriptionWidget(
+                  isEdit: true,
+                  prescriptionElement: prescriptionElement,
+                  checkupDetalis: const {},
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

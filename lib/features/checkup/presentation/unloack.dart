@@ -135,6 +135,7 @@ class UnloackWidget extends StatelessWidget {
   final bool isUnloacked;
   final bool isLoading;
   final bool isUnloacking;
+  final String id;
 
   final void Function(bool)? onChanged;
   final VoidCallback onpressed;
@@ -145,6 +146,7 @@ class UnloackWidget extends StatelessWidget {
       required this.isUnloacked,
       required this.onChanged,
       required this.isLoading,
+      required this.id,
       required this.onpressed});
 
   @override
@@ -161,7 +163,7 @@ class UnloackWidget extends StatelessWidget {
                     color: Colors.white,
                   )
                 : isConnected
-                    ? const Text("Yor Mobile is connected to device id :1923 ")
+                    ?  Text("Yor Mobile is connected to device id :$id ")
                     : Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

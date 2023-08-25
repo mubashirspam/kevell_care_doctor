@@ -7,7 +7,6 @@ import 'dart:math' as m;
 import 'package:dr_kevell/features/checkup/presentation/end_appoinment_report_screen.dart';
 import 'package:dr_kevell/features/checkup/presentation/ecg_widget.dart';
 import 'package:dr_kevell/features/checkup/presentation/gsr_widget.dart';
-import 'package:dr_kevell/pages/prescription/presentation/prescription_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
@@ -47,6 +46,10 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
   bool isConnected = false;
   bool isUnloacked = false;
   bool isUnloacking = false;
+
+  bool isAnalysisended = false;
+
+    String deviceId = "";
 
   bool tReading = false;
   bool sp02Reading = false;
@@ -139,7 +142,6 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
   }
 
   void onConnected() {
-    log('EXAMPLE::Mosquitto client connected....');
     _client!.updates!.listen((List<MqttReceivedMessage<MqttMessage>> c) {
       final MqttPublishMessage recMess = c[0].payload as MqttPublishMessage;
       setState(() {
@@ -149,7 +151,10 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
         if (dataMap['state'] == "unlock") {
           isUnloacking = false;
           isUnloacked = true;
-        } else if (dataMap['number'] == "2" && dataMap['state'] == "device") {
+          deviceId = dataMap['id'];
+        } else if (dataMap['number'] == "2" &&
+            dataMap['state'] == "device" &&
+            dataMap["appointmentID"] == "$appointmentID") {
           isUnloacked = true;
 
           if (dataMap['data']['content'] != null &&
@@ -163,7 +168,21 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
           }
 
           log(temparature);
-        } else if (dataMap['number'] == "4" && dataMap['state'] == "device") {
+        } else if (dataMap['command'] == "alert" &&
+            dataMap['value'] == "end_ok") {
+          log("Analysis Ended");
+
+          isAnalysisended = true;
+
+          context.read<CheckupBloc>().add(
+                CheckupEvent.endAppoinment(
+                  appoinmentId: widget.checkupDetalis['appointmentID']!,
+                  patientId: widget.checkupDetalis['patientID']!,
+                ),
+              );
+        } else if (dataMap['number'] == "4" &&
+            dataMap['state'] == "device" &&
+            dataMap["appointmentID"] == "$appointmentID") {
           isUnloacked = true;
 
           if (dataMap['data']['content'] != null &&
@@ -189,7 +208,9 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
           }
 
           log(position);
-        } else if (dataMap['number'] == "3" && dataMap['state'] == "device") {
+        } else if (dataMap['number'] == "3" &&
+            dataMap['state'] == "device" &&
+            dataMap["appointmentID"] == "$appointmentID") {
           isUnloacked = true;
 
           if (dataMap['data']['content'] != null &&
@@ -205,7 +226,9 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
           }
 
           log(sop2);
-        } else if (dataMap['number'] == "6" && dataMap['state'] == "device") {
+        } else if (dataMap['number'] == "6" &&
+            dataMap['state'] == "device" &&
+            dataMap["appointmentID"] == "$appointmentID") {
           isUnloacked = true;
 
           if (dataMap['data']['content'] != null &&
@@ -235,7 +258,9 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
               dataMap['data']['type'] == "result") {
             ecgReading = false;
           }
-        } else if (dataMap['number'] == "8" && dataMap['state'] == "device") {
+        } else if (dataMap['number'] == "8" &&
+            dataMap['state'] == "device" &&
+            dataMap["appointmentID"] == "$appointmentID") {
           isUnloacked = true;
 
           if (dataMap['data']['content'] != null &&
@@ -353,8 +378,9 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const CheckupHeaderWidget(),
+           const  CheckupHeaderWidget(),
             UnloackWidget(
+              id:deviceId,
               isConnected: isConnected,
               isUnloacking: isUnloacking,
               isLoading: isLoading,
@@ -486,29 +512,31 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
             PauseAndSubmitWidget(
               stopAndShow: isUnloacked
                   ? () {
-                      unSubscribe("KC_EC94CB6F61DC/app");
-                      _client!.disconnect();
-                      setState(() {
-                        isUnloacked = false;
-                        isConnected = false;
-                      });
-
-                      log(widget.checkupDetalis.toString());
-
                       showDialog(
                         context: context,
                         barrierDismissible: false,
                         builder: (context) =>
                             BlocConsumer<CheckupBloc, CheckupState>(
                           listener: (context, state) {
-                            // TODO: implement listener
+                            if(state.error){
+                             setState(() {
+                                isAnalysisended = false;
+                              });
+                            }
+                            if (state.hasData) {
+                              unSubscribe("KC_EC94CB6F61DC/app");
+                              _client!.disconnect();
+                              setState(() {
+                                isAnalysisended = false;
+                              });
+                            }
                           },
                           builder: (context, state) {
                             return MyCustomAlertDialog(
                                 questionMesage:
                                     "Are you wnat to submit the Appoinments ?",
                                 isCompleted: state.hasData,
-                                isLoading: state.isLoading,
+                                isLoading: state.isLoading || isAnalysisended,
                                 okPressed: () {
                                   Navigator.of(context).pushAndRemoveUntil(
                                       MaterialPageRoute(
@@ -520,20 +548,20 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
                                 successMessage:
                                     "Successfully completed your appointment.\nPlease add a prescription for the patient to take medication.",
                                 onPress: () {
-                                  context.read<CheckupBloc>().add(
-                                        CheckupEvent.endAppoinment(
-                                          appoinmentId: widget
-                                              .checkupDetalis['appointmentID']!,
-                                          patientId: widget
-                                              .checkupDetalis['patientID']!,
-                                        ),
-                                      );
-                                }
+                                  publishMy({
+                                    "id": "KC_EC94CB6F61DC",
+                                    "patientID": patientID,
+                                    "doctorID": doctorID,
+                                    "appointmentID": appointmentID,
+                                    "type": "Doctor",
+                                    "command": "alert",
+                                    "value": "analyse_end",
+                                    "date":
+                                        DateTime.now().millisecondsSinceEpoch
+                                  }, "KC_EC94CB6F61DC/device");
 
-                                // onpress: () {
-                                //   Navigator.of(context).pop();
-                                // },
-                                );
+                                  log(widget.checkupDetalis.toString());
+                                });
                           },
                         ),
                       );

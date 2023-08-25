@@ -35,7 +35,7 @@ class UpdateScheduleRepoImpliment implements UpdateScheduleRepository {
       //   data: schedulePayload.toJson(),
       // );
 
-      final response = await Dio(BaseOptions()).post(
+      final response = await Dio(BaseOptions()).put(
         ApiEndPoints.updateSchedule,
         data: schedulePayload.toJson(),
       );

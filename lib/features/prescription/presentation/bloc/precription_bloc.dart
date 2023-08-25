@@ -1,14 +1,21 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:dr_kevell/features/prescription/data/model/prescription_list_model.dart';
+
 import 'package:dr_kevell/features/prescription/data/model/prescription_settings_model.dart';
 import 'package:dr_kevell/features/prescription/domain/repositories/create_prescription_repository.dart';
 import 'package:dr_kevell/features/prescription/domain/repositories/get_prescription_list_repository.dart';
 import 'package:dr_kevell/features/prescription/domain/repositories/get_prescription_settings_repository.dart';
 import 'package:dr_kevell/features/prescription/domain/repositories/update_prescription_repository.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:path_provider/path_provider.dart';
+
+import '../../data/model/prescription_list_model.dart';
+import '../../data/model/prescription_pdf_model.dart';
+import '../../data/repository/genarate_prescription_pdf_impliment.dart';
 
 part 'precription_event.dart';
 part 'precription_state.dart';
@@ -166,8 +173,7 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
         (success) => state.copyWith(
           isError: false,
           isUpdateLoading: false,
-      
-           updated: true,
+          updated: true,
           hasData: false,
           prescriptionResult: success,
         ),
@@ -180,7 +186,7 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
         state.copyWith(
           isCreateLoading: true,
           isError: false,
-           created: false,
+          created: false,
           unauthorized: false,
           hasData: false,
         ),
@@ -206,5 +212,57 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
       );
       emit(result);
     });
+
+    on<_GeneratePdf>(
+      (event, emit) async {
+        emit(
+          state.copyWith(
+            isPdfLoading: true,
+            pdfCreated: false,
+            pdfError: false,
+          ),
+        );
+
+        try {
+          final pdf = await generatePDF(event.data);
+          log(pdf.document.toString());
+
+          final bytes = await pdf.save();
+          final tempDir = await getTemporaryDirectory();
+          final file = File('${tempDir.path}/prescription.pdf');
+
+          await file.writeAsBytes(bytes);
+          log(file.toString());
+          log("emmited suscseeeeee");
+
+          emit(
+            state.copyWith(
+              pdfError: false,
+              isPdfLoading: false,
+              pdfCreated: true,
+              pdf: pdf,
+              pdfPath: file.path,
+            ),
+          );
+          log(pdf.toString());
+        } catch (e) {
+          log("error $e");
+          emit(state.copyWith(
+            pdfError: true,
+            pdfCreated: false,
+            pdfErrorMessage: e.toString(),
+            isPdfLoading: false,
+          ));
+        }
+      },
+    );
+  }
+
+  Future<pw.Document> generatePDF(List<PrescriptionPdfModel> data) async {
+    GeneratePrescriptionPdfRepoImpliment pdfClass =
+        GeneratePrescriptionPdfRepoImpliment();
+    final pdf = pdfClass.generatePDF(data);
+
+    return pdf;
   }
 }

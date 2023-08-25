@@ -153,8 +153,7 @@ class MyCustomAlertDialog extends StatelessWidget {
   final VoidCallback okPressed;
 
   final String questionMesage;
-    final String successMessage;
-
+  final String successMessage;
 
   const MyCustomAlertDialog({
     super.key,
@@ -175,7 +174,7 @@ class MyCustomAlertDialog extends StatelessWidget {
       elevation: 8,
       backgroundColor: Colors.transparent,
       child: Container(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(24),
@@ -188,12 +187,14 @@ class MyCustomAlertDialog extends StatelessWidget {
           ],
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
             if (isLoading)
               const CircularProgressIndicator()
             else if (isCompleted)
               Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     successMessage,
@@ -208,25 +209,32 @@ class MyCustomAlertDialog extends StatelessWidget {
               )
             else
               Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     questionMesage,
+                    textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ElevatedButton(
-                        onPressed: onPress,
-                        child: const Text('Yes, sure'),
+                      Expanded(
+                        child: ElevatedButton(
+                          
+                          onPressed: onPress,
+                          child: const Text('Yes, sure'),
+                        ),
                       ),
                       const SizedBox(width: 16),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: const Text('Cancel'),
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('Cancel'),
+                        ),
                       ),
                     ],
                   ),

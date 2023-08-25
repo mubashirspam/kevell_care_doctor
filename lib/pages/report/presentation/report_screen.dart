@@ -1,10 +1,19 @@
+import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/features/report/data/model/report_model.dart'
     as report;
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../features/checkup/presentation/end_appoinment_report_screen.dart';
+import '../../../features/prescription/presentation/bloc/precription_bloc.dart';
 import '../../../features/report/presetantion/prescription_reports.dart';
 import 'widgets/report_appbar.dart';
+
+import 'dart:developer';
+
+import 'package:dr_kevell/core/helper/toast.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share/share.dart';
 
 class ReportScreen extends StatelessWidget {
   final report.Datum data;
@@ -62,7 +71,69 @@ class ReportScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ),
-            const PrescriptionReportsCard()
+            data.prescription != null && data.prescription!.isNotEmpty
+                ? BlocConsumer<PrecriptionBloc, PrecriptionState>(
+                    listener: (context, pdfState) async {
+                      if (pdfState.isPdfLoading) {
+                        showDialog(
+                            barrierDismissible: false,
+                            useSafeArea: true,
+                            barrierColor: Colors.black.withOpacity(0.1),
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                backgroundColor: context.theme.primary,
+                                elevation: 0,
+                                content: Row(
+                                  children: [
+                                    const SizedBox(width: 20),
+                                    const SizedBox(
+                                        height: 15,
+                                        width: 15,
+                                        child: CircularProgressIndicator(
+                                          color: Colors.white,
+                                        )),
+                                    const SizedBox(width: 20),
+                                    Text(
+                                      "Genarating Pdf...",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                    )
+                                  ],
+                                ),
+                              );
+                            });
+                      }
+                      if (pdfState.pdfError) {
+                        Navigator.of(context, rootNavigator: true).pop(context);
+
+                        Toast.showToast(
+                            context: context,
+                            message: pdfState.pdfErrorMessage);
+                      }
+                      if (!pdfState.isPdfLoading &&
+                          pdfState.pdfCreated &&
+                          pdfState.pdf != null) {
+                        log("Prescription pdf created Sucsessfully");
+                        await Future.delayed(const Duration(milliseconds: 1000),
+                            () {
+                          Navigator.of(context, rootNavigator: true)
+                              .pop(context);
+                        });
+                        final tempDir = await getTemporaryDirectory();
+                        await Share.shareFiles(
+                            ['${tempDir.path}/prescription.pdf'],
+                            text: 'Check out my PDF!');
+                      }
+                    },
+                    builder: (context, state) {
+                      return PrescriptionReportsCard(
+                        data: data.prescription!,
+                      );
+                    },
+                  )
+                : const SizedBox()
           ],
         ),
       ),

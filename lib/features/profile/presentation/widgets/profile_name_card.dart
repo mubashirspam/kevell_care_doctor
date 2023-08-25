@@ -1,3 +1,4 @@
+import 'package:dr_kevell/features/profile/presentation/upload_image.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 
@@ -36,8 +37,14 @@ class ProfileNameCard extends StatelessWidget {
               Positioned(
                 bottom: 0,
                 right: 0,
-                child: GestureDetector(
-                  onTap: () {},
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const UploadImagePage(),
+                      ),
+                    );
+                  },
                   child: CircleAvatar(
                     maxRadius: 15,
                     minRadius: 15,

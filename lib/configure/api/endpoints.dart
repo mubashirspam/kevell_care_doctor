@@ -8,6 +8,8 @@ class ApiEndPoints {
 
   static const String updateProfile = "$baseUrl/doctor/api/profile";
 
+    static const String uploadImage = "$baseUrl/doctor/api/uploadProfileImage";
+
   static const String homeStatus = "$baseUrl/register/api/doctorcountlist";
 
   static const String homeWaitingPatient =
@@ -26,6 +28,10 @@ class ApiEndPoints {
 
   static const String getPrescriptionSettings =
       "$baseUrl/users/api/getdprescriptiontable";
+
+
+  static const String deletePrescription =
+      "$baseUrl/users/api/deletemedicinedata";
 
   static const String getSchedule = "$baseUrl/doctor/api/getdoctorschedule";
 

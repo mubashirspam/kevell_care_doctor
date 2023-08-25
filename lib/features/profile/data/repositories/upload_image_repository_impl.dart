@@ -1,47 +1,32 @@
 import 'dart:developer';
+import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:dr_kevell/features/profile/data/models/upload_image_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dr_kevell/configure/api/endpoints.dart';
-import 'package:dr_kevell/features/profile/data/models/profile_model.dart';
-import '../../../../configure/value/constant.dart';
-import '../../../../configure/value/secure_storage.dart';
 import '../../../../core/failiar/failiur_model.dart';
 import '../../../../core/failiar/main_failures.dart';
-// import '../../../../core/network/netwrok.dart';
-import '../../domain/repositories/update_profile_repository.dart';
 
-@LazySingleton(as: UpdateProfileRepository)
-class UpdateProfileRepoImpliment implements UpdateProfileRepository {
-  // final NetworkInfo networkInfo;
+import '../../domain/repositories/upload_image_repository.dart';
 
-  // UpdateProfileRepoImpliment({
-  //   required this.networkInfo,
-  // });
+@LazySingleton(as: UploadImageRepository)
+class UploadImageRepoImpliment implements UploadImageRepository {
   @override
-  Future<Either<MainFailure, ProfileModel>> updateProfile({
-    required Data profileData,
-  
+  Future<Either<MainFailure, UploadedImageModel>> uploaadImage({
+    required File image,
   }) async {
-    // if (await networkInfo.isConnected) {
     try {
-      final token = await getTokenFromSS(secureStoreKey);
-
-
-      final headers = {
-        'Authorization': 'Bearer $token',
-        'Content-Type': 'application/json',
-      };
-      log(profileData.toJson().toString());
-
+      FormData formData = FormData.fromMap({
+        'file': await MultipartFile.fromFile(image.path),
+      });
       final response = await Dio(BaseOptions()).put(
-        ApiEndPoints.updateProfile,
-        options: Options(headers: headers),
-        data: profileData.toJson(),
+        ApiEndPoints.uploadImage,
+        data: formData,
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final result = ProfileModel.fromJson(response.data);
+        final result = UploadedImageModel.fromJson(response.data);
         log(result.toString());
 
         return Right(result);

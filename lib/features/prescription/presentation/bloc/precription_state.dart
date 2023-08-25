@@ -18,6 +18,12 @@ class PrecriptionState with _$PrecriptionState {
     required List<DataObjec>? timeoftheDayData,
     PrescriptionModel? prescriptionResult,
     PrescriptionSettingsModel? prescriptionSettingsResult,
+    required bool isPdfLoading,
+        required bool pdfCreated,
+    required pw.Document? pdf,
+    required bool pdfError,
+    required String pdfErrorMessage,
+    String? pdfPath,
   }) = _PrecriptionState;
 
   factory PrecriptionState.initial() => const PrecriptionState(
@@ -36,5 +42,11 @@ class PrecriptionState with _$PrecriptionState {
         tobeTakeData: null,
         timeoftheDayData: null,
         message: null,
+        isPdfLoading: false,
+        pdf: null,
+        pdfCreated:false,
+        pdfError: false,
+        pdfErrorMessage: "",
+        pdfPath: "",
       );
 }

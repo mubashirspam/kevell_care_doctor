@@ -26,6 +26,7 @@ mixin _$PrecriptionEvent {
         updatePrescription,
     required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
     required TResult Function(List<DataObjec> data) selectTobetaken,
+    required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +39,7 @@ mixin _$PrecriptionEvent {
         updatePrescription,
     TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult? Function(List<DataObjec> data)? selectTobetaken,
+    TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +52,7 @@ mixin _$PrecriptionEvent {
         updatePrescription,
     TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult Function(List<DataObjec> data)? selectTobetaken,
+    TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -62,6 +65,7 @@ mixin _$PrecriptionEvent {
     required TResult Function(_UpdatePrescription value) updatePrescription,
     required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
     required TResult Function(_SelectTobetaken value) selectTobetaken,
+    required TResult Function(_GeneratePdf value) genaratePdf,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,6 +76,7 @@ mixin _$PrecriptionEvent {
     TResult? Function(_UpdatePrescription value)? updatePrescription,
     TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
     TResult? Function(_SelectTobetaken value)? selectTobetaken,
+    TResult? Function(_GeneratePdf value)? genaratePdf,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -82,6 +87,7 @@ mixin _$PrecriptionEvent {
     TResult Function(_UpdatePrescription value)? updatePrescription,
     TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
     TResult Function(_SelectTobetaken value)? selectTobetaken,
+    TResult Function(_GeneratePdf value)? genaratePdf,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -179,6 +185,7 @@ class _$_GetPrescriptionList implements _GetPrescriptionList {
         updatePrescription,
     required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
     required TResult Function(List<DataObjec> data) selectTobetaken,
+    required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
   }) {
     return getPrescriptionList(appointmentId);
   }
@@ -194,6 +201,7 @@ class _$_GetPrescriptionList implements _GetPrescriptionList {
         updatePrescription,
     TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult? Function(List<DataObjec> data)? selectTobetaken,
+    TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
   }) {
     return getPrescriptionList?.call(appointmentId);
   }
@@ -209,6 +217,7 @@ class _$_GetPrescriptionList implements _GetPrescriptionList {
         updatePrescription,
     TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult Function(List<DataObjec> data)? selectTobetaken,
+    TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
     required TResult orElse(),
   }) {
     if (getPrescriptionList != null) {
@@ -227,6 +236,7 @@ class _$_GetPrescriptionList implements _GetPrescriptionList {
     required TResult Function(_UpdatePrescription value) updatePrescription,
     required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
     required TResult Function(_SelectTobetaken value) selectTobetaken,
+    required TResult Function(_GeneratePdf value) genaratePdf,
   }) {
     return getPrescriptionList(this);
   }
@@ -240,6 +250,7 @@ class _$_GetPrescriptionList implements _GetPrescriptionList {
     TResult? Function(_UpdatePrescription value)? updatePrescription,
     TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
     TResult? Function(_SelectTobetaken value)? selectTobetaken,
+    TResult? Function(_GeneratePdf value)? genaratePdf,
   }) {
     return getPrescriptionList?.call(this);
   }
@@ -253,6 +264,7 @@ class _$_GetPrescriptionList implements _GetPrescriptionList {
     TResult Function(_UpdatePrescription value)? updatePrescription,
     TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
     TResult Function(_SelectTobetaken value)? selectTobetaken,
+    TResult Function(_GeneratePdf value)? genaratePdf,
     required TResult orElse(),
   }) {
     if (getPrescriptionList != null) {
@@ -319,6 +331,7 @@ class _$_GetPrescriptionSettings implements _GetPrescriptionSettings {
         updatePrescription,
     required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
     required TResult Function(List<DataObjec> data) selectTobetaken,
+    required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
   }) {
     return getPrescriptionSettings();
   }
@@ -334,6 +347,7 @@ class _$_GetPrescriptionSettings implements _GetPrescriptionSettings {
         updatePrescription,
     TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult? Function(List<DataObjec> data)? selectTobetaken,
+    TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
   }) {
     return getPrescriptionSettings?.call();
   }
@@ -349,6 +363,7 @@ class _$_GetPrescriptionSettings implements _GetPrescriptionSettings {
         updatePrescription,
     TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult Function(List<DataObjec> data)? selectTobetaken,
+    TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
     required TResult orElse(),
   }) {
     if (getPrescriptionSettings != null) {
@@ -367,6 +382,7 @@ class _$_GetPrescriptionSettings implements _GetPrescriptionSettings {
     required TResult Function(_UpdatePrescription value) updatePrescription,
     required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
     required TResult Function(_SelectTobetaken value) selectTobetaken,
+    required TResult Function(_GeneratePdf value) genaratePdf,
   }) {
     return getPrescriptionSettings(this);
   }
@@ -380,6 +396,7 @@ class _$_GetPrescriptionSettings implements _GetPrescriptionSettings {
     TResult? Function(_UpdatePrescription value)? updatePrescription,
     TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
     TResult? Function(_SelectTobetaken value)? selectTobetaken,
+    TResult? Function(_GeneratePdf value)? genaratePdf,
   }) {
     return getPrescriptionSettings?.call(this);
   }
@@ -393,6 +410,7 @@ class _$_GetPrescriptionSettings implements _GetPrescriptionSettings {
     TResult Function(_UpdatePrescription value)? updatePrescription,
     TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
     TResult Function(_SelectTobetaken value)? selectTobetaken,
+    TResult Function(_GeneratePdf value)? genaratePdf,
     required TResult orElse(),
   }) {
     if (getPrescriptionSettings != null) {
@@ -480,6 +498,7 @@ class _$_CreatePrescription implements _CreatePrescription {
         updatePrescription,
     required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
     required TResult Function(List<DataObjec> data) selectTobetaken,
+    required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
   }) {
     return createPrescription(prescriptionElement);
   }
@@ -495,6 +514,7 @@ class _$_CreatePrescription implements _CreatePrescription {
         updatePrescription,
     TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult? Function(List<DataObjec> data)? selectTobetaken,
+    TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
   }) {
     return createPrescription?.call(prescriptionElement);
   }
@@ -510,6 +530,7 @@ class _$_CreatePrescription implements _CreatePrescription {
         updatePrescription,
     TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult Function(List<DataObjec> data)? selectTobetaken,
+    TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
     required TResult orElse(),
   }) {
     if (createPrescription != null) {
@@ -528,6 +549,7 @@ class _$_CreatePrescription implements _CreatePrescription {
     required TResult Function(_UpdatePrescription value) updatePrescription,
     required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
     required TResult Function(_SelectTobetaken value) selectTobetaken,
+    required TResult Function(_GeneratePdf value) genaratePdf,
   }) {
     return createPrescription(this);
   }
@@ -541,6 +563,7 @@ class _$_CreatePrescription implements _CreatePrescription {
     TResult? Function(_UpdatePrescription value)? updatePrescription,
     TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
     TResult? Function(_SelectTobetaken value)? selectTobetaken,
+    TResult? Function(_GeneratePdf value)? genaratePdf,
   }) {
     return createPrescription?.call(this);
   }
@@ -554,6 +577,7 @@ class _$_CreatePrescription implements _CreatePrescription {
     TResult Function(_UpdatePrescription value)? updatePrescription,
     TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
     TResult Function(_SelectTobetaken value)? selectTobetaken,
+    TResult Function(_GeneratePdf value)? genaratePdf,
     required TResult orElse(),
   }) {
     if (createPrescription != null) {
@@ -648,6 +672,7 @@ class _$_UpdatePrescription implements _UpdatePrescription {
         updatePrescription,
     required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
     required TResult Function(List<DataObjec> data) selectTobetaken,
+    required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
   }) {
     return updatePrescription(prescriptionElement);
   }
@@ -663,6 +688,7 @@ class _$_UpdatePrescription implements _UpdatePrescription {
         updatePrescription,
     TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult? Function(List<DataObjec> data)? selectTobetaken,
+    TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
   }) {
     return updatePrescription?.call(prescriptionElement);
   }
@@ -678,6 +704,7 @@ class _$_UpdatePrescription implements _UpdatePrescription {
         updatePrescription,
     TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult Function(List<DataObjec> data)? selectTobetaken,
+    TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
     required TResult orElse(),
   }) {
     if (updatePrescription != null) {
@@ -696,6 +723,7 @@ class _$_UpdatePrescription implements _UpdatePrescription {
     required TResult Function(_UpdatePrescription value) updatePrescription,
     required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
     required TResult Function(_SelectTobetaken value) selectTobetaken,
+    required TResult Function(_GeneratePdf value) genaratePdf,
   }) {
     return updatePrescription(this);
   }
@@ -709,6 +737,7 @@ class _$_UpdatePrescription implements _UpdatePrescription {
     TResult? Function(_UpdatePrescription value)? updatePrescription,
     TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
     TResult? Function(_SelectTobetaken value)? selectTobetaken,
+    TResult? Function(_GeneratePdf value)? genaratePdf,
   }) {
     return updatePrescription?.call(this);
   }
@@ -722,6 +751,7 @@ class _$_UpdatePrescription implements _UpdatePrescription {
     TResult Function(_UpdatePrescription value)? updatePrescription,
     TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
     TResult Function(_SelectTobetaken value)? selectTobetaken,
+    TResult Function(_GeneratePdf value)? genaratePdf,
     required TResult orElse(),
   }) {
     if (updatePrescription != null) {
@@ -822,6 +852,7 @@ class _$_SelectTimeOfTheDay implements _SelectTimeOfTheDay {
         updatePrescription,
     required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
     required TResult Function(List<DataObjec> data) selectTobetaken,
+    required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
   }) {
     return selectTimeOfTheDay(data);
   }
@@ -837,6 +868,7 @@ class _$_SelectTimeOfTheDay implements _SelectTimeOfTheDay {
         updatePrescription,
     TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult? Function(List<DataObjec> data)? selectTobetaken,
+    TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
   }) {
     return selectTimeOfTheDay?.call(data);
   }
@@ -852,6 +884,7 @@ class _$_SelectTimeOfTheDay implements _SelectTimeOfTheDay {
         updatePrescription,
     TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult Function(List<DataObjec> data)? selectTobetaken,
+    TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
     required TResult orElse(),
   }) {
     if (selectTimeOfTheDay != null) {
@@ -870,6 +903,7 @@ class _$_SelectTimeOfTheDay implements _SelectTimeOfTheDay {
     required TResult Function(_UpdatePrescription value) updatePrescription,
     required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
     required TResult Function(_SelectTobetaken value) selectTobetaken,
+    required TResult Function(_GeneratePdf value) genaratePdf,
   }) {
     return selectTimeOfTheDay(this);
   }
@@ -883,6 +917,7 @@ class _$_SelectTimeOfTheDay implements _SelectTimeOfTheDay {
     TResult? Function(_UpdatePrescription value)? updatePrescription,
     TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
     TResult? Function(_SelectTobetaken value)? selectTobetaken,
+    TResult? Function(_GeneratePdf value)? genaratePdf,
   }) {
     return selectTimeOfTheDay?.call(this);
   }
@@ -896,6 +931,7 @@ class _$_SelectTimeOfTheDay implements _SelectTimeOfTheDay {
     TResult Function(_UpdatePrescription value)? updatePrescription,
     TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
     TResult Function(_SelectTobetaken value)? selectTobetaken,
+    TResult Function(_GeneratePdf value)? genaratePdf,
     required TResult orElse(),
   }) {
     if (selectTimeOfTheDay != null) {
@@ -994,6 +1030,7 @@ class _$_SelectTobetaken implements _SelectTobetaken {
         updatePrescription,
     required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
     required TResult Function(List<DataObjec> data) selectTobetaken,
+    required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
   }) {
     return selectTobetaken(data);
   }
@@ -1009,6 +1046,7 @@ class _$_SelectTobetaken implements _SelectTobetaken {
         updatePrescription,
     TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult? Function(List<DataObjec> data)? selectTobetaken,
+    TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
   }) {
     return selectTobetaken?.call(data);
   }
@@ -1024,6 +1062,7 @@ class _$_SelectTobetaken implements _SelectTobetaken {
         updatePrescription,
     TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult Function(List<DataObjec> data)? selectTobetaken,
+    TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
     required TResult orElse(),
   }) {
     if (selectTobetaken != null) {
@@ -1042,6 +1081,7 @@ class _$_SelectTobetaken implements _SelectTobetaken {
     required TResult Function(_UpdatePrescription value) updatePrescription,
     required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
     required TResult Function(_SelectTobetaken value) selectTobetaken,
+    required TResult Function(_GeneratePdf value) genaratePdf,
   }) {
     return selectTobetaken(this);
   }
@@ -1055,6 +1095,7 @@ class _$_SelectTobetaken implements _SelectTobetaken {
     TResult? Function(_UpdatePrescription value)? updatePrescription,
     TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
     TResult? Function(_SelectTobetaken value)? selectTobetaken,
+    TResult? Function(_GeneratePdf value)? genaratePdf,
   }) {
     return selectTobetaken?.call(this);
   }
@@ -1068,6 +1109,7 @@ class _$_SelectTobetaken implements _SelectTobetaken {
     TResult Function(_UpdatePrescription value)? updatePrescription,
     TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
     TResult Function(_SelectTobetaken value)? selectTobetaken,
+    TResult Function(_GeneratePdf value)? genaratePdf,
     required TResult orElse(),
   }) {
     if (selectTobetaken != null) {
@@ -1084,6 +1126,184 @@ abstract class _SelectTobetaken implements PrecriptionEvent {
   List<DataObjec> get data;
   @JsonKey(ignore: true)
   _$$_SelectTobetakenCopyWith<_$_SelectTobetaken> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_GeneratePdfCopyWith<$Res> {
+  factory _$$_GeneratePdfCopyWith(
+          _$_GeneratePdf value, $Res Function(_$_GeneratePdf) then) =
+      __$$_GeneratePdfCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<PrescriptionPdfModel> data});
+}
+
+/// @nodoc
+class __$$_GeneratePdfCopyWithImpl<$Res>
+    extends _$PrecriptionEventCopyWithImpl<$Res, _$_GeneratePdf>
+    implements _$$_GeneratePdfCopyWith<$Res> {
+  __$$_GeneratePdfCopyWithImpl(
+      _$_GeneratePdf _value, $Res Function(_$_GeneratePdf) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$_GeneratePdf(
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<PrescriptionPdfModel>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_GeneratePdf implements _GeneratePdf {
+  const _$_GeneratePdf({required final List<PrescriptionPdfModel> data})
+      : _data = data;
+
+  final List<PrescriptionPdfModel> _data;
+  @override
+  List<PrescriptionPdfModel> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  @override
+  String toString() {
+    return 'PrecriptionEvent.genaratePdf(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_GeneratePdf &&
+            const DeepCollectionEquality().equals(other._data, _data));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_GeneratePdfCopyWith<_$_GeneratePdf> get copyWith =>
+      __$$_GeneratePdfCopyWithImpl<_$_GeneratePdf>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int appointmentId) getPrescriptionList,
+    required TResult Function() getPrescriptionSettings,
+    required TResult Function(PrescriptionElement prescriptionElement)
+        createPrescription,
+    required TResult Function(PrescriptionElement prescriptionElement)
+        updatePrescription,
+    required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
+    required TResult Function(List<DataObjec> data) selectTobetaken,
+    required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
+  }) {
+    return genaratePdf(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int appointmentId)? getPrescriptionList,
+    TResult? Function()? getPrescriptionSettings,
+    TResult? Function(PrescriptionElement prescriptionElement)?
+        createPrescription,
+    TResult? Function(PrescriptionElement prescriptionElement)?
+        updatePrescription,
+    TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
+    TResult? Function(List<DataObjec> data)? selectTobetaken,
+    TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
+  }) {
+    return genaratePdf?.call(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int appointmentId)? getPrescriptionList,
+    TResult Function()? getPrescriptionSettings,
+    TResult Function(PrescriptionElement prescriptionElement)?
+        createPrescription,
+    TResult Function(PrescriptionElement prescriptionElement)?
+        updatePrescription,
+    TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
+    TResult Function(List<DataObjec> data)? selectTobetaken,
+    TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
+    required TResult orElse(),
+  }) {
+    if (genaratePdf != null) {
+      return genaratePdf(data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetPrescriptionList value) getPrescriptionList,
+    required TResult Function(_GetPrescriptionSettings value)
+        getPrescriptionSettings,
+    required TResult Function(_CreatePrescription value) createPrescription,
+    required TResult Function(_UpdatePrescription value) updatePrescription,
+    required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
+    required TResult Function(_SelectTobetaken value) selectTobetaken,
+    required TResult Function(_GeneratePdf value) genaratePdf,
+  }) {
+    return genaratePdf(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetPrescriptionList value)? getPrescriptionList,
+    TResult? Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
+    TResult? Function(_CreatePrescription value)? createPrescription,
+    TResult? Function(_UpdatePrescription value)? updatePrescription,
+    TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
+    TResult? Function(_SelectTobetaken value)? selectTobetaken,
+    TResult? Function(_GeneratePdf value)? genaratePdf,
+  }) {
+    return genaratePdf?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetPrescriptionList value)? getPrescriptionList,
+    TResult Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
+    TResult Function(_CreatePrescription value)? createPrescription,
+    TResult Function(_UpdatePrescription value)? updatePrescription,
+    TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
+    TResult Function(_SelectTobetaken value)? selectTobetaken,
+    TResult Function(_GeneratePdf value)? genaratePdf,
+    required TResult orElse(),
+  }) {
+    if (genaratePdf != null) {
+      return genaratePdf(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GeneratePdf implements PrecriptionEvent {
+  const factory _GeneratePdf({required final List<PrescriptionPdfModel> data}) =
+      _$_GeneratePdf;
+
+  List<PrescriptionPdfModel> get data;
+  @JsonKey(ignore: true)
+  _$$_GeneratePdfCopyWith<_$_GeneratePdf> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1106,6 +1326,12 @@ mixin _$PrecriptionState {
       throw _privateConstructorUsedError;
   PrescriptionSettingsModel? get prescriptionSettingsResult =>
       throw _privateConstructorUsedError;
+  bool get isPdfLoading => throw _privateConstructorUsedError;
+  bool get pdfCreated => throw _privateConstructorUsedError;
+  pw.Document? get pdf => throw _privateConstructorUsedError;
+  bool get pdfError => throw _privateConstructorUsedError;
+  String get pdfErrorMessage => throw _privateConstructorUsedError;
+  String? get pdfPath => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PrecriptionStateCopyWith<PrecriptionState> get copyWith =>
@@ -1133,7 +1359,13 @@ abstract class $PrecriptionStateCopyWith<$Res> {
       List<DataObjec>? tobeTakeData,
       List<DataObjec>? timeoftheDayData,
       PrescriptionModel? prescriptionResult,
-      PrescriptionSettingsModel? prescriptionSettingsResult});
+      PrescriptionSettingsModel? prescriptionSettingsResult,
+      bool isPdfLoading,
+      bool pdfCreated,
+      pw.Document? pdf,
+      bool pdfError,
+      String pdfErrorMessage,
+      String? pdfPath});
 }
 
 /// @nodoc
@@ -1164,6 +1396,12 @@ class _$PrecriptionStateCopyWithImpl<$Res, $Val extends PrecriptionState>
     Object? timeoftheDayData = freezed,
     Object? prescriptionResult = freezed,
     Object? prescriptionSettingsResult = freezed,
+    Object? isPdfLoading = null,
+    Object? pdfCreated = null,
+    Object? pdf = freezed,
+    Object? pdfError = null,
+    Object? pdfErrorMessage = null,
+    Object? pdfPath = freezed,
   }) {
     return _then(_value.copyWith(
       isGetLoading: null == isGetLoading
@@ -1226,6 +1464,30 @@ class _$PrecriptionStateCopyWithImpl<$Res, $Val extends PrecriptionState>
           ? _value.prescriptionSettingsResult
           : prescriptionSettingsResult // ignore: cast_nullable_to_non_nullable
               as PrescriptionSettingsModel?,
+      isPdfLoading: null == isPdfLoading
+          ? _value.isPdfLoading
+          : isPdfLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pdfCreated: null == pdfCreated
+          ? _value.pdfCreated
+          : pdfCreated // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pdf: freezed == pdf
+          ? _value.pdf
+          : pdf // ignore: cast_nullable_to_non_nullable
+              as pw.Document?,
+      pdfError: null == pdfError
+          ? _value.pdfError
+          : pdfError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pdfErrorMessage: null == pdfErrorMessage
+          ? _value.pdfErrorMessage
+          : pdfErrorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+      pdfPath: freezed == pdfPath
+          ? _value.pdfPath
+          : pdfPath // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -1253,7 +1515,13 @@ abstract class _$$_PrecriptionStateCopyWith<$Res>
       List<DataObjec>? tobeTakeData,
       List<DataObjec>? timeoftheDayData,
       PrescriptionModel? prescriptionResult,
-      PrescriptionSettingsModel? prescriptionSettingsResult});
+      PrescriptionSettingsModel? prescriptionSettingsResult,
+      bool isPdfLoading,
+      bool pdfCreated,
+      pw.Document? pdf,
+      bool pdfError,
+      String pdfErrorMessage,
+      String? pdfPath});
 }
 
 /// @nodoc
@@ -1282,6 +1550,12 @@ class __$$_PrecriptionStateCopyWithImpl<$Res>
     Object? timeoftheDayData = freezed,
     Object? prescriptionResult = freezed,
     Object? prescriptionSettingsResult = freezed,
+    Object? isPdfLoading = null,
+    Object? pdfCreated = null,
+    Object? pdf = freezed,
+    Object? pdfError = null,
+    Object? pdfErrorMessage = null,
+    Object? pdfPath = freezed,
   }) {
     return _then(_$_PrecriptionState(
       isGetLoading: null == isGetLoading
@@ -1344,6 +1618,30 @@ class __$$_PrecriptionStateCopyWithImpl<$Res>
           ? _value.prescriptionSettingsResult
           : prescriptionSettingsResult // ignore: cast_nullable_to_non_nullable
               as PrescriptionSettingsModel?,
+      isPdfLoading: null == isPdfLoading
+          ? _value.isPdfLoading
+          : isPdfLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pdfCreated: null == pdfCreated
+          ? _value.pdfCreated
+          : pdfCreated // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pdf: freezed == pdf
+          ? _value.pdf
+          : pdf // ignore: cast_nullable_to_non_nullable
+              as pw.Document?,
+      pdfError: null == pdfError
+          ? _value.pdfError
+          : pdfError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pdfErrorMessage: null == pdfErrorMessage
+          ? _value.pdfErrorMessage
+          : pdfErrorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+      pdfPath: freezed == pdfPath
+          ? _value.pdfPath
+          : pdfPath // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -1366,7 +1664,13 @@ class _$_PrecriptionState implements _PrecriptionState {
       required final List<DataObjec>? tobeTakeData,
       required final List<DataObjec>? timeoftheDayData,
       this.prescriptionResult,
-      this.prescriptionSettingsResult})
+      this.prescriptionSettingsResult,
+      required this.isPdfLoading,
+      required this.pdfCreated,
+      required this.pdf,
+      required this.pdfError,
+      required this.pdfErrorMessage,
+      this.pdfPath})
       : _tobeTakeData = tobeTakeData,
         _timeoftheDayData = timeoftheDayData;
 
@@ -1417,10 +1721,22 @@ class _$_PrecriptionState implements _PrecriptionState {
   final PrescriptionModel? prescriptionResult;
   @override
   final PrescriptionSettingsModel? prescriptionSettingsResult;
+  @override
+  final bool isPdfLoading;
+  @override
+  final bool pdfCreated;
+  @override
+  final pw.Document? pdf;
+  @override
+  final bool pdfError;
+  @override
+  final String pdfErrorMessage;
+  @override
+  final String? pdfPath;
 
   @override
   String toString() {
-    return 'PrecriptionState(isGetLoading: $isGetLoading, isGetSettingsLoading: $isGetSettingsLoading, isUpdateLoading: $isUpdateLoading, isCreateLoading: $isCreateLoading, updated: $updated, created: $created, unauthorized: $unauthorized, isError: $isError, hasData: $hasData, hasSettingsData: $hasSettingsData, message: $message, tobeTakeData: $tobeTakeData, timeoftheDayData: $timeoftheDayData, prescriptionResult: $prescriptionResult, prescriptionSettingsResult: $prescriptionSettingsResult)';
+    return 'PrecriptionState(isGetLoading: $isGetLoading, isGetSettingsLoading: $isGetSettingsLoading, isUpdateLoading: $isUpdateLoading, isCreateLoading: $isCreateLoading, updated: $updated, created: $created, unauthorized: $unauthorized, isError: $isError, hasData: $hasData, hasSettingsData: $hasSettingsData, message: $message, tobeTakeData: $tobeTakeData, timeoftheDayData: $timeoftheDayData, prescriptionResult: $prescriptionResult, prescriptionSettingsResult: $prescriptionSettingsResult, isPdfLoading: $isPdfLoading, pdfCreated: $pdfCreated, pdf: $pdf, pdfError: $pdfError, pdfErrorMessage: $pdfErrorMessage, pdfPath: $pdfPath)';
   }
 
   @override
@@ -1454,27 +1770,44 @@ class _$_PrecriptionState implements _PrecriptionState {
             (identical(other.prescriptionSettingsResult,
                     prescriptionSettingsResult) ||
                 other.prescriptionSettingsResult ==
-                    prescriptionSettingsResult));
+                    prescriptionSettingsResult) &&
+            (identical(other.isPdfLoading, isPdfLoading) ||
+                other.isPdfLoading == isPdfLoading) &&
+            (identical(other.pdfCreated, pdfCreated) ||
+                other.pdfCreated == pdfCreated) &&
+            (identical(other.pdf, pdf) || other.pdf == pdf) &&
+            (identical(other.pdfError, pdfError) ||
+                other.pdfError == pdfError) &&
+            (identical(other.pdfErrorMessage, pdfErrorMessage) ||
+                other.pdfErrorMessage == pdfErrorMessage) &&
+            (identical(other.pdfPath, pdfPath) || other.pdfPath == pdfPath));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      isGetLoading,
-      isGetSettingsLoading,
-      isUpdateLoading,
-      isCreateLoading,
-      updated,
-      created,
-      unauthorized,
-      isError,
-      hasData,
-      hasSettingsData,
-      message,
-      const DeepCollectionEquality().hash(_tobeTakeData),
-      const DeepCollectionEquality().hash(_timeoftheDayData),
-      prescriptionResult,
-      prescriptionSettingsResult);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        isGetLoading,
+        isGetSettingsLoading,
+        isUpdateLoading,
+        isCreateLoading,
+        updated,
+        created,
+        unauthorized,
+        isError,
+        hasData,
+        hasSettingsData,
+        message,
+        const DeepCollectionEquality().hash(_tobeTakeData),
+        const DeepCollectionEquality().hash(_timeoftheDayData),
+        prescriptionResult,
+        prescriptionSettingsResult,
+        isPdfLoading,
+        pdfCreated,
+        pdf,
+        pdfError,
+        pdfErrorMessage,
+        pdfPath
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -1485,22 +1818,27 @@ class _$_PrecriptionState implements _PrecriptionState {
 
 abstract class _PrecriptionState implements PrecriptionState {
   const factory _PrecriptionState(
-          {required final bool isGetLoading,
-          required final bool isGetSettingsLoading,
-          required final bool isUpdateLoading,
-          required final bool isCreateLoading,
-          required final bool updated,
-          required final bool created,
-          required final bool unauthorized,
-          required final bool isError,
-          required final bool hasData,
-          required final bool hasSettingsData,
-          required final String? message,
-          required final List<DataObjec>? tobeTakeData,
-          required final List<DataObjec>? timeoftheDayData,
-          final PrescriptionModel? prescriptionResult,
-          final PrescriptionSettingsModel? prescriptionSettingsResult}) =
-      _$_PrecriptionState;
+      {required final bool isGetLoading,
+      required final bool isGetSettingsLoading,
+      required final bool isUpdateLoading,
+      required final bool isCreateLoading,
+      required final bool updated,
+      required final bool created,
+      required final bool unauthorized,
+      required final bool isError,
+      required final bool hasData,
+      required final bool hasSettingsData,
+      required final String? message,
+      required final List<DataObjec>? tobeTakeData,
+      required final List<DataObjec>? timeoftheDayData,
+      final PrescriptionModel? prescriptionResult,
+      final PrescriptionSettingsModel? prescriptionSettingsResult,
+      required final bool isPdfLoading,
+      required final bool pdfCreated,
+      required final pw.Document? pdf,
+      required final bool pdfError,
+      required final String pdfErrorMessage,
+      final String? pdfPath}) = _$_PrecriptionState;
 
   @override
   bool get isGetLoading;
@@ -1532,6 +1870,18 @@ abstract class _PrecriptionState implements PrecriptionState {
   PrescriptionModel? get prescriptionResult;
   @override
   PrescriptionSettingsModel? get prescriptionSettingsResult;
+  @override
+  bool get isPdfLoading;
+  @override
+  bool get pdfCreated;
+  @override
+  pw.Document? get pdf;
+  @override
+  bool get pdfError;
+  @override
+  String get pdfErrorMessage;
+  @override
+  String? get pdfPath;
   @override
   @JsonKey(ignore: true)
   _$$_PrecriptionStateCopyWith<_$_PrecriptionState> get copyWith =>

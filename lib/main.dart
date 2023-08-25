@@ -13,10 +13,12 @@ import 'core/di/injectable.dart';
 import 'core/them/dark_theme.dart';
 import 'core/them/light_theme.dart';
 import 'features/home/presentation/bloc/home_bloc.dart';
+import 'features/prescription/data/model/prescription_list_model.dart';
 import 'features/prescription/presentation/bloc/precription_bloc.dart';
 
 import 'features/report/presetantion/bloc/report_bloc.dart';
 import 'features/schedule/presentation/bloc/schedule_bloc.dart';
+import 'pages/prescription/presentation/prescription_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,7 +53,7 @@ class MyApp extends StatelessWidget {
         darkTheme: darkTheme(),
         themeMode: ThemeMode.light,
         routes: route,
-        home: const Initialize(),
+        home:  PrescriptionScreen(checkupDetalis: {"appointmentID":1090}),
         // home: const PatientCheckupScreen(),
         // initialRoute: "/dashboard",
       ),

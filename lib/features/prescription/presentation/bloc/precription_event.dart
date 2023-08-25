@@ -20,4 +20,9 @@ class PrecriptionEvent with _$PrecriptionEvent {
   const factory PrecriptionEvent.selectTobetaken({
     required List <DataObjec> data,
   }) = _SelectTobetaken;
+
+
+   const factory PrecriptionEvent.genaratePdf({
+    required List<PrescriptionPdfModel> data,
+  }) = _GeneratePdf;
 }
