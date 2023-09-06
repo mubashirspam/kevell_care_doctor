@@ -25,7 +25,7 @@ class ScheduleState with _$ScheduleState {
     required int timeForSinglePatient,
   }) = _ScheduleState;
 
-  factory ScheduleState.initial() =>  ScheduleState(
+  factory ScheduleState.initial() => ScheduleState(
         isLoading: false,
         isDeleted: false,
         isCreateLoading: false,

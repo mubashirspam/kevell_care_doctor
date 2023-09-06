@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dr_kevell/features/prescription/data/model/prescription_list_model.dart';
+import 'package:dr_kevell/features/prescription/presentation/prescription_details.dart';
 import 'package:dr_kevell/features/widgets/buttons/text_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,13 +11,12 @@ import '../../../configure/value/constant.dart';
 import '../../../configure/value/secure_storage.dart';
 import '../../../core/helper/toast.dart';
 import '../../../pages/initialize/initialize.dart';
-import '../../widgets/error_widget.dart';
 import '../../widgets/loading_widget.dart';
 import 'bloc/precription_bloc.dart';
 import 'widgets/prescription_item_widget.dart';
 
 class Prescription extends StatelessWidget {
-  final int appointmentID;
+  final String appointmentID;
   const Prescription({
     super.key,
     required this.appointmentID,
@@ -90,15 +90,17 @@ class Prescription extends StatelessWidget {
                 .first
                 .prescription!;
             log(prescriptionElement.length.toString());
-            return ListView.separated(
+            return ListView.builder(
               shrinkWrap: true,
-              padding: const EdgeInsets.all(20).copyWith(bottom: 0),
+              padding: const EdgeInsets.all(20).copyWith(top: 0),
               itemCount: prescriptionElement.length,
-              itemBuilder: (context, index) => PrescriptionItemWidget(
-                prescriptionElement: prescriptionElement[index],
-              ),
-              separatorBuilder: (context, index) => Divider(
-                color: context.theme.textGrey,
+              itemBuilder: (context, index) => InkWell(
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => PrescriptionDetials( prescriptionElement: prescriptionElement[index],),
+                )),
+                child: PrescriptionItemWidget(
+                  prescriptionElement: prescriptionElement[index],
+                ),
               ),
             );
           }
@@ -110,7 +112,7 @@ class Prescription extends StatelessWidget {
             onPressed: () {
               context.read<PrecriptionBloc>().add(
                   PrecriptionEvent.getPrescriptionList(
-                      appointmentId: appointmentID));
+                      appointmentId: int.parse(appointmentID)));
             },
             isLoading: state.isGetLoading,
           ),

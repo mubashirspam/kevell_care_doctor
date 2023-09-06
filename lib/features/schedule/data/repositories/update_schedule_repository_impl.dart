@@ -7,7 +7,6 @@ import 'package:dr_kevell/configure/api/endpoints.dart';
 import '../../../../core/failiar/failiur_model.dart';
 import '../../../../core/failiar/main_failures.dart';
 
-
 import '../../domain/entities/update_schedule.dart';
 import '../../domain/repositories/update_schedule_repository.dart';
 
@@ -57,7 +56,7 @@ class UpdateScheduleRepoImpliment implements UpdateScheduleRepository {
         log(e.toString());
         if (e.response?.statusCode == 400) {
           log(e.toString());
-          final result = FailuerModel.fromJson(e.response!.data);
+          final result = FailureModel.fromJson(e.response!.data);
           return Left(
               MainFailure.unauthorized(message: result.message ?? "Error"));
         }

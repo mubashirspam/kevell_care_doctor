@@ -16,25 +16,38 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MainFailure {
+  String? get message => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() clientFailure,
-    required TResult Function() serverFailure,
+    required TResult Function(String? message) clientFailure,
+    required TResult Function(String? message) serverFailure,
+    required TResult Function(String message) noDatafound,
     required TResult Function(String message) unauthorized,
+    required TResult Function(String message) forbidden,
+    required TResult Function(String message) serviceUnavailable,
+    required TResult Function(String message) unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? clientFailure,
-    TResult? Function()? serverFailure,
+    TResult? Function(String? message)? clientFailure,
+    TResult? Function(String? message)? serverFailure,
+    TResult? Function(String message)? noDatafound,
     TResult? Function(String message)? unauthorized,
+    TResult? Function(String message)? forbidden,
+    TResult? Function(String message)? serviceUnavailable,
+    TResult? Function(String message)? unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? clientFailure,
-    TResult Function()? serverFailure,
+    TResult Function(String? message)? clientFailure,
+    TResult Function(String? message)? serverFailure,
+    TResult Function(String message)? noDatafound,
     TResult Function(String message)? unauthorized,
+    TResult Function(String message)? forbidden,
+    TResult Function(String message)? serviceUnavailable,
+    TResult Function(String message)? unknown,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -42,23 +55,39 @@ mixin _$MainFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientFailure value) clientFailure,
     required TResult Function(_ServerFailure value) serverFailure,
+    required TResult Function(_NoDataFound value) noDatafound,
     required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_Forbidden value) forbidden,
+    required TResult Function(_ServiceUnavailable value) serviceUnavailable,
+    required TResult Function(_UnknownFailure value) unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientFailure value)? clientFailure,
     TResult? Function(_ServerFailure value)? serverFailure,
+    TResult? Function(_NoDataFound value)? noDatafound,
     TResult? Function(_Unauthorized value)? unauthorized,
+    TResult? Function(_Forbidden value)? forbidden,
+    TResult? Function(_ServiceUnavailable value)? serviceUnavailable,
+    TResult? Function(_UnknownFailure value)? unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientFailure value)? clientFailure,
     TResult Function(_ServerFailure value)? serverFailure,
+    TResult Function(_NoDataFound value)? noDatafound,
     TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Forbidden value)? forbidden,
+    TResult Function(_ServiceUnavailable value)? serviceUnavailable,
+    TResult Function(_UnknownFailure value)? unknown,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $MainFailureCopyWith<MainFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -67,6 +96,8 @@ abstract class $MainFailureCopyWith<$Res> {
   factory $MainFailureCopyWith(
           MainFailure value, $Res Function(MainFailure) then) =
       _$MainFailureCopyWithImpl<$Res, MainFailure>;
+  @useResult
+  $Res call({String message});
 }
 
 /// @nodoc
@@ -78,13 +109,30 @@ class _$MainFailureCopyWithImpl<$Res, $Val extends MainFailure>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_value.copyWith(
+      message: null == message
+          ? _value.message!
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_ClientFailureCopyWith<$Res> {
+abstract class _$$_ClientFailureCopyWith<$Res>
+    implements $MainFailureCopyWith<$Res> {
   factory _$$_ClientFailureCopyWith(
           _$_ClientFailure value, $Res Function(_$_ClientFailure) then) =
       __$$_ClientFailureCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? message});
 }
 
 /// @nodoc
@@ -94,57 +142,93 @@ class __$$_ClientFailureCopyWithImpl<$Res>
   __$$_ClientFailureCopyWithImpl(
       _$_ClientFailure _value, $Res Function(_$_ClientFailure) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_$_ClientFailure(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_ClientFailure implements _ClientFailure {
-  const _$_ClientFailure();
+  const _$_ClientFailure({this.message});
+
+  @override
+  final String? message;
 
   @override
   String toString() {
-    return 'MainFailure.clientFailure()';
+    return 'MainFailure.clientFailure(message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ClientFailure);
+        (other.runtimeType == runtimeType &&
+            other is _$_ClientFailure &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ClientFailureCopyWith<_$_ClientFailure> get copyWith =>
+      __$$_ClientFailureCopyWithImpl<_$_ClientFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() clientFailure,
-    required TResult Function() serverFailure,
+    required TResult Function(String? message) clientFailure,
+    required TResult Function(String? message) serverFailure,
+    required TResult Function(String message) noDatafound,
     required TResult Function(String message) unauthorized,
+    required TResult Function(String message) forbidden,
+    required TResult Function(String message) serviceUnavailable,
+    required TResult Function(String message) unknown,
   }) {
-    return clientFailure();
+    return clientFailure(message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? clientFailure,
-    TResult? Function()? serverFailure,
+    TResult? Function(String? message)? clientFailure,
+    TResult? Function(String? message)? serverFailure,
+    TResult? Function(String message)? noDatafound,
     TResult? Function(String message)? unauthorized,
+    TResult? Function(String message)? forbidden,
+    TResult? Function(String message)? serviceUnavailable,
+    TResult? Function(String message)? unknown,
   }) {
-    return clientFailure?.call();
+    return clientFailure?.call(message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? clientFailure,
-    TResult Function()? serverFailure,
+    TResult Function(String? message)? clientFailure,
+    TResult Function(String? message)? serverFailure,
+    TResult Function(String message)? noDatafound,
     TResult Function(String message)? unauthorized,
+    TResult Function(String message)? forbidden,
+    TResult Function(String message)? serviceUnavailable,
+    TResult Function(String message)? unknown,
     required TResult orElse(),
   }) {
     if (clientFailure != null) {
-      return clientFailure();
+      return clientFailure(message);
     }
     return orElse();
   }
@@ -154,7 +238,11 @@ class _$_ClientFailure implements _ClientFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientFailure value) clientFailure,
     required TResult Function(_ServerFailure value) serverFailure,
+    required TResult Function(_NoDataFound value) noDatafound,
     required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_Forbidden value) forbidden,
+    required TResult Function(_ServiceUnavailable value) serviceUnavailable,
+    required TResult Function(_UnknownFailure value) unknown,
   }) {
     return clientFailure(this);
   }
@@ -164,7 +252,11 @@ class _$_ClientFailure implements _ClientFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientFailure value)? clientFailure,
     TResult? Function(_ServerFailure value)? serverFailure,
+    TResult? Function(_NoDataFound value)? noDatafound,
     TResult? Function(_Unauthorized value)? unauthorized,
+    TResult? Function(_Forbidden value)? forbidden,
+    TResult? Function(_ServiceUnavailable value)? serviceUnavailable,
+    TResult? Function(_UnknownFailure value)? unknown,
   }) {
     return clientFailure?.call(this);
   }
@@ -174,7 +266,11 @@ class _$_ClientFailure implements _ClientFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientFailure value)? clientFailure,
     TResult Function(_ServerFailure value)? serverFailure,
+    TResult Function(_NoDataFound value)? noDatafound,
     TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Forbidden value)? forbidden,
+    TResult Function(_ServiceUnavailable value)? serviceUnavailable,
+    TResult Function(_UnknownFailure value)? unknown,
     required TResult orElse(),
   }) {
     if (clientFailure != null) {
@@ -185,14 +281,25 @@ class _$_ClientFailure implements _ClientFailure {
 }
 
 abstract class _ClientFailure implements MainFailure {
-  const factory _ClientFailure() = _$_ClientFailure;
+  const factory _ClientFailure({final String? message}) = _$_ClientFailure;
+
+  @override
+  String? get message;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ClientFailureCopyWith<_$_ClientFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ServerFailureCopyWith<$Res> {
+abstract class _$$_ServerFailureCopyWith<$Res>
+    implements $MainFailureCopyWith<$Res> {
   factory _$$_ServerFailureCopyWith(
           _$_ServerFailure value, $Res Function(_$_ServerFailure) then) =
       __$$_ServerFailureCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? message});
 }
 
 /// @nodoc
@@ -202,57 +309,93 @@ class __$$_ServerFailureCopyWithImpl<$Res>
   __$$_ServerFailureCopyWithImpl(
       _$_ServerFailure _value, $Res Function(_$_ServerFailure) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_$_ServerFailure(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_ServerFailure implements _ServerFailure {
-  const _$_ServerFailure();
+  const _$_ServerFailure({this.message});
+
+  @override
+  final String? message;
 
   @override
   String toString() {
-    return 'MainFailure.serverFailure()';
+    return 'MainFailure.serverFailure(message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ServerFailure);
+        (other.runtimeType == runtimeType &&
+            other is _$_ServerFailure &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ServerFailureCopyWith<_$_ServerFailure> get copyWith =>
+      __$$_ServerFailureCopyWithImpl<_$_ServerFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() clientFailure,
-    required TResult Function() serverFailure,
+    required TResult Function(String? message) clientFailure,
+    required TResult Function(String? message) serverFailure,
+    required TResult Function(String message) noDatafound,
     required TResult Function(String message) unauthorized,
+    required TResult Function(String message) forbidden,
+    required TResult Function(String message) serviceUnavailable,
+    required TResult Function(String message) unknown,
   }) {
-    return serverFailure();
+    return serverFailure(message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? clientFailure,
-    TResult? Function()? serverFailure,
+    TResult? Function(String? message)? clientFailure,
+    TResult? Function(String? message)? serverFailure,
+    TResult? Function(String message)? noDatafound,
     TResult? Function(String message)? unauthorized,
+    TResult? Function(String message)? forbidden,
+    TResult? Function(String message)? serviceUnavailable,
+    TResult? Function(String message)? unknown,
   }) {
-    return serverFailure?.call();
+    return serverFailure?.call(message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? clientFailure,
-    TResult Function()? serverFailure,
+    TResult Function(String? message)? clientFailure,
+    TResult Function(String? message)? serverFailure,
+    TResult Function(String message)? noDatafound,
     TResult Function(String message)? unauthorized,
+    TResult Function(String message)? forbidden,
+    TResult Function(String message)? serviceUnavailable,
+    TResult Function(String message)? unknown,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
-      return serverFailure();
+      return serverFailure(message);
     }
     return orElse();
   }
@@ -262,7 +405,11 @@ class _$_ServerFailure implements _ServerFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientFailure value) clientFailure,
     required TResult Function(_ServerFailure value) serverFailure,
+    required TResult Function(_NoDataFound value) noDatafound,
     required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_Forbidden value) forbidden,
+    required TResult Function(_ServiceUnavailable value) serviceUnavailable,
+    required TResult Function(_UnknownFailure value) unknown,
   }) {
     return serverFailure(this);
   }
@@ -272,7 +419,11 @@ class _$_ServerFailure implements _ServerFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientFailure value)? clientFailure,
     TResult? Function(_ServerFailure value)? serverFailure,
+    TResult? Function(_NoDataFound value)? noDatafound,
     TResult? Function(_Unauthorized value)? unauthorized,
+    TResult? Function(_Forbidden value)? forbidden,
+    TResult? Function(_ServiceUnavailable value)? serviceUnavailable,
+    TResult? Function(_UnknownFailure value)? unknown,
   }) {
     return serverFailure?.call(this);
   }
@@ -282,7 +433,11 @@ class _$_ServerFailure implements _ServerFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientFailure value)? clientFailure,
     TResult Function(_ServerFailure value)? serverFailure,
+    TResult Function(_NoDataFound value)? noDatafound,
     TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Forbidden value)? forbidden,
+    TResult Function(_ServiceUnavailable value)? serviceUnavailable,
+    TResult Function(_UnknownFailure value)? unknown,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
@@ -293,14 +448,190 @@ class _$_ServerFailure implements _ServerFailure {
 }
 
 abstract class _ServerFailure implements MainFailure {
-  const factory _ServerFailure() = _$_ServerFailure;
+  const factory _ServerFailure({final String? message}) = _$_ServerFailure;
+
+  @override
+  String? get message;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ServerFailureCopyWith<_$_ServerFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_UnauthorizedCopyWith<$Res> {
+abstract class _$$_NoDataFoundCopyWith<$Res>
+    implements $MainFailureCopyWith<$Res> {
+  factory _$$_NoDataFoundCopyWith(
+          _$_NoDataFound value, $Res Function(_$_NoDataFound) then) =
+      __$$_NoDataFoundCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$_NoDataFoundCopyWithImpl<$Res>
+    extends _$MainFailureCopyWithImpl<$Res, _$_NoDataFound>
+    implements _$$_NoDataFoundCopyWith<$Res> {
+  __$$_NoDataFoundCopyWithImpl(
+      _$_NoDataFound _value, $Res Function(_$_NoDataFound) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$_NoDataFound(
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_NoDataFound implements _NoDataFound {
+  const _$_NoDataFound({required this.message});
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'MainFailure.noDatafound(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_NoDataFound &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_NoDataFoundCopyWith<_$_NoDataFound> get copyWith =>
+      __$$_NoDataFoundCopyWithImpl<_$_NoDataFound>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? message) clientFailure,
+    required TResult Function(String? message) serverFailure,
+    required TResult Function(String message) noDatafound,
+    required TResult Function(String message) unauthorized,
+    required TResult Function(String message) forbidden,
+    required TResult Function(String message) serviceUnavailable,
+    required TResult Function(String message) unknown,
+  }) {
+    return noDatafound(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String? message)? clientFailure,
+    TResult? Function(String? message)? serverFailure,
+    TResult? Function(String message)? noDatafound,
+    TResult? Function(String message)? unauthorized,
+    TResult? Function(String message)? forbidden,
+    TResult? Function(String message)? serviceUnavailable,
+    TResult? Function(String message)? unknown,
+  }) {
+    return noDatafound?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? message)? clientFailure,
+    TResult Function(String? message)? serverFailure,
+    TResult Function(String message)? noDatafound,
+    TResult Function(String message)? unauthorized,
+    TResult Function(String message)? forbidden,
+    TResult Function(String message)? serviceUnavailable,
+    TResult Function(String message)? unknown,
+    required TResult orElse(),
+  }) {
+    if (noDatafound != null) {
+      return noDatafound(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClientFailure value) clientFailure,
+    required TResult Function(_ServerFailure value) serverFailure,
+    required TResult Function(_NoDataFound value) noDatafound,
+    required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_Forbidden value) forbidden,
+    required TResult Function(_ServiceUnavailable value) serviceUnavailable,
+    required TResult Function(_UnknownFailure value) unknown,
+  }) {
+    return noDatafound(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClientFailure value)? clientFailure,
+    TResult? Function(_ServerFailure value)? serverFailure,
+    TResult? Function(_NoDataFound value)? noDatafound,
+    TResult? Function(_Unauthorized value)? unauthorized,
+    TResult? Function(_Forbidden value)? forbidden,
+    TResult? Function(_ServiceUnavailable value)? serviceUnavailable,
+    TResult? Function(_UnknownFailure value)? unknown,
+  }) {
+    return noDatafound?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClientFailure value)? clientFailure,
+    TResult Function(_ServerFailure value)? serverFailure,
+    TResult Function(_NoDataFound value)? noDatafound,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Forbidden value)? forbidden,
+    TResult Function(_ServiceUnavailable value)? serviceUnavailable,
+    TResult Function(_UnknownFailure value)? unknown,
+    required TResult orElse(),
+  }) {
+    if (noDatafound != null) {
+      return noDatafound(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NoDataFound implements MainFailure {
+  const factory _NoDataFound({required final String message}) = _$_NoDataFound;
+
+  @override
+  String get message;
+  @override
+  @JsonKey(ignore: true)
+  _$$_NoDataFoundCopyWith<_$_NoDataFound> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UnauthorizedCopyWith<$Res>
+    implements $MainFailureCopyWith<$Res> {
   factory _$$_UnauthorizedCopyWith(
           _$_Unauthorized value, $Res Function(_$_Unauthorized) then) =
       __$$_UnauthorizedCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call({String message});
 }
@@ -360,9 +691,13 @@ class _$_Unauthorized implements _Unauthorized {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() clientFailure,
-    required TResult Function() serverFailure,
+    required TResult Function(String? message) clientFailure,
+    required TResult Function(String? message) serverFailure,
+    required TResult Function(String message) noDatafound,
     required TResult Function(String message) unauthorized,
+    required TResult Function(String message) forbidden,
+    required TResult Function(String message) serviceUnavailable,
+    required TResult Function(String message) unknown,
   }) {
     return unauthorized(message);
   }
@@ -370,9 +705,13 @@ class _$_Unauthorized implements _Unauthorized {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? clientFailure,
-    TResult? Function()? serverFailure,
+    TResult? Function(String? message)? clientFailure,
+    TResult? Function(String? message)? serverFailure,
+    TResult? Function(String message)? noDatafound,
     TResult? Function(String message)? unauthorized,
+    TResult? Function(String message)? forbidden,
+    TResult? Function(String message)? serviceUnavailable,
+    TResult? Function(String message)? unknown,
   }) {
     return unauthorized?.call(message);
   }
@@ -380,9 +719,13 @@ class _$_Unauthorized implements _Unauthorized {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? clientFailure,
-    TResult Function()? serverFailure,
+    TResult Function(String? message)? clientFailure,
+    TResult Function(String? message)? serverFailure,
+    TResult Function(String message)? noDatafound,
     TResult Function(String message)? unauthorized,
+    TResult Function(String message)? forbidden,
+    TResult Function(String message)? serviceUnavailable,
+    TResult Function(String message)? unknown,
     required TResult orElse(),
   }) {
     if (unauthorized != null) {
@@ -396,7 +739,11 @@ class _$_Unauthorized implements _Unauthorized {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientFailure value) clientFailure,
     required TResult Function(_ServerFailure value) serverFailure,
+    required TResult Function(_NoDataFound value) noDatafound,
     required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_Forbidden value) forbidden,
+    required TResult Function(_ServiceUnavailable value) serviceUnavailable,
+    required TResult Function(_UnknownFailure value) unknown,
   }) {
     return unauthorized(this);
   }
@@ -406,7 +753,11 @@ class _$_Unauthorized implements _Unauthorized {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientFailure value)? clientFailure,
     TResult? Function(_ServerFailure value)? serverFailure,
+    TResult? Function(_NoDataFound value)? noDatafound,
     TResult? Function(_Unauthorized value)? unauthorized,
+    TResult? Function(_Forbidden value)? forbidden,
+    TResult? Function(_ServiceUnavailable value)? serviceUnavailable,
+    TResult? Function(_UnknownFailure value)? unknown,
   }) {
     return unauthorized?.call(this);
   }
@@ -416,7 +767,11 @@ class _$_Unauthorized implements _Unauthorized {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientFailure value)? clientFailure,
     TResult Function(_ServerFailure value)? serverFailure,
+    TResult Function(_NoDataFound value)? noDatafound,
     TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Forbidden value)? forbidden,
+    TResult Function(_ServiceUnavailable value)? serviceUnavailable,
+    TResult Function(_UnknownFailure value)? unknown,
     required TResult orElse(),
   }) {
     if (unauthorized != null) {
@@ -430,8 +785,514 @@ abstract class _Unauthorized implements MainFailure {
   const factory _Unauthorized({required final String message}) =
       _$_Unauthorized;
 
+  @override
   String get message;
+  @override
   @JsonKey(ignore: true)
   _$$_UnauthorizedCopyWith<_$_Unauthorized> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ForbiddenCopyWith<$Res>
+    implements $MainFailureCopyWith<$Res> {
+  factory _$$_ForbiddenCopyWith(
+          _$_Forbidden value, $Res Function(_$_Forbidden) then) =
+      __$$_ForbiddenCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$_ForbiddenCopyWithImpl<$Res>
+    extends _$MainFailureCopyWithImpl<$Res, _$_Forbidden>
+    implements _$$_ForbiddenCopyWith<$Res> {
+  __$$_ForbiddenCopyWithImpl(
+      _$_Forbidden _value, $Res Function(_$_Forbidden) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$_Forbidden(
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Forbidden implements _Forbidden {
+  const _$_Forbidden({required this.message});
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'MainFailure.forbidden(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Forbidden &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ForbiddenCopyWith<_$_Forbidden> get copyWith =>
+      __$$_ForbiddenCopyWithImpl<_$_Forbidden>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? message) clientFailure,
+    required TResult Function(String? message) serverFailure,
+    required TResult Function(String message) noDatafound,
+    required TResult Function(String message) unauthorized,
+    required TResult Function(String message) forbidden,
+    required TResult Function(String message) serviceUnavailable,
+    required TResult Function(String message) unknown,
+  }) {
+    return forbidden(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String? message)? clientFailure,
+    TResult? Function(String? message)? serverFailure,
+    TResult? Function(String message)? noDatafound,
+    TResult? Function(String message)? unauthorized,
+    TResult? Function(String message)? forbidden,
+    TResult? Function(String message)? serviceUnavailable,
+    TResult? Function(String message)? unknown,
+  }) {
+    return forbidden?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? message)? clientFailure,
+    TResult Function(String? message)? serverFailure,
+    TResult Function(String message)? noDatafound,
+    TResult Function(String message)? unauthorized,
+    TResult Function(String message)? forbidden,
+    TResult Function(String message)? serviceUnavailable,
+    TResult Function(String message)? unknown,
+    required TResult orElse(),
+  }) {
+    if (forbidden != null) {
+      return forbidden(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClientFailure value) clientFailure,
+    required TResult Function(_ServerFailure value) serverFailure,
+    required TResult Function(_NoDataFound value) noDatafound,
+    required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_Forbidden value) forbidden,
+    required TResult Function(_ServiceUnavailable value) serviceUnavailable,
+    required TResult Function(_UnknownFailure value) unknown,
+  }) {
+    return forbidden(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClientFailure value)? clientFailure,
+    TResult? Function(_ServerFailure value)? serverFailure,
+    TResult? Function(_NoDataFound value)? noDatafound,
+    TResult? Function(_Unauthorized value)? unauthorized,
+    TResult? Function(_Forbidden value)? forbidden,
+    TResult? Function(_ServiceUnavailable value)? serviceUnavailable,
+    TResult? Function(_UnknownFailure value)? unknown,
+  }) {
+    return forbidden?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClientFailure value)? clientFailure,
+    TResult Function(_ServerFailure value)? serverFailure,
+    TResult Function(_NoDataFound value)? noDatafound,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Forbidden value)? forbidden,
+    TResult Function(_ServiceUnavailable value)? serviceUnavailable,
+    TResult Function(_UnknownFailure value)? unknown,
+    required TResult orElse(),
+  }) {
+    if (forbidden != null) {
+      return forbidden(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Forbidden implements MainFailure {
+  const factory _Forbidden({required final String message}) = _$_Forbidden;
+
+  @override
+  String get message;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ForbiddenCopyWith<_$_Forbidden> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ServiceUnavailableCopyWith<$Res>
+    implements $MainFailureCopyWith<$Res> {
+  factory _$$_ServiceUnavailableCopyWith(_$_ServiceUnavailable value,
+          $Res Function(_$_ServiceUnavailable) then) =
+      __$$_ServiceUnavailableCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$_ServiceUnavailableCopyWithImpl<$Res>
+    extends _$MainFailureCopyWithImpl<$Res, _$_ServiceUnavailable>
+    implements _$$_ServiceUnavailableCopyWith<$Res> {
+  __$$_ServiceUnavailableCopyWithImpl(
+      _$_ServiceUnavailable _value, $Res Function(_$_ServiceUnavailable) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$_ServiceUnavailable(
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ServiceUnavailable implements _ServiceUnavailable {
+  const _$_ServiceUnavailable({required this.message});
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'MainFailure.serviceUnavailable(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ServiceUnavailable &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ServiceUnavailableCopyWith<_$_ServiceUnavailable> get copyWith =>
+      __$$_ServiceUnavailableCopyWithImpl<_$_ServiceUnavailable>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? message) clientFailure,
+    required TResult Function(String? message) serverFailure,
+    required TResult Function(String message) noDatafound,
+    required TResult Function(String message) unauthorized,
+    required TResult Function(String message) forbidden,
+    required TResult Function(String message) serviceUnavailable,
+    required TResult Function(String message) unknown,
+  }) {
+    return serviceUnavailable(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String? message)? clientFailure,
+    TResult? Function(String? message)? serverFailure,
+    TResult? Function(String message)? noDatafound,
+    TResult? Function(String message)? unauthorized,
+    TResult? Function(String message)? forbidden,
+    TResult? Function(String message)? serviceUnavailable,
+    TResult? Function(String message)? unknown,
+  }) {
+    return serviceUnavailable?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? message)? clientFailure,
+    TResult Function(String? message)? serverFailure,
+    TResult Function(String message)? noDatafound,
+    TResult Function(String message)? unauthorized,
+    TResult Function(String message)? forbidden,
+    TResult Function(String message)? serviceUnavailable,
+    TResult Function(String message)? unknown,
+    required TResult orElse(),
+  }) {
+    if (serviceUnavailable != null) {
+      return serviceUnavailable(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClientFailure value) clientFailure,
+    required TResult Function(_ServerFailure value) serverFailure,
+    required TResult Function(_NoDataFound value) noDatafound,
+    required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_Forbidden value) forbidden,
+    required TResult Function(_ServiceUnavailable value) serviceUnavailable,
+    required TResult Function(_UnknownFailure value) unknown,
+  }) {
+    return serviceUnavailable(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClientFailure value)? clientFailure,
+    TResult? Function(_ServerFailure value)? serverFailure,
+    TResult? Function(_NoDataFound value)? noDatafound,
+    TResult? Function(_Unauthorized value)? unauthorized,
+    TResult? Function(_Forbidden value)? forbidden,
+    TResult? Function(_ServiceUnavailable value)? serviceUnavailable,
+    TResult? Function(_UnknownFailure value)? unknown,
+  }) {
+    return serviceUnavailable?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClientFailure value)? clientFailure,
+    TResult Function(_ServerFailure value)? serverFailure,
+    TResult Function(_NoDataFound value)? noDatafound,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Forbidden value)? forbidden,
+    TResult Function(_ServiceUnavailable value)? serviceUnavailable,
+    TResult Function(_UnknownFailure value)? unknown,
+    required TResult orElse(),
+  }) {
+    if (serviceUnavailable != null) {
+      return serviceUnavailable(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ServiceUnavailable implements MainFailure {
+  const factory _ServiceUnavailable({required final String message}) =
+      _$_ServiceUnavailable;
+
+  @override
+  String get message;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ServiceUnavailableCopyWith<_$_ServiceUnavailable> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UnknownFailureCopyWith<$Res>
+    implements $MainFailureCopyWith<$Res> {
+  factory _$$_UnknownFailureCopyWith(
+          _$_UnknownFailure value, $Res Function(_$_UnknownFailure) then) =
+      __$$_UnknownFailureCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$_UnknownFailureCopyWithImpl<$Res>
+    extends _$MainFailureCopyWithImpl<$Res, _$_UnknownFailure>
+    implements _$$_UnknownFailureCopyWith<$Res> {
+  __$$_UnknownFailureCopyWithImpl(
+      _$_UnknownFailure _value, $Res Function(_$_UnknownFailure) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$_UnknownFailure(
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UnknownFailure implements _UnknownFailure {
+  const _$_UnknownFailure({required this.message});
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'MainFailure.unknown(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UnknownFailure &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UnknownFailureCopyWith<_$_UnknownFailure> get copyWith =>
+      __$$_UnknownFailureCopyWithImpl<_$_UnknownFailure>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? message) clientFailure,
+    required TResult Function(String? message) serverFailure,
+    required TResult Function(String message) noDatafound,
+    required TResult Function(String message) unauthorized,
+    required TResult Function(String message) forbidden,
+    required TResult Function(String message) serviceUnavailable,
+    required TResult Function(String message) unknown,
+  }) {
+    return unknown(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String? message)? clientFailure,
+    TResult? Function(String? message)? serverFailure,
+    TResult? Function(String message)? noDatafound,
+    TResult? Function(String message)? unauthorized,
+    TResult? Function(String message)? forbidden,
+    TResult? Function(String message)? serviceUnavailable,
+    TResult? Function(String message)? unknown,
+  }) {
+    return unknown?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? message)? clientFailure,
+    TResult Function(String? message)? serverFailure,
+    TResult Function(String message)? noDatafound,
+    TResult Function(String message)? unauthorized,
+    TResult Function(String message)? forbidden,
+    TResult Function(String message)? serviceUnavailable,
+    TResult Function(String message)? unknown,
+    required TResult orElse(),
+  }) {
+    if (unknown != null) {
+      return unknown(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClientFailure value) clientFailure,
+    required TResult Function(_ServerFailure value) serverFailure,
+    required TResult Function(_NoDataFound value) noDatafound,
+    required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_Forbidden value) forbidden,
+    required TResult Function(_ServiceUnavailable value) serviceUnavailable,
+    required TResult Function(_UnknownFailure value) unknown,
+  }) {
+    return unknown(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClientFailure value)? clientFailure,
+    TResult? Function(_ServerFailure value)? serverFailure,
+    TResult? Function(_NoDataFound value)? noDatafound,
+    TResult? Function(_Unauthorized value)? unauthorized,
+    TResult? Function(_Forbidden value)? forbidden,
+    TResult? Function(_ServiceUnavailable value)? serviceUnavailable,
+    TResult? Function(_UnknownFailure value)? unknown,
+  }) {
+    return unknown?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClientFailure value)? clientFailure,
+    TResult Function(_ServerFailure value)? serverFailure,
+    TResult Function(_NoDataFound value)? noDatafound,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Forbidden value)? forbidden,
+    TResult Function(_ServiceUnavailable value)? serviceUnavailable,
+    TResult Function(_UnknownFailure value)? unknown,
+    required TResult orElse(),
+  }) {
+    if (unknown != null) {
+      return unknown(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UnknownFailure implements MainFailure {
+  const factory _UnknownFailure({required final String message}) =
+      _$_UnknownFailure;
+
+  @override
+  String get message;
+  @override
+  @JsonKey(ignore: true)
+  _$$_UnknownFailureCopyWith<_$_UnknownFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }

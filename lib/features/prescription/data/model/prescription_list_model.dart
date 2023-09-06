@@ -117,7 +117,6 @@ class PrescriptionElement {
     Map<String, dynamic> toJson() => {
         "doctorID": doctorId,
         "appointmentID": appointmentId,
-        "patient_id": patientId,
         "name": name,
         "type": type,
         "duration": duration,

@@ -16,44 +16,50 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HistoryEvent {
-  String get fromDate => throw _privateConstructorUsedError;
-  String get toDate => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String fromDate, String toDate)
         gePatientHistoryList,
+    required TResult Function(
+            DateTime startDate, DateTime endDate, HistoryType historyType)
+        pickDate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String fromDate, String toDate)? gePatientHistoryList,
+    TResult? Function(
+            DateTime startDate, DateTime endDate, HistoryType historyType)?
+        pickDate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String fromDate, String toDate)? gePatientHistoryList,
+    TResult Function(
+            DateTime startDate, DateTime endDate, HistoryType historyType)?
+        pickDate,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GePatientHistoryList value) gePatientHistoryList,
+    required TResult Function(_PickDate value) pickDate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GePatientHistoryList value)? gePatientHistoryList,
+    TResult? Function(_PickDate value)? pickDate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GePatientHistoryList value)? gePatientHistoryList,
+    TResult Function(_PickDate value)? pickDate,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $HistoryEventCopyWith<HistoryEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -62,8 +68,6 @@ abstract class $HistoryEventCopyWith<$Res> {
   factory $HistoryEventCopyWith(
           HistoryEvent value, $Res Function(HistoryEvent) then) =
       _$HistoryEventCopyWithImpl<$Res, HistoryEvent>;
-  @useResult
-  $Res call({String fromDate, String toDate});
 }
 
 /// @nodoc
@@ -75,33 +79,13 @@ class _$HistoryEventCopyWithImpl<$Res, $Val extends HistoryEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? fromDate = null,
-    Object? toDate = null,
-  }) {
-    return _then(_value.copyWith(
-      fromDate: null == fromDate
-          ? _value.fromDate
-          : fromDate // ignore: cast_nullable_to_non_nullable
-              as String,
-      toDate: null == toDate
-          ? _value.toDate
-          : toDate // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_GePatientHistoryListCopyWith<$Res>
-    implements $HistoryEventCopyWith<$Res> {
+abstract class _$$_GePatientHistoryListCopyWith<$Res> {
   factory _$$_GePatientHistoryListCopyWith(_$_GePatientHistoryList value,
           $Res Function(_$_GePatientHistoryList) then) =
       __$$_GePatientHistoryListCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String fromDate, String toDate});
 }
@@ -173,6 +157,9 @@ class _$_GePatientHistoryList implements _GePatientHistoryList {
   TResult when<TResult extends Object?>({
     required TResult Function(String fromDate, String toDate)
         gePatientHistoryList,
+    required TResult Function(
+            DateTime startDate, DateTime endDate, HistoryType historyType)
+        pickDate,
   }) {
     return gePatientHistoryList(fromDate, toDate);
   }
@@ -181,6 +168,9 @@ class _$_GePatientHistoryList implements _GePatientHistoryList {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String fromDate, String toDate)? gePatientHistoryList,
+    TResult? Function(
+            DateTime startDate, DateTime endDate, HistoryType historyType)?
+        pickDate,
   }) {
     return gePatientHistoryList?.call(fromDate, toDate);
   }
@@ -189,6 +179,9 @@ class _$_GePatientHistoryList implements _GePatientHistoryList {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String fromDate, String toDate)? gePatientHistoryList,
+    TResult Function(
+            DateTime startDate, DateTime endDate, HistoryType historyType)?
+        pickDate,
     required TResult orElse(),
   }) {
     if (gePatientHistoryList != null) {
@@ -201,6 +194,7 @@ class _$_GePatientHistoryList implements _GePatientHistoryList {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GePatientHistoryList value) gePatientHistoryList,
+    required TResult Function(_PickDate value) pickDate,
   }) {
     return gePatientHistoryList(this);
   }
@@ -209,6 +203,7 @@ class _$_GePatientHistoryList implements _GePatientHistoryList {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GePatientHistoryList value)? gePatientHistoryList,
+    TResult? Function(_PickDate value)? pickDate,
   }) {
     return gePatientHistoryList?.call(this);
   }
@@ -217,6 +212,7 @@ class _$_GePatientHistoryList implements _GePatientHistoryList {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GePatientHistoryList value)? gePatientHistoryList,
+    TResult Function(_PickDate value)? pickDate,
     required TResult orElse(),
   }) {
     if (gePatientHistoryList != null) {
@@ -231,13 +227,176 @@ abstract class _GePatientHistoryList implements HistoryEvent {
       {required final String fromDate,
       required final String toDate}) = _$_GePatientHistoryList;
 
-  @override
   String get fromDate;
-  @override
   String get toDate;
-  @override
   @JsonKey(ignore: true)
   _$$_GePatientHistoryListCopyWith<_$_GePatientHistoryList> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_PickDateCopyWith<$Res> {
+  factory _$$_PickDateCopyWith(
+          _$_PickDate value, $Res Function(_$_PickDate) then) =
+      __$$_PickDateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime startDate, DateTime endDate, HistoryType historyType});
+}
+
+/// @nodoc
+class __$$_PickDateCopyWithImpl<$Res>
+    extends _$HistoryEventCopyWithImpl<$Res, _$_PickDate>
+    implements _$$_PickDateCopyWith<$Res> {
+  __$$_PickDateCopyWithImpl(
+      _$_PickDate _value, $Res Function(_$_PickDate) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? startDate = null,
+    Object? endDate = null,
+    Object? historyType = null,
+  }) {
+    return _then(_$_PickDate(
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      endDate: null == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      historyType: null == historyType
+          ? _value.historyType
+          : historyType // ignore: cast_nullable_to_non_nullable
+              as HistoryType,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_PickDate implements _PickDate {
+  const _$_PickDate(
+      {required this.startDate,
+      required this.endDate,
+      required this.historyType});
+
+  @override
+  final DateTime startDate;
+  @override
+  final DateTime endDate;
+  @override
+  final HistoryType historyType;
+
+  @override
+  String toString() {
+    return 'HistoryEvent.pickDate(startDate: $startDate, endDate: $endDate, historyType: $historyType)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PickDate &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.historyType, historyType) ||
+                other.historyType == historyType));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, startDate, endDate, historyType);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_PickDateCopyWith<_$_PickDate> get copyWith =>
+      __$$_PickDateCopyWithImpl<_$_PickDate>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String fromDate, String toDate)
+        gePatientHistoryList,
+    required TResult Function(
+            DateTime startDate, DateTime endDate, HistoryType historyType)
+        pickDate,
+  }) {
+    return pickDate(startDate, endDate, historyType);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String fromDate, String toDate)? gePatientHistoryList,
+    TResult? Function(
+            DateTime startDate, DateTime endDate, HistoryType historyType)?
+        pickDate,
+  }) {
+    return pickDate?.call(startDate, endDate, historyType);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String fromDate, String toDate)? gePatientHistoryList,
+    TResult Function(
+            DateTime startDate, DateTime endDate, HistoryType historyType)?
+        pickDate,
+    required TResult orElse(),
+  }) {
+    if (pickDate != null) {
+      return pickDate(startDate, endDate, historyType);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GePatientHistoryList value) gePatientHistoryList,
+    required TResult Function(_PickDate value) pickDate,
+  }) {
+    return pickDate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GePatientHistoryList value)? gePatientHistoryList,
+    TResult? Function(_PickDate value)? pickDate,
+  }) {
+    return pickDate?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GePatientHistoryList value)? gePatientHistoryList,
+    TResult Function(_PickDate value)? pickDate,
+    required TResult orElse(),
+  }) {
+    if (pickDate != null) {
+      return pickDate(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PickDate implements HistoryEvent {
+  const factory _PickDate(
+      {required final DateTime startDate,
+      required final DateTime endDate,
+      required final HistoryType historyType}) = _$_PickDate;
+
+  DateTime get startDate;
+  DateTime get endDate;
+  HistoryType get historyType;
+  @JsonKey(ignore: true)
+  _$$_PickDateCopyWith<_$_PickDate> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -247,6 +406,11 @@ mixin _$HistoryState {
   bool get hasPatientListData => throw _privateConstructorUsedError;
   bool get unauthorized => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
+  DateTime get startDate => throw _privateConstructorUsedError;
+  DateTime get endDate => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
+  bool get noDatafound => throw _privateConstructorUsedError;
+  HistoryType get historyType => throw _privateConstructorUsedError;
   HistoryPatientListModel? get patientListResult =>
       throw _privateConstructorUsedError;
 
@@ -266,6 +430,11 @@ abstract class $HistoryStateCopyWith<$Res> {
       bool hasPatientListData,
       bool unauthorized,
       bool isError,
+      DateTime startDate,
+      DateTime endDate,
+      String message,
+      bool noDatafound,
+      HistoryType historyType,
       HistoryPatientListModel? patientListResult});
 }
 
@@ -286,6 +455,11 @@ class _$HistoryStateCopyWithImpl<$Res, $Val extends HistoryState>
     Object? hasPatientListData = null,
     Object? unauthorized = null,
     Object? isError = null,
+    Object? startDate = null,
+    Object? endDate = null,
+    Object? message = null,
+    Object? noDatafound = null,
+    Object? historyType = null,
     Object? patientListResult = freezed,
   }) {
     return _then(_value.copyWith(
@@ -305,6 +479,26 @@ class _$HistoryStateCopyWithImpl<$Res, $Val extends HistoryState>
           ? _value.isError
           : isError // ignore: cast_nullable_to_non_nullable
               as bool,
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      endDate: null == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      noDatafound: null == noDatafound
+          ? _value.noDatafound
+          : noDatafound // ignore: cast_nullable_to_non_nullable
+              as bool,
+      historyType: null == historyType
+          ? _value.historyType
+          : historyType // ignore: cast_nullable_to_non_nullable
+              as HistoryType,
       patientListResult: freezed == patientListResult
           ? _value.patientListResult
           : patientListResult // ignore: cast_nullable_to_non_nullable
@@ -326,6 +520,11 @@ abstract class _$$_HistoryStateCopyWith<$Res>
       bool hasPatientListData,
       bool unauthorized,
       bool isError,
+      DateTime startDate,
+      DateTime endDate,
+      String message,
+      bool noDatafound,
+      HistoryType historyType,
       HistoryPatientListModel? patientListResult});
 }
 
@@ -344,6 +543,11 @@ class __$$_HistoryStateCopyWithImpl<$Res>
     Object? hasPatientListData = null,
     Object? unauthorized = null,
     Object? isError = null,
+    Object? startDate = null,
+    Object? endDate = null,
+    Object? message = null,
+    Object? noDatafound = null,
+    Object? historyType = null,
     Object? patientListResult = freezed,
   }) {
     return _then(_$_HistoryState(
@@ -363,6 +567,26 @@ class __$$_HistoryStateCopyWithImpl<$Res>
           ? _value.isError
           : isError // ignore: cast_nullable_to_non_nullable
               as bool,
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      endDate: null == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      noDatafound: null == noDatafound
+          ? _value.noDatafound
+          : noDatafound // ignore: cast_nullable_to_non_nullable
+              as bool,
+      historyType: null == historyType
+          ? _value.historyType
+          : historyType // ignore: cast_nullable_to_non_nullable
+              as HistoryType,
       patientListResult: freezed == patientListResult
           ? _value.patientListResult
           : patientListResult // ignore: cast_nullable_to_non_nullable
@@ -379,6 +603,11 @@ class _$_HistoryState implements _HistoryState {
       required this.hasPatientListData,
       required this.unauthorized,
       required this.isError,
+      required this.startDate,
+      required this.endDate,
+      required this.message,
+      required this.noDatafound,
+      required this.historyType,
       this.patientListResult});
 
   @override
@@ -390,11 +619,21 @@ class _$_HistoryState implements _HistoryState {
   @override
   final bool isError;
   @override
+  final DateTime startDate;
+  @override
+  final DateTime endDate;
+  @override
+  final String message;
+  @override
+  final bool noDatafound;
+  @override
+  final HistoryType historyType;
+  @override
   final HistoryPatientListModel? patientListResult;
 
   @override
   String toString() {
-    return 'HistoryState(isPatientListLoading: $isPatientListLoading, hasPatientListData: $hasPatientListData, unauthorized: $unauthorized, isError: $isError, patientListResult: $patientListResult)';
+    return 'HistoryState(isPatientListLoading: $isPatientListLoading, hasPatientListData: $hasPatientListData, unauthorized: $unauthorized, isError: $isError, startDate: $startDate, endDate: $endDate, message: $message, noDatafound: $noDatafound, historyType: $historyType, patientListResult: $patientListResult)';
   }
 
   @override
@@ -409,13 +648,31 @@ class _$_HistoryState implements _HistoryState {
             (identical(other.unauthorized, unauthorized) ||
                 other.unauthorized == unauthorized) &&
             (identical(other.isError, isError) || other.isError == isError) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.noDatafound, noDatafound) ||
+                other.noDatafound == noDatafound) &&
+            (identical(other.historyType, historyType) ||
+                other.historyType == historyType) &&
             (identical(other.patientListResult, patientListResult) ||
                 other.patientListResult == patientListResult));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isPatientListLoading,
-      hasPatientListData, unauthorized, isError, patientListResult);
+  int get hashCode => Object.hash(
+      runtimeType,
+      isPatientListLoading,
+      hasPatientListData,
+      unauthorized,
+      isError,
+      startDate,
+      endDate,
+      message,
+      noDatafound,
+      historyType,
+      patientListResult);
 
   @JsonKey(ignore: true)
   @override
@@ -430,6 +687,11 @@ abstract class _HistoryState implements HistoryState {
       required final bool hasPatientListData,
       required final bool unauthorized,
       required final bool isError,
+      required final DateTime startDate,
+      required final DateTime endDate,
+      required final String message,
+      required final bool noDatafound,
+      required final HistoryType historyType,
       final HistoryPatientListModel? patientListResult}) = _$_HistoryState;
 
   @override
@@ -440,6 +702,16 @@ abstract class _HistoryState implements HistoryState {
   bool get unauthorized;
   @override
   bool get isError;
+  @override
+  DateTime get startDate;
+  @override
+  DateTime get endDate;
+  @override
+  String get message;
+  @override
+  bool get noDatafound;
+  @override
+  HistoryType get historyType;
   @override
   HistoryPatientListModel? get patientListResult;
   @override

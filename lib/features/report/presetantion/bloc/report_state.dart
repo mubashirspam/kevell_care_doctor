@@ -8,12 +8,14 @@ class ReportState with _$ReportState {
     required bool hasGenaralInfoData,
     required bool hasReportData,
     required bool unauthorized,
+    required DateTime startDate,
+    required DateTime endDate,
     required bool isError,
     ReportGeneraInfoModel? reportGeneraInfo,
     ReportModel? reportData,
   }) = _ReportState;
 
-  factory ReportState.initial() => const ReportState(
+  factory ReportState.initial() => ReportState(
         isGenaralInfoLoading: false,
         unauthorized: false,
         isError: false,
@@ -22,5 +24,7 @@ class ReportState with _$ReportState {
         hasGenaralInfoData: false,
         reportData: null,
         reportGeneraInfo: null,
+        startDate: DateTime.now(),
+        endDate: DateTime.now(),
       );
 }

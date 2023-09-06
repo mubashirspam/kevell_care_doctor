@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -5,6 +7,7 @@ import 'package:dr_kevell/features/profile/domain/repositories/get_profile_repos
 import 'package:dr_kevell/features/profile/domain/repositories/update_profile_repository.dart';
 
 import '../../data/models/profile_model.dart';
+import '../../domain/repositories/upload_image_repository.dart';
 
 part 'profile_event.dart';
 part 'profile_state.dart';
@@ -14,9 +17,13 @@ part 'profile_bloc.freezed.dart';
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final GetProfileRepository getprofileRepository;
   final UpdateProfileRepository updateProfileRepository;
+  final UploadImageRepository uploadImageRepository;
 
-  ProfileBloc(this.getprofileRepository, this.updateProfileRepository)
-      : super(ProfileState.initial()) {
+  ProfileBloc(
+    this.getprofileRepository,
+    this.updateProfileRepository,
+    this.uploadImageRepository,
+  ) : super(ProfileState.initial()) {
     on<_GetProfile>((event, emit) async {
       if (state.hasData) {
         return;
@@ -45,12 +52,11 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       emit(result);
     });
 
-         on<_PickDate>((event, emit) {
+    on<_PickDate>((event, emit) {
       emit(state.copyWith(
         date: event.date,
       ));
     });
-
 
     on<_UpdateProfile>((event, emit) async {
       emit(
@@ -64,6 +70,32 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       final response = await updateProfileRepository.updateProfile(
         profileData: event.profileData,
       );
+
+      final result = response.fold(
+        (failure) => state.copyWith(
+          isUpdateLoading: false,
+          isError: true,
+        ),
+        (success) => state.copyWith(
+            isError: false,
+            isUpdateLoading: false,
+            result: success,
+            hasData: true),
+      );
+      emit(result);
+    });
+
+    on<_UplaodImage>((event, emit) async {
+      emit(
+        state.copyWith(
+          isUpdateLoading: true,
+          hasData: false,
+          isError: false,
+        ),
+      );
+
+      final response =
+          await uploadImageRepository.uploaadImage(image: event.image);
 
       final result = response.fold(
         (failure) => state.copyWith(

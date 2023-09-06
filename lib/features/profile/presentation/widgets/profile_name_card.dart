@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'dart:typed_data';
 import 'package:dr_kevell/features/profile/presentation/upload_image.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
@@ -15,6 +17,10 @@ class ProfileNameCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   
+    Uint8List imageBytes = base64Decode(imageUrl);
+
+
     return Row(
       children: [
         SizedBox(
@@ -31,7 +37,10 @@ class ProfileNameCard extends StatelessWidget {
                   width: 70,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(image: NetworkImage(imageUrl))),
+                      ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.memory(imageBytes,fit: BoxFit.cover,)),
                 ),
               ),
               Positioned(

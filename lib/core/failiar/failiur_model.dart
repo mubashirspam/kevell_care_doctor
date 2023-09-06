@@ -1,25 +1,25 @@
 // To parse this JSON data, do
 //
-//     final failuerModel = failuerModelFromJson(jsonString);
+//     final FailureModel = FailureModelFromJson(jsonString);
 
 import 'dart:convert';
 
-FailuerModel failuerModelFromJson(String str) => FailuerModel.fromJson(json.decode(str));
+FailureModel failureModelFromJson(String str) => FailureModel.fromJson(json.decode(str));
 
-String failuerModelToJson(FailuerModel data) => json.encode(data.toJson());
+String failureModelToJson(FailureModel data) => json.encode(data.toJson());
 
-class FailuerModel {
+class FailureModel {
     int? responseCode;
     bool? status;
     String? message;
 
-    FailuerModel({
+    FailureModel({
         this.responseCode,
         this.status,
         this.message,
     });
 
-    factory FailuerModel.fromJson(Map<String, dynamic> json) => FailuerModel(
+    factory FailureModel.fromJson(Map<String, dynamic> json) => FailureModel(
         responseCode: json["responseCode"],
         status: json["status"],
         message: json["message"],

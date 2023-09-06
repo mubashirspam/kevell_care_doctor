@@ -4,11 +4,16 @@ import 'dart:io';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/features/widgets/buttons/text_button_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_cropper/image_cropper.dart';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+
+import '../../../core/helper/toast.dart';
+import '../data/models/profile_model.dart';
+import 'bloc/profile_bloc.dart';
 
 class UploadImagePage extends StatefulWidget {
   const UploadImagePage({super.key});
@@ -20,6 +25,7 @@ class UploadImagePage extends StatefulWidget {
 class _UploadImagePageState extends State<UploadImagePage> {
   String status = "";
   File? _selectedImage;
+  bool isButtonDisabled = true;
 
   Future<void> requestPermission(Permission permission) async {
     final status = await permission.request();
@@ -34,6 +40,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
     setState(() {
       if (pickedImage != null) {
         _selectedImage = File(pickedImage.path);
+        isButtonDisabled = false;
       }
     });
 
@@ -78,6 +85,13 @@ class _UploadImagePageState extends State<UploadImagePage> {
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: context.theme.primary,
+        title: Text(
+          "Upload Image",
+          style: Theme.of(context).textTheme.headlineLarge,
+        ),
+      ),
       body: Column(
         children: [
           _selectedImage != null
@@ -106,10 +120,37 @@ class _UploadImagePageState extends State<UploadImagePage> {
                 ),
           Padding(
             padding: const EdgeInsets.all(20).copyWith(bottom: 100),
-            child: TextButtonWidget(
-              name: "Upload",
-              onPressed: () {},
-              isLoading: false,
+            child: BlocConsumer<ProfileBloc, ProfileState>(
+              listener: (context, state) {
+                if (!state.isUpdateLoading && state.isError) {
+                  Toast.showToast(
+                      context: context,
+                      message: "Error occured try again later");
+                }
+                if (!state.isUpdateLoading && state.hasData) {
+                  Toast.showToast(
+                      context: context,
+                      message: "Profile Updated Successfully");
+
+                  Navigator.of(context).pop();
+                }
+              },
+              builder: (context, state) {
+                return TextButtonWidget(
+                  onPressed: isButtonDisabled
+                      ? null
+                      : () {
+                          if (_selectedImage != null) {
+                            context.read<ProfileBloc>().add(
+                                  ProfileEvent.uplaodImage(
+                                      image: _selectedImage!),
+                                );
+                          }
+                        },
+                  name: "upload",
+                  isLoading: state.isUpdateLoading,
+                );
+              },
             ),
           ),
         ],

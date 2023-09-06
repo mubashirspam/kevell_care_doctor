@@ -44,7 +44,7 @@ class GetProfileRepoImpliment implements GetProfileRepository {
 
         return Right(result);
       } else if (response.statusCode == 400 || response.statusCode == 401) {
-        final result = FailuerModel.fromJson(response.data);
+        final result = FailureModel.fromJson(response.data);
         return Left(
             MainFailure.unauthorized(message: result.message ?? "Error"));
       } else {

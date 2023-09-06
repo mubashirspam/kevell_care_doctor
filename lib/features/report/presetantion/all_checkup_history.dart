@@ -9,9 +9,10 @@ import 'package:sliver_tools/sliver_tools.dart';
 import '../../../configure/assets_manage/icons.dart';
 import '../../../core/helper/date.dart';
 import '../../../pages/report/presentation/report_screen.dart';
-import '../../widgets/calender/calnder.dart';
+
 import '../../widgets/error_widget.dart';
-import '../../widgets/input_field/input_field_widget.dart';
+import '../../widgets/input_field/date_filed.dart';
+
 import 'bloc/report_bloc.dart';
 
 class AllCheckupHistory extends StatelessWidget {
@@ -113,60 +114,46 @@ class AllCheckupReportHeader extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 15),
-          Row(
-            children: [
-              Expanded(
-                child: TextFieldWidget(
-                  fillColor: context.theme.backround,
-                  hintText: "01/04/2022",
-                  keyboardType: TextInputType.datetime,
-                  suffixIcon: GestureDetector(
-                    onTap: () => showDialog(
-                      context: context,
-                      builder: (context) => CustomDatePickerDialog(
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime.now(),
-                        lastDate: DateTime.now(),
-                        onDateTimeChanged: (onDateTimeChanged) {},
-                      ),
-                    ),
-                    child: Icon(
-                      Icons.date_range_rounded,
-                      color: context.theme.primary,
-                    ),
+          BlocBuilder<ReportBloc, ReportState>(
+            builder: (context, state) {
+              return Row(
+                children: [
+                  DateField(
+                    color: context.theme.backround,
+                    firstDate: state.reportData == null
+                        ? DateTime.now()
+                        : state.reportData!.startdate ?? DateTime.now(),
+                    selectedTime: state.startDate,
+                    onDateTimeChanged: (v) {
+                      context.read<ReportBloc>().add(ReportEvent.pickDate(
+                            endDate: state.endDate,
+                            startDate: v,
+                          ));
+
+                      Navigator.of(context).pop();
+                    },
+                    initialDate: DateTime.now(),
                   ),
-                  validate: (validate) {
-                    return;
-                  },
-                ),
-              ),
-              const SizedBox(width: 15),
-              Expanded(
-                child: TextFieldWidget(
-                  fillColor: context.theme.backround,
-                  hintText: "01/04/2022",
-                  keyboardType: TextInputType.datetime,
-                  suffixIcon: GestureDetector(
-                    onTap: () => showDialog(
-                      context: context,
-                      builder: (context) => CustomDatePickerDialog(
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime.now(),
-                        lastDate: DateTime.now(),
-                        onDateTimeChanged: (onDateTimeChanged) {},
-                      ),
-                    ),
-                    child: Icon(
-                      Icons.date_range_rounded,
-                      color: context.theme.primary,
-                    ),
+                  const SizedBox(width: 15),
+                  DateField(
+                    color: context.theme.backround,
+                    firstDate: state.reportData == null
+                        ? DateTime.now()
+                        : state.reportData!.startdate ?? DateTime.now(),
+                    selectedTime: state.endDate,
+                    onDateTimeChanged: (v) {
+                      context.read<ReportBloc>().add(ReportEvent.pickDate(
+                            endDate: v,
+                            startDate: state.startDate,
+                          ));
+
+                      Navigator.of(context).pop();
+                    },
+                    initialDate: DateTime.now(),
                   ),
-                  validate: (validate) {
-                    return;
-                  },
-                ),
-              ),
-            ],
+                ],
+              );
+            },
           ),
           const SizedBox(height: 15),
         ],

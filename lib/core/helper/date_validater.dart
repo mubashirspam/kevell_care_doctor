@@ -27,3 +27,13 @@ class DateValidator {
     return null; // Date is valid
   }
 }
+
+extension DateTimeExtension on DateTime {
+  bool isAfterOrEquals(DateTime other) {
+    return isAfter(other) || isAtSameMomentAs(other);
+  }
+
+  bool isBeforeOrEquals(DateTime other) {
+    return isBefore(other) || isAtSameMomentAs(other);
+  }
+}

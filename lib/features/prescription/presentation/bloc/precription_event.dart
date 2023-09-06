@@ -25,4 +25,7 @@ class PrecriptionEvent with _$PrecriptionEvent {
    const factory PrecriptionEvent.genaratePdf({
     required List<PrescriptionPdfModel> data,
   }) = _GeneratePdf;
+
+   const factory PrecriptionEvent.deletePrescription({required String id}) =
+      _DeletePrescription;
 }

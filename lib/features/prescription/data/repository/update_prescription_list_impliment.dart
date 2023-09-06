@@ -11,7 +11,6 @@ import '../../../../configure/value/secure_storage.dart';
 import '../../../../core/failiar/failiur_model.dart';
 import '../../../../core/failiar/main_failures.dart';
 
-
 @LazySingleton(as: UpdatePrescriptionListRepository)
 class UpdatePrescriptionListRepoImpliment
     implements UpdatePrescriptionListRepository {
@@ -22,17 +21,15 @@ class UpdatePrescriptionListRepoImpliment
     try {
       final token = await getTokenFromSS(secureStoreKey);
 
-
       final headers = {
         'Authorization': 'Bearer $token',
         'Content-Type': 'application/json',
       };
-      final data = prescriptionElement.toJson();
 
       final response = await Dio(BaseOptions()).post(
           ApiEndPoints.updatePrescription,
           options: Options(headers: headers),
-          data: data);
+          data: prescriptionElement.toJson());
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = PrescriptionModel.fromJson(response.data);
@@ -40,7 +37,7 @@ class UpdatePrescriptionListRepoImpliment
 
         return Right(result);
       } else if (response.statusCode == 400 || response.statusCode == 401) {
-        final result = FailuerModel.fromJson(response.data);
+        final result = FailureModel.fromJson(response.data);
         return Left(
             MainFailure.unauthorized(message: result.message ?? "Error"));
       } else {
@@ -51,7 +48,7 @@ class UpdatePrescriptionListRepoImpliment
         log(e.toString());
         if (e.response?.statusCode == 400) {
           log(e.toString());
-          final result = FailuerModel.fromJson(e.response!.data);
+          final result = FailureModel.fromJson(e.response!.data);
           return Left(
               MainFailure.unauthorized(message: result.message ?? "Error"));
         }

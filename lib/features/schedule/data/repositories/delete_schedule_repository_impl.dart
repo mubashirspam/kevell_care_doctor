@@ -27,7 +27,7 @@ class DeleteScheduleRepoImpliment implements DeleteScheduleRepository {
 
         return Right(result);
       } else if (response.statusCode == 400 || response.statusCode == 401) {
-        final result = FailuerModel.fromJson(response.data);
+        final result = FailureModel.fromJson(response.data);
         return Left(
             MainFailure.unauthorized(message: result.message ?? "Error"));
       } else {
@@ -38,7 +38,7 @@ class DeleteScheduleRepoImpliment implements DeleteScheduleRepository {
         log(e.toString());
         if (e.response?.statusCode == 400) {
           log(e.toString());
-          final result = FailuerModel.fromJson(e.response!.data);
+          final result = FailureModel.fromJson(e.response!.data);
           return Left(
               MainFailure.unauthorized(message: result.message ?? "Error"));
         }

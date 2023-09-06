@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:dr_kevell/features/prescription/data/model/delete_prescription_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -16,6 +17,7 @@ import 'package:path_provider/path_provider.dart';
 import '../../data/model/prescription_list_model.dart';
 import '../../data/model/prescription_pdf_model.dart';
 import '../../data/repository/genarate_prescription_pdf_impliment.dart';
+import '../../domain/repositories/delete_prescription_repository.dart';
 
 part 'precription_event.dart';
 part 'precription_state.dart';
@@ -27,18 +29,21 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
   final GetPrescriptionSettingsRepository getPrescriptionSettingsRepository;
   final CreatePrescriptionListRepository createPrescriptionListRepository;
   final UpdatePrescriptionListRepository updatePrescriptionListRepository;
+  final DeletePrescriptionRepository deletePrescriptionRepository;
 
   PrecriptionBloc(
-    this.getPrescriptionListRepository,
-    this.getPrescriptionSettingsRepository,
-    this.createPrescriptionListRepository,
-    this.updatePrescriptionListRepository,
-  ) : super(PrecriptionState.initial()) {
+      this.getPrescriptionListRepository,
+      this.getPrescriptionSettingsRepository,
+      this.createPrescriptionListRepository,
+      this.updatePrescriptionListRepository,
+      this.deletePrescriptionRepository)
+      : super(PrecriptionState.initial()) {
     on<_GetPrescriptionList>((event, emit) async {
       emit(
         state.copyWith(
           isGetLoading: true,
           created: false,
+          isDeleted: false,
           updated: false,
           isError: false,
           unauthorized: false,
@@ -52,7 +57,7 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
       response.fold(
           (failure) => {
                 failure.maybeWhen(
-                  clientFailure: () {
+                  clientFailure: (m) {
                     log('clientFailure');
                     return emit(state.copyWith(
                       unauthorized: false,
@@ -68,7 +73,7 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
                       isError: false,
                     ));
                   },
-                  serverFailure: () {
+                  serverFailure: (m) {
                     log('emit serverFailure');
                     return emit(state.copyWith(
                       unauthorized: false,
@@ -147,10 +152,6 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
     });
 
     on<_UpdatePrescription>((event, emit) async {
-      if (state.hasSettingsData) {
-        return;
-      }
-
       emit(
         state.copyWith(
           isUpdateLoading: true,
@@ -207,7 +208,37 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
           isCreateLoading: false,
           created: true,
           hasData: false,
-          prescriptionResult: success,
+          // prescriptionResult: success,
+        ),
+      );
+      emit(result);
+    });
+
+    on<_DeletePrescription>((event, emit) async {
+      emit(
+        state.copyWith(
+          isDeleteLoading: true,
+          isDeleted: false,
+          deleteResponse: null,
+          isError: false,
+        ),
+      );
+
+      final response =
+          await deletePrescriptionRepository.deletePrescription(id: event.id);
+
+      log("deleted called ===============");
+
+      final result = response.fold(
+        (failure) => state.copyWith(
+          isDeleteLoading: false,
+          isDeleted: false,
+          isError: true,
+        ),
+        (success) => state.copyWith(
+          isDeleteLoading: false,
+          isDeleted: true,
+          deleteResponse: success,
         ),
       );
       emit(result);

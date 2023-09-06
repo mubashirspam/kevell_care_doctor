@@ -54,7 +54,7 @@ class CreateScheduleRepoImpliment implements CreateScheduleRepository {
         log(e.toString());
         if (e.response?.statusCode == 400) {
           log(e.toString());
-          final result = FailuerModel.fromJson(e.response!.data);
+          final result = FailureModel.fromJson(e.response!.data);
           return Left(
               MainFailure.unauthorized(message: result.message ?? "Error"));
         }

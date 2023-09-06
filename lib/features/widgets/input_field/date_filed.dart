@@ -3,15 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import '../../../core/helper/date.dart';
 
-
 class DateField extends StatelessWidget {
   final DateTime initialDate;
+  final DateTime firstDate;
+  final DateTime selectedTime;
+  final Color? color;
   final void Function(DateTime) onDateTimeChanged;
-  const DateField({
-    super.key,
-    required this.initialDate,
-    required this.onDateTimeChanged,
-  });
+  const DateField(
+      {super.key,
+      required this.initialDate,
+      required this.onDateTimeChanged,
+      required this.selectedTime,
+      required this.firstDate,
+      this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +25,7 @@ class DateField extends StatelessWidget {
           context: context,
           builder: (context) => CustomDatePickerDialog(
             initialDate: initialDate,
-            firstDate: initialDate,
+            firstDate: firstDate,
             lastDate: DateTime.now(),
             onDateTimeChanged: onDateTimeChanged,
           ),
@@ -32,7 +36,7 @@ class DateField extends StatelessWidget {
             vertical: 10,
           ),
           decoration: ShapeDecoration(
-            color: context.theme.secondary,
+            color: color ??context.theme.secondary,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             shadows: const [
@@ -52,7 +56,7 @@ class DateField extends StatelessWidget {
               ),
               const SizedBox(width: 15),
               Text(
-                dateFormatToddmmyyyy(initialDate),
+                dateFormatToddmmyyyy(selectedTime),
                 style: Theme.of(context).textTheme.titleLarge,
               )
             ],

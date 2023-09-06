@@ -9,4 +9,8 @@ class ReportEvent with _$ReportEvent {
   const factory ReportEvent.fetchReport({
     required FetchReportPayload fetchReportPayload,
   }) = _FetchReport;
+  const factory ReportEvent.pickDate({
+    required DateTime startDate,
+    required DateTime endDate,
+  }) = _PickDate;
 }

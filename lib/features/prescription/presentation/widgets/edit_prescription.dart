@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:dr_kevell/core/helper/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -110,7 +113,7 @@ class _AddOrEditPrescriptionWidgetState
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.8,
+      height: MediaQuery.of(context).size.height * 0.87,
       padding: const EdgeInsets.all(20),
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -365,9 +368,6 @@ class _AddOrEditPrescriptionWidgetState
                 hintText: "Remark",
                 keyboardType: TextInputType.visiblePassword,
                 validate: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Please enter Remark";
-                  }
                   return null; // Return null if validation succeeds
                 },
               ),
@@ -391,12 +391,31 @@ class _AddOrEditPrescriptionWidgetState
                       child: BlocConsumer<PrecriptionBloc, PrecriptionState>(
                         listener: (context, state) {
                           if (state.created) {
-                            // context
-                            //     .read<PrecriptionBloc>()
-                            //     .add(PrecriptionEvent.getPrescriptionList(
-                            //       appointmentId: widget
-                            //           .prescriptionElement!.appointmentId!,
-                            //     ));
+                            Navigator.of(context, rootNavigator: true)
+                                .pop(context);
+                            context
+                                .read<PrecriptionBloc>()
+                                .add(PrecriptionEvent.getPrescriptionList(
+                                  appointmentId:
+                                      widget.checkupDetalis["appointmentID"],
+                                ));
+                          }
+                          if (state.updated) {
+                            Navigator.of(context, rootNavigator: true)
+                                .pop(context);
+                            context
+                                .read<PrecriptionBloc>()
+                                .add(PrecriptionEvent.getPrescriptionList(
+                                  appointmentId: widget
+                                      .prescriptionElement!.appointmentId!,
+                                ));
+                          }
+                          if (state.isError) {
+                            Navigator.of(context, rootNavigator: true)
+                                .pop(context);
+                            Toast.showToast(
+                                context: context,
+                                message: state.message ?? "Error Occured");
                           }
                         },
                         builder: (context, state) {
@@ -405,6 +424,8 @@ class _AddOrEditPrescriptionWidgetState
                                 ? null
                                 : () {
                                     if (widget.isEdit) {
+                                      log("PNO: ${widget.prescriptionElement!.pno} appointmentId: ${widget.prescriptionElement!.appointmentId}");
+
                                       context.read<PrecriptionBloc>().add(
                                             PrecriptionEvent.updatePrescription(
                                               prescriptionElement:

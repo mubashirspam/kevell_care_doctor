@@ -39,12 +39,20 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
       response.fold(
           (failure) => {
                 failure.maybeWhen(
-                  clientFailure: () {
+                  clientFailure: (s) {
                     log('clientFailure');
                     return emit(state.copyWith(
                       unauthorized: false,
                       isPatientListLoading: false,
                       isError: true,
+                    ));
+                  },
+                  noDatafound: (String message) {
+                    log('emit unauthorized');
+                    return emit(state.copyWith(
+                      isPatientListLoading: false,
+                      message: message,
+                      noDatafound: true,
                     ));
                   },
                   unauthorized: (String message) {
@@ -55,7 +63,7 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
                       isError: true,
                     ));
                   },
-                  serverFailure: () {
+                  serverFailure: (s) {
                     log('emit serverFailure');
                     return emit(state.copyWith(
                       isPatientListLoading: false,
@@ -83,6 +91,15 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
           ),
         );
       });
+    });
+
+    on<_PickDate>((event, emit) {
+      emit(state.copyWith(
+        startDate: event.startDate,
+        endDate: event.endDate,
+        historyType: event.historyType,
+        hasPatientListData: false,
+      ));
     });
   }
 }

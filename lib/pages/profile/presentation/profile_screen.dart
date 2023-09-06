@@ -7,6 +7,7 @@ import 'package:dr_kevell/features/profile/presentation/faq.dart';
 import 'package:dr_kevell/features/profile/presentation/notification.dart';
 import 'package:dr_kevell/features/profile/presentation/settings.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../configure/value/constant.dart';
 import '../../../features/profile/presentation/bloc/profile_bloc.dart';
 import '../../../features/profile/presentation/my_profile.dart';
 import '../../../features/profile/presentation/widgets/profile_name_card.dart';
@@ -48,15 +49,15 @@ class ProfileScreen extends StatelessWidget {
                   return ProfileNameCard(
                     email: state.result!.data!.email ?? "",
                     imageUrl:
-                        "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2960&q=80",
+                        state.result!.data!.profileImagelink!,
                     name: state.result!.data!.name!,
                   );
                 }
 
                 return const ProfileNameCard(
                   email: "johndoe@gmail.com",
-                  imageUrl:
-                      "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2960&q=80",
+                  imageUrl:imageUrlForDummy,
+                      
                   name: "Johndoe",
                 );
               },

@@ -31,7 +31,7 @@ class ViewMyProfile extends StatelessWidget {
             address: state.result!.data!.address ?? "No Adress",
             dob: state.result!.data!.dob.toString(),
             email: state.result!.data!.email ?? "",
-            imgUrl: state.result!.data!.address ?? "",
+            imgUrl: state.result!.data!.profileImagelink !,
             mobile: state.result!.data!.mobileNo ?? "No mobile",
             name: state.result!.data!.name ?? "",
           );
@@ -71,8 +71,8 @@ class ViewMyProfileBlocBody extends StatelessWidget {
         children: [
           ProfileNameCard(
             email: email,
-            imageUrl:
-                "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2960&q=80",
+            imageUrl:imgUrl
+                ,
             name: name,
           ),
           const SizedBox(

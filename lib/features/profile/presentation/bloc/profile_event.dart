@@ -11,4 +11,8 @@ class ProfileEvent with _$ProfileEvent {
     const factory ProfileEvent.pickDate({
     required DateTime date,
   }) = _PickDate;
+
+    const factory ProfileEvent.uplaodImage({
+ required File image,
+  }) = _UplaodImage;
 }

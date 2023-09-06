@@ -1,3 +1,4 @@
+import 'package:dr_kevell/core/helper/date_validater.dart';
 import 'package:dr_kevell/features/report/domain/repositories/fetch_report_general_repository.dart';
 import 'package:dr_kevell/features/report/domain/repositories/fetch_report_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,12 +9,9 @@ import '../../data/model/report_general_info_model.dart';
 import '../../data/model/report_model.dart';
 import '../../domain/entities/fetch_report_payload.dart';
 
-
-
 part 'report_event.dart';
 part 'report_state.dart';
 part 'report_bloc.freezed.dart';
-
 
 @injectable
 class ReportBloc extends Bloc<ReportEvent, ReportState> {
@@ -81,5 +79,30 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
       );
       emit(result);
     });
+    on<_PickDate>((event, emit) {
+      emit(state.copyWith(
+        startDate: event.startDate,
+        endDate: event.endDate,
+        reportData: filterDataByDateRange(
+            state.reportData!, event.startDate, event.endDate),
+      ));
+    });
   }
+}
+
+ReportModel filterDataByDateRange(
+    ReportModel reportData, DateTime startDateTime, DateTime endDateTime) {
+  List<Datum> filteredData = reportData.data!.where((datum) {
+    DateTime appointmentDate = datum.appointmentdate!;
+    return appointmentDate.isAfterOrEquals(startDateTime) &&
+        appointmentDate.isBeforeOrEquals(endDateTime);
+  }).toList();
+
+  return ReportModel(
+    responseCode: reportData.responseCode,
+    status: reportData.status,
+    message: reportData.message,
+    startdate: reportData.startdate,
+    data: filteredData,
+  );
 }

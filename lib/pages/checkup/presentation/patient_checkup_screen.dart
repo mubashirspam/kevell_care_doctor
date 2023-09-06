@@ -17,6 +17,7 @@ import 'package:mqtt_client/mqtt_server_client.dart';
 import '../../../core/helper/alert.dart';
 import '../../../core/helper/toast.dart';
 import '../../../features/checkup/presentation/bloc/checkup_bloc.dart';
+import '../../../features/checkup/presentation/blood_pressure_widget.dart';
 import '../../../features/checkup/presentation/pause_and_submit_widget.dart';
 import '../../../features/checkup/presentation/postion_widget.dart';
 import '../../../features/checkup/presentation/spo_widget.dart';
@@ -49,13 +50,14 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
 
   bool isAnalysisended = false;
 
-    String deviceId = "";
+  String deviceId = "";
 
   bool tReading = false;
   bool sp02Reading = false;
   bool ecgReading = false;
   bool gsrReading = false;
   bool postionReading = false;
+  bool bpReading = false;
 
   Map<String, dynamic> dataMap = {};
 
@@ -63,6 +65,8 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
   String sop2 = "0.00";
   String heartBeat = "0";
   String position = "";
+  Map<String, String> bp = {"bpsys": "0", "bpdia": "0", "bpplus": "0"};
+
   int ecgIndex = 0;
 
   List<ECGData> ecgData = [];
@@ -147,11 +151,16 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
       setState(() {
         dataMap = json.decode(
             MqttPublishPayload.bytesToStringAsString(recMess.payload.message));
+// ********************************** unloack **********************************//
+// ********************************** unloack **********************************//
 
         if (dataMap['state'] == "unlock") {
           isUnloacking = false;
           isUnloacked = true;
           deviceId = dataMap['id'];
+
+// ********************************** Temprature **********************************//
+// ********************************** Temprature **********************************//
         } else if (dataMap['number'] == "2" &&
             dataMap['state'] == "device" &&
             dataMap["appointmentID"] == "$appointmentID") {
@@ -168,6 +177,9 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
           }
 
           log(temparature);
+
+// ********************************** Analysis Ended **********************************//
+// ********************************** Analysis Ended **********************************//
         } else if (dataMap['command'] == "alert" &&
             dataMap['value'] == "end_ok") {
           log("Analysis Ended");
@@ -180,6 +192,9 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
                   patientId: widget.checkupDetalis['patientID']!,
                 ),
               );
+
+// ********************************** position **********************************//
+// ********************************** position **********************************//
         } else if (dataMap['number'] == "4" &&
             dataMap['state'] == "device" &&
             dataMap["appointmentID"] == "$appointmentID") {
@@ -208,6 +223,9 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
           }
 
           log(position);
+
+// ********************************** spo2 **********************************//
+// ********************************** spo2 **********************************//
         } else if (dataMap['number'] == "3" &&
             dataMap['state'] == "device" &&
             dataMap["appointmentID"] == "$appointmentID") {
@@ -226,6 +244,33 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
           }
 
           log(sop2);
+
+// ********************************** bp **********************************//
+// ********************************** bp **********************************//
+//
+        } else if (dataMap['number'] == "5" &&
+            dataMap['state'] == "device" &&
+            dataMap["appointmentID"] == "$appointmentID") {
+          isUnloacked = true;
+
+          if (dataMap['data']['type'] == "reading") {
+            bp["bpsys"] = dataMap['data']['BpsysValue'].toString();
+            bp["bpdia"] = dataMap['data']['BpDiaValue'].toString();
+            bp["bpplus"] = dataMap['data']['BpPulseValue'].toString();
+
+            bpReading = true;
+          }
+          if (dataMap['data']['type'] == "result") {
+            bp["bpsys"] = dataMap['data']['BpsysValue'].toString();
+            bp["bpdia"] = dataMap['data']['BpDiaValue'].toString();
+            bp["bpplus"] = dataMap['data']['BpPulseValue'].toString();
+            bpReading = false;
+          }
+
+          log(bp.toString());
+
+// ********************************** ecg **********************************//
+// ********************************** ecg **********************************//
         } else if (dataMap['number'] == "6" &&
             dataMap['state'] == "device" &&
             dataMap["appointmentID"] == "$appointmentID") {
@@ -346,10 +391,12 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
   }
 
   @override
-  void initState() {
+  void initState()  {
     patientID = int.parse(widget.checkupDetalis['patientID']!);
     doctorID = int.parse(widget.checkupDetalis['doctorID']!);
     appointmentID = int.parse(widget.checkupDetalis['appointmentID']!);
+    initializeMQTTClient();
+     connect().then((value) => subScribeTo("KC_EC94CB6F61DC/app"));
     super.initState();
   }
 
@@ -378,9 +425,9 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-           const  CheckupHeaderWidget(),
+            const CheckupHeaderWidget(),
             UnloackWidget(
-              id:deviceId,
+              id: deviceId,
               isConnected: isConnected,
               isUnloacking: isUnloacking,
               isLoading: isLoading,
@@ -450,6 +497,26 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
                   : () => Toast.showToast(
                       context: context, message: "Please Unlock"),
             ),
+            BloodPressureWidget(
+                onpress: isUnloacked
+                    ? () {
+                        publishMy({
+                          "id": "KC_EC94CB6F61DC",
+                          "patientID": patientID,
+                          "doctorID": doctorID,
+                          "appointmentID": appointmentID,
+                          "type": "Doctor",
+                          "command": "device",
+                          "number": 5,
+                          "date": DateTime.now().millisecondsSinceEpoch
+                        }, "KC_EC94CB6F61DC/device");
+                      }
+                    : () => Toast.showToast(
+                        context: context, message: "Please Unlock"),
+                bp: bp["bpsys"]!,
+                isReading: bpReading,
+                bpdia: bp["bpdia"]!,
+                bpplus: bp["bpplus"]!),
             EcgWidget(
               data: ecgData,
               isReading: ecgReading,
@@ -518,8 +585,8 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
                         builder: (context) =>
                             BlocConsumer<CheckupBloc, CheckupState>(
                           listener: (context, state) {
-                            if(state.error){
-                             setState(() {
+                            if (state.error) {
+                              setState(() {
                                 isAnalysisended = false;
                               });
                             }

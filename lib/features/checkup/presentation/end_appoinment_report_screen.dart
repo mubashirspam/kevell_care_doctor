@@ -121,6 +121,22 @@ class AppoinmentsEndReportScrenn extends StatelessWidget {
                             value: datas.checkupResult!.heartRate!,
                           )
                         : const SizedBox(),
+                    //   datas.checkupResult!.heartRate != null
+                    // ? ResultCard(
+                    //     parameter: "BpsysValue",
+                    //     value: datas.checkupResult!.heartRate!,
+                    //   )
+                    // : const SizedBox(),  datas.checkupResult!.heartRate != null
+                    // ? ResultCard(
+                    //     parameter: "BpDiaValue",
+                    //     value: datas.checkupResult!.heartRate!,
+                    //   )
+                    // : const SizedBox(),  datas.checkupResult!.heartRate != null
+                    // ? ResultCard(
+                    //     parameter: "BpPlusValue",
+                    //     value: datas.checkupResult!.heartRate!,
+                    //   )
+                    // : const SizedBox(),
                     Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Row(

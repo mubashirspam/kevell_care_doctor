@@ -22,7 +22,7 @@ class PrescriptionScreen extends StatelessWidget {
       final appointmentID = checkupDetalis['appointmentID']!;
       log("appointmentID == $appointmentID");
       context.read<PrecriptionBloc>().add(
-          PrecriptionEvent.getPrescriptionList(appointmentId: appointmentID));
+          PrecriptionEvent.getPrescriptionList(appointmentId: int.parse(appointmentID.toString())));
       context
           .read<PrecriptionBloc>()
           .add(const PrecriptionEvent.getPrescriptionSettings());
@@ -47,7 +47,7 @@ class PrescriptionScreen extends StatelessWidget {
         backgroundColor: context.theme.backround,
         centerTitle: false,
         title: Text(
-          "Prescription",
+          "Prescriptions",
           style: Theme.of(context).textTheme.headlineLarge,
         ),
       ),
@@ -71,10 +71,10 @@ class PrescriptionScreen extends StatelessWidget {
           onRefresh: () async {
             context.read<PrecriptionBloc>().add(
                 PrecriptionEvent.getPrescriptionList(
-                    appointmentId: checkupDetalis['appointmentID']!));
+                    appointmentId: int.parse(checkupDetalis['appointmentID'].toString())));
           },
           child: Prescription(
-            appointmentID: checkupDetalis['appointmentID'],
+            appointmentID:checkupDetalis['appointmentID'].toString(),
           )),
     );
   }
