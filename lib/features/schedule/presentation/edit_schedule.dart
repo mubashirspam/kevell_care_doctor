@@ -1,3 +1,5 @@
+
+
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/features/schedule/domain/entities/update_schedule.dart';
 
@@ -83,14 +85,7 @@ class EditScheduleWidget extends StatelessWidget {
                     Expanded(
                       child: BlocConsumer<ScheduleBloc, ScheduleState>(
                         listener: (context, state) {
-                          if (state.isUpdated &&
-                              !state.isUpdateLoading &&
-                              !state.hasData) {
-                            // Navigator.pop(context);
-                            context.read<ScheduleBloc>().add(
-                                  const ScheduleEvent.getSchedule(),
-                                );
-                          }
+                         
                         },
                         builder: (context, state) {
                           return TextButtonWidget(

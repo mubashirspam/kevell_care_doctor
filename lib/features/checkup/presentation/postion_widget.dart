@@ -10,18 +10,18 @@ import '../../../configure/assets_manage/lottie.dart';
 class PositionWidget extends StatelessWidget {
   final String position;
   final VoidCallback onpress;
-  final bool isReading;
+  final bool isReading;  final bool isLoading;
 
   const PositionWidget({
     super.key,
     required this.position,
     required this.onpress,
-    required this.isReading,
+    required this.isReading,required this.isLoading
   });
 
   @override
   Widget build(BuildContext context) {
-    return CheckupCard(
+    return CheckupCard(      isLoading: isLoading,
       // imageName: "imageName",
       name: "Patient Postion",
       onPress: onpress,

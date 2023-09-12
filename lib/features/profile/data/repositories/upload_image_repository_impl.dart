@@ -21,17 +21,18 @@ class UploadImageRepoImpliment implements UploadImageRepository {
   }) async {
     try {
       final token = await getTokenFromSS(secureStoreKey);
+      final id = await getTokenFromSS(drIdsecureStoreKey);
+      final img = await MultipartFile.fromFile(image.path);
 
       final headers = {
         'Authorization': 'Bearer $token',
-        'Content-Type': 'application/json',
+        'Content-Type': 'multipart/form-data',
       };
 
-      FormData formData = FormData.fromMap({
-        'ProfileImagelink': await MultipartFile.fromFile(image.path),
-      });
+      FormData formData =
+          FormData.fromMap({'id': id, 'ProfileImagelink': img});
       final response = await Dio(BaseOptions()).put(
-        ApiEndPoints.updateProfile,
+        ApiEndPoints.uploadImage,
         options: Options(headers: headers),
         data: formData,
       );

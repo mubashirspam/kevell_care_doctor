@@ -11,17 +11,19 @@ class TepamratureWidget extends StatelessWidget {
   final String temparature;
   final VoidCallback onpress;
   final bool isReading;
+  final bool isLoading;
 
-  const TepamratureWidget({
-    super.key,
-    required this.temparature,
-    required this.onpress,
-    required this.isReading,
-  });
+  const TepamratureWidget(
+      {super.key,
+      required this.temparature,
+      required this.onpress,
+      required this.isReading,
+      required this.isLoading});
 
   @override
   Widget build(BuildContext context) {
     return CheckupCard(
+      isLoading: isLoading,
       // imageName: "imageName",
       name: "Body Temperature",
       onPress: onpress,

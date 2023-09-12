@@ -6,12 +6,14 @@ class CheckupCard extends StatelessWidget {
   final List<Widget> children;
   final VoidCallback onPress;
   final String? imageName;
+  final bool isLoading;
   const CheckupCard({
     super.key,
     required this.children,
     this.imageName,
     required this.name,
     required this.onPress,
+    required this.isLoading,
   });
 
   @override
@@ -31,6 +33,8 @@ class CheckupCard extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(15),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
             child: Row(
@@ -57,8 +61,16 @@ class CheckupCard extends StatelessWidget {
                     minRadius: 25,
                     maxRadius: 25,
                     backgroundColor: context.theme.primary,
-                    child: const Center(
-                      child: Icon(Icons.play_arrow),
+                    child: Center(
+                      child: isLoading
+                          ? Padding(
+                              padding: const EdgeInsets.all(15),
+                              child: CircularProgressIndicator(
+                                backgroundColor: Colors.white,
+                                color: context.theme.primary,
+                              ),
+                            )
+                          : const Icon(Icons.play_arrow),
                     ),
                   ),
                 ),

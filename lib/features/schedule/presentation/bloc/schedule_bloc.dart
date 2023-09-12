@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -39,6 +38,7 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
           isLoading: true,
           isDeleted: false,
           isCreated: false,
+          isUpdated: false,
           isError: false,
           hasData: false,
         ),

@@ -11,19 +11,19 @@ class Spo2Widget extends StatelessWidget {
   final String spo2;
   final String heartBeat;
   final VoidCallback onpress;
-  final bool isReading;
+  final bool isReading;  final bool isLoading;
 
   const Spo2Widget({
     super.key,
     required this.spo2,
     required this.onpress,
     required this.isReading,
-    required this.heartBeat,
+    required this.heartBeat,required this.isLoading
   });
 
   @override
   Widget build(BuildContext context) {
-    return CheckupCard(
+    return CheckupCard(      isLoading: isLoading,
       // imageName: "imageName",
       name: "Spo2",
       onPress: onpress,

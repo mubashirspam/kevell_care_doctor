@@ -8,7 +8,7 @@ class ApiEndPoints {
 
   static const String updateProfile = "$baseUrl/doctor/api/profile";
 
-    static const String uploadImage = "$baseUrl/doctor/api/uploadProfileImage";
+  static const String uploadImage = "$baseUrl/doctor/api/profile";
 
   static const String homeStatus = "$baseUrl/register/api/doctorcountlist";
 
@@ -28,7 +28,6 @@ class ApiEndPoints {
 
   static const String getPrescriptionSettings =
       "$baseUrl/users/api/getdprescriptiontable";
-
 
   static const String deletePrescription =
       "$baseUrl/users/api/deletemedicinedata";
@@ -51,4 +50,7 @@ class ApiEndPoints {
       "$baseUrl/doctor/api/ViewPatientReport_new";
 
   static const String endAppoinment = "$baseUrl/doctor/api/Finishtheappoinment";
+
+  static const websocketUrl =
+      "https://513f-2409-4072-6e19-17b8-195d-91e2-3293-a235.ngrok-free.app";
 }

@@ -6,7 +6,7 @@ class StethoscopeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CheckupCard(
+    return CheckupCard(      isLoading: false,
       // imageName: "imageName",
       name: "Stethoscope",
       onPress: () {},

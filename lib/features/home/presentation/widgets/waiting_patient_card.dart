@@ -100,7 +100,7 @@ class WaitingPatientCard extends StatelessWidget {
               }
             },
             child: Text(
-              "Attand",
+              "Attend",
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     color: context.theme.backround,
                   ),

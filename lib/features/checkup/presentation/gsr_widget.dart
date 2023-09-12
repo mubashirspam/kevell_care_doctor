@@ -9,19 +9,19 @@ class GSRgWidget extends StatelessWidget {
   final String gsr;
   final VoidCallback onpress;
   final bool isReading;
-  final List<ECGData> data;
+  final List<ECGData> data;  final bool isLoading;
 
   const GSRgWidget({
     super.key,
     required this.gsr,
     required this.onpress,
     required this.isReading,
-    required this.data,
+    required this.data,required this.isLoading
   });
 
   @override
   Widget build(BuildContext context) {
-    return CheckupCard(
+    return CheckupCard(      isLoading: isLoading,
       // imageName: "imageName",
       name: "GSR",
       onPress: onpress,

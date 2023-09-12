@@ -9,11 +9,12 @@ import 'package:dr_kevell/features/checkup/presentation/ecg_widget.dart';
 import 'package:dr_kevell/features/checkup/presentation/gsr_widget.dart';
 
 import 'package:flutter/material.dart';
-import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/features/checkup/presentation/temparature_widgtet.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
+import 'package:sliver_tools/sliver_tools.dart';
+import '../../../configure/api/endpoints.dart';
 import '../../../core/helper/alert.dart';
 import '../../../core/helper/toast.dart';
 import '../../../features/checkup/presentation/bloc/checkup_bloc.dart';
@@ -25,6 +26,7 @@ import '../../../features/checkup/presentation/unloack.dart';
 import '../../../features/checkup/presentation/checkup_header.dart';
 
 import '../../../features/checkup/presentation/widgets/ecg_graph.dart';
+import '../../../features/video_call/service/signaling_service.dart';
 
 class PatientCheckupScreen extends StatefulWidget {
   static const routeName = '/patient-checup-screen';
@@ -58,6 +60,13 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
   bool gsrReading = false;
   bool postionReading = false;
   bool bpReading = false;
+
+  bool tLoading = false;
+  bool sp02Loading = false;
+  bool ecgLoading = false;
+  bool gsrLoading = false;
+  bool postionLoading = false;
+  bool bpLoading = false;
 
   Map<String, dynamic> dataMap = {};
 
@@ -165,6 +174,7 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
             dataMap['state'] == "device" &&
             dataMap["appointmentID"] == "$appointmentID") {
           isUnloacked = true;
+          tLoading = false;
 
           if (dataMap['data']['content'] != null &&
               dataMap['data']['type'] == "reading") {
@@ -199,6 +209,7 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
             dataMap['state'] == "device" &&
             dataMap["appointmentID"] == "$appointmentID") {
           isUnloacked = true;
+          postionLoading = false;
 
           if (dataMap['data']['content'] != null &&
               dataMap['data']['type'] == "reading") {
@@ -230,6 +241,7 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
             dataMap['state'] == "device" &&
             dataMap["appointmentID"] == "$appointmentID") {
           isUnloacked = true;
+          sp02Loading = false;
 
           if (dataMap['data']['content'] != null &&
               dataMap['data']['type'] == "reading") {
@@ -252,6 +264,7 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
             dataMap['state'] == "device" &&
             dataMap["appointmentID"] == "$appointmentID") {
           isUnloacked = true;
+          bpLoading = false;
 
           if (dataMap['data']['type'] == "reading") {
             bp["bpsys"] = dataMap['data']['BpsysValue'].toString();
@@ -275,6 +288,7 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
             dataMap['state'] == "device" &&
             dataMap["appointmentID"] == "$appointmentID") {
           isUnloacked = true;
+          ecgLoading = false;
 
           if (dataMap['data']['content'] != null &&
               dataMap['data']['type'] == "reading") {
@@ -307,6 +321,7 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
             dataMap['state'] == "device" &&
             dataMap["appointmentID"] == "$appointmentID") {
           isUnloacked = true;
+          gsrLoading = false;
 
           if (dataMap['data']['content'] != null &&
               dataMap['data']['type'] == "reading") {
@@ -384,6 +399,8 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
   int doctorID = 0;
   int appointmentID = 0;
 
+
+
   @override
   void dispose() {
     _timer?.cancel();
@@ -391,41 +408,51 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
   }
 
   @override
-  void initState()  {
+  void initState() {
     patientID = int.parse(widget.checkupDetalis['patientID']!);
     doctorID = int.parse(widget.checkupDetalis['doctorID']!);
     appointmentID = int.parse(widget.checkupDetalis['appointmentID']!);
     initializeMQTTClient();
-     connect().then((value) => subScribeTo("KC_EC94CB6F61DC/app"));
+    connect().then((value) => subScribeTo("KC_EC94CB6F61DC/app"));
+
+    SignallingService.instance.init(
+      websocketUrl:  ApiEndPoints.websocketUrl,
+      selfCallerID: doctorID.toString(),
+    );
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: InkWell(
-          onTap: () => Navigator.pop(context),
-          child: Container(
-            margin: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: context.theme.secondary),
-            child: Center(
-              child: Icon(
-                Icons.chevron_left,
-                color: context.theme.primary,
-              ),
+      // appBar: AppBar(
+      //   leading: InkWell(
+      //     onTap: () => Navigator.pop(context),
+      //     child: Container(
+      //       margin: const EdgeInsets.all(10),
+      //       decoration: BoxDecoration(
+      //           borderRadius: BorderRadius.circular(10),
+      //           color: context.theme.secondary),
+      //       child: Center(
+      //         child: Icon(
+      //           Icons.chevron_left,
+      //           color: context.theme.primary,
+      //         ),
+      //       ),
+      //     ),
+      //   ),
+      //   backgroundColor: context.theme.primary,
+      //   centerTitle: false,
+      // ),
+      body: CustomScrollView(
+        slivers: [
+          SliverPinnedHeader(
+            child: CheckupHeaderWidget(
+              paitentCallerId: patientID.toString(),
+              selfCallerId: doctorID.toString(),
             ),
           ),
-        ),
-        backgroundColor: context.theme.primary,
-        centerTitle: false,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const CheckupHeaderWidget(),
+          MultiSliver(children: [
             UnloackWidget(
               id: deviceId,
               isConnected: isConnected,
@@ -460,8 +487,10 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
             ),
             TepamratureWidget(
               isReading: tReading,
+              isLoading: tLoading,
               onpress: isUnloacked
                   ? () {
+                      setState(() => tLoading = true);
                       publishMy({
                         "id": "KC_EC94CB6F61DC",
                         "patientID": patientID,
@@ -480,9 +509,11 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
             Spo2Widget(
               isReading: sp02Reading,
               heartBeat: heartBeat,
+              isLoading: sp02Loading,
               spo2: sop2,
               onpress: isUnloacked
                   ? () {
+                      setState(() => sp02Loading = true);
                       publishMy({
                         "id": "KC_EC94CB6F61DC",
                         "patientID": patientID,
@@ -498,8 +529,10 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
                       context: context, message: "Please Unlock"),
             ),
             BloodPressureWidget(
+                isLoading: bpLoading,
                 onpress: isUnloacked
                     ? () {
+                        setState(() => bpLoading = true);
                         publishMy({
                           "id": "KC_EC94CB6F61DC",
                           "patientID": patientID,
@@ -520,8 +553,10 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
             EcgWidget(
               data: ecgData,
               isReading: ecgReading,
+              isLoading: ecgLoading,
               onpress: isUnloacked
                   ? () {
+                      setState(() => ecgLoading = true);
                       publishMy({
                         "id": "KC_EC94CB6F61DC",
                         "patientID": patientID,
@@ -540,8 +575,10 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
             GSRgWidget(
               isReading: gsrReading,
               data: gsrData,
+              isLoading: gsrLoading,
               onpress: isUnloacked
                   ? () {
+                      setState(() => gsrLoading = true);
                       publishMy({
                         "id": "KC_EC94CB6F61DC",
                         "patientID": patientID,
@@ -559,8 +596,10 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
             ),
             PositionWidget(
               isReading: tReading,
+              isLoading: postionLoading,
               onpress: isUnloacked
                   ? () {
+                      setState(() => postionLoading = true);
                       publishMy({
                         "id": "KC_EC94CB6F61DC",
                         "patientID": patientID,
@@ -650,8 +689,8 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
                   : () => Toast.showToast(
                       context: context, message: "Please Unlock"),
             ),
-          ],
-        ),
+          ])
+        ],
       ),
     );
   }

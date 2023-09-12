@@ -17,6 +17,7 @@ import 'features/prescription/presentation/bloc/precription_bloc.dart';
 
 import 'features/report/presetantion/bloc/report_bloc.dart';
 import 'features/schedule/presentation/bloc/schedule_bloc.dart';
+// import 'pages/checkup/presentation/patient_checkup_screen.dart';
 // import 'features/videcall/videocall.dart';
 // import 'pages/prescription/presentation/prescription_screen.dart';
 
@@ -55,7 +56,11 @@ class MyApp extends StatelessWidget {
         routes: route,
         home: const Initialize(),
         // home: PrescriptionScreen(checkupDetalis: {"appointmentID": 1090}),
-        // home: const VideoCall(),  
+        // home:  PatientCheckupScreen(checkupDetalis: {
+        //             'patientID': "1003",
+        //             'doctorID': "1014",
+        //             'appointmentID': "1244",
+        //           },),  
         // initialRoute: "/dashboard",
       ),
     );

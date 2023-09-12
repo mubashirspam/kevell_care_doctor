@@ -168,6 +168,7 @@ class _AddOrEditPrescriptionWidgetState
 
                     if (widget.isEdit) {
                       return DropDownFiledWidet(
+                        value: selectedType == "Tablet" ? type.first : type[1],
                         items: type.map((settings.DataObjec item) {
                           return DropdownMenuItem<settings.DataObjec>(
                             value: item,
@@ -178,6 +179,7 @@ class _AddOrEditPrescriptionWidgetState
                         onChanged: (newValue) {
                           setState(() {
                             selectedItem = newValue;
+                            selectedType = newValue.name;
                           });
                         },
                       );
