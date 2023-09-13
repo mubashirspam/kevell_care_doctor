@@ -1,9 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:dio/dio.dart';
-import 'package:dr_kevell/configure/value/constant.dart';
-import 'package:dr_kevell/configure/value/secure_storage.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/features/widgets/buttons/text_button_widget.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +11,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../../configure/api/endpoints.dart';
 import '../../../core/helper/toast.dart';
 import 'bloc/profile_bloc.dart';
 
@@ -85,37 +81,6 @@ class _UploadImagePageState extends State<UploadImagePage> {
     }
   }
 
-  Future<void> uploadImage() async {
-    Dio dio = Dio();
-
-    final id = await getTokenFromSS(drIdsecureStoreKey);
-    final token = await getTokenFromSS(secureStoreKey);
-    final headers = {
-      'Authorization': 'Bearer $token',
-      'Content-Type': 'application/form-data',
-    };
-    try {
-      setState(() => isLoading = true);
-      final img = await MultipartFile.fromFile(_selectedImage!.path);
-      FormData formData =
-          FormData.fromMap({'_id': '1003', 'ProfileImagelink': img});
-
-      Response response = await dio.put(
-          'https://kevelldigital.com/register/api/patientprofileUpdate',
-          data: formData);
-
-      if (response.statusCode == 200 || response.statusCode == 201) {
-      } else {
-        log('Failed to upload image');
-      }
-    } catch (error) {
-      log('Error uploading image: $error');
-    } finally {
-      Navigator.of(context).pop();
-      setState(() => isLoading = false);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -175,16 +140,16 @@ class _UploadImagePageState extends State<UploadImagePage> {
                   onPressed: isButtonDisabled
                       ? null
                       : () {
-                          if (_selectedImage != null) {
-                            // context.read<ProfileBloc>().add(
-                            //       ProfileEvent.uplaodImage(
-                            //           image: _selectedImage!),
-                            //     );
-                            uploadImage();
+                          if (_selectedImage != null && !state.isUpdateLoading) {
+                            context.read<ProfileBloc>().add(
+                                  ProfileEvent.uplaodImage(
+                                    image: _selectedImage!,
+                                  ),
+                                );
                           }
                         },
                   name: "upload",
-                  isLoading: isLoading,
+                  isLoading: state.isUpdateLoading,
                 );
               },
             ),

@@ -5,7 +5,7 @@ import 'package:dr_kevell/features/checkup/presentation/widgets/checkup_card.dar
 
 import 'package:lottie/lottie.dart';
 
-import '../../../configure/assets_manage/lottie.dart';
+import '../../../settings/assets_manage/lottie.dart';
 
 class TepamratureWidget extends StatelessWidget {
   final String temparature;

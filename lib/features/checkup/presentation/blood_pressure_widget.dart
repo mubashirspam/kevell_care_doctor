@@ -2,7 +2,7 @@ import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/features/checkup/presentation/widgets/checkup_card.dart';
 import 'package:lottie/lottie.dart';
-import '../../../configure/assets_manage/lottie.dart';
+import '../../../settings/assets_manage/lottie.dart';
 
 class BloodPressureWidget extends StatelessWidget {
   final String bp;

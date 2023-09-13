@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 
-import '../../../configure/color/main_color.dart';
+import '../../../settings/color/main_color.dart';
 
 class ActiveAvatar extends StatelessWidget {
   final double? radius;

@@ -2,8 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
-import '../../../configure/value/constant.dart';
-import '../../../configure/value/secure_storage.dart';
+import '../../../settings/value/constant.dart';
+import '../../../settings/value/secure_storage.dart';
 
 part 'initialize_event.dart';
 part 'initialize_state.dart';

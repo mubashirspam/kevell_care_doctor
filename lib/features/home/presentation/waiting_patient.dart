@@ -6,8 +6,8 @@ import 'package:dr_kevell/features/widgets/error_widget.dart';
 import 'package:dr_kevell/features/widgets/loading_widget.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-import '../../../configure/value/constant.dart';
-import '../../../configure/value/secure_storage.dart';
+import '../../../settings/value/constant.dart';
+import '../../../settings/value/secure_storage.dart';
 import '../../../pages/initialize/initialize.dart';
 import 'widgets/waiting_patient_card.dart';
 

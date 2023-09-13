@@ -12,8 +12,8 @@ import 'package:dr_kevell/features/widgets/buttons/text_button_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
-import '../../../configure/value/constant.dart';
-import '../../../configure/value/secure_storage.dart';
+import '../../../settings/value/constant.dart';
+import '../../../settings/value/secure_storage.dart';
 import '../../../core/helper/date.dart';
 import 'bloc/schedule_bloc.dart';
 

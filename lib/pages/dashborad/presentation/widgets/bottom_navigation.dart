@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:dr_kevell/configure/assets_manage/icons.dart';
+import 'package:dr_kevell/settings/assets_manage/icons.dart';
 
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 

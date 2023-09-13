@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:dr_kevell/features/report/data/model/report_general_info_model.dart';
 import 'package:injectable/injectable.dart';
-import 'package:dr_kevell/configure/api/endpoints.dart';
+import 'package:dr_kevell/settings/api/endpoints.dart';
 
 import '../../../../core/failiar/failiur_model.dart';
 import '../../../../core/failiar/main_failures.dart';

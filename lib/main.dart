@@ -2,7 +2,7 @@ import 'package:dr_kevell/features/history/presentation/bloc/history_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dr_kevell/configure/route/routes.dart';
+import 'package:dr_kevell/settings/route/routes.dart';
 import 'package:dr_kevell/features/checkup/presentation/bloc/checkup_bloc.dart';
 import 'package:dr_kevell/features/login/presentation/bloc/login_bloc.dart';
 import 'package:dr_kevell/features/profile/presentation/bloc/profile_bloc.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dr_kevell/features/profile/presentation/widgets/listtile_widget.dart';
 import 'package:dr_kevell/pages/profile/presentation/my_profile_screen.dart';
 
-import '../../../configure/assets_manage/icons.dart';
+import '../../../settings/assets_manage/icons.dart';
 
 class MyProfile extends StatelessWidget {
   const MyProfile({super.key});

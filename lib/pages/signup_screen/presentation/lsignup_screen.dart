@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/pages/login_scrren/presentation/login_screen.dart';
 
-import '../../../configure/assets_manage/images.dart';
+import '../../../settings/assets_manage/images.dart';
 import '../../../features/signup/presentation/signup_widget.dart';
 
 class SignupScreen extends StatelessWidget {

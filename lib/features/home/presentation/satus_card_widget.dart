@@ -4,8 +4,8 @@ import 'package:dr_kevell/features/home/presentation/bloc/home_bloc.dart';
 import 'package:dr_kevell/features/widgets/error_widget.dart';
 import 'package:dr_kevell/features/widgets/loading_widget.dart';
 
-import '../../../configure/value/constant.dart';
-import '../../../configure/value/secure_storage.dart';
+import '../../../settings/value/constant.dart';
+import '../../../settings/value/secure_storage.dart';
 import '../../../core/helper/toast.dart';
 import '../../../pages/initialize/initialize.dart';
 import 'widgets/status_cards.dart';

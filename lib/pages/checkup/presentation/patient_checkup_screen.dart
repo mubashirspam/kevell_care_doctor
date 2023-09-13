@@ -14,7 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 import 'package:sliver_tools/sliver_tools.dart';
-import '../../../configure/api/endpoints.dart';
+import '../../../settings/api/endpoints.dart';
 import '../../../core/helper/alert.dart';
 import '../../../core/helper/toast.dart';
 import '../../../features/checkup/presentation/bloc/checkup_bloc.dart';

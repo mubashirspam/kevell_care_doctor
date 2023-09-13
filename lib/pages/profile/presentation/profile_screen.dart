@@ -7,7 +7,7 @@ import 'package:dr_kevell/features/profile/presentation/faq.dart';
 import 'package:dr_kevell/features/profile/presentation/notification.dart';
 import 'package:dr_kevell/features/profile/presentation/settings.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../configure/value/constant.dart';
+import '../../../settings/value/constant.dart';
 import '../../../features/profile/presentation/bloc/profile_bloc.dart';
 import '../../../features/profile/presentation/my_profile.dart';
 import '../../../features/profile/presentation/widgets/profile_name_card.dart';

@@ -8,8 +8,8 @@ import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/pages/initialize/initialize.dart';
 import 'package:dr_kevell/pages/signup_screen/presentation/lsignup_screen.dart';
 
-import '../../../configure/value/constant.dart';
-import '../../../configure/value/secure_storage.dart';
+import '../../../settings/value/constant.dart';
+import '../../../settings/value/secure_storage.dart';
 import '../../widgets/buttons/text_button_widget.dart';
 import '../../widgets/input_field/input_field_widget.dart';
 import 'bloc/login_bloc.dart';

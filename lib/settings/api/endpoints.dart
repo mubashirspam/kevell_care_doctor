@@ -51,6 +51,5 @@ class ApiEndPoints {
 
   static const String endAppoinment = "$baseUrl/doctor/api/Finishtheappoinment";
 
-  static const websocketUrl =
-      "https://513f-2409-4072-6e19-17b8-195d-91e2-3293-a235.ngrok-free.app";
+  static const websocketUrl = "kevelldigital.com/videomeet";
 }

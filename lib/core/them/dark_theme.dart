@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:dr_kevell/configure/color/main_color.dart';
+import 'package:dr_kevell/settings/color/main_color.dart';
 
 import 'custom_theme_extension.dart';
 

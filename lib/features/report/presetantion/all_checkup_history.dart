@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-import '../../../configure/assets_manage/icons.dart';
+import '../../../settings/assets_manage/icons.dart';
 import '../../../core/helper/date.dart';
 import '../../../pages/report/presentation/report_screen.dart';
 

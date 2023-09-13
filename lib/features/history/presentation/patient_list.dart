@@ -6,8 +6,8 @@ import 'package:dr_kevell/features/widgets/cards/patient_card.dart';
 import 'package:dr_kevell/features/widgets/loading_widget.dart';
 import 'package:dr_kevell/pages/history/presentation/single_person_history_screen.dart';
 
-import '../../../configure/value/constant.dart';
-import '../../../configure/value/secure_storage.dart';
+import '../../../settings/value/constant.dart';
+import '../../../settings/value/secure_storage.dart';
 import '../../../core/helper/toast.dart';
 import '../../../pages/initialize/initialize.dart';
 import '../../widgets/error_widget.dart';

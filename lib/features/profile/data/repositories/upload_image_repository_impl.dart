@@ -5,9 +5,9 @@ import 'package:dio/dio.dart';
 import 'package:dr_kevell/features/profile/data/models/profile_model.dart';
 
 import 'package:injectable/injectable.dart';
-import 'package:dr_kevell/configure/api/endpoints.dart';
-import '../../../../configure/value/constant.dart';
-import '../../../../configure/value/secure_storage.dart';
+import 'package:dr_kevell/settings/api/endpoints.dart';
+import '../../../../settings/value/constant.dart';
+import '../../../../settings/value/secure_storage.dart';
 import '../../../../core/failiar/failiur_model.dart';
 import '../../../../core/failiar/main_failures.dart';
 

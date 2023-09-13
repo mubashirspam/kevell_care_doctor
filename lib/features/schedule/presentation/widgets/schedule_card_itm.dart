@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 
-import '../../../../configure/assets_manage/icons.dart';
+import '../../../../settings/assets_manage/icons.dart';
 import '../../../../core/helper/alert.dart';
 import '../../../../core/helper/date.dart';
 import '../../data/models/schedule_model.dart';

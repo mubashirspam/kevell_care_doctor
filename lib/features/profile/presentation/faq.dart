@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/features/profile/presentation/widgets/listtile_widget.dart';
 
-import '../../../configure/assets_manage/icons.dart';
+import '../../../settings/assets_manage/icons.dart';
 
 class FAQ extends StatelessWidget {
   const FAQ({super.key});

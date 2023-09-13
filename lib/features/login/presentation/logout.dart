@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:dr_kevell/configure/assets_manage/icons.dart';
+import 'package:dr_kevell/settings/assets_manage/icons.dart';
 import 'package:dr_kevell/pages/initialize/initialize.dart';
 
-import '../../../configure/value/constant.dart';
-import '../../../configure/value/secure_storage.dart';
+import '../../../settings/value/constant.dart';
+import '../../../settings/value/secure_storage.dart';
 
 class Logout extends StatelessWidget {
   const Logout({super.key});

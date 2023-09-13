@@ -2,12 +2,12 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:dr_kevell/configure/api/endpoints.dart';
+import 'package:dr_kevell/settings/api/endpoints.dart';
 import 'package:dr_kevell/features/prescription/data/model/prescription_list_model.dart';
 
 import '../../domain/repositories/update_prescription_repository.dart';
-import '../../../../configure/value/constant.dart';
-import '../../../../configure/value/secure_storage.dart';
+import '../../../../settings/value/constant.dart';
+import '../../../../settings/value/secure_storage.dart';
 import '../../../../core/failiar/failiur_model.dart';
 import '../../../../core/failiar/main_failures.dart';
 

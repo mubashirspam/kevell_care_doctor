@@ -1,7 +1,7 @@
-import 'package:dr_kevell/configure/value/constant.dart';
-import 'package:dr_kevell/configure/value/secure_storage.dart';
+import 'package:dr_kevell/settings/value/constant.dart';
+import 'package:dr_kevell/settings/value/secure_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:dr_kevell/configure/assets_manage/images.dart';
+import 'package:dr_kevell/settings/assets_manage/images.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/features/home/presentation/waiting_patient.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

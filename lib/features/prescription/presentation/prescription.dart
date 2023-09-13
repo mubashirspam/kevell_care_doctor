@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 
-import '../../../configure/value/constant.dart';
-import '../../../configure/value/secure_storage.dart';
+import '../../../settings/value/constant.dart';
+import '../../../settings/value/secure_storage.dart';
 import '../../../core/helper/toast.dart';
 import '../../../pages/initialize/initialize.dart';
 import '../../widgets/loading_widget.dart';

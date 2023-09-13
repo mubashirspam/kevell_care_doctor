@@ -1,4 +1,4 @@
-import 'package:dr_kevell/configure/color/main_color.dart';
+import 'package:dr_kevell/settings/color/main_color.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:flutter/material.dart';
 
