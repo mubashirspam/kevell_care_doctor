@@ -187,7 +187,7 @@ class UnloackWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Unloack the kit",
+                      "Unlock the kit",
                       style: Theme.of(context)
                           .textTheme
                           .headlineLarge!

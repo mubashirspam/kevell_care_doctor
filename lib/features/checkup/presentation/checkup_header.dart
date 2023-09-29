@@ -10,12 +10,17 @@ import '../../video_call/service/signaling_service.dart';
 
 class CheckupHeaderWidget extends StatefulWidget {
   final String selfCallerId;
+  final String imageUrl;
+  final String name;
+  final String type;
   final String paitentCallerId;
-  const CheckupHeaderWidget({
-    super.key,
-    required this.paitentCallerId,
-    required this.selfCallerId,
-  });
+  const CheckupHeaderWidget(
+      {super.key,
+      required this.paitentCallerId,
+      required this.selfCallerId,
+      required this.name,
+      required this.type,
+      required this.imageUrl});
 
   @override
   State<CheckupHeaderWidget> createState() => _CheckupHeaderWidgetState();
@@ -29,13 +34,11 @@ class _CheckupHeaderWidgetState extends State<CheckupHeaderWidget> {
   String? callerId;
   String? calleeId;
 
-
-
-
   @override
   void initState() {
     super.initState();
-
+    log(widget.paitentCallerId);
+    log(widget.selfCallerId);
     // listen for incoming video call
     SignallingService.instance.socket!.on("newCall", (data) {
       log("newCall");
@@ -92,26 +95,32 @@ class _CheckupHeaderWidgetState extends State<CheckupHeaderWidget> {
   Widget build(BuildContext context) {
     return isVidecallStarted
         ? CallingWidget(
-          cutCall: cutCall,
+            cutCall: cutCall,
             callerId: callerId ?? incomingSDPOffer["callerId"]!,
             calleeId: calleeId ?? widget.selfCallerId,
-            offer: incomingSDPOffer==null? null : incomingSDPOffer["sdpOffer"],
+            offer:
+                incomingSDPOffer == null ? null : incomingSDPOffer["sdpOffer"],
           )
         : HeaderWidget(
+            type: widget.type,
+            imageUrl: widget.imageUrl,
+            name: widget.name,
             answerCall: answerCall,
-            makeCall:()=> makeCall(
+            makeCall: () => makeCall(
                 jcalleeId: widget.paitentCallerId,
                 jcallerId: widget.selfCallerId),
             cutCall: cutCall,
             joinCall: () {},
             incomingSDPOffer: incomingSDPOffer,
-
           );
   }
 }
 
 class HeaderWidget extends StatelessWidget {
   final dynamic incomingSDPOffer;
+  final String imageUrl;
+  final String name;
+  final String type;
   final VoidCallback joinCall;
   final VoidCallback answerCall;
   final VoidCallback makeCall;
@@ -121,7 +130,10 @@ class HeaderWidget extends StatelessWidget {
       required this.answerCall,
       this.incomingSDPOffer,
       required this.joinCall,
+      required this.name,
+      required this.type,
       required this.makeCall,
+      required this.imageUrl,
       required this.cutCall});
 
   @override
@@ -137,33 +149,48 @@ class HeaderWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              const ActiveAvatar(
-                isActive: false,
-                imageUrl:
-                    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-              ),
-              const Spacer(),
-              TextButton(
-                  style: TextButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      elevation: 10,
-                      backgroundColor: context.theme.secondary,
-                      foregroundColor: context.theme.primary),
-                  onPressed: () {},
-                  child: const Text("Patient History"))
-            ],
+          SafeArea(
+            bottom: false,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Column(
+                  children: [
+                    ActiveAvatar(
+                      isActive: true,
+                      imageUrl: imageUrl,
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      name,
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            color: context.theme.backround,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                  ],
+                ),
+                JoinOrCallWidget(
+                    answerCall: answerCall,
+                    joinCall: joinCall,
+                    incomingSDPOffer: incomingSDPOffer,
+                    makeCall: makeCall,
+                    cutCall: cutCall),
+                // const Spacer(),
+                // TextButton(
+                //     style: TextButton.styleFrom(
+                //         padding: const EdgeInsets.symmetric(horizontal: 20),
+                //         shape: RoundedRectangleBorder(
+                //             borderRadius: BorderRadius.circular(10)),
+                //         elevation: 10,
+                //         backgroundColor: context.theme.secondary,
+                //         foregroundColor: context.theme.primary),
+                //     onPressed: () {},
+                //     child: const Text("Patient History"))
+              ],
+            ),
           ),
-          const SizedBox(height: 15),
-          JoinOrCallWidget(
-              answerCall: answerCall,
-              joinCall: joinCall,
-              incomingSDPOffer:incomingSDPOffer ,
-              makeCall: makeCall,
-              cutCall: cutCall),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 15),
             child: Text(
@@ -175,7 +202,7 @@ class HeaderWidget extends StatelessWidget {
             ),
           ),
           Text(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis pharetra suspendisse nisl, et interdum. Morbi fames et justo, mauris, et, scelerisque in aenean odio. Sed egestas quis pellentesque consectetur leo, proin est, pellentesque lorem. In facilisis suspendisse asellus integer varius lectus iaculis dignissim. ",
+            type,
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
                 color: context.theme.backround, fontWeight: FontWeight.w400),
           )

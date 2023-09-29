@@ -74,7 +74,8 @@ class PrescriptionScreen extends StatelessWidget {
                     appointmentId: int.parse(checkupDetalis['appointmentID'].toString())));
           },
           child: Prescription(
-            appointmentID:checkupDetalis['appointmentID'].toString(),
+   
+            checkupDetalis: checkupDetalis,
           )),
     );
   }

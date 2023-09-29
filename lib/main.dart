@@ -1,6 +1,8 @@
+import 'package:dr_kevell/features/chat/presentation/bloc/chat_bloc.dart';
 import 'package:dr_kevell/features/history/presentation/bloc/history_bloc.dart';
+import 'package:dr_kevell/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dr_kevell/settings/route/routes.dart';
 import 'package:dr_kevell/features/checkup/presentation/bloc/checkup_bloc.dart';
@@ -10,6 +12,7 @@ import 'package:dr_kevell/features/signup/presentation/bloc/signup_bloc.dart';
 import 'package:dr_kevell/pages/initialize/bloc/initialize_bloc.dart';
 import 'package:dr_kevell/pages/initialize/initialize.dart';
 import 'core/di/injectable.dart';
+import 'core/notifications/push_notification.dart';
 import 'core/them/dark_theme.dart';
 import 'core/them/light_theme.dart';
 import 'features/home/presentation/bloc/home_bloc.dart';
@@ -17,14 +20,13 @@ import 'features/prescription/presentation/bloc/precription_bloc.dart';
 
 import 'features/report/presetantion/bloc/report_bloc.dart';
 import 'features/schedule/presentation/bloc/schedule_bloc.dart';
-// import 'pages/checkup/presentation/patient_checkup_screen.dart';
-// import 'features/videcall/videocall.dart';
-// import 'pages/prescription/presentation/prescription_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await PushNotification().initNoticatin();
   await configureInjeactable();
+
   runApp(const MyApp());
 }
 
@@ -45,6 +47,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (ctx) => getIt<PrecriptionBloc>()),
         BlocProvider(create: (ctx) => getIt<ReportBloc>()),
         BlocProvider(create: (ctx) => getIt<ScheduleBloc>()),
+        BlocProvider(create: (ctx) => getIt<ChatBloc>()),
         BlocProvider(create: (ctx) => InitializeBloc()),
       ],
       child: MaterialApp(
@@ -53,15 +56,10 @@ class MyApp extends StatelessWidget {
         theme: lightTheme(),
         darkTheme: darkTheme(),
         themeMode: ThemeMode.light,
+        navigatorKey: navigatorKey,
         routes: route,
         home: const Initialize(),
-        // home: PrescriptionScreen(checkupDetalis: {"appointmentID": 1090}),
-        // home:  PatientCheckupScreen(checkupDetalis: {
-        //             'patientID': "1003",
-        //             'doctorID': "1014",
-        //             'appointmentID': "1244",
-        //           },),  
-        // initialRoute: "/dashboard",
+        // home: AppoinmentsEndReportScrenn(),
       ),
     );
   }

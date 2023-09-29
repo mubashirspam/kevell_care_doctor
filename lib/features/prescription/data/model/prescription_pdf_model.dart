@@ -24,9 +24,9 @@ class PrescriptionPdfModel {
     this.remark,
   });
   PrescriptionPdfModel.fromPrescriptionElement(Prescription element) {
-    doctorId = int.parse(element.doctorId);
-    appointmentId = int.parse(element.appointmentId);
-    patientId = int.parse(element.patientId.toString());
+    doctorId = element.doctorId==null? 1003  :int.parse(element.doctorId.toString());
+    appointmentId = element.appointmentId==null? 1003 : int.parse(element.appointmentId.toString());
+    patientId = element.patientId==null? 1003 : int.parse(element.patientId.toString());
     name = element.name;
     type = element.type;
     duration = element.duration;

@@ -128,22 +128,58 @@ class CheckupResult {
     String? bodyTemp;
     String? spO2;
     String? heartRate;
+    Bp? bp;
+    String? ecg;
 
     CheckupResult({
         this.bodyTemp,
         this.spO2,
         this.heartRate,
+        this.bp,
+        this.ecg,
     });
 
     factory CheckupResult.fromJson(Map<String, dynamic> json) => CheckupResult(
         bodyTemp: json["Body_temp"],
         spO2: json["SpO2"],
         heartRate: json["Heart_Rate"],
+        bp: json["Bp"] == null ? null : Bp.fromJson(json["Bp"]),
+        ecg: json["ECG"],
     );
 
     Map<String, dynamic> toJson() => {
         "Body_temp": bodyTemp,
         "SpO2": spO2,
         "Heart_Rate": heartRate,
+        "Bp": bp?.toJson(),
+        "ECG": ecg,
+    };
+}
+
+class Bp {
+    String? type;
+    String? bpsysValue;
+    String? bpDiaValue;
+    String? bpPulseValue;
+
+    Bp({
+        this.type,
+        this.bpsysValue,
+        this.bpDiaValue,
+        this.bpPulseValue,
+    });
+
+    factory Bp.fromJson(Map<String, dynamic> json) => Bp(
+        type: json["type"],
+        bpsysValue: json["BpsysValue"],
+        bpDiaValue: json["BpDiaValue"],
+        bpPulseValue: json["BpPulseValue"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "type": type,
+        "BpsysValue": bpsysValue,
+        "BpDiaValue": bpDiaValue,
+        "BpPulseValue": bpPulseValue,
     };
 }

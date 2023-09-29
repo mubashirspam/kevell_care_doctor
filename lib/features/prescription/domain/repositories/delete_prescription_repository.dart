@@ -5,6 +5,7 @@ import '../../data/model/delete_prescription_model.dart';
 
 abstract class DeletePrescriptionRepository {
   Future<Either<MainFailure, DeletePrescriptionModel>> deletePrescription({
-    required String id,
+  required int pno,
+    required int appoinmentId,
   });
 }

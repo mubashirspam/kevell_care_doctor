@@ -2,12 +2,14 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:dr_kevell/settings/value/secure_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dr_kevell/settings/api/endpoints.dart';
 import 'package:dr_kevell/features/login/data/models/login_model.dart';
 import '../../../../core/failiar/failiur_model.dart';
 import '../../../../core/failiar/main_failures.dart';
 
+import '../../../../settings/value/constant.dart';
 import '../../domain/repositories/login_repository.dart';
 
 @LazySingleton(as: LoginRepository)
@@ -18,26 +20,71 @@ class LoginRepoImpliment implements LoginRepository {
     required String password,
   }) async {
     try {
-      final response = await Dio(BaseOptions()).get(
+      final fcm = await getTokenFromSS(fcmStoreKey);
+      final response = await Dio(BaseOptions()).post(
         ApiEndPoints.login,
-        queryParameters: {
+        data: {
           'Emailid': email,
           'password': password,
+          "device_token": fcm,
+          "device_type": "Android"
         },
       );
 
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        final result = LoginModel.fromJson(response.data);
-        log(result.toString());
+      switch (response.statusCode) {
+        case 200:
+        case 201:
+          final result = LoginModel.fromJson(response.data);
+          log(result.toString());
+          return Right(result);
+        case 204:
+          final result = FailureModel.fromJson(response.data);
+          return Left(
+            MainFailure.noDatafound(message: result.message ?? "No data found"),
+          );
+        case 401:
+          final result = FailureModel.fromJson(response.data);
+          return Left(
+            MainFailure.unauthorized(message: result.message ?? "Unauthorized"),
+          );
+        case 403:
+          final result = FailureModel.fromJson(response.data);
+          return Left(
+            MainFailure.forbidden(message: result.message ?? "Forbidden"),
+          );
+        case 502:
+          final result = FailureModel.fromJson(response.data);
+          log(result.toString());
 
-        return Right(result);
-      } else if (response.statusCode == 400 || response.statusCode == 401) {
-        final result = FailureModel.fromJson(response.data);
-        return Left(
-            MainFailure.unauthorized(message: result.message ?? "Error"));
-      } else {
-        return const Left(MainFailure.serverFailure());
+          return Left(
+            MainFailure.serverFailure(
+                message: result.message ?? "Internal Server Error"),
+          );
+        case 503:
+          final result = FailureModel.fromJson(response.data);
+          return Left(
+            MainFailure.serviceUnavailable(
+                message: result.message ?? "Service Unavailable"),
+          );
+        default:
+          final result = FailureModel.fromJson(response.data);
+          return Left(
+            MainFailure.unknown(message: result.message ?? "Unknown error"),
+          );
       }
+
+      // if (response.statusCode == 200 || response.statusCode == 201) {
+      //   final result = LoginModel.fromJson(response.data);
+      //   log(result.toString());
+
+      //   return Right(result);
+      // } else if (response.statusCode == 400 || response.statusCode == 401) {
+      //   final result = FailureModel.fromJson(response.data);
+      //   return Left(
+      //       MainFailure.unauthorized(message: result.message ?? "Error"));
+      // } else {
+      //   return const Left(MainFailure.serverFailure());
+      // }
     } catch (e) {
       if (e is DioException) {
         log(e.toString());

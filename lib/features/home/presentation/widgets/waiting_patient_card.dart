@@ -1,30 +1,20 @@
+import 'package:dr_kevell/core/helper/date.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 
 import '../../../../pages/checkup/presentation/patient_checkup_screen.dart';
+
+import '../../../../settings/value/constant.dart';
 import '../../../widgets/avatar/active_avatar.dart';
+import '../../data/models/waiting_patient_model.dart';
 
 class WaitingPatientCard extends StatelessWidget {
-  final String name;
-  final String statusMessage;
-  final String imageUrl;
-  final String patientID;
-  final String doctorID;
-  final String appointmentID;
+  final WaitingPatient data;
 
-  final DateTime startTime;
-
-  final bool isActive;
 
   const WaitingPatientCard({
-    required this.imageUrl,
-    required this.isActive,
-    required this.name,
-    required this.statusMessage,
-    required this.appointmentID,
-    required this.doctorID,
-    required this.patientID,
-    required this.startTime,
+    required this.data,
+   
     super.key,
   });
 
@@ -41,8 +31,8 @@ class WaitingPatientCard extends StatelessWidget {
       child: Row(
         children: [
           ActiveAvatar(
-            isActive: isActive,
-            imageUrl: imageUrl,
+            isActive: data.isTimeup,
+            imageUrl: data.profileImagelink ?? imageUrlForDummy,
           ),
           const SizedBox(width: 15),
           Column(
@@ -50,12 +40,13 @@ class WaitingPatientCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                name,
+                data.name ?? "No name found",
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
+              const SizedBox(height: 5),
               Text(
-                statusMessage,
-                style: Theme.of(context).textTheme.titleMedium,
+                "${extractTime(data.appointmentstarttime!)} TO ${extractTime(data.appointmentendtime!)}",
+                style: Theme.of(context).textTheme.titleLarge,
               ),
             ],
           ),
@@ -65,17 +56,14 @@ class WaitingPatientCard extends StatelessWidget {
               backgroundColor: context.theme.primary,
             ),
             onPressed: () {
-              if (startTime.isBefore(DateTime.now())) {
+              if (data.appointmentstarttime!.isBefore(DateTime.now())) {
                 Navigator.of(context).pushNamed(
                   PatientCheckupScreen.routeName,
-                  arguments: {
-                    'patientID': patientID,
-                    'doctorID': doctorID,
-                    'appointmentID': appointmentID,
-                  },
+                  arguments: data
                 );
               } else {
-                Duration timeLeft = startTime.difference(DateTime.now());
+                Duration timeLeft =
+                    data.appointmentstarttime!.difference(DateTime.now());
                 String formattedTimeLeft =
                     '${timeLeft.inMinutes} minutes and ${timeLeft.inSeconds % 60} seconds';
 
@@ -91,7 +79,7 @@ class WaitingPatientCard extends StatelessWidget {
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          child: Text('OK'),
+                          child: const Text('OK'),
                         ),
                       ],
                     );

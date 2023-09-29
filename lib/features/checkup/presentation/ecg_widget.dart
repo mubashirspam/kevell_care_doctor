@@ -4,18 +4,19 @@ import 'package:dr_kevell/features/checkup/presentation/widgets/checkup_card.dar
 import 'widgets/ecg_graph.dart';
 
 class EcgWidget extends StatelessWidget {
-  final String ecg;
   final VoidCallback onpress;
-  final bool isReading;
-  final List<ECGData> data;  final bool isLoading;
 
-  const EcgWidget({
-    super.key,
-    required this.ecg,
-    required this.onpress,
-    required this.isReading,
-    required this.data,required this.isLoading
-  });
+  final bool isReading;
+  final List<ECGData> data;
+  final bool isLoading;
+
+  const EcgWidget(
+      {super.key,
+      required this.onpress,
+      required this.isReading,
+   
+      required this.data,
+      required this.isLoading});
 
   @override
   Widget build(BuildContext context) {

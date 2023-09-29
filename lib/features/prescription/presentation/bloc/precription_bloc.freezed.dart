@@ -27,7 +27,7 @@ mixin _$PrecriptionEvent {
     required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
     required TResult Function(List<DataObjec> data) selectTobetaken,
     required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
-    required TResult Function(String id) deletePrescription,
+    required TResult Function(int pno, int appoinmentId) deletePrescription,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,7 +41,7 @@ mixin _$PrecriptionEvent {
     TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult? Function(List<DataObjec> data)? selectTobetaken,
     TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult? Function(String id)? deletePrescription,
+    TResult? Function(int pno, int appoinmentId)? deletePrescription,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,7 +55,7 @@ mixin _$PrecriptionEvent {
     TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult Function(List<DataObjec> data)? selectTobetaken,
     TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult Function(String id)? deletePrescription,
+    TResult Function(int pno, int appoinmentId)? deletePrescription,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -192,7 +192,7 @@ class _$_GetPrescriptionList implements _GetPrescriptionList {
     required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
     required TResult Function(List<DataObjec> data) selectTobetaken,
     required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
-    required TResult Function(String id) deletePrescription,
+    required TResult Function(int pno, int appoinmentId) deletePrescription,
   }) {
     return getPrescriptionList(appointmentId);
   }
@@ -209,7 +209,7 @@ class _$_GetPrescriptionList implements _GetPrescriptionList {
     TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult? Function(List<DataObjec> data)? selectTobetaken,
     TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult? Function(String id)? deletePrescription,
+    TResult? Function(int pno, int appoinmentId)? deletePrescription,
   }) {
     return getPrescriptionList?.call(appointmentId);
   }
@@ -226,7 +226,7 @@ class _$_GetPrescriptionList implements _GetPrescriptionList {
     TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult Function(List<DataObjec> data)? selectTobetaken,
     TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult Function(String id)? deletePrescription,
+    TResult Function(int pno, int appoinmentId)? deletePrescription,
     required TResult orElse(),
   }) {
     if (getPrescriptionList != null) {
@@ -344,7 +344,7 @@ class _$_GetPrescriptionSettings implements _GetPrescriptionSettings {
     required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
     required TResult Function(List<DataObjec> data) selectTobetaken,
     required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
-    required TResult Function(String id) deletePrescription,
+    required TResult Function(int pno, int appoinmentId) deletePrescription,
   }) {
     return getPrescriptionSettings();
   }
@@ -361,7 +361,7 @@ class _$_GetPrescriptionSettings implements _GetPrescriptionSettings {
     TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult? Function(List<DataObjec> data)? selectTobetaken,
     TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult? Function(String id)? deletePrescription,
+    TResult? Function(int pno, int appoinmentId)? deletePrescription,
   }) {
     return getPrescriptionSettings?.call();
   }
@@ -378,7 +378,7 @@ class _$_GetPrescriptionSettings implements _GetPrescriptionSettings {
     TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult Function(List<DataObjec> data)? selectTobetaken,
     TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult Function(String id)? deletePrescription,
+    TResult Function(int pno, int appoinmentId)? deletePrescription,
     required TResult orElse(),
   }) {
     if (getPrescriptionSettings != null) {
@@ -517,7 +517,7 @@ class _$_CreatePrescription implements _CreatePrescription {
     required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
     required TResult Function(List<DataObjec> data) selectTobetaken,
     required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
-    required TResult Function(String id) deletePrescription,
+    required TResult Function(int pno, int appoinmentId) deletePrescription,
   }) {
     return createPrescription(prescriptionElement);
   }
@@ -534,7 +534,7 @@ class _$_CreatePrescription implements _CreatePrescription {
     TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult? Function(List<DataObjec> data)? selectTobetaken,
     TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult? Function(String id)? deletePrescription,
+    TResult? Function(int pno, int appoinmentId)? deletePrescription,
   }) {
     return createPrescription?.call(prescriptionElement);
   }
@@ -551,7 +551,7 @@ class _$_CreatePrescription implements _CreatePrescription {
     TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult Function(List<DataObjec> data)? selectTobetaken,
     TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult Function(String id)? deletePrescription,
+    TResult Function(int pno, int appoinmentId)? deletePrescription,
     required TResult orElse(),
   }) {
     if (createPrescription != null) {
@@ -697,7 +697,7 @@ class _$_UpdatePrescription implements _UpdatePrescription {
     required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
     required TResult Function(List<DataObjec> data) selectTobetaken,
     required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
-    required TResult Function(String id) deletePrescription,
+    required TResult Function(int pno, int appoinmentId) deletePrescription,
   }) {
     return updatePrescription(prescriptionElement);
   }
@@ -714,7 +714,7 @@ class _$_UpdatePrescription implements _UpdatePrescription {
     TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult? Function(List<DataObjec> data)? selectTobetaken,
     TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult? Function(String id)? deletePrescription,
+    TResult? Function(int pno, int appoinmentId)? deletePrescription,
   }) {
     return updatePrescription?.call(prescriptionElement);
   }
@@ -731,7 +731,7 @@ class _$_UpdatePrescription implements _UpdatePrescription {
     TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult Function(List<DataObjec> data)? selectTobetaken,
     TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult Function(String id)? deletePrescription,
+    TResult Function(int pno, int appoinmentId)? deletePrescription,
     required TResult orElse(),
   }) {
     if (updatePrescription != null) {
@@ -883,7 +883,7 @@ class _$_SelectTimeOfTheDay implements _SelectTimeOfTheDay {
     required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
     required TResult Function(List<DataObjec> data) selectTobetaken,
     required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
-    required TResult Function(String id) deletePrescription,
+    required TResult Function(int pno, int appoinmentId) deletePrescription,
   }) {
     return selectTimeOfTheDay(data);
   }
@@ -900,7 +900,7 @@ class _$_SelectTimeOfTheDay implements _SelectTimeOfTheDay {
     TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult? Function(List<DataObjec> data)? selectTobetaken,
     TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult? Function(String id)? deletePrescription,
+    TResult? Function(int pno, int appoinmentId)? deletePrescription,
   }) {
     return selectTimeOfTheDay?.call(data);
   }
@@ -917,7 +917,7 @@ class _$_SelectTimeOfTheDay implements _SelectTimeOfTheDay {
     TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult Function(List<DataObjec> data)? selectTobetaken,
     TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult Function(String id)? deletePrescription,
+    TResult Function(int pno, int appoinmentId)? deletePrescription,
     required TResult orElse(),
   }) {
     if (selectTimeOfTheDay != null) {
@@ -1067,7 +1067,7 @@ class _$_SelectTobetaken implements _SelectTobetaken {
     required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
     required TResult Function(List<DataObjec> data) selectTobetaken,
     required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
-    required TResult Function(String id) deletePrescription,
+    required TResult Function(int pno, int appoinmentId) deletePrescription,
   }) {
     return selectTobetaken(data);
   }
@@ -1084,7 +1084,7 @@ class _$_SelectTobetaken implements _SelectTobetaken {
     TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult? Function(List<DataObjec> data)? selectTobetaken,
     TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult? Function(String id)? deletePrescription,
+    TResult? Function(int pno, int appoinmentId)? deletePrescription,
   }) {
     return selectTobetaken?.call(data);
   }
@@ -1101,7 +1101,7 @@ class _$_SelectTobetaken implements _SelectTobetaken {
     TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult Function(List<DataObjec> data)? selectTobetaken,
     TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult Function(String id)? deletePrescription,
+    TResult Function(int pno, int appoinmentId)? deletePrescription,
     required TResult orElse(),
   }) {
     if (selectTobetaken != null) {
@@ -1251,7 +1251,7 @@ class _$_GeneratePdf implements _GeneratePdf {
     required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
     required TResult Function(List<DataObjec> data) selectTobetaken,
     required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
-    required TResult Function(String id) deletePrescription,
+    required TResult Function(int pno, int appoinmentId) deletePrescription,
   }) {
     return genaratePdf(data);
   }
@@ -1268,7 +1268,7 @@ class _$_GeneratePdf implements _GeneratePdf {
     TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult? Function(List<DataObjec> data)? selectTobetaken,
     TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult? Function(String id)? deletePrescription,
+    TResult? Function(int pno, int appoinmentId)? deletePrescription,
   }) {
     return genaratePdf?.call(data);
   }
@@ -1285,7 +1285,7 @@ class _$_GeneratePdf implements _GeneratePdf {
     TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult Function(List<DataObjec> data)? selectTobetaken,
     TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult Function(String id)? deletePrescription,
+    TResult Function(int pno, int appoinmentId)? deletePrescription,
     required TResult orElse(),
   }) {
     if (genaratePdf != null) {
@@ -1361,7 +1361,7 @@ abstract class _$$_DeletePrescriptionCopyWith<$Res> {
           $Res Function(_$_DeletePrescription) then) =
       __$$_DeletePrescriptionCopyWithImpl<$Res>;
   @useResult
-  $Res call({String id});
+  $Res call({int pno, int appoinmentId});
 }
 
 /// @nodoc
@@ -1375,13 +1375,18 @@ class __$$_DeletePrescriptionCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? pno = null,
+    Object? appoinmentId = null,
   }) {
     return _then(_$_DeletePrescription(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
+      pno: null == pno
+          ? _value.pno
+          : pno // ignore: cast_nullable_to_non_nullable
+              as int,
+      appoinmentId: null == appoinmentId
+          ? _value.appoinmentId
+          : appoinmentId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -1389,14 +1394,16 @@ class __$$_DeletePrescriptionCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_DeletePrescription implements _DeletePrescription {
-  const _$_DeletePrescription({required this.id});
+  const _$_DeletePrescription({required this.pno, required this.appoinmentId});
 
   @override
-  final String id;
+  final int pno;
+  @override
+  final int appoinmentId;
 
   @override
   String toString() {
-    return 'PrecriptionEvent.deletePrescription(id: $id)';
+    return 'PrecriptionEvent.deletePrescription(pno: $pno, appoinmentId: $appoinmentId)';
   }
 
   @override
@@ -1404,11 +1411,13 @@ class _$_DeletePrescription implements _DeletePrescription {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DeletePrescription &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.pno, pno) || other.pno == pno) &&
+            (identical(other.appoinmentId, appoinmentId) ||
+                other.appoinmentId == appoinmentId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id);
+  int get hashCode => Object.hash(runtimeType, pno, appoinmentId);
 
   @JsonKey(ignore: true)
   @override
@@ -1429,9 +1438,9 @@ class _$_DeletePrescription implements _DeletePrescription {
     required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
     required TResult Function(List<DataObjec> data) selectTobetaken,
     required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
-    required TResult Function(String id) deletePrescription,
+    required TResult Function(int pno, int appoinmentId) deletePrescription,
   }) {
-    return deletePrescription(id);
+    return deletePrescription(pno, appoinmentId);
   }
 
   @override
@@ -1446,9 +1455,9 @@ class _$_DeletePrescription implements _DeletePrescription {
     TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult? Function(List<DataObjec> data)? selectTobetaken,
     TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult? Function(String id)? deletePrescription,
+    TResult? Function(int pno, int appoinmentId)? deletePrescription,
   }) {
-    return deletePrescription?.call(id);
+    return deletePrescription?.call(pno, appoinmentId);
   }
 
   @override
@@ -1463,11 +1472,11 @@ class _$_DeletePrescription implements _DeletePrescription {
     TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
     TResult Function(List<DataObjec> data)? selectTobetaken,
     TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult Function(String id)? deletePrescription,
+    TResult Function(int pno, int appoinmentId)? deletePrescription,
     required TResult orElse(),
   }) {
     if (deletePrescription != null) {
-      return deletePrescription(id);
+      return deletePrescription(pno, appoinmentId);
     }
     return orElse();
   }
@@ -1524,10 +1533,12 @@ class _$_DeletePrescription implements _DeletePrescription {
 }
 
 abstract class _DeletePrescription implements PrecriptionEvent {
-  const factory _DeletePrescription({required final String id}) =
-      _$_DeletePrescription;
+  const factory _DeletePrescription(
+      {required final int pno,
+      required final int appoinmentId}) = _$_DeletePrescription;
 
-  String get id;
+  int get pno;
+  int get appoinmentId;
   @JsonKey(ignore: true)
   _$$_DeletePrescriptionCopyWith<_$_DeletePrescription> get copyWith =>
       throw _privateConstructorUsedError;

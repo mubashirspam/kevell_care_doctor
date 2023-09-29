@@ -1,8 +1,9 @@
-import 'dart:convert';
 import 'dart:typed_data';
 import 'package:dr_kevell/features/profile/presentation/upload_image.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
+
+import '../../../../settings/utlis.dart';
 
 class ProfileNameCard extends StatelessWidget {
   final String name;
@@ -17,9 +18,7 @@ class ProfileNameCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
-    Uint8List imageBytes = base64Decode(imageUrl);
-
+    Uint8List imageBytes = decodeBase64Image(imageUrl);
 
     return Row(
       children: [
@@ -36,11 +35,14 @@ class ProfileNameCard extends StatelessWidget {
                   height: 70,
                   width: 70,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      ),
-                  child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.memory(imageBytes,fit: BoxFit.cover,)),
+                  ),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.memory(
+                        imageBytes,
+                        fit: BoxFit.cover,
+                      )),
                 ),
               ),
               Positioned(
@@ -92,3 +94,4 @@ class ProfileNameCard extends StatelessWidget {
     );
   }
 }
+

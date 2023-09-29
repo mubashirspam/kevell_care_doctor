@@ -5,6 +5,7 @@ const v1 = "v1";
 const secureStoreKey = 'token@key';
 
 const mailsecureStoreKey = 'mail@key';
+const fcmStoreKey = 'fcmStoreKey@key';
 
 const drIdsecureStoreKey = 'drId@key';
 

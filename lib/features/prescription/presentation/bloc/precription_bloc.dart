@@ -224,8 +224,10 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
         ),
       );
 
-      final response =
-          await deletePrescriptionRepository.deletePrescription(id: event.id);
+      final response = await deletePrescriptionRepository.deletePrescription(
+        pno: event.pno,
+        appoinmentId: event.appoinmentId,
+      );
 
       log("deleted called ===============");
 

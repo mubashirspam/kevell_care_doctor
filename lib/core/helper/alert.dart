@@ -1,3 +1,4 @@
+import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/pages/login_scrren/presentation/login_screen.dart';
 
@@ -47,69 +48,6 @@ class ErrorDialog extends StatelessWidget {
   }
 }
 
-class DeleteConfirmationDialog extends StatelessWidget {
-  final String message;
-  final VoidCallback onDelete;
-  final bool isDeleted;
-
-  const DeleteConfirmationDialog({
-    Key? key,
-    required this.message,
-    required this.onDelete,
-    required this.isDeleted,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: isDeleted
-          ? const Icon(
-              Icons.check_circle,
-              color: Colors.green,
-              size: 50,
-            )
-          : const Icon(
-              Icons.warning,
-              color: Colors.orange,
-              size: 50,
-            ),
-      content: Text(message),
-      actions: [
-        TextButton(
-          onPressed: () {
-            Navigator.of(context).pop(); // Close the dialog
-          },
-          child: const Text('Cancel'),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            onDelete(); // Trigger the delete function
-            Navigator.of(context).pop(); // Close the dialog
-          },
-          child: Text(isDeleted ? "Ok" : 'Yes, Delete'),
-        ),
-      ],
-    );
-  }
-}
-
-class DeletingProgressDialog extends StatelessWidget {
-  const DeletingProgressDialog({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const AlertDialog(
-      content: Row(
-        children: [
-          CircularProgressIndicator(),
-          SizedBox(width: 16),
-          Text("Deleting..."),
-        ],
-      ),
-    );
-  }
-}
-
 class SuccessDialog extends StatelessWidget {
   final VoidCallback onpress;
   final String message;
@@ -122,24 +60,60 @@ class SuccessDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Appointment Completed'),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      backgroundColor: context.theme.backround,
+      title: Column(
+        children: [
+          const Icon(
+            size: 75,
+            Icons.check,
+            color: Colors.green,
+          ),
+          const SizedBox(height: 20),
+          Text(
+            'Successfully scheduled',
+            style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                  fontSize: 20,
+                ),
+          ),
+        ],
+      ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Center(
-              child: Icon(
-            Icons.check,
-            color: Colors.green,
-            size: 100,
-          )),
           const SizedBox(height: 20),
-          Text(message),
+          Text(
+            message,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  height: 1.5,
+                ),
+          ),
         ],
       ),
       actions: [
-        ElevatedButton(
-          onPressed: onpress,
-          child: const Text('OK'),
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 20),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: context.theme.primary,
+                maximumSize: const Size(180, 45),
+                minimumSize: const Size(180, 45),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100),
+                ),
+              ),
+              onPressed: onpress,
+              child: Text(
+                'Confirm',
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge!
+                    .copyWith(color: Colors.white),
+              ),
+            ),
+          ),
         ),
       ],
     );
@@ -148,6 +122,7 @@ class SuccessDialog extends StatelessWidget {
 
 class MyCustomAlertDialog extends StatelessWidget {
   final bool isLoading;
+  final bool? isApponment;
   final bool isCompleted;
   final VoidCallback onPress;
   final VoidCallback okPressed;
@@ -160,6 +135,7 @@ class MyCustomAlertDialog extends StatelessWidget {
     required this.isLoading,
     required this.isCompleted,
     required this.onPress,
+    this.isApponment,
     required this.okPressed,
     required this.questionMesage,
     required this.successMessage,
@@ -167,81 +143,137 @@ class MyCustomAlertDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(24),
-      ),
-      elevation: 8,
-      backgroundColor: Colors.transparent,
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(24),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black26,
-              blurRadius: 10,
-              offset: Offset(0, 5),
+    return AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      backgroundColor: context.theme.backround,
+      title: isApponment ?? false
+          ? const SizedBox()
+          : Column(
+              children: [
+                const Icon(
+                  size: 70,
+                  Icons.warning_rounded,
+                  color: Colors.red,
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  isLoading
+                      ? "Deleting..."
+                      : isCompleted
+                          ? 'Deletion Successful'
+                          : 'Confirm Deletion',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineLarge!
+                      .copyWith(fontSize: 20, color: Colors.red),
+                  textAlign: TextAlign.center,
+                ),
+              ],
             ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (isLoading)
-              const CircularProgressIndicator()
-            else if (isCompleted)
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    successMessage,
-                    style: Theme.of(context).textTheme.titleLarge,
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (isLoading)
+            const SizedBox(
+                height: 100,
+                width: 100,
+                child: Center(
+                    child: CircularProgressIndicator(
+                  color: Colors.red,
+                  backgroundColor: Colors.white,
+                )))
+          else if (isCompleted)
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  successMessage,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                const SizedBox(height: 16),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: context.theme.secondary,
+                    maximumSize: const Size(180, 45),
+                    minimumSize: const Size(180, 45),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100),
+                    ),
                   ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: okPressed,
-                    child: const Text('OK'),
+                  onPressed: okPressed,
+                  child: Text(
+                    'Confirm',
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge!
+                        .copyWith(color: Colors.black),
                   ),
-                ],
-              )
-            else
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    questionMesage,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: ElevatedButton(
-                          
-                          onPressed: onPress,
-                          child: const Text('Yes, sure'),
+                ),
+              ],
+            )
+          else
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  questionMesage,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        height: 1.5,
+                      ),
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: context.theme.secondary,
+                          maximumSize: const Size(180, 45),
+                          minimumSize: const Size(180, 45),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                        ),
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: Text(
+                          'Cancel',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(color: Colors.black),
                         ),
                       ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: const Text('Cancel'),
+                    ),
+                    const SizedBox(width: 20),
+                    Expanded(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: context.theme.primary,
+                          maximumSize: const Size(180, 45),
+                          minimumSize: const Size(180, 45),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                        ),
+                        onPressed: onPress,
+                        child: Text(
+                          'Yes, sure',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(color: Colors.white),
                         ),
                       ),
-                    ],
-                  ),
-                ],
-              ),
-          ],
-        ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+        ],
       ),
     );
   }

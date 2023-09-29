@@ -1,7 +1,10 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 
 import '../../../settings/color/main_color.dart';
+import '../../../settings/utlis.dart';
 
 class ActiveAvatar extends StatelessWidget {
   final double? radius;
@@ -16,17 +19,19 @@ class ActiveAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Uint8List imageBytes = decodeBase64Image(imageUrl);
     return Stack(
       children: [
         Container(
           height: radius ?? 60,
           width: radius ?? 60,
-          decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: NetworkImage(
-                  imageUrl,
-                ),
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+          ),
+          child: ClipRRect(
+              borderRadius: BorderRadius.circular(100),
+              child: Image.memory(
+                imageBytes,
                 fit: BoxFit.cover,
               )),
         ),

@@ -57,10 +57,13 @@ class PrescriptionReportsCard extends StatelessWidget {
                               // )),
 
                               Navigator.of(context).pushNamed(
-                                  PrescriptionScreen.routeName,
-                                  arguments: {
-                                "appointmentID": data.first.appointmentId
-                              }),
+                            PrescriptionScreen.routeName,
+                            arguments: {
+                              "appointmentID": data.first.appointmentId,
+                              "doctorID": data.first.doctorId,
+                              "patientID": data.first.patientId
+                            },
+                          ),
                           style: TextButton.styleFrom(
                             backgroundColor: context.theme.backround,
                             foregroundColor: context.theme.primary,

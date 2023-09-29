@@ -63,11 +63,9 @@ class ScheduleYourTimeWidget extends StatelessWidget {
                     color: context.theme.secondary),
                 child: Center(
                   child: Text(
-                    "From : ${dateFormatToddmmyyyy(state.startDate)}  To : ${dateFormatToddmmyyyy(state.endDate)}",
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge!
-                        .copyWith(color: context.theme.textPrimary),
+                    "${dateFormatToddmmyyyy(state.startDate)}  TO  ${dateFormatToddmmyyyy(state.endDate)}",
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        color: context.theme.textPrimary, fontSize: 18),
                   ),
                 ),
               );
@@ -130,7 +128,8 @@ class ScheduleYourTimeWidget extends StatelessWidget {
                           context: context,
                           builder: (BuildContext context) {
                             return SuccessDialog(
-                              message: "Scheduled Your Time Succsessfully",
+                              message:
+                                  "Your appointment is scheduled. Visit the 'Schedule' page for rescheduling or deleting today's appointments, while you can edit or reschedule future appointments",
                               onpress: () {
                                 Navigator.of(context).pop();
                                 context
@@ -210,5 +209,3 @@ class ScheduleYourTimeWidget extends StatelessWidget {
     );
   }
 }
-
-

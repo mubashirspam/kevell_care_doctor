@@ -61,7 +61,7 @@ class GetPatientHistoryListRepoImpliment
           return Left(
             MainFailure.forbidden(message: result.message ?? "Forbidden"),
           );
-        case 500:
+        case 502:
           final result = FailureModel.fromJson(response.data);
           return Left(
             MainFailure.serverFailure(message: result.message ?? "Internal Server Error"),

@@ -48,16 +48,14 @@ class ProfileScreen extends StatelessWidget {
                 if (state.hasData) {
                   return ProfileNameCard(
                     email: state.result!.data!.email ?? "",
-                    imageUrl:
-                        state.result!.data!.profileImagelink!,
-                    name: state.result!.data!.name!,
+                    imageUrl: state.result!.data!.profileImagelink!,
+                    name: state.result!.data!.name ?? "No Name",
                   );
                 }
 
                 return const ProfileNameCard(
                   email: "johndoe@gmail.com",
-                  imageUrl:imageUrlForDummy,
-                      
+                  imageUrl: imageUrlForDummy,
                   name: "Johndoe",
                 );
               },

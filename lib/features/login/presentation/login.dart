@@ -146,19 +146,19 @@ class _LoginWidgetState extends State<LoginWidget> {
                   );
                 }
                 if (!state.isLoading && state.hasValidationData) {
-                  if (state.loginDetails!.data!.token != null &&
-                      state.loginDetails!.data!.emailid != null &&
-                      state.loginDetails!.data!.id != null) {
+                  if (state.loginDetails!.data!.first.token != null &&
+                      state.loginDetails!.data!.first.emailid != null &&
+                      state.loginDetails!.data!.first.id != null) {
                     addToSS(
-                        mailsecureStoreKey, state.loginDetails!.data!.emailid!);
+                        mailsecureStoreKey, state.loginDetails!.data!.first.emailid!);
 
                     addToSS(drIdsecureStoreKey,
-                        state.loginDetails!.data!.id.toString());
+                        state.loginDetails!.data!.first.id.toString());
 
                     addTokenToSS(
-                        secureStoreKey, state.loginDetails!.data!.token!);
+                        secureStoreKey, state.loginDetails!.data!.first.token!);
 
-                    addToSS(nameKey, state.loginDetails!.data!.name!);
+                    addToSS(nameKey, state.loginDetails!.data!.first.username!);
 
                     Toast.showToast(
                       context: context,
@@ -173,9 +173,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                     );
                   }
 
-                  log("Token : ${state.loginDetails!.data?.token}");
-                  log("id : ${state.loginDetails!.data?.id}");
-                  log("mail : ${state.loginDetails!.data?.emailid}");
+                  log("Token : ${state.loginDetails!.data?.first.token}");
+                  log("id : ${state.loginDetails!.data?.first.id}");
+                  log("mail : ${state.loginDetails!.data?.first.emailid}");
                 }
               },
               builder: (context, state) {

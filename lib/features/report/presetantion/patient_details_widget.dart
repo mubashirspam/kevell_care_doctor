@@ -79,7 +79,7 @@ class PatientDetailsWidget extends StatelessWidget {
               );
             },
           ),
-          HealthInfoWidget(),
+          const HealthInfoWidget(),
         ],
       ),
     );

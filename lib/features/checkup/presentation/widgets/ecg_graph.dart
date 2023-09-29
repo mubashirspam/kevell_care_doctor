@@ -3,6 +3,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 
 class ECGGraph extends StatelessWidget {
   final List<ECGData> data;
+  
   const ECGGraph({
     super.key,
     required this.data,

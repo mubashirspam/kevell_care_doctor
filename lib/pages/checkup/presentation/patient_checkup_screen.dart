@@ -7,6 +7,7 @@ import 'dart:math' as m;
 import 'package:dr_kevell/features/checkup/presentation/end_appoinment_report_screen.dart';
 import 'package:dr_kevell/features/checkup/presentation/ecg_widget.dart';
 import 'package:dr_kevell/features/checkup/presentation/gsr_widget.dart';
+import 'package:dr_kevell/settings/value/constant.dart';
 
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/features/checkup/presentation/temparature_widgtet.dart';
@@ -14,6 +15,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 import 'package:sliver_tools/sliver_tools.dart';
+import '../../../features/home/data/models/waiting_patient_model.dart';
 import '../../../settings/api/endpoints.dart';
 import '../../../core/helper/alert.dart';
 import '../../../core/helper/toast.dart';
@@ -31,7 +33,7 @@ import '../../../features/video_call/service/signaling_service.dart';
 class PatientCheckupScreen extends StatefulWidget {
   static const routeName = '/patient-checup-screen';
 
-  final Map<String, String> checkupDetalis;
+  final WaitingPatient checkupDetalis;
 
   const PatientCheckupScreen({
     super.key,
@@ -198,8 +200,8 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
 
           context.read<CheckupBloc>().add(
                 CheckupEvent.endAppoinment(
-                  appoinmentId: widget.checkupDetalis['appointmentID']!,
-                  patientId: widget.checkupDetalis['patientID']!,
+                  appoinmentId: widget.checkupDetalis.appointmentId.toString(),
+                  patientId: widget.checkupDetalis.patientId.toString(),
                 ),
               );
 
@@ -399,8 +401,6 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
   int doctorID = 0;
   int appointmentID = 0;
 
-
-
   @override
   void dispose() {
     _timer?.cancel();
@@ -409,14 +409,14 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
 
   @override
   void initState() {
-    patientID = int.parse(widget.checkupDetalis['patientID']!);
-    doctorID = int.parse(widget.checkupDetalis['doctorID']!);
-    appointmentID = int.parse(widget.checkupDetalis['appointmentID']!);
+    patientID = widget.checkupDetalis.patientId!;
+    doctorID = widget.checkupDetalis.doctorId!;
+    appointmentID = widget.checkupDetalis.appointmentId!;
     initializeMQTTClient();
     connect().then((value) => subScribeTo("KC_EC94CB6F61DC/app"));
 
     SignallingService.instance.init(
-      websocketUrl:  ApiEndPoints.websocketUrl,
+      websocketUrl: ApiEndPoints.websocketUrl,
       selfCallerID: doctorID.toString(),
     );
     super.initState();
@@ -424,6 +424,9 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // log("paitentCallerId: $patientID");
+    // log("selfCallerId: $doctorID");
+
     return Scaffold(
       // appBar: AppBar(
       //   leading: InkWell(
@@ -448,6 +451,9 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
         slivers: [
           SliverPinnedHeader(
             child: CheckupHeaderWidget(
+              name: widget.checkupDetalis.name ??"No name found",
+                 type: widget.checkupDetalis.type ??"No case found",
+              imageUrl:widget.checkupDetalis.profileImagelink??imageUrlForDummy,
               paitentCallerId: patientID.toString(),
               selfCallerId: doctorID.toString(),
             ),
@@ -570,7 +576,6 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
                     }
                   : () => Toast.showToast(
                       context: context, message: "Please Unlock"),
-              ecg: "",
             ),
             GSRgWidget(
               isReading: gsrReading,
@@ -639,6 +644,7 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
                           },
                           builder: (context, state) {
                             return MyCustomAlertDialog(
+                                isApponment: true,
                                 questionMesage:
                                     "Are you wnat to submit the Appoinments ?",
                                 isCompleted: state.hasData,

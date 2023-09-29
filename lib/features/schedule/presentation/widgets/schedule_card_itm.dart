@@ -140,8 +140,10 @@ class ScheduleCard extends StatelessWidget {
                               builder: (context, state) {
                                 log(state.isDeleted.toString());
                                 return MyCustomAlertDialog(
-                                  successMessage: "Successfully deleted your schedule.",
-                                  questionMesage: 'Are you sure you want to delete the schedule?',
+                                  successMessage:
+                                      "The schedule has been successfully deleted. If you need to reschedule or make new appointments, please visit the 'Schedule' page",
+                                  questionMesage:
+                                      'Are you sure you want to delete the schedule? Please note that this action cannot be undone',
                                   okPressed: () {
                                     context.read<ScheduleBloc>().add(
                                           const ScheduleEvent.getSchedule(),

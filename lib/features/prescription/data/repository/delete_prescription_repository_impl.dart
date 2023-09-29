@@ -14,13 +14,13 @@ import '../model/delete_prescription_model.dart';
 class DeletePrescriptionRepoImpliment implements DeletePrescriptionRepository {
   @override
   Future<Either<MainFailure, DeletePrescriptionModel>> deletePrescription({
-    required String id,
+    required int pno,
+    required int appoinmentId,
   }) async {
     try {
       final response = await Dio(BaseOptions()).delete(
-        ApiEndPoints.deletePrescription,
-        data: {"pno": id},
-      );
+          ApiEndPoints.deletePrescription,
+          data: {"appointment_id": appoinmentId, "pno": pno});
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = DeletePrescriptionModel.fromJson(response.data);

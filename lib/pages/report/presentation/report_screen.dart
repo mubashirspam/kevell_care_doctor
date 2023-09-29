@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../features/checkup/presentation/end_appoinment_report_screen.dart';
+import '../../../features/checkup/presentation/widgets/ecg_graph.dart';
 import '../../../features/prescription/presentation/bloc/precription_bloc.dart';
 import '../../../features/report/presetantion/prescription_reports.dart';
 import 'widgets/report_appbar.dart';
@@ -25,6 +26,58 @@ class ReportScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<ECGData> ecgData = [];
+    List<int> voltageValues;
+
+    if (data.ecginfo!.isNotEmpty) {
+      String? value = data.ecginfo!.first.data?.content;
+      if (value != null && value.isNotEmpty) {
+        voltageValues = value
+            .split(',')
+            .map((e) => e.trim()) // Trim whitespace
+            .where((element) => element.isNotEmpty)
+            .map((e) {
+          try {
+            return int.parse(e);
+          } catch (_) {
+            return 0; // Handle non-numeric values or provide a suitable default
+          }
+        }).toList();
+
+        for (int i = 0; i < voltageValues.length; i++) {
+          ecgData.add(ECGData(
+            time: i,
+            voltage: voltageValues[i],
+          ));
+        }
+      }
+    }
+    List<ECGData> grsData = [];
+    List<int> grsvoltageValues;
+
+    if (data.gsrinfo!.isNotEmpty) {
+      String? value = data.gsrinfo!.first.data?.content;
+      if (value != null && value.isNotEmpty) {
+        grsvoltageValues = value
+            .split(',')
+            .map((e) => e.trim()) // Trim whitespace
+            .where((element) => element.isNotEmpty)
+            .map((e) {
+          try {
+            return int.parse(e);
+          } catch (_) {
+            return 0; // Handle non-numeric values or provide a suitable default
+          }
+        }).toList();
+
+        for (int i = 0; i < grsvoltageValues.length; i++) {
+          grsData.add(ECGData(
+            time: i,
+            voltage: grsvoltageValues[i],
+          ));
+        }
+      }
+    }
     return Scaffold(
       appBar: const ReportScreenAppBar(),
       body: SingleChildScrollView(
@@ -46,24 +99,36 @@ class ReportScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ),
-            data.temperatureinfo!.data != null
-                ? ResultCard(
-                    parameter: "Temprature",
-                    value: data.temperatureinfo!.data!.content!,
-                  )
-                : const SizedBox(),
-            data.spO2Info!.data != null
-                ? ResultCard(
-                    parameter: "Spo2",
-                    value: data.spO2Info!.data!.content!,
-                  )
-                : const SizedBox(),
-            data.spO2Info!.data != null
-                ? ResultCard(
-                    parameter: "Heart rate",
-                    value: data.spO2Info!.data!.heartRate!,
-                  )
-                : const SizedBox(),
+            if (data.temperatureinfo!.data != null)
+              ResultCard(
+                parameter: "Temprature",
+                value: data.temperatureinfo!.data!.content!,
+              ),
+            if (data.spO2Info!.data != null)
+              ResultCard(
+                parameter: "Spo2",
+                value: data.spO2Info!.data!.content!,
+              ),
+            if (data.spO2Info!.data != null)
+              ResultCard(
+                parameter: "Heart rate",
+                value: data.spO2Info!.data!.heartRate!,
+              ),
+            if (data.bpinfo!.data != null)
+              BpCard(
+                parameter: "Blood pressure",
+                value: data.bpinfo!.data!,
+              ),
+            if (data.ecginfo!.isNotEmpty)
+              EcgResultCard(
+                ecgData: ecgData,
+                name: "ECG Graph",
+              ),
+            if (data.gsrinfo!.isNotEmpty)
+              EcgResultCard(
+                ecgData: grsData,
+                name: "GRS Graph",
+              ),
             Padding(
               padding: const EdgeInsets.all(20).copyWith(top: 0),
               child: Text(
@@ -130,12 +195,53 @@ class ReportScreen extends StatelessWidget {
                     builder: (context, state) {
                       return PrescriptionReportsCard(
                         data: data.prescription!,
+                        // checkupDetalis:{}
                       );
                     },
                   )
                 : const SizedBox()
           ],
         ),
+      ),
+    );
+  }
+}
+
+class EcgResultCard extends StatelessWidget {
+  const EcgResultCard({super.key, required this.ecgData, required this.name});
+
+  final List<ECGData> ecgData;
+  final String name;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.maxFinite,
+      margin: const EdgeInsets.all(20).copyWith(top: 0),
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        gradient: LinearGradient(
+          colors: [
+            context.theme.secondary!,
+            context.theme.primary!,
+          ],
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            name,
+            style: Theme.of(context)
+                .textTheme
+                .headlineLarge!
+                .copyWith(fontSize: 16),
+          ),
+          const SizedBox(height: 10),
+          ECGGraph(
+            data: ecgData,
+          ),
+        ],
       ),
     );
   }

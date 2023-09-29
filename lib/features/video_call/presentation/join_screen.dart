@@ -1,4 +1,3 @@
-import 'package:dr_kevell/settings/color/main_color.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:flutter/material.dart';
 
@@ -56,54 +55,12 @@ class JoinOrCallWidget extends StatelessWidget {
               ),
             )
           : Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Expanded(
-                  child: SizedBox(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Wrap(
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.only(right: 5),
-                              width: 15,
-                              height: 15,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: MainConfigColorsDarkThem.success,
-                                border: Border.all(
-                                  width: 2,
-                                  color: context.theme.backround!,
-                                ),
-                              ),
-                            ),
-                            Text(
-                              "Online",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge!
-                                  .copyWith(
-                                    color: context.theme.backround,
-                                  ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 5),
-                        Text(
-                          "Connected",
-                          style:
-                              Theme.of(context).textTheme.titleLarge!.copyWith(
-                                    color: context.theme.backround,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
                 Container(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(17),
                   margin: const EdgeInsets.only(right: 15),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
@@ -130,7 +87,7 @@ class JoinOrCallWidget extends StatelessWidget {
                   //   );
                   // },
                   child: Container(
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(17),
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(

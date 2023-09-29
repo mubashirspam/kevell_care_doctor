@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dr_kevell/features/widgets/error_widget.dart';
 import 'package:dr_kevell/features/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +16,6 @@ class UpcomingSchedule extends StatelessWidget {
     return BlocConsumer<ScheduleBloc, ScheduleState>(
       listener: (context, state) {
         if (state.isUpdated) {
-
           Navigator.of(context, rootNavigator: true).pop();
           context.read<ScheduleBloc>().add(
                 const ScheduleEvent.getSchedule(),

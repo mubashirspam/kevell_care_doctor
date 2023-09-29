@@ -34,7 +34,8 @@ class FetchReportRepoImpliment implements FetchReportRepository {
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = ReportModel.fromJson(response.data);
-        log(result.toString());
+
+        log(result.toJson().toString());
 
         return Right(result);
       } else if (response.statusCode == 400 || response.statusCode == 401) {

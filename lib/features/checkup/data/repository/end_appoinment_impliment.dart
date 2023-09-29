@@ -34,7 +34,7 @@ class EndAppoinmentRepoImpliment implements EndAppoinmentRepository {
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = EndAppoinmentModel.fromJson(response.data);
-        log(result.toString());
+        log(result.toJson().toString());
 
         return Right(result);
       } else if (response.statusCode == 400 || response.statusCode == 401) {

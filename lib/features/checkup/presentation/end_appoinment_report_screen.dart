@@ -2,6 +2,7 @@
 
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/features/checkup/data/model/end_appoinment_model.dart';
+import 'package:dr_kevell/features/login/presentation/login.dart';
 import 'package:dr_kevell/features/widgets/avatar/active_avatar.dart';
 import 'package:dr_kevell/features/widgets/buttons/text_button_widget.dart';
 import 'package:dr_kevell/pages/initialize/initialize.dart';
@@ -10,13 +11,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/helper/date.dart';
+import '../../../pages/report/presentation/report_screen.dart';
+import '../../report/data/model/report_model.dart';
 import 'bloc/checkup_bloc.dart';
+import 'widgets/ecg_graph.dart';
 
 class AppoinmentsEndReportScrenn extends StatelessWidget {
   const AppoinmentsEndReportScrenn({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   context.read<CheckupBloc>().add(
+    //         CheckupEvent.endAppoinment(
+    //           appoinmentId: "1003",
+    //           patientId: "1159",
+    //         ),
+    //       );
+    // });
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
@@ -31,7 +44,32 @@ class AppoinmentsEndReportScrenn extends StatelessWidget {
             if (state.hasData) {
               if (state.endAppoinmentResult!.data != null) {
                 Data datas = state.endAppoinmentResult!.data!;
+                List<ECGData> ecgData = [];
+                List<int> voltageValues;
 
+                if (datas.checkupResult!.ecg != null) {
+                  String? value = datas.checkupResult!.ecg;
+                  if (value != null && value.isNotEmpty) {
+                    voltageValues = value
+                        .split(',')
+                        .map((e) => e.trim()) // Trim whitespace
+                        .where((element) => element.isNotEmpty)
+                        .map((e) {
+                      try {
+                        return int.parse(e);
+                      } catch (_) {
+                        return 0; // Handle non-numeric values or provide a suitable default
+                      }
+                    }).toList();
+
+                    for (int i = 0; i < voltageValues.length; i++) {
+                      ecgData.add(ECGData(
+                        time: i,
+                        voltage: voltageValues[i],
+                      ));
+                    }
+                  }
+                }
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -103,40 +141,39 @@ class AppoinmentsEndReportScrenn extends StatelessWidget {
                             .copyWith(fontSize: 18),
                       ),
                     ),
-                    datas.checkupResult!.bodyTemp != null
-                        ? ResultCard(
-                            parameter: "Temprature",
-                            value: datas.checkupResult!.bodyTemp!,
-                          )
-                        : const SizedBox(),
-                    datas.checkupResult!.spO2 != null
-                        ? ResultCard(
-                            parameter: "Spo2",
-                            value: datas.checkupResult!.spO2!,
-                          )
-                        : const SizedBox(),
-                    datas.checkupResult!.heartRate != null
-                        ? ResultCard(
-                            parameter: "Heart Rate",
-                            value: datas.checkupResult!.heartRate!,
-                          )
-                        : const SizedBox(),
-                    //   datas.checkupResult!.heartRate != null
-                    // ? ResultCard(
-                    //     parameter: "BpsysValue",
-                    //     value: datas.checkupResult!.heartRate!,
-                    //   )
-                    // : const SizedBox(),  datas.checkupResult!.heartRate != null
-                    // ? ResultCard(
-                    //     parameter: "BpDiaValue",
-                    //     value: datas.checkupResult!.heartRate!,
-                    //   )
-                    // : const SizedBox(),  datas.checkupResult!.heartRate != null
-                    // ? ResultCard(
-                    //     parameter: "BpPlusValue",
-                    //     value: datas.checkupResult!.heartRate!,
-                    //   )
-                    // : const SizedBox(),
+                    // if (datas.checkupResult!.bodyTemp)
+                    //   ResultCard(
+                    //     parameter: "Temprature",
+                    //     value: datas.checkupResult!.bodyTemp.data!.content!,
+                    //   ),
+                    if (datas.checkupResult!.bodyTemp != null)
+                      ResultCard(
+                        parameter: "Temprature",
+                        value: datas.checkupResult!.bodyTemp!,
+                      ),
+
+                    if (datas.checkupResult!.spO2 != null)
+                      ResultCard(
+                        parameter: "Spo2",
+                        value: datas.checkupResult!.spO2!,
+                      ),
+
+                    if (datas.checkupResult!.heartRate != null)
+                      ResultCard(
+                        parameter: "Heart Rate",
+                        value: datas.checkupResult!.heartRate!,
+                      ),
+                    if (datas.checkupResult!.bp != null)
+                      BpCard(
+                        bp: datas.checkupResult!.bp,
+                        parameter: "Blood pressure",
+                      ),
+                    if (datas.checkupResult!.ecg != null)
+                      EcgResultCard(
+                        ecgData: ecgData,
+                        name: "ECG Graph",
+                      ),
+
                     Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Row(
@@ -173,21 +210,21 @@ class AppoinmentsEndReportScrenn extends StatelessWidget {
                             ),
                           ],
                         )),
+                    const SizedBox(
+                      height: 15,
+                    ),
                   ],
                 );
               } else {
-                Container(
-                  height: 200,
-                  width: 200,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage(
-                              "https://static.vecteezy.com/system/resources/thumbnails/005/006/031/small/no-result-data-document-or-file-not-found-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-etc-vector.jpg"))),
-                  child: const Text(
-                    "No Data Found",
+                const Center(
+                  child: Text(
+                    "Patient has skipped the SLOT!!!",
                   ),
                 );
               }
+            }
+            if (state.isLoading) {
+              return const Center(child: LoginWidget());
             }
             return Container(
               height: 200,
@@ -260,6 +297,83 @@ class ResultCard extends StatelessWidget {
                   .copyWith(fontSize: 14, color: Colors.red),
             )
           ],
+        ));
+  }
+}
+
+class BpCard extends StatelessWidget {
+  final String parameter;
+  final Bp? bp;
+  final BpinfoData? value;
+  const BpCard({
+    required this.parameter,
+    this.value,
+    this.bp,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: const EdgeInsets.all(20).copyWith(top: 0),
+        padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          gradient: LinearGradient(
+            colors: [
+              context.theme.secondary!,
+              context.theme.primary!,
+            ],
+          ),
+        ),
+        child: Column(
+          children: List.generate(
+            3,
+            (i) => Row(
+              children: [
+                Text(
+                  i == 0
+                      ? 'Systolic :'
+                      : i == 1
+                          ? 'Diastolic :'
+                          : 'Pulse :',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineLarge!
+                      .copyWith(fontSize: 16),
+                ),
+                const SizedBox(width: 10),
+                Padding(
+                  padding: i == 1
+                      ? const EdgeInsets.symmetric(vertical: 10)
+                      : const EdgeInsets.all(0),
+                  child: value != null
+                      ? Text(
+                          i == 0
+                              ? "${value!.bpsysValue} ( <120 )"
+                              : i == 1
+                                  ? "${value!.bpDiaValue} ( <80 )"
+                                  : "${value!.bpPulseValue} ( 60 ~ 100 )",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineLarge!
+                              .copyWith(fontSize: 14, color: Colors.red),
+                        )
+                      : Text(
+                          i == 0
+                              ? "${bp!.bpsysValue} ( <120 )"
+                              : i == 1
+                                  ? "${bp!.bpDiaValue} ( <80 )"
+                                  : "${bp!.bpPulseValue} ( 60 ~ 100 )",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineLarge!
+                              .copyWith(fontSize: 14, color: Colors.red),
+                        ),
+                )
+              ],
+            ),
+          ),
         ));
   }
 }

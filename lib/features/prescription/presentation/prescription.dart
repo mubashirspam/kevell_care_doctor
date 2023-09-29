@@ -16,10 +16,10 @@ import 'bloc/precription_bloc.dart';
 import 'widgets/prescription_item_widget.dart';
 
 class Prescription extends StatelessWidget {
-  final String appointmentID;
+  final Map<String, dynamic> checkupDetalis;
   const Prescription({
     super.key,
-    required this.appointmentID,
+    required this.checkupDetalis,
   });
 
   @override
@@ -53,9 +53,7 @@ class Prescription extends StatelessWidget {
         }
 
         if (state.hasData) {
-          log("message");
-
-          log("${state.prescriptionResult!.data!.prescriptions!.length}");
+          log("prescription id ; ${state.prescriptionResult!.data!.prescriptions!.first.id}");
 
           if (state.prescriptionResult!.data!.totalCount == null) {
             return Center(
@@ -96,10 +94,13 @@ class Prescription extends StatelessWidget {
               itemCount: prescriptionElement.length,
               itemBuilder: (context, index) => InkWell(
                 onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => PrescriptionDetials( prescriptionElement: prescriptionElement[index],),
+                  builder: (context) => PrescriptionDetials(
+                    prescriptionElement: prescriptionElement[index],
+                  ),
                 )),
                 child: PrescriptionItemWidget(
                   prescriptionElement: prescriptionElement[index],
+                  checkupDetalis: checkupDetalis,
                 ),
               ),
             );
@@ -112,7 +113,8 @@ class Prescription extends StatelessWidget {
             onPressed: () {
               context.read<PrecriptionBloc>().add(
                   PrecriptionEvent.getPrescriptionList(
-                      appointmentId: int.parse(appointmentID)));
+                      appointmentId:
+                          int.parse(checkupDetalis['appointmentID'])));
             },
             isLoading: state.isGetLoading,
           ),

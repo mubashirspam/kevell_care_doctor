@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "407281536950",
+    "project_id": "kevell-corp",
+    "storage_bucket": "kevell-corp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:407281536950:android:6ee1c3fc4c99121451bb17",
+        "android_client_info": {
+          "package_name": "com.example.dr_kevell"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCftB7wWicrxO-ZvWwYEHe2pInLNtujiMs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:407281536950:android:005d17596810f18851bb17",
+        "android_client_info": {
+          "package_name": "com.example.kevell_care"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCftB7wWicrxO-ZvWwYEHe2pInLNtujiMs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

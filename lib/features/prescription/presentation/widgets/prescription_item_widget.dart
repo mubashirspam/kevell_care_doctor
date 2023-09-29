@@ -12,8 +12,10 @@ import 'edit_prescription.dart';
 
 class PrescriptionItemWidget extends StatelessWidget {
   final PrescriptionElement prescriptionElement;
+   final Map<String, dynamic> checkupDetalis;
   const PrescriptionItemWidget({
     required this.prescriptionElement,
+    required this.checkupDetalis,
     super.key,
   });
 
@@ -63,7 +65,7 @@ class PrescriptionItemWidget extends StatelessWidget {
                 builder: (context) => AddOrEditPrescriptionWidget(
                   isEdit: true,
                   prescriptionElement: prescriptionElement,
-                  checkupDetalis: const {},
+                  checkupDetalis:  checkupDetalis,
                 ),
               ),
             ),
@@ -92,7 +94,8 @@ class PrescriptionItemWidget extends StatelessWidget {
                               onPress: () {
                                 context.read<PrecriptionBloc>().add(
                                       PrecriptionEvent.deletePrescription(
-                                        id: prescriptionElement.pno.toString(),
+                                        pno: prescriptionElement.pno!,
+                                        appoinmentId: prescriptionElement.appointmentId!,
                                       ),
                                     );
                               },

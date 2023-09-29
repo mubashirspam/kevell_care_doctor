@@ -107,6 +107,8 @@ class _AddOrEditPrescriptionWidgetState
       toBeTaken = widget.prescriptionElement!.tobetaken!;
     }
 
+    log('appoinment details == ${widget.checkupDetalis}');
+
     super.initState();
   }
 
@@ -454,12 +456,11 @@ class _AddOrEditPrescriptionWidgetState
                                             ),
                                           );
                                     } else {
-                                      final patientID =
-                                          widget.checkupDetalis['patientID']!;
                                       final doctorID =
-                                          widget.checkupDetalis['doctorID']!;
+                                          widget.checkupDetalis['doctorID'];
                                       final appointmentID = widget
-                                          .checkupDetalis['appointmentID']!;
+                                          .checkupDetalis['appointmentID'];
+
                                       context.read<PrecriptionBloc>().add(
                                             PrecriptionEvent.createPrescription(
                                               prescriptionElement:
@@ -469,7 +470,6 @@ class _AddOrEditPrescriptionWidgetState
                                                 duration:
                                                     daysController.value.text,
                                                 name: nameController.value.text,
-                                                patientId: patientID,
                                                 remark: remark.value.text,
                                                 timeoftheday: timeOfTheDay,
                                                 tobetaken: toBeTaken,

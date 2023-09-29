@@ -3,6 +3,7 @@ import 'package:dr_kevell/pages/checkup/presentation/patient_checkup_screen.dart
 import 'package:dr_kevell/pages/profile/presentation/my_profile_screen.dart';
 import 'package:dr_kevell/pages/profile/presentation/profile_screen.dart';
 import 'package:dr_kevell/pages/report/presentation/report_screen.dart';
+import '../../../features/home/data/models/waiting_patient_model.dart';
 import '../../pages/chat/presentation/chating_screen.dart';
 import '../../pages/history/presentation/single_person_history_screen.dart';
 import 'package:dr_kevell/features/report/data/model/report_model.dart'
@@ -13,6 +14,8 @@ import '../../pages/dashborad/presentation/dashborad.dart';
 import '../../pages/login_scrren/presentation/login_screen.dart';
 import '../../pages/schedule/presentation/schedule_your_time.dart';
 import '../../pages/signup_screen/presentation/lsignup_screen.dart';
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 final Map<String, Widget Function(BuildContext ctx)> route = {
   LoginScreen.routeName: (ctx) => const LoginScreen(),
@@ -28,7 +31,7 @@ final Map<String, Widget Function(BuildContext ctx)> route = {
   ChatingScreen.routeName: (ctx) => const ChatingScreen(),
   PatientCheckupScreen.routeName: (ctx) => PatientCheckupScreen(
         checkupDetalis:
-            ModalRoute.of(ctx)!.settings.arguments as Map<String, String>,
+            ModalRoute.of(ctx)!.settings.arguments as WaitingPatient ,
       ),
   PersonHistroyScreen.routeName: (ctx) => PersonHistroyScreen(
         patientIdWithName:

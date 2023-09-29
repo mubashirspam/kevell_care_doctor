@@ -14,18 +14,19 @@ class PrecriptionEvent with _$PrecriptionEvent {
   }) = _UpdatePrescription;
 
   const factory PrecriptionEvent.selectTimeOfTheDay({
-    required List <DataObjec> data,
+    required List<DataObjec> data,
   }) = _SelectTimeOfTheDay;
 
   const factory PrecriptionEvent.selectTobetaken({
-    required List <DataObjec> data,
+    required List<DataObjec> data,
   }) = _SelectTobetaken;
 
-
-   const factory PrecriptionEvent.genaratePdf({
+  const factory PrecriptionEvent.genaratePdf({
     required List<PrescriptionPdfModel> data,
   }) = _GeneratePdf;
 
-   const factory PrecriptionEvent.deletePrescription({required String id}) =
-      _DeletePrescription;
+  const factory PrecriptionEvent.deletePrescription({
+    required int pno,
+    required int appoinmentId,
+  }) = _DeletePrescription;
 }
