@@ -28,10 +28,11 @@ final Map<String, Widget Function(BuildContext ctx)> route = {
         checkupDetalis:
             ModalRoute.of(ctx)!.settings.arguments as Map<String, dynamic>,
       ),
-  ChatingScreen.routeName: (ctx) => const ChatingScreen(),
+  ChatingScreen.routeName: (ctx) => ChatingScreen(
+      chatParameter: ModalRoute.of(ctx)!.settings.arguments as Map),
   PatientCheckupScreen.routeName: (ctx) => PatientCheckupScreen(
         checkupDetalis:
-            ModalRoute.of(ctx)!.settings.arguments as WaitingPatient ,
+            ModalRoute.of(ctx)!.settings.arguments as WaitingPatient,
       ),
   PersonHistroyScreen.routeName: (ctx) => PersonHistroyScreen(
         patientIdWithName:

@@ -447,6 +447,7 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
       //   backgroundColor: context.theme.primary,
       //   centerTitle: false,
       // ),
+            //  key: scaffoldMessengerKey,
       body: CustomScrollView(
         slivers: [
           SliverPinnedHeader(

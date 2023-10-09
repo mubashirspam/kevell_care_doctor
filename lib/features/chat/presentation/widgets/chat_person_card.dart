@@ -2,9 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 
 import '../../../../settings/color/main_color.dart';
+import '../../data/model/chat_person_model.dart';
 
 class ChatPersonCard extends StatelessWidget {
-  const ChatPersonCard({super.key});
+  final Result result;
+
+  final int? count;
+  const ChatPersonCard({
+    super.key,
+    required this.result,
+  
+    this.count,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +29,10 @@ class ChatPersonCard extends StatelessWidget {
         children: [
           Stack(
             children: [
-              const CircleAvatar(
-                maxRadius: 35,
-                minRadius: 35,
-                backgroundImage: NetworkImage(
-                    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"),
+              CircleAvatar(
+                maxRadius: 25,
+                minRadius: 25,
+                backgroundImage: NetworkImage(result.profileImagelink ?? ""),
               ),
               Positioned(
                 right: 2,
@@ -49,10 +57,10 @@ class ChatPersonCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Johnny Greig",
+                result.username ?? "",
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 5),
               Text(
                 "General Checkup",
                 style: Theme.of(context).textTheme.titleMedium,
@@ -60,6 +68,26 @@ class ChatPersonCard extends StatelessWidget {
             ],
           ),
           const Spacer(),
+          count == null
+              ? const SizedBox()
+              : Container(
+                  padding: const EdgeInsets.all(1),
+                  height: 22,
+                  width: 22,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: context.theme.primary,
+                  ),
+                  child: Center(
+                    child: Text(
+                      count! > 9 ? "9+" : '$count',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall!
+                          .copyWith(fontSize: 10, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                )
         ],
       ),
     );

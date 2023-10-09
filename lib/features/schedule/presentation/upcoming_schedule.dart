@@ -23,13 +23,14 @@ class UpcomingSchedule extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        if (state.isLoading) {
+        if (state.isLoading && !state.hasData) {
           return const LoadingWIdget();
         }
+
         if (state.isError) {
           return const AppErrorWidget();
         }
-        if (state.hasData) {
+        if (state.hasData && state.isLoading || state.hasData) {
           ScheduleModel result = context.read<ScheduleBloc>().state.result!;
 
           if (result.data!.upcomingschedule?.isEmpty ?? true) {

@@ -4,8 +4,11 @@ import 'package:dr_kevell/features/chat/presentation/chating_list_widget.dart';
 import 'package:dr_kevell/features/widgets/avatar/active_avatar.dart';
 
 class ChatingScreen extends StatelessWidget {
+
+  final Map  chatParameter;
   static const routeName = '/chating-screen';
-  const ChatingScreen({super.key});
+
+  const ChatingScreen({super.key,required this.chatParameter});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +60,7 @@ class ChatingScreen extends StatelessWidget {
           )
         ],
       ),
-      body: const ChatingListWidget(),
+      body:  ChatingListWidget(chatParameter: chatParameter),
     );
   }
 }

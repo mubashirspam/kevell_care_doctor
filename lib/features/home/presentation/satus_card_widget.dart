@@ -36,7 +36,7 @@ class StatusCardWidget extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        if (state.isStatusLoading) {
+        if (state.isStatusLoading && !state.hasStatusData) {
           return const Center(child: LoadingWIdget());
         } else if (state.hasStatusData) {
           if (state.statusResult!.data!.status!.isEmpty) {

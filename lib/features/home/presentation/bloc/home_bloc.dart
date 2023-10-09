@@ -32,7 +32,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           isStatusLoading: true,
           isError: false,
           unauthorized: false,
-          hasStatusData: false,
         ),
       );
 
@@ -64,7 +63,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           isWaitingPatientLoading: true,
           isError: false,
           unauthorized: false,
-          hasWaitingPatientData: false,
         ),
       );
 

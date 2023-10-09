@@ -4,22 +4,46 @@
 
 import 'dart:convert';
 
-List<ChatPersonModel> chatPersonModelFromJson(String str) => List<ChatPersonModel>.from(json.decode(str).map((x) => ChatPersonModel.fromJson(x)));
+ChatPersonModel chatPersonModelFromJson(String str) => ChatPersonModel.fromJson(json.decode(str));
 
-String chatPersonModelToJson(List<ChatPersonModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String chatPersonModelToJson(ChatPersonModel data) => json.encode(data.toJson());
 
 class ChatPersonModel {
+    int? responseCode;
+    bool? success;
+    List<Result>? result;
+
+    ChatPersonModel({
+        this.responseCode,
+        this.success,
+        this.result,
+    });
+
+    factory ChatPersonModel.fromJson(Map<String, dynamic> json) => ChatPersonModel(
+        responseCode: json["responseCode"],
+        success: json["success"],
+        result: json["result"] == null ? [] : List<Result>.from(json["result"]!.map((x) => Result.fromJson(x))),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "responseCode": responseCode,
+        "success": success,
+        "result": result == null ? [] : List<dynamic>.from(result!.map((x) => x.toJson())),
+    };
+}
+
+class Result {
     int? id;
     String? username;
     String? profileImagelink;
 
-    ChatPersonModel({
+    Result({
         this.id,
         this.username,
         this.profileImagelink,
     });
 
-    factory ChatPersonModel.fromJson(Map<String, dynamic> json) => ChatPersonModel(
+    factory Result.fromJson(Map<String, dynamic> json) => Result(
         id: json["_id"],
         username: json["Username"],
         profileImagelink: json["ProfileImagelink"],

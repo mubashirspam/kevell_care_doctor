@@ -1,114 +1,148 @@
 import 'dart:developer';
+import 'package:dr_kevell/core/helper/date.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/features/chat/presentation/widgets/message_widget.dart';
-import 'package:socket_io_client/socket_io_client.dart' as io;
+import '../domain/chat_service.dart';
 
 class ChatingListWidget extends StatefulWidget {
-  const ChatingListWidget({super.key});
+  final Map chatParameter;
+  const ChatingListWidget({super.key, required this.chatParameter});
 
   @override
   State<ChatingListWidget> createState() => _ChatingListWidgetState();
 }
 
 class _ChatingListWidgetState extends State<ChatingListWidget> {
-  io.Socket? socket;
-  List<String> onlineUsers = [];
-
   @override
   void initState() {
     super.initState();
 
-    // Initialize and connect to the WebSocket server
+    readChat();
+    updateMessages();
+  }
+    final TextEditingController _textEditingController = TextEditingController();
+  final List<MessageWidget> _messages = [];
 
-    // Signalling.instance.init(
-    //   websocketUrl: 'https://9cc2-2409-4072-8d9e-ab69-c99f-541-c1ed-399a.ngrok-free.app/chat/api',
-    //   selfCallerID: 'doctorID.toString()',
-    // );
+  void readChat() {
+    // ChatService.instance.socket!.emit("offline-messages-receive", widget.chatParameter['to']);
 
-     socket = io.io('https://9cc2-2409-4072-8d9e-ab69-c99f-541-c1ed-399a.ngrok-free.app/chat/api');
-
-    // Emit a "new-user-add" event when the component mounts
-    // socket?.emit("new-user-add", "1003");
-
-    // // Listen for "get-users" event and update the onlineUsers list
-    // socket!.on("get-users", (data) {
-    //   setState(() {
-    //     onlineUsers = data.cast<String>();
-    //     log("Online Users: $onlineUsers");
-    //   });
-    // });
-
-    // Listen for app lifecycle changes
-    // WidgetsBinding.instance?.addObserver(AppLifecycleObserver(this));
+    ChatService.instance.socket!.on("msg-recieve", (data) {
+      log("msg-recieved $data");
+   
+      if (mounted) {
+        log("msg-recieved $data");
+        if (data['from'] == widget.chatParameter['to']) {
+          setState(() {
+            addReceivedMessage(data);
+          });
+        }
+      }
+    });
   }
 
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed) {
-      // App has come to the foreground
-      socket!.emit("new-user-add", "1003");
-      socket!.on("get-users", (data) {
-        setState(() {
-          onlineUsers = data.cast<String>();
-          log("Online Users (Resumed): $onlineUsers");
-        });
-      });
-    } else if (state == AppLifecycleState.inactive || state == AppLifecycleState.paused) {
-      // App is going to the background
-      socket!.emit("offline");
-      log("App is going to the background");
+  void sendMessage(String chat) {
+    ChatService.instance.socket!.emit('send-msg', {
+      "from": widget.chatParameter['from'],
+      "to": widget.chatParameter['to'],
+      "msg": chat,
+      "name": "Mubashir"
+    });
+  }
+
+
+  void updateMessages() {
+    _messages.clear();
+
+    if (widget.chatParameter['oldMessage'] != null) {
+      for (var message in widget.chatParameter['oldMessage']) {
+        String msg = message["msg"];
+        String time = extractTime(DateTime.parse(message["time"]));
+
+        _messages.add(MessageWidget(
+          isReciving: true,
+          msg: msg,
+          time: time,
+        ));
+      }
     }
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-
-    // Disconnect the socket when the component is disposed
-    socket!.disconnect();
-    socket!.close();
-    log("Socket disconnected and closed");
-    
-    // Remove the observer
-    // WidgetsBinding.instance.removeObserver(this);
+  void addReceivedMessage(Map<String, dynamic> message) {
+    String msg = message["msg"];
+    String time = extractTime(DateTime.parse(message["time"]));
+    log(msg);
+    _messages.add(MessageWidget(
+      isReciving: true,
+      msg: msg,
+      time: time,
+    ));
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: const EdgeInsets.all(20).copyWith(bottom: 0),
-      itemBuilder: (context, index) => Padding(
-        padding: const EdgeInsets.only(bottom: 15),
-        child: MessageWidget(
-          isReciving: index.isEven ? true : false,
+    return Column(
+      children: [
+        Expanded(
+          child: SizedBox(
+            child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                padding: const EdgeInsets.all(20).copyWith(top: 0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: _messages,
+                )),
+          ),
+        ),
+        const Divider(height: 2.0),
+        Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).cardColor,
+          ),
+          child: _buildTextComposer(),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTextComposer() {
+    return IconTheme(
+      data: IconThemeData(color: Theme.of(context).primaryColor),
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Row(
+          children: <Widget>[
+            Flexible(
+              child: TextField(
+                controller: _textEditingController,
+                onSubmitted: _handleSubmitted,
+                decoration:
+                    const InputDecoration.collapsed(hintText: 'Send a message'),
+              ),
+            ),
+            IconButton(
+              icon: const Icon(Icons.send),
+              onPressed: () => _handleSubmitted(_textEditingController.text),
+            ),
+          ],
         ),
       ),
     );
   }
-}
 
-
-class Signalling {
-  // instance of Socket
-  io.Socket? socket;
-
-  Signalling._();
-  static final instance = Signalling._();
-
-  init({required String websocketUrl, required String selfCallerID}) {
-    // init Socket
-    socket = io.io(websocketUrl);
-
-    // listen onConnect event
-    socket!.onConnect((data) {
-      log("Socket connected !!");
-    });
-
-    // listen onConnectError event
-    socket!.onConnectError((data) {
-      log("Connect Error $data");
-    });
-
-    // connect socket
-    socket!.connect();
+  void _handleSubmitted(String text) {
+    if (text.isNotEmpty) {
+      _textEditingController.clear();
+      setState(() {
+        sendMessage(text);
+        _messages.insert(
+            _messages.length,
+            MessageWidget(
+              isReciving: false,
+              msg: text,
+              time: '22:01',
+            ));
+      });
+    }
   }
 }

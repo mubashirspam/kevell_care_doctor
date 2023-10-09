@@ -40,7 +40,7 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
           isCreated: false,
           isUpdated: false,
           isError: false,
-          hasData: false,
+        
         ),
       );
 

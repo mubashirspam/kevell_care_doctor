@@ -38,7 +38,7 @@ class WaitingPatient extends StatelessWidget {
         return previous != current;
       },
       builder: (context, state) {
-        if (state.isWaitingPatientLoading) {
+        if (state.isWaitingPatientLoading && !state.hasWaitingPatientData) {
           return MultiSliver(children: const [
             Center(
               child: LoadingWIdget(),
@@ -78,7 +78,8 @@ class WaitingPatient extends StatelessWidget {
               delegate: SliverChildBuilderDelegate(
                 childCount: state.waitingPatientResult!.data!.totalCount,
                 (context, index) => WaitingPatientCard(
-                data: state.waitingPatientResult!.data!.waitingPatients![index],
+                  data:
+                      state.waitingPatientResult!.data!.waitingPatients![index],
                 ),
               ),
             );

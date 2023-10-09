@@ -57,6 +57,7 @@ class _DashboardState extends State<Dashboard> {
       valueListenable: selectedIndexNorifier,
       builder: (context, index, _) {
         return Scaffold(
+                //  key: scaffoldMessengerKey,
           appBar: _pagesOptions.elementAt(index)["appbar"],
           body: _pagesOptions.elementAt(index)["page"],
           floatingActionButton: _pagesOptions.elementAt(index)["flotingButton"],

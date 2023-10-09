@@ -21,7 +21,7 @@ class TodayeSchedule extends StatelessWidget {
       builder: (context, state) {
         return BlocBuilder<ScheduleBloc, ScheduleState>(
           builder: (context, state) {
-            if (state.isLoading) {
+            if (state.isLoading && !state.hasData) {
               return const LoadingWIdget();
             }
             if (state.isError) {

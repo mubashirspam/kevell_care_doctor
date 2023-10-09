@@ -17,7 +17,6 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         state.copyWith(
           isLoading: true,
           isError: false,
-          hasData: false,
         ),
       );
 

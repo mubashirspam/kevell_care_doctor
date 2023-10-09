@@ -23,26 +23,14 @@ class FetchChatProfileRepoImpliment implements FetchChatProfileRepository {
       final response =
           await dio.get(ApiEndPoints.fetchChatProfile, queryParameters: params);
 
-      // if (response.statusCode == 200 || response.statusCode == 201) {
-      //   // final result = ChatPersonModel.fromJson(response.data);
-      //   log(response.data.toJson().toString());
-
-      //   return Right(result);
-      // } else if (response.statusCode == 400 || response.statusCode == 401) {
-      //   final result = FailureModel.fromJson(response.data);
-      //   return Left(
-      //       MainFailure.unauthorized(message: result.message ?? "Error"));
-      // } else {
-      //   return const Left(MainFailure.serverFailure());
-      // }
-      if (response.statusCode == 200) {
-        // final result = ChatPersonModel.fromJson(response.data);
+      if (response.statusCode == 200 || response.statusCode == 200) {
+        final result = ChatPersonModel.fromJson(response.data);
         log('Response Data: $response');
-        return Right(ChatPersonModel());
+        return Right(result);
       } else {
         // Handle other status codes here
         log('Request failed with status: ${response.statusCode}');
-        return Right(ChatPersonModel());
+        return Left(MainFailure.unauthorized(message: "Error"));
       }
     } catch (e) {
       if (e is DioException) {

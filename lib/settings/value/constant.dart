@@ -2,7 +2,7 @@
 
 const v1 = "v1";
 
-const secureStoreKey = 'token@key';
+const secureStoreKey = 'doctortoken@key';
 
 const mailsecureStoreKey = 'mail@key';
 const fcmStoreKey = 'fcmStoreKey@key';
