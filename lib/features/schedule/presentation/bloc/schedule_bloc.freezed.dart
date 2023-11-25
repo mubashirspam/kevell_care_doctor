@@ -112,25 +112,25 @@ class _$ScheduleEventCopyWithImpl<$Res, $Val extends ScheduleEvent>
 }
 
 /// @nodoc
-abstract class _$$_GetScheduleCopyWith<$Res> {
-  factory _$$_GetScheduleCopyWith(
-          _$_GetSchedule value, $Res Function(_$_GetSchedule) then) =
-      __$$_GetScheduleCopyWithImpl<$Res>;
+abstract class _$$GetScheduleImplCopyWith<$Res> {
+  factory _$$GetScheduleImplCopyWith(
+          _$GetScheduleImpl value, $Res Function(_$GetScheduleImpl) then) =
+      __$$GetScheduleImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_GetScheduleCopyWithImpl<$Res>
-    extends _$ScheduleEventCopyWithImpl<$Res, _$_GetSchedule>
-    implements _$$_GetScheduleCopyWith<$Res> {
-  __$$_GetScheduleCopyWithImpl(
-      _$_GetSchedule _value, $Res Function(_$_GetSchedule) _then)
+class __$$GetScheduleImplCopyWithImpl<$Res>
+    extends _$ScheduleEventCopyWithImpl<$Res, _$GetScheduleImpl>
+    implements _$$GetScheduleImplCopyWith<$Res> {
+  __$$GetScheduleImplCopyWithImpl(
+      _$GetScheduleImpl _value, $Res Function(_$GetScheduleImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_GetSchedule implements _GetSchedule {
-  const _$_GetSchedule();
+class _$GetScheduleImpl implements _GetSchedule {
+  const _$GetScheduleImpl();
 
   @override
   String toString() {
@@ -140,7 +140,7 @@ class _$_GetSchedule implements _GetSchedule {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_GetSchedule);
+        (other.runtimeType == runtimeType && other is _$GetScheduleImpl);
   }
 
   @override
@@ -247,24 +247,24 @@ class _$_GetSchedule implements _GetSchedule {
 }
 
 abstract class _GetSchedule implements ScheduleEvent {
-  const factory _GetSchedule() = _$_GetSchedule;
+  const factory _GetSchedule() = _$GetScheduleImpl;
 }
 
 /// @nodoc
-abstract class _$$_CreateScheduleCopyWith<$Res> {
-  factory _$$_CreateScheduleCopyWith(
-          _$_CreateSchedule value, $Res Function(_$_CreateSchedule) then) =
-      __$$_CreateScheduleCopyWithImpl<$Res>;
+abstract class _$$CreateScheduleImplCopyWith<$Res> {
+  factory _$$CreateScheduleImplCopyWith(_$CreateScheduleImpl value,
+          $Res Function(_$CreateScheduleImpl) then) =
+      __$$CreateScheduleImplCopyWithImpl<$Res>;
   @useResult
   $Res call({SchedulePayload schedulePayload});
 }
 
 /// @nodoc
-class __$$_CreateScheduleCopyWithImpl<$Res>
-    extends _$ScheduleEventCopyWithImpl<$Res, _$_CreateSchedule>
-    implements _$$_CreateScheduleCopyWith<$Res> {
-  __$$_CreateScheduleCopyWithImpl(
-      _$_CreateSchedule _value, $Res Function(_$_CreateSchedule) _then)
+class __$$CreateScheduleImplCopyWithImpl<$Res>
+    extends _$ScheduleEventCopyWithImpl<$Res, _$CreateScheduleImpl>
+    implements _$$CreateScheduleImplCopyWith<$Res> {
+  __$$CreateScheduleImplCopyWithImpl(
+      _$CreateScheduleImpl _value, $Res Function(_$CreateScheduleImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -272,7 +272,7 @@ class __$$_CreateScheduleCopyWithImpl<$Res>
   $Res call({
     Object? schedulePayload = null,
   }) {
-    return _then(_$_CreateSchedule(
+    return _then(_$CreateScheduleImpl(
       schedulePayload: null == schedulePayload
           ? _value.schedulePayload
           : schedulePayload // ignore: cast_nullable_to_non_nullable
@@ -283,8 +283,8 @@ class __$$_CreateScheduleCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CreateSchedule implements _CreateSchedule {
-  const _$_CreateSchedule({required this.schedulePayload});
+class _$CreateScheduleImpl implements _CreateSchedule {
+  const _$CreateScheduleImpl({required this.schedulePayload});
 
   @override
   final SchedulePayload schedulePayload;
@@ -298,7 +298,7 @@ class _$_CreateSchedule implements _CreateSchedule {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CreateSchedule &&
+            other is _$CreateScheduleImpl &&
             (identical(other.schedulePayload, schedulePayload) ||
                 other.schedulePayload == schedulePayload));
   }
@@ -309,8 +309,9 @@ class _$_CreateSchedule implements _CreateSchedule {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CreateScheduleCopyWith<_$_CreateSchedule> get copyWith =>
-      __$$_CreateScheduleCopyWithImpl<_$_CreateSchedule>(this, _$identity);
+  _$$CreateScheduleImplCopyWith<_$CreateScheduleImpl> get copyWith =>
+      __$$CreateScheduleImplCopyWithImpl<_$CreateScheduleImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -414,29 +415,29 @@ class _$_CreateSchedule implements _CreateSchedule {
 
 abstract class _CreateSchedule implements ScheduleEvent {
   const factory _CreateSchedule(
-      {required final SchedulePayload schedulePayload}) = _$_CreateSchedule;
+      {required final SchedulePayload schedulePayload}) = _$CreateScheduleImpl;
 
   SchedulePayload get schedulePayload;
   @JsonKey(ignore: true)
-  _$$_CreateScheduleCopyWith<_$_CreateSchedule> get copyWith =>
+  _$$CreateScheduleImplCopyWith<_$CreateScheduleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_UpdateScheduleCopyWith<$Res> {
-  factory _$$_UpdateScheduleCopyWith(
-          _$_UpdateSchedule value, $Res Function(_$_UpdateSchedule) then) =
-      __$$_UpdateScheduleCopyWithImpl<$Res>;
+abstract class _$$UpdateScheduleImplCopyWith<$Res> {
+  factory _$$UpdateScheduleImplCopyWith(_$UpdateScheduleImpl value,
+          $Res Function(_$UpdateScheduleImpl) then) =
+      __$$UpdateScheduleImplCopyWithImpl<$Res>;
   @useResult
   $Res call({UpdateSchedulePayload schedulePayload});
 }
 
 /// @nodoc
-class __$$_UpdateScheduleCopyWithImpl<$Res>
-    extends _$ScheduleEventCopyWithImpl<$Res, _$_UpdateSchedule>
-    implements _$$_UpdateScheduleCopyWith<$Res> {
-  __$$_UpdateScheduleCopyWithImpl(
-      _$_UpdateSchedule _value, $Res Function(_$_UpdateSchedule) _then)
+class __$$UpdateScheduleImplCopyWithImpl<$Res>
+    extends _$ScheduleEventCopyWithImpl<$Res, _$UpdateScheduleImpl>
+    implements _$$UpdateScheduleImplCopyWith<$Res> {
+  __$$UpdateScheduleImplCopyWithImpl(
+      _$UpdateScheduleImpl _value, $Res Function(_$UpdateScheduleImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -444,7 +445,7 @@ class __$$_UpdateScheduleCopyWithImpl<$Res>
   $Res call({
     Object? schedulePayload = null,
   }) {
-    return _then(_$_UpdateSchedule(
+    return _then(_$UpdateScheduleImpl(
       schedulePayload: null == schedulePayload
           ? _value.schedulePayload
           : schedulePayload // ignore: cast_nullable_to_non_nullable
@@ -455,8 +456,8 @@ class __$$_UpdateScheduleCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UpdateSchedule implements _UpdateSchedule {
-  const _$_UpdateSchedule({required this.schedulePayload});
+class _$UpdateScheduleImpl implements _UpdateSchedule {
+  const _$UpdateScheduleImpl({required this.schedulePayload});
 
   @override
   final UpdateSchedulePayload schedulePayload;
@@ -470,7 +471,7 @@ class _$_UpdateSchedule implements _UpdateSchedule {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateSchedule &&
+            other is _$UpdateScheduleImpl &&
             (identical(other.schedulePayload, schedulePayload) ||
                 other.schedulePayload == schedulePayload));
   }
@@ -481,8 +482,9 @@ class _$_UpdateSchedule implements _UpdateSchedule {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UpdateScheduleCopyWith<_$_UpdateSchedule> get copyWith =>
-      __$$_UpdateScheduleCopyWithImpl<_$_UpdateSchedule>(this, _$identity);
+  _$$UpdateScheduleImplCopyWith<_$UpdateScheduleImpl> get copyWith =>
+      __$$UpdateScheduleImplCopyWithImpl<_$UpdateScheduleImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -587,34 +589,34 @@ class _$_UpdateSchedule implements _UpdateSchedule {
 abstract class _UpdateSchedule implements ScheduleEvent {
   const factory _UpdateSchedule(
           {required final UpdateSchedulePayload schedulePayload}) =
-      _$_UpdateSchedule;
+      _$UpdateScheduleImpl;
 
   UpdateSchedulePayload get schedulePayload;
   @JsonKey(ignore: true)
-  _$$_UpdateScheduleCopyWith<_$_UpdateSchedule> get copyWith =>
+  _$$UpdateScheduleImplCopyWith<_$UpdateScheduleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_IncrementCopyWith<$Res> {
-  factory _$$_IncrementCopyWith(
-          _$_Increment value, $Res Function(_$_Increment) then) =
-      __$$_IncrementCopyWithImpl<$Res>;
+abstract class _$$IncrementImplCopyWith<$Res> {
+  factory _$$IncrementImplCopyWith(
+          _$IncrementImpl value, $Res Function(_$IncrementImpl) then) =
+      __$$IncrementImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_IncrementCopyWithImpl<$Res>
-    extends _$ScheduleEventCopyWithImpl<$Res, _$_Increment>
-    implements _$$_IncrementCopyWith<$Res> {
-  __$$_IncrementCopyWithImpl(
-      _$_Increment _value, $Res Function(_$_Increment) _then)
+class __$$IncrementImplCopyWithImpl<$Res>
+    extends _$ScheduleEventCopyWithImpl<$Res, _$IncrementImpl>
+    implements _$$IncrementImplCopyWith<$Res> {
+  __$$IncrementImplCopyWithImpl(
+      _$IncrementImpl _value, $Res Function(_$IncrementImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Increment implements _Increment {
-  const _$_Increment();
+class _$IncrementImpl implements _Increment {
+  const _$IncrementImpl();
 
   @override
   String toString() {
@@ -624,7 +626,7 @@ class _$_Increment implements _Increment {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Increment);
+        (other.runtimeType == runtimeType && other is _$IncrementImpl);
   }
 
   @override
@@ -731,29 +733,29 @@ class _$_Increment implements _Increment {
 }
 
 abstract class _Increment implements ScheduleEvent {
-  const factory _Increment() = _$_Increment;
+  const factory _Increment() = _$IncrementImpl;
 }
 
 /// @nodoc
-abstract class _$$_DecrementCopyWith<$Res> {
-  factory _$$_DecrementCopyWith(
-          _$_Decrement value, $Res Function(_$_Decrement) then) =
-      __$$_DecrementCopyWithImpl<$Res>;
+abstract class _$$DecrementImplCopyWith<$Res> {
+  factory _$$DecrementImplCopyWith(
+          _$DecrementImpl value, $Res Function(_$DecrementImpl) then) =
+      __$$DecrementImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_DecrementCopyWithImpl<$Res>
-    extends _$ScheduleEventCopyWithImpl<$Res, _$_Decrement>
-    implements _$$_DecrementCopyWith<$Res> {
-  __$$_DecrementCopyWithImpl(
-      _$_Decrement _value, $Res Function(_$_Decrement) _then)
+class __$$DecrementImplCopyWithImpl<$Res>
+    extends _$ScheduleEventCopyWithImpl<$Res, _$DecrementImpl>
+    implements _$$DecrementImplCopyWith<$Res> {
+  __$$DecrementImplCopyWithImpl(
+      _$DecrementImpl _value, $Res Function(_$DecrementImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Decrement implements _Decrement {
-  const _$_Decrement();
+class _$DecrementImpl implements _Decrement {
+  const _$DecrementImpl();
 
   @override
   String toString() {
@@ -763,7 +765,7 @@ class _$_Decrement implements _Decrement {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Decrement);
+        (other.runtimeType == runtimeType && other is _$DecrementImpl);
   }
 
   @override
@@ -870,24 +872,24 @@ class _$_Decrement implements _Decrement {
 }
 
 abstract class _Decrement implements ScheduleEvent {
-  const factory _Decrement() = _$_Decrement;
+  const factory _Decrement() = _$DecrementImpl;
 }
 
 /// @nodoc
-abstract class _$$_PickDateCopyWith<$Res> {
-  factory _$$_PickDateCopyWith(
-          _$_PickDate value, $Res Function(_$_PickDate) then) =
-      __$$_PickDateCopyWithImpl<$Res>;
+abstract class _$$PickDateImplCopyWith<$Res> {
+  factory _$$PickDateImplCopyWith(
+          _$PickDateImpl value, $Res Function(_$PickDateImpl) then) =
+      __$$PickDateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DateTime startDate, DateTime endDate});
 }
 
 /// @nodoc
-class __$$_PickDateCopyWithImpl<$Res>
-    extends _$ScheduleEventCopyWithImpl<$Res, _$_PickDate>
-    implements _$$_PickDateCopyWith<$Res> {
-  __$$_PickDateCopyWithImpl(
-      _$_PickDate _value, $Res Function(_$_PickDate) _then)
+class __$$PickDateImplCopyWithImpl<$Res>
+    extends _$ScheduleEventCopyWithImpl<$Res, _$PickDateImpl>
+    implements _$$PickDateImplCopyWith<$Res> {
+  __$$PickDateImplCopyWithImpl(
+      _$PickDateImpl _value, $Res Function(_$PickDateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -896,7 +898,7 @@ class __$$_PickDateCopyWithImpl<$Res>
     Object? startDate = null,
     Object? endDate = null,
   }) {
-    return _then(_$_PickDate(
+    return _then(_$PickDateImpl(
       startDate: null == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
@@ -911,8 +913,8 @@ class __$$_PickDateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PickDate implements _PickDate {
-  const _$_PickDate({required this.startDate, required this.endDate});
+class _$PickDateImpl implements _PickDate {
+  const _$PickDateImpl({required this.startDate, required this.endDate});
 
   @override
   final DateTime startDate;
@@ -928,7 +930,7 @@ class _$_PickDate implements _PickDate {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PickDate &&
+            other is _$PickDateImpl &&
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
             (identical(other.endDate, endDate) || other.endDate == endDate));
@@ -940,8 +942,8 @@ class _$_PickDate implements _PickDate {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PickDateCopyWith<_$_PickDate> get copyWith =>
-      __$$_PickDateCopyWithImpl<_$_PickDate>(this, _$identity);
+  _$$PickDateImplCopyWith<_$PickDateImpl> get copyWith =>
+      __$$PickDateImplCopyWithImpl<_$PickDateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1046,30 +1048,30 @@ class _$_PickDate implements _PickDate {
 abstract class _PickDate implements ScheduleEvent {
   const factory _PickDate(
       {required final DateTime startDate,
-      required final DateTime endDate}) = _$_PickDate;
+      required final DateTime endDate}) = _$PickDateImpl;
 
   DateTime get startDate;
   DateTime get endDate;
   @JsonKey(ignore: true)
-  _$$_PickDateCopyWith<_$_PickDate> get copyWith =>
+  _$$PickDateImplCopyWith<_$PickDateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_PickTimeCopyWith<$Res> {
-  factory _$$_PickTimeCopyWith(
-          _$_PickTime value, $Res Function(_$_PickTime) then) =
-      __$$_PickTimeCopyWithImpl<$Res>;
+abstract class _$$PickTimeImplCopyWith<$Res> {
+  factory _$$PickTimeImplCopyWith(
+          _$PickTimeImpl value, $Res Function(_$PickTimeImpl) then) =
+      __$$PickTimeImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DateTime startTime, DateTime endTime});
 }
 
 /// @nodoc
-class __$$_PickTimeCopyWithImpl<$Res>
-    extends _$ScheduleEventCopyWithImpl<$Res, _$_PickTime>
-    implements _$$_PickTimeCopyWith<$Res> {
-  __$$_PickTimeCopyWithImpl(
-      _$_PickTime _value, $Res Function(_$_PickTime) _then)
+class __$$PickTimeImplCopyWithImpl<$Res>
+    extends _$ScheduleEventCopyWithImpl<$Res, _$PickTimeImpl>
+    implements _$$PickTimeImplCopyWith<$Res> {
+  __$$PickTimeImplCopyWithImpl(
+      _$PickTimeImpl _value, $Res Function(_$PickTimeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1078,7 +1080,7 @@ class __$$_PickTimeCopyWithImpl<$Res>
     Object? startTime = null,
     Object? endTime = null,
   }) {
-    return _then(_$_PickTime(
+    return _then(_$PickTimeImpl(
       startTime: null == startTime
           ? _value.startTime
           : startTime // ignore: cast_nullable_to_non_nullable
@@ -1093,8 +1095,8 @@ class __$$_PickTimeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PickTime implements _PickTime {
-  const _$_PickTime({required this.startTime, required this.endTime});
+class _$PickTimeImpl implements _PickTime {
+  const _$PickTimeImpl({required this.startTime, required this.endTime});
 
   @override
   final DateTime startTime;
@@ -1110,7 +1112,7 @@ class _$_PickTime implements _PickTime {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PickTime &&
+            other is _$PickTimeImpl &&
             (identical(other.startTime, startTime) ||
                 other.startTime == startTime) &&
             (identical(other.endTime, endTime) || other.endTime == endTime));
@@ -1122,8 +1124,8 @@ class _$_PickTime implements _PickTime {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PickTimeCopyWith<_$_PickTime> get copyWith =>
-      __$$_PickTimeCopyWithImpl<_$_PickTime>(this, _$identity);
+  _$$PickTimeImplCopyWith<_$PickTimeImpl> get copyWith =>
+      __$$PickTimeImplCopyWithImpl<_$PickTimeImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1228,30 +1230,30 @@ class _$_PickTime implements _PickTime {
 abstract class _PickTime implements ScheduleEvent {
   const factory _PickTime(
       {required final DateTime startTime,
-      required final DateTime endTime}) = _$_PickTime;
+      required final DateTime endTime}) = _$PickTimeImpl;
 
   DateTime get startTime;
   DateTime get endTime;
   @JsonKey(ignore: true)
-  _$$_PickTimeCopyWith<_$_PickTime> get copyWith =>
+  _$$PickTimeImplCopyWith<_$PickTimeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_DeleteScheduleCopyWith<$Res> {
-  factory _$$_DeleteScheduleCopyWith(
-          _$_DeleteSchedule value, $Res Function(_$_DeleteSchedule) then) =
-      __$$_DeleteScheduleCopyWithImpl<$Res>;
+abstract class _$$DeleteScheduleImplCopyWith<$Res> {
+  factory _$$DeleteScheduleImplCopyWith(_$DeleteScheduleImpl value,
+          $Res Function(_$DeleteScheduleImpl) then) =
+      __$$DeleteScheduleImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String id});
 }
 
 /// @nodoc
-class __$$_DeleteScheduleCopyWithImpl<$Res>
-    extends _$ScheduleEventCopyWithImpl<$Res, _$_DeleteSchedule>
-    implements _$$_DeleteScheduleCopyWith<$Res> {
-  __$$_DeleteScheduleCopyWithImpl(
-      _$_DeleteSchedule _value, $Res Function(_$_DeleteSchedule) _then)
+class __$$DeleteScheduleImplCopyWithImpl<$Res>
+    extends _$ScheduleEventCopyWithImpl<$Res, _$DeleteScheduleImpl>
+    implements _$$DeleteScheduleImplCopyWith<$Res> {
+  __$$DeleteScheduleImplCopyWithImpl(
+      _$DeleteScheduleImpl _value, $Res Function(_$DeleteScheduleImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1259,7 +1261,7 @@ class __$$_DeleteScheduleCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
   }) {
-    return _then(_$_DeleteSchedule(
+    return _then(_$DeleteScheduleImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1270,8 +1272,8 @@ class __$$_DeleteScheduleCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DeleteSchedule implements _DeleteSchedule {
-  const _$_DeleteSchedule({required this.id});
+class _$DeleteScheduleImpl implements _DeleteSchedule {
+  const _$DeleteScheduleImpl({required this.id});
 
   @override
   final String id;
@@ -1285,7 +1287,7 @@ class _$_DeleteSchedule implements _DeleteSchedule {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DeleteSchedule &&
+            other is _$DeleteScheduleImpl &&
             (identical(other.id, id) || other.id == id));
   }
 
@@ -1295,8 +1297,9 @@ class _$_DeleteSchedule implements _DeleteSchedule {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DeleteScheduleCopyWith<_$_DeleteSchedule> get copyWith =>
-      __$$_DeleteScheduleCopyWithImpl<_$_DeleteSchedule>(this, _$identity);
+  _$$DeleteScheduleImplCopyWith<_$DeleteScheduleImpl> get copyWith =>
+      __$$DeleteScheduleImplCopyWithImpl<_$DeleteScheduleImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1399,11 +1402,12 @@ class _$_DeleteSchedule implements _DeleteSchedule {
 }
 
 abstract class _DeleteSchedule implements ScheduleEvent {
-  const factory _DeleteSchedule({required final String id}) = _$_DeleteSchedule;
+  const factory _DeleteSchedule({required final String id}) =
+      _$DeleteScheduleImpl;
 
   String get id;
   @JsonKey(ignore: true)
-  _$$_DeleteScheduleCopyWith<_$_DeleteSchedule> get copyWith =>
+  _$$DeleteScheduleImplCopyWith<_$DeleteScheduleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1584,11 +1588,11 @@ class _$ScheduleStateCopyWithImpl<$Res, $Val extends ScheduleState>
 }
 
 /// @nodoc
-abstract class _$$_ScheduleStateCopyWith<$Res>
+abstract class _$$ScheduleStateImplCopyWith<$Res>
     implements $ScheduleStateCopyWith<$Res> {
-  factory _$$_ScheduleStateCopyWith(
-          _$_ScheduleState value, $Res Function(_$_ScheduleState) then) =
-      __$$_ScheduleStateCopyWithImpl<$Res>;
+  factory _$$ScheduleStateImplCopyWith(
+          _$ScheduleStateImpl value, $Res Function(_$ScheduleStateImpl) then) =
+      __$$ScheduleStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1615,11 +1619,11 @@ abstract class _$$_ScheduleStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ScheduleStateCopyWithImpl<$Res>
-    extends _$ScheduleStateCopyWithImpl<$Res, _$_ScheduleState>
-    implements _$$_ScheduleStateCopyWith<$Res> {
-  __$$_ScheduleStateCopyWithImpl(
-      _$_ScheduleState _value, $Res Function(_$_ScheduleState) _then)
+class __$$ScheduleStateImplCopyWithImpl<$Res>
+    extends _$ScheduleStateCopyWithImpl<$Res, _$ScheduleStateImpl>
+    implements _$$ScheduleStateImplCopyWith<$Res> {
+  __$$ScheduleStateImplCopyWithImpl(
+      _$ScheduleStateImpl _value, $Res Function(_$ScheduleStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1646,7 +1650,7 @@ class __$$_ScheduleStateCopyWithImpl<$Res>
     Object? endTime = null,
     Object? timeForSinglePatient = null,
   }) {
-    return _then(_$_ScheduleState(
+    return _then(_$ScheduleStateImpl(
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -1733,8 +1737,8 @@ class __$$_ScheduleStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ScheduleState implements _ScheduleState {
-  const _$_ScheduleState(
+class _$ScheduleStateImpl implements _ScheduleState {
+  const _$ScheduleStateImpl(
       {required this.isLoading,
       required this.isCreateLoading,
       required this.isUpdateLoading,
@@ -1806,7 +1810,7 @@ class _$_ScheduleState implements _ScheduleState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ScheduleState &&
+            other is _$ScheduleStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.isCreateLoading, isCreateLoading) ||
@@ -1872,8 +1876,8 @@ class _$_ScheduleState implements _ScheduleState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ScheduleStateCopyWith<_$_ScheduleState> get copyWith =>
-      __$$_ScheduleStateCopyWithImpl<_$_ScheduleState>(this, _$identity);
+  _$$ScheduleStateImplCopyWith<_$ScheduleStateImpl> get copyWith =>
+      __$$ScheduleStateImplCopyWithImpl<_$ScheduleStateImpl>(this, _$identity);
 }
 
 abstract class _ScheduleState implements ScheduleState {
@@ -1897,7 +1901,7 @@ abstract class _ScheduleState implements ScheduleState {
       required final DateTime endDate,
       required final DateTime startTime,
       required final DateTime endTime,
-      required final int timeForSinglePatient}) = _$_ScheduleState;
+      required final int timeForSinglePatient}) = _$ScheduleStateImpl;
 
   @override
   bool get isLoading;
@@ -1941,6 +1945,6 @@ abstract class _ScheduleState implements ScheduleState {
   int get timeForSinglePatient;
   @override
   @JsonKey(ignore: true)
-  _$$_ScheduleStateCopyWith<_$_ScheduleState> get copyWith =>
+  _$$ScheduleStateImplCopyWith<_$ScheduleStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

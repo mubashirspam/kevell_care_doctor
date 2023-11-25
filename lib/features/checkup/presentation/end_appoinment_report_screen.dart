@@ -45,7 +45,7 @@ class AppoinmentsEndReportScrenn extends StatelessWidget {
               if (state.endAppoinmentResult!.data != null) {
                 Data datas = state.endAppoinmentResult!.data!;
                 List<ECGData> ecgData = [];
-                List<int> voltageValues;
+                List<double> voltageValues;
 
                 if (datas.checkupResult!.ecg != null) {
                   String? value = datas.checkupResult!.ecg;
@@ -56,9 +56,9 @@ class AppoinmentsEndReportScrenn extends StatelessWidget {
                         .where((element) => element.isNotEmpty)
                         .map((e) {
                       try {
-                        return int.parse(e);
+                        return double.parse(e);
                       } catch (_) {
-                        return 0; // Handle non-numeric values or provide a suitable default
+                        return 0.0; // Handle non-numeric values or provide a suitable default
                       }
                     }).toList();
 
@@ -167,6 +167,12 @@ class AppoinmentsEndReportScrenn extends StatelessWidget {
                       BpCard(
                         bp: datas.checkupResult!.bp,
                         parameter: "Blood pressure",
+                      ),
+
+                      if(datas.checkupResult!.glucose != null)
+                        ResultCard(
+                        parameter: "Glucose",
+                        value: datas.checkupResult!.glucose??"",
                       ),
                     if (datas.checkupResult!.ecg != null)
                       EcgResultCard(

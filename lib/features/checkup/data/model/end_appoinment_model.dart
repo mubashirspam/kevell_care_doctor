@@ -128,6 +128,7 @@ class CheckupResult {
     String? bodyTemp;
     String? spO2;
     String? heartRate;
+    String? glucose;
     Bp? bp;
     String? ecg;
 
@@ -137,6 +138,7 @@ class CheckupResult {
         this.heartRate,
         this.bp,
         this.ecg,
+        this.glucose,
     });
 
     factory CheckupResult.fromJson(Map<String, dynamic> json) => CheckupResult(
@@ -145,6 +147,7 @@ class CheckupResult {
         heartRate: json["Heart_Rate"],
         bp: json["Bp"] == null ? null : Bp.fromJson(json["Bp"]),
         ecg: json["ECG"],
+        glucose: json["Glucose"],
     );
 
     Map<String, dynamic> toJson() => {

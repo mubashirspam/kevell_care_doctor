@@ -75,25 +75,25 @@ class _$HomeEventCopyWithImpl<$Res, $Val extends HomeEvent>
 }
 
 /// @nodoc
-abstract class _$$_GetHomeStatusCopyWith<$Res> {
-  factory _$$_GetHomeStatusCopyWith(
-          _$_GetHomeStatus value, $Res Function(_$_GetHomeStatus) then) =
-      __$$_GetHomeStatusCopyWithImpl<$Res>;
+abstract class _$$GetHomeStatusImplCopyWith<$Res> {
+  factory _$$GetHomeStatusImplCopyWith(
+          _$GetHomeStatusImpl value, $Res Function(_$GetHomeStatusImpl) then) =
+      __$$GetHomeStatusImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_GetHomeStatusCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$_GetHomeStatus>
-    implements _$$_GetHomeStatusCopyWith<$Res> {
-  __$$_GetHomeStatusCopyWithImpl(
-      _$_GetHomeStatus _value, $Res Function(_$_GetHomeStatus) _then)
+class __$$GetHomeStatusImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$GetHomeStatusImpl>
+    implements _$$GetHomeStatusImplCopyWith<$Res> {
+  __$$GetHomeStatusImplCopyWithImpl(
+      _$GetHomeStatusImpl _value, $Res Function(_$GetHomeStatusImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_GetHomeStatus implements _GetHomeStatus {
-  const _$_GetHomeStatus();
+class _$GetHomeStatusImpl implements _GetHomeStatus {
+  const _$GetHomeStatusImpl();
 
   @override
   String toString() {
@@ -103,7 +103,7 @@ class _$_GetHomeStatus implements _GetHomeStatus {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_GetHomeStatus);
+        (other.runtimeType == runtimeType && other is _$GetHomeStatusImpl);
   }
 
   @override
@@ -174,29 +174,30 @@ class _$_GetHomeStatus implements _GetHomeStatus {
 }
 
 abstract class _GetHomeStatus implements HomeEvent {
-  const factory _GetHomeStatus() = _$_GetHomeStatus;
+  const factory _GetHomeStatus() = _$GetHomeStatusImpl;
 }
 
 /// @nodoc
-abstract class _$$_GetHomeWaitingPatientCopyWith<$Res> {
-  factory _$$_GetHomeWaitingPatientCopyWith(_$_GetHomeWaitingPatient value,
-          $Res Function(_$_GetHomeWaitingPatient) then) =
-      __$$_GetHomeWaitingPatientCopyWithImpl<$Res>;
+abstract class _$$GetHomeWaitingPatientImplCopyWith<$Res> {
+  factory _$$GetHomeWaitingPatientImplCopyWith(
+          _$GetHomeWaitingPatientImpl value,
+          $Res Function(_$GetHomeWaitingPatientImpl) then) =
+      __$$GetHomeWaitingPatientImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_GetHomeWaitingPatientCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$_GetHomeWaitingPatient>
-    implements _$$_GetHomeWaitingPatientCopyWith<$Res> {
-  __$$_GetHomeWaitingPatientCopyWithImpl(_$_GetHomeWaitingPatient _value,
-      $Res Function(_$_GetHomeWaitingPatient) _then)
+class __$$GetHomeWaitingPatientImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$GetHomeWaitingPatientImpl>
+    implements _$$GetHomeWaitingPatientImplCopyWith<$Res> {
+  __$$GetHomeWaitingPatientImplCopyWithImpl(_$GetHomeWaitingPatientImpl _value,
+      $Res Function(_$GetHomeWaitingPatientImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_GetHomeWaitingPatient implements _GetHomeWaitingPatient {
-  const _$_GetHomeWaitingPatient();
+class _$GetHomeWaitingPatientImpl implements _GetHomeWaitingPatient {
+  const _$GetHomeWaitingPatientImpl();
 
   @override
   String toString() {
@@ -206,7 +207,8 @@ class _$_GetHomeWaitingPatient implements _GetHomeWaitingPatient {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_GetHomeWaitingPatient);
+        (other.runtimeType == runtimeType &&
+            other is _$GetHomeWaitingPatientImpl);
   }
 
   @override
@@ -277,7 +279,7 @@ class _$_GetHomeWaitingPatient implements _GetHomeWaitingPatient {
 }
 
 abstract class _GetHomeWaitingPatient implements HomeEvent {
-  const factory _GetHomeWaitingPatient() = _$_GetHomeWaitingPatient;
+  const factory _GetHomeWaitingPatient() = _$GetHomeWaitingPatientImpl;
 }
 
 /// @nodoc
@@ -389,10 +391,11 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
 }
 
 /// @nodoc
-abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
-  factory _$$_HomeStateCopyWith(
-          _$_HomeState value, $Res Function(_$_HomeState) then) =
-      __$$_HomeStateCopyWithImpl<$Res>;
+abstract class _$$HomeStateImplCopyWith<$Res>
+    implements $HomeStateCopyWith<$Res> {
+  factory _$$HomeStateImplCopyWith(
+          _$HomeStateImpl value, $Res Function(_$HomeStateImpl) then) =
+      __$$HomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -410,11 +413,11 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_HomeStateCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$_HomeState>
-    implements _$$_HomeStateCopyWith<$Res> {
-  __$$_HomeStateCopyWithImpl(
-      _$_HomeState _value, $Res Function(_$_HomeState) _then)
+class __$$HomeStateImplCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res, _$HomeStateImpl>
+    implements _$$HomeStateImplCopyWith<$Res> {
+  __$$HomeStateImplCopyWithImpl(
+      _$HomeStateImpl _value, $Res Function(_$HomeStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -431,7 +434,7 @@ class __$$_HomeStateCopyWithImpl<$Res>
     Object? waitingPatientResult = freezed,
     Object? failureOrSuccessOption = null,
   }) {
-    return _then(_$_HomeState(
+    return _then(_$HomeStateImpl(
       isStatusLoading: null == isStatusLoading
           ? _value.isStatusLoading
           : isStatusLoading // ignore: cast_nullable_to_non_nullable
@@ -478,8 +481,8 @@ class __$$_HomeStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HomeState implements _HomeState {
-  const _$_HomeState(
+class _$HomeStateImpl implements _HomeState {
+  const _$HomeStateImpl(
       {required this.isStatusLoading,
       required this.hasStatusData,
       required this.hasWaitingPatientData,
@@ -522,7 +525,7 @@ class _$_HomeState implements _HomeState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HomeState &&
+            other is _$HomeStateImpl &&
             (identical(other.isStatusLoading, isStatusLoading) ||
                 other.isStatusLoading == isStatusLoading) &&
             (identical(other.hasStatusData, hasStatusData) ||
@@ -561,8 +564,8 @@ class _$_HomeState implements _HomeState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>
-      __$$_HomeStateCopyWithImpl<_$_HomeState>(this, _$identity);
+  _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
+      __$$HomeStateImplCopyWithImpl<_$HomeStateImpl>(this, _$identity);
 }
 
 abstract class _HomeState implements HomeState {
@@ -577,7 +580,7 @@ abstract class _HomeState implements HomeState {
       final HomeStatusModel? statusResult,
       final HomeWaitingPatientModel? waitingPatientResult,
       required final Option<Either<MainFailure, HomeWaitingPatientModel>>
-          failureOrSuccessOption}) = _$_HomeState;
+          failureOrSuccessOption}) = _$HomeStateImpl;
 
   @override
   bool get isStatusLoading;
@@ -602,6 +605,6 @@ abstract class _HomeState implements HomeState {
       get failureOrSuccessOption;
   @override
   @JsonKey(ignore: true)
-  _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>
+  _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

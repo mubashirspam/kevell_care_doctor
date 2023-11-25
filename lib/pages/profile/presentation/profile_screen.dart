@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/features/login/presentation/logout.dart';
@@ -7,7 +9,7 @@ import 'package:dr_kevell/features/profile/presentation/faq.dart';
 import 'package:dr_kevell/features/profile/presentation/notification.dart';
 import 'package:dr_kevell/features/profile/presentation/settings.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../settings/value/constant.dart';
+
 import '../../../features/profile/presentation/bloc/profile_bloc.dart';
 import '../../../features/profile/presentation/my_profile.dart';
 import '../../../features/profile/presentation/widgets/profile_name_card.dart';
@@ -28,6 +30,7 @@ class ProfileScreen extends StatelessWidget {
       FAQ(),
       About(),
       DarkMode(),
+      Logout()
     ];
     return SizedBox(
       width: double.maxFinite,
@@ -46,16 +49,17 @@ class ProfileScreen extends StatelessWidget {
                   );
                 }
                 if (state.hasData) {
+                  log(state.result!.data!.profileImagelink.toString());
                   return ProfileNameCard(
                     email: state.result!.data!.email ?? "",
-                    imageUrl: state.result!.data!.profileImagelink!,
+                    imageUrl: state.result!.data!.profileImagelink??"",
                     name: state.result!.data!.name ?? "No Name",
                   );
                 }
 
                 return const ProfileNameCard(
                   email: "johndoe@gmail.com",
-                  imageUrl: imageUrlForDummy,
+                  imageUrl: "imageUrlForDummy",
                   name: "Johndoe",
                 );
               },
@@ -64,14 +68,12 @@ class ProfileScreen extends StatelessWidget {
             Expanded(
               child: SizedBox(
                 child: Column(
-                  children: List.generate(
-                    list.length,
-                    (index) => list[index],
-                  ),
-                ),
+                    children: List.generate(
+                  list.length,
+                  (index) => list[index],
+                )),
               ),
             ),
-            const Logout()
           ],
         ),
       ),

@@ -52,7 +52,7 @@ class HistoryAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: context.theme.primary,
       centerTitle: false,
       title: Text(
-        "Paitent History",
+        "Patient History",
         style: Theme.of(context).textTheme.headlineLarge,
       ),
       actions: [

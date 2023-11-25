@@ -1,18 +1,22 @@
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:flutter/material.dart';
 
+import '../../widgets/avatar/active_avatar.dart';
+
 class JoinOrCallWidget extends StatelessWidget {
   final dynamic incomingSDPOffer;
   final VoidCallback joinCall;
   final VoidCallback answerCall;
   final VoidCallback makeCall;
   final VoidCallback cutCall;
+  final String imageUrl;
   const JoinOrCallWidget(
       {super.key,
       required this.answerCall,
       this.incomingSDPOffer,
       required this.joinCall,
       required this.makeCall,
+      required this.imageUrl,
       required this.cutCall});
 
   @override
@@ -56,9 +60,13 @@ class JoinOrCallWidget extends StatelessWidget {
             )
           : Row(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                ActiveAvatar(
+                  isActive: true,
+                  imageUrl: imageUrl,
+                ),
+                const Spacer(),
                 Container(
                   padding: const EdgeInsets.all(17),
                   margin: const EdgeInsets.only(right: 15),

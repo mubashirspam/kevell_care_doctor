@@ -81,24 +81,25 @@ class _$InitializeEventCopyWithImpl<$Res, $Val extends InitializeEvent>
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$InitializeEventCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$InitializeEventCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl();
 
   @override
   String toString() {
@@ -108,7 +109,7 @@ class _$_Initial implements _Initial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
   }
 
   @override
@@ -184,24 +185,24 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements InitializeEvent {
-  const factory _Initial() = _$_Initial;
+  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$$_ContectionChangedCopyWith<$Res> {
-  factory _$$_ContectionChangedCopyWith(_$_ContectionChanged value,
-          $Res Function(_$_ContectionChanged) then) =
-      __$$_ContectionChangedCopyWithImpl<$Res>;
+abstract class _$$ContectionChangedImplCopyWith<$Res> {
+  factory _$$ContectionChangedImplCopyWith(_$ContectionChangedImpl value,
+          $Res Function(_$ContectionChangedImpl) then) =
+      __$$ContectionChangedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({bool connectionstatus});
 }
 
 /// @nodoc
-class __$$_ContectionChangedCopyWithImpl<$Res>
-    extends _$InitializeEventCopyWithImpl<$Res, _$_ContectionChanged>
-    implements _$$_ContectionChangedCopyWith<$Res> {
-  __$$_ContectionChangedCopyWithImpl(
-      _$_ContectionChanged _value, $Res Function(_$_ContectionChanged) _then)
+class __$$ContectionChangedImplCopyWithImpl<$Res>
+    extends _$InitializeEventCopyWithImpl<$Res, _$ContectionChangedImpl>
+    implements _$$ContectionChangedImplCopyWith<$Res> {
+  __$$ContectionChangedImplCopyWithImpl(_$ContectionChangedImpl _value,
+      $Res Function(_$ContectionChangedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -209,7 +210,7 @@ class __$$_ContectionChangedCopyWithImpl<$Res>
   $Res call({
     Object? connectionstatus = null,
   }) {
-    return _then(_$_ContectionChanged(
+    return _then(_$ContectionChangedImpl(
       connectionstatus: null == connectionstatus
           ? _value.connectionstatus
           : connectionstatus // ignore: cast_nullable_to_non_nullable
@@ -220,8 +221,8 @@ class __$$_ContectionChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ContectionChanged implements _ContectionChanged {
-  const _$_ContectionChanged({required this.connectionstatus});
+class _$ContectionChangedImpl implements _ContectionChanged {
+  const _$ContectionChangedImpl({required this.connectionstatus});
 
   @override
   final bool connectionstatus;
@@ -235,7 +236,7 @@ class _$_ContectionChanged implements _ContectionChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ContectionChanged &&
+            other is _$ContectionChangedImpl &&
             (identical(other.connectionstatus, connectionstatus) ||
                 other.connectionstatus == connectionstatus));
   }
@@ -246,8 +247,8 @@ class _$_ContectionChanged implements _ContectionChanged {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ContectionChangedCopyWith<_$_ContectionChanged> get copyWith =>
-      __$$_ContectionChangedCopyWithImpl<_$_ContectionChanged>(
+  _$$ContectionChangedImplCopyWith<_$ContectionChangedImpl> get copyWith =>
+      __$$ContectionChangedImplCopyWithImpl<_$ContectionChangedImpl>(
           this, _$identity);
 
   @override
@@ -321,34 +322,34 @@ class _$_ContectionChanged implements _ContectionChanged {
 
 abstract class _ContectionChanged implements InitializeEvent {
   const factory _ContectionChanged({required final bool connectionstatus}) =
-      _$_ContectionChanged;
+      _$ContectionChangedImpl;
 
   bool get connectionstatus;
   @JsonKey(ignore: true)
-  _$$_ContectionChangedCopyWith<_$_ContectionChanged> get copyWith =>
+  _$$ContectionChangedImplCopyWith<_$ContectionChangedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ConnectionCheckCopyWith<$Res> {
-  factory _$$_ConnectionCheckCopyWith(
-          _$_ConnectionCheck value, $Res Function(_$_ConnectionCheck) then) =
-      __$$_ConnectionCheckCopyWithImpl<$Res>;
+abstract class _$$ConnectionCheckImplCopyWith<$Res> {
+  factory _$$ConnectionCheckImplCopyWith(_$ConnectionCheckImpl value,
+          $Res Function(_$ConnectionCheckImpl) then) =
+      __$$ConnectionCheckImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ConnectionCheckCopyWithImpl<$Res>
-    extends _$InitializeEventCopyWithImpl<$Res, _$_ConnectionCheck>
-    implements _$$_ConnectionCheckCopyWith<$Res> {
-  __$$_ConnectionCheckCopyWithImpl(
-      _$_ConnectionCheck _value, $Res Function(_$_ConnectionCheck) _then)
+class __$$ConnectionCheckImplCopyWithImpl<$Res>
+    extends _$InitializeEventCopyWithImpl<$Res, _$ConnectionCheckImpl>
+    implements _$$ConnectionCheckImplCopyWith<$Res> {
+  __$$ConnectionCheckImplCopyWithImpl(
+      _$ConnectionCheckImpl _value, $Res Function(_$ConnectionCheckImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ConnectionCheck implements _ConnectionCheck {
-  const _$_ConnectionCheck();
+class _$ConnectionCheckImpl implements _ConnectionCheck {
+  const _$ConnectionCheckImpl();
 
   @override
   String toString() {
@@ -358,7 +359,7 @@ class _$_ConnectionCheck implements _ConnectionCheck {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ConnectionCheck);
+        (other.runtimeType == runtimeType && other is _$ConnectionCheckImpl);
   }
 
   @override
@@ -434,7 +435,7 @@ class _$_ConnectionCheck implements _ConnectionCheck {
 }
 
 abstract class _ConnectionCheck implements InitializeEvent {
-  const factory _ConnectionCheck() = _$_ConnectionCheck;
+  const factory _ConnectionCheck() = _$ConnectionCheckImpl;
 }
 
 /// @nodoc
@@ -492,22 +493,22 @@ class _$InitializeStateCopyWithImpl<$Res, $Val extends InitializeState>
 }
 
 /// @nodoc
-abstract class _$$_InitializeStateCopyWith<$Res>
+abstract class _$$InitializeStateImplCopyWith<$Res>
     implements $InitializeStateCopyWith<$Res> {
-  factory _$$_InitializeStateCopyWith(
-          _$_InitializeState value, $Res Function(_$_InitializeState) then) =
-      __$$_InitializeStateCopyWithImpl<$Res>;
+  factory _$$InitializeStateImplCopyWith(_$InitializeStateImpl value,
+          $Res Function(_$InitializeStateImpl) then) =
+      __$$InitializeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool isLoading, bool isToken, bool connectionStatus});
 }
 
 /// @nodoc
-class __$$_InitializeStateCopyWithImpl<$Res>
-    extends _$InitializeStateCopyWithImpl<$Res, _$_InitializeState>
-    implements _$$_InitializeStateCopyWith<$Res> {
-  __$$_InitializeStateCopyWithImpl(
-      _$_InitializeState _value, $Res Function(_$_InitializeState) _then)
+class __$$InitializeStateImplCopyWithImpl<$Res>
+    extends _$InitializeStateCopyWithImpl<$Res, _$InitializeStateImpl>
+    implements _$$InitializeStateImplCopyWith<$Res> {
+  __$$InitializeStateImplCopyWithImpl(
+      _$InitializeStateImpl _value, $Res Function(_$InitializeStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -517,7 +518,7 @@ class __$$_InitializeStateCopyWithImpl<$Res>
     Object? isToken = null,
     Object? connectionStatus = null,
   }) {
-    return _then(_$_InitializeState(
+    return _then(_$InitializeStateImpl(
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -536,8 +537,8 @@ class __$$_InitializeStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_InitializeState implements _InitializeState {
-  const _$_InitializeState(
+class _$InitializeStateImpl implements _InitializeState {
+  const _$InitializeStateImpl(
       {required this.isLoading,
       required this.isToken,
       required this.connectionStatus});
@@ -558,7 +559,7 @@ class _$_InitializeState implements _InitializeState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_InitializeState &&
+            other is _$InitializeStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.isToken, isToken) || other.isToken == isToken) &&
@@ -573,15 +574,16 @@ class _$_InitializeState implements _InitializeState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_InitializeStateCopyWith<_$_InitializeState> get copyWith =>
-      __$$_InitializeStateCopyWithImpl<_$_InitializeState>(this, _$identity);
+  _$$InitializeStateImplCopyWith<_$InitializeStateImpl> get copyWith =>
+      __$$InitializeStateImplCopyWithImpl<_$InitializeStateImpl>(
+          this, _$identity);
 }
 
 abstract class _InitializeState implements InitializeState {
   const factory _InitializeState(
       {required final bool isLoading,
       required final bool isToken,
-      required final bool connectionStatus}) = _$_InitializeState;
+      required final bool connectionStatus}) = _$InitializeStateImpl;
 
   @override
   bool get isLoading;
@@ -591,6 +593,6 @@ abstract class _InitializeState implements InitializeState {
   bool get connectionStatus;
   @override
   @JsonKey(ignore: true)
-  _$$_InitializeStateCopyWith<_$_InitializeState> get copyWith =>
+  _$$InitializeStateImplCopyWith<_$InitializeStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

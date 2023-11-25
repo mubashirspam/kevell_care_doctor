@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:dr_kevell/features/checkup/data/model/end_appoinment_model.dart';
+import 'package:dr_kevell/settings/value/constant.dart';
+import 'package:dr_kevell/settings/value/secure_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dr_kevell/settings/api/endpoints.dart';
 
@@ -18,17 +20,17 @@ class EndAppoinmentRepoImpliment implements EndAppoinmentRepository {
     required String appoinmentId,
   }) async {
     try {
-      // final token = await getTokenFromSS(secureStoreKey);
-      // final id = await getTokenFromSS(drIdsecureStoreKey);
+      final token = await getTokenFromSS(secureStoreKey);
 
-      // final headers = {
-      //   'Authorization': 'Bearer $token',
-      //   'Content-Type': 'application/json',
-      // };
+
+      final headers = {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      };
 
       final response = await Dio(BaseOptions()).post(
         ApiEndPoints.endAppoinment,
-        // options: Options(headers: headers),
+        options: Options(headers: headers),
         data: {"patient_id": patientId, "Appoinment_id": appoinmentId},
       );
 

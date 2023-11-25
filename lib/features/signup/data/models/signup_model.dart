@@ -1,74 +1,69 @@
+// To parse this JSON data, do
+//
+//     final signupModel = signupModelFromJson(jsonString);
+
 import 'dart:convert';
 
-SignupModel signupModelFromJson(String str) =>
-    SignupModel.fromJson(json.decode(str));
+SignupModel signupModelFromJson(String str) => SignupModel.fromJson(json.decode(str));
 
 String signupModelToJson(SignupModel data) => json.encode(data.toJson());
 
 class SignupModel {
-  SignupModel({
-    this.status,
-    this.responsecode,
-    this.message,
-    this.data,
-  });
+    int? responseCode;
+    bool? status;
+    String? message;
+    Data? data;
 
-  bool? status;
-  int? responsecode;
-  String? message;
-  Data? data;
+    SignupModel({
+        this.responseCode,
+        this.status,
+        this.message,
+        this.data,
+    });
 
-  factory SignupModel.fromJson(Map<String, dynamic> json) => SignupModel(
+    factory SignupModel.fromJson(Map<String, dynamic> json) => SignupModel(
+        responseCode: json["responseCode"],
         status: json["status"],
-        responsecode: json["responsecode"],
         message: json["message"],
         data: json["data"] == null ? null : Data.fromJson(json["data"]),
-      );
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
+        "responseCode": responseCode,
         "status": status,
-        "responsecode": responsecode,
         "message": message,
         "data": data?.toJson(),
-      };
+    };
 }
 
 class Data {
-  Data({
-    this.fullName,
-    this.phone,
-    this.createdAt,
-    this.id,
-    this.v,
-    this.updatedAt,
-  });
+    int? registeredUserId;
+    String? name;
+    DateTime? createdAt;
+    DateTime? updatedAt;
+    int? v;
 
-  String? fullName;
-  int? phone;
-  String? id;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-  int? v;
+    Data({
+        this.registeredUserId,
+        this.name,
+        this.createdAt,
+        this.updatedAt,
+        this.v,
+    });
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-        fullName: json["username"],
-        phone: json["phone"],
-        id: json["_id"],
-        createdAt: json["createdAt"] == null
-            ? null
-            : DateTime.parse(json["createdAt"]),
-        updatedAt: json["updatedAt"] == null
-            ? null
-            : DateTime.parse(json["updatedAt"]),
+    factory Data.fromJson(Map<String, dynamic> json) => Data(
+        registeredUserId: json["registeredUserId"],
+        name: json["name"],
+        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         v: json["__v"],
-      );
+    );
 
-  Map<String, dynamic> toJson() => {
-        "username": fullName,
-        "phone": phone,
-        "_id": id,
+    Map<String, dynamic> toJson() => {
+        "registeredUserId": registeredUserId,
+        "name": name,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
         "__v": v,
-      };
+    };
 }

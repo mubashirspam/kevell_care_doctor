@@ -7,7 +7,7 @@ class ChatState with _$ChatState {
     required String message,
     required bool isError,
     required bool hasData,
-    required ChatPersonModel? result,
+    required ChatProfileModel? result,
   }) = _ChatState;
 
   factory ChatState.initial() => const ChatState(

@@ -9,6 +9,6 @@ Uint8List decodeBase64Image(String img) {
     final Uint8List imageBytes = base64Decode(img);
     return imageBytes;
   } catch (e) {
-    return base64Decode(imageUrlForDummy);
+    return base64Decode("imageUrlForDummy");
   }
 }

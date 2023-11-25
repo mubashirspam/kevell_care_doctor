@@ -31,7 +31,7 @@ class ECGGraph extends StatelessWidget {
 
 class ECGData {
   final int time;
-  final int voltage;
+  final double voltage;
 
   ECGData({
     required this.time,

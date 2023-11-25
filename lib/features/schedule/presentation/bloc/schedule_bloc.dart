@@ -37,10 +37,8 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
         state.copyWith(
           isLoading: true,
           isDeleted: false,
-          isCreated: false,
           isUpdated: false,
           isError: false,
-        
         ),
       );
 
@@ -55,6 +53,7 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
           isError: false,
           isLoading: false,
           hasData: true,
+          isCreated: false,
           result: success,
         ),
       );
@@ -140,19 +139,32 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
 
       log("deleted called ===============");
 
-      final result = response.fold(
-        (failure) => state.copyWith(
-          isDeleteLoading: false,
-          isDeleted: false,
-          isError: true,
-        ),
-        (success) => state.copyWith(
-          isDeleteLoading: false,
-          isDeleted: true,
-          deleteResponse: success,
+      emit(
+        response.fold(
+          (failure) => state.copyWith(
+            isDeleteLoading: false,
+            isDeleted: false,
+            isError: true,
+          ),
+          (success) {
+
+            ScheduleModel data = state.result!;
+
+            removeScheduleByIds(
+              id: int.parse(event.id),
+              todayschedule: data.data!.todayschedule,
+              upcomingschedule: data.data!.upcomingschedule,
+            );
+
+            return state.copyWith(
+              isDeleteLoading: false,
+              isDeleted: true,
+              deleteResponse: success,
+              result: data,
+            );
+          },
         ),
       );
-      emit(result);
     });
 
     on<_Decrement>((event, emit) {
@@ -228,6 +240,15 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
     //     '${timeForEachPatient ~/ 60}:${timeForEachPatient % 60}';
 
     return timeForEachPatient;
+  }
+
+  void removeScheduleByIds({
+    required int id,
+    required List<Schedule>? todayschedule,
+    required List<Schedule>? upcomingschedule,
+  }) {
+    todayschedule?.removeWhere((schedule) => schedule.id == id);
+    upcomingschedule?.removeWhere((schedule) => schedule.id == id);
   }
 
   // List<TimeSlote> generateTimeSlots(

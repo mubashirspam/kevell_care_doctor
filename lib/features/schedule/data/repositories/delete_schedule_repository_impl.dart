@@ -6,6 +6,8 @@ import 'package:dr_kevell/settings/api/endpoints.dart';
 
 import '../../../../core/failiar/failiur_model.dart';
 import '../../../../core/failiar/main_failures.dart';
+import '../../../../settings/value/constant.dart';
+import '../../../../settings/value/secure_storage.dart';
 import '../../domain/repositories/delete_schdule_repository.dart';
 import '../models/delete_schedule_model.dart';
 
@@ -16,8 +18,15 @@ class DeleteScheduleRepoImpliment implements DeleteScheduleRepository {
     required String id,
   }) async {
     try {
+      final token = await getTokenFromSS(secureStoreKey);
+    
+      final headers = {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      };
+
       final response = await Dio(BaseOptions()).delete(
-        ApiEndPoints.deleteSchedule,
+        ApiEndPoints.deleteSchedule, options: Options(headers: headers),
         data: {"id": id},
       );
 

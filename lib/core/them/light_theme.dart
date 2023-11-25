@@ -5,7 +5,7 @@ import 'package:dr_kevell/settings/color/main_color.dart';
 import 'custom_theme_extension.dart';
 
 ThemeData lightTheme() {
-  final ThemeData base = ThemeData.light();
+  final ThemeData base = ThemeData.light(useMaterial3: false);
   return base.copyWith(
     colorScheme: const ColorScheme.light(
       background: MainConfigColorsLightThem.backround,

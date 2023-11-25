@@ -1,31 +1,50 @@
-import 'package:dr_kevell/features/chat/presentation/bloc/chat_bloc.dart';
-import 'package:dr_kevell/features/history/presentation/bloc/history_bloc.dart';
+import 'dart:io';
+
 import 'package:dr_kevell/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dr_kevell/settings/route/routes.dart';
-import 'package:dr_kevell/features/checkup/presentation/bloc/checkup_bloc.dart';
-import 'package:dr_kevell/features/login/presentation/bloc/login_bloc.dart';
-import 'package:dr_kevell/features/profile/presentation/bloc/profile_bloc.dart';
-import 'package:dr_kevell/features/signup/presentation/bloc/signup_bloc.dart';
-import 'package:dr_kevell/pages/initialize/bloc/initialize_bloc.dart';
-import 'package:dr_kevell/pages/initialize/initialize.dart';
+import 'package:isar/isar.dart';
+import 'package:path_provider/path_provider.dart';
+
 import 'core/di/injectable.dart';
 import 'core/notifications/push_notification.dart';
 import 'core/them/dark_theme.dart';
 import 'core/them/light_theme.dart';
+
+import 'features/chat/data/model/chat_isar_model.dart';
+import 'features/chat/data/model/message_isar_model.dart';
 import 'features/home/presentation/bloc/home_bloc.dart';
 import 'features/prescription/presentation/bloc/precription_bloc.dart';
-
 import 'features/report/presetantion/bloc/report_bloc.dart';
 import 'features/schedule/presentation/bloc/schedule_bloc.dart';
+import 'features/checkup/presentation/bloc/checkup_bloc.dart';
+import 'features/login/presentation/bloc/login_bloc.dart';
+import 'features/profile/presentation/bloc/profile_bloc.dart';
+import 'features/signup/presentation/bloc/signup_bloc.dart';
+import 'features/chat/presentation/bloc/chat_bloc.dart';
+import 'features/history/presentation/bloc/history_bloc.dart';
+import 'pages/initialize/bloc/initialize_bloc.dart';
+import 'pages/initialize/initialize.dart';
+import 'settings/route/routes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await PushNotification().initNoticatin();
   await configureInjeactable();
+  
+  if (!kIsWeb) {
+    Future<Directory?>? dir;
+    dir = getApplicationSupportDirectory();
+    final Directory? directory = await dir;
+    await Isar.open(
+      name: 'db',
+      [ChatIsarPersonModelSchema,MessageListIsarModelSchema],
+      directory: '${directory?.path}',
+    );
+  }
 
   runApp(const MyApp());
 }

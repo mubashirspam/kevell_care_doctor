@@ -1,10 +1,10 @@
-import 'dart:typed_data';
+
 
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 
 import '../../../settings/color/main_color.dart';
-import '../../../settings/utlis.dart';
+
 
 class ActiveAvatar extends StatelessWidget {
   final double? radius;
@@ -19,7 +19,6 @@ class ActiveAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Uint8List imageBytes = decodeBase64Image(imageUrl);
     return Stack(
       children: [
         Container(
@@ -30,9 +29,10 @@ class ActiveAvatar extends StatelessWidget {
           ),
           child: ClipRRect(
               borderRadius: BorderRadius.circular(100),
-              child: Image.memory(
-                imageBytes,
-                fit: BoxFit.cover,
+              child: Image.network(
+                imageUrl,
+                errorBuilder: (context, error, stackTrace) =>
+                    const Icon(Icons.image_not_supported_outlined),
               )),
         ),
         isActive ?? true

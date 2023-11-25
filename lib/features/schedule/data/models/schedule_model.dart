@@ -34,6 +34,10 @@ class ScheduleModel {
         "message": message,
         "data": data?.toJson(),
     };
+
+
+ 
+    
 }
 
 class Data {
@@ -54,6 +58,8 @@ class Data {
         "todayschedule": todayschedule == null ? [] : List<dynamic>.from(todayschedule!.map((x) => x.toJson())),
         "upcomingschedule": upcomingschedule == null ? [] : List<dynamic>.from(upcomingschedule!.map((x) => x.toJson())),
     };
+
+  
 }
 
 class Schedule {

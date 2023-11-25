@@ -113,19 +113,22 @@ class _$SignupEventCopyWithImpl<$Res, $Val extends SignupEvent>
 }
 
 /// @nodoc
-abstract class _$$_SignupCopyWith<$Res> implements $SignupEventCopyWith<$Res> {
-  factory _$$_SignupCopyWith(_$_Signup value, $Res Function(_$_Signup) then) =
-      __$$_SignupCopyWithImpl<$Res>;
+abstract class _$$SignupImplCopyWith<$Res>
+    implements $SignupEventCopyWith<$Res> {
+  factory _$$SignupImplCopyWith(
+          _$SignupImpl value, $Res Function(_$SignupImpl) then) =
+      __$$SignupImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String fullName, String phone, String email, String password});
 }
 
 /// @nodoc
-class __$$_SignupCopyWithImpl<$Res>
-    extends _$SignupEventCopyWithImpl<$Res, _$_Signup>
-    implements _$$_SignupCopyWith<$Res> {
-  __$$_SignupCopyWithImpl(_$_Signup _value, $Res Function(_$_Signup) _then)
+class __$$SignupImplCopyWithImpl<$Res>
+    extends _$SignupEventCopyWithImpl<$Res, _$SignupImpl>
+    implements _$$SignupImplCopyWith<$Res> {
+  __$$SignupImplCopyWithImpl(
+      _$SignupImpl _value, $Res Function(_$SignupImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -136,7 +139,7 @@ class __$$_SignupCopyWithImpl<$Res>
     Object? email = null,
     Object? password = null,
   }) {
-    return _then(_$_Signup(
+    return _then(_$SignupImpl(
       fullName: null == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
@@ -159,8 +162,8 @@ class __$$_SignupCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Signup implements _Signup {
-  const _$_Signup(
+class _$SignupImpl implements _Signup {
+  const _$SignupImpl(
       {required this.fullName,
       required this.phone,
       required this.email,
@@ -184,7 +187,7 @@ class _$_Signup implements _Signup {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Signup &&
+            other is _$SignupImpl &&
             (identical(other.fullName, fullName) ||
                 other.fullName == fullName) &&
             (identical(other.phone, phone) || other.phone == phone) &&
@@ -200,8 +203,8 @@ class _$_Signup implements _Signup {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SignupCopyWith<_$_Signup> get copyWith =>
-      __$$_SignupCopyWithImpl<_$_Signup>(this, _$identity);
+  _$$SignupImplCopyWith<_$SignupImpl> get copyWith =>
+      __$$SignupImplCopyWithImpl<_$SignupImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -271,7 +274,7 @@ abstract class _Signup implements SignupEvent {
       {required final String fullName,
       required final String phone,
       required final String email,
-      required final String password}) = _$_Signup;
+      required final String password}) = _$SignupImpl;
 
   @override
   String get fullName;
@@ -283,7 +286,7 @@ abstract class _Signup implements SignupEvent {
   String get password;
   @override
   @JsonKey(ignore: true)
-  _$$_SignupCopyWith<_$_Signup> get copyWith =>
+  _$$SignupImplCopyWith<_$SignupImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -359,11 +362,11 @@ class _$SignupStateCopyWithImpl<$Res, $Val extends SignupState>
 }
 
 /// @nodoc
-abstract class _$$_SignupStateCopyWith<$Res>
+abstract class _$$SignupStateImplCopyWith<$Res>
     implements $SignupStateCopyWith<$Res> {
-  factory _$$_SignupStateCopyWith(
-          _$_SignupState value, $Res Function(_$_SignupState) then) =
-      __$$_SignupStateCopyWithImpl<$Res>;
+  factory _$$SignupStateImplCopyWith(
+          _$SignupStateImpl value, $Res Function(_$SignupStateImpl) then) =
+      __$$SignupStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -375,11 +378,11 @@ abstract class _$$_SignupStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_SignupStateCopyWithImpl<$Res>
-    extends _$SignupStateCopyWithImpl<$Res, _$_SignupState>
-    implements _$$_SignupStateCopyWith<$Res> {
-  __$$_SignupStateCopyWithImpl(
-      _$_SignupState _value, $Res Function(_$_SignupState) _then)
+class __$$SignupStateImplCopyWithImpl<$Res>
+    extends _$SignupStateCopyWithImpl<$Res, _$SignupStateImpl>
+    implements _$$SignupStateImplCopyWith<$Res> {
+  __$$SignupStateImplCopyWithImpl(
+      _$SignupStateImpl _value, $Res Function(_$SignupStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -391,7 +394,7 @@ class __$$_SignupStateCopyWithImpl<$Res>
     Object? singnupDetails = freezed,
     Object? message = freezed,
   }) {
-    return _then(_$_SignupState(
+    return _then(_$SignupStateImpl(
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -418,8 +421,8 @@ class __$$_SignupStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SignupState implements _SignupState {
-  const _$_SignupState(
+class _$SignupStateImpl implements _SignupState {
+  const _$SignupStateImpl(
       {required this.isLoading,
       required this.isError,
       required this.hasValidationData,
@@ -446,7 +449,7 @@ class _$_SignupState implements _SignupState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SignupState &&
+            other is _$SignupStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.isError, isError) || other.isError == isError) &&
@@ -464,8 +467,8 @@ class _$_SignupState implements _SignupState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SignupStateCopyWith<_$_SignupState> get copyWith =>
-      __$$_SignupStateCopyWithImpl<_$_SignupState>(this, _$identity);
+  _$$SignupStateImplCopyWith<_$SignupStateImpl> get copyWith =>
+      __$$SignupStateImplCopyWithImpl<_$SignupStateImpl>(this, _$identity);
 }
 
 abstract class _SignupState implements SignupState {
@@ -474,7 +477,7 @@ abstract class _SignupState implements SignupState {
       required final bool isError,
       required final bool hasValidationData,
       required final SignupModel? singnupDetails,
-      required final String? message}) = _$_SignupState;
+      required final String? message}) = _$SignupStateImpl;
 
   @override
   bool get isLoading;
@@ -488,6 +491,6 @@ abstract class _SignupState implements SignupState {
   String? get message;
   @override
   @JsonKey(ignore: true)
-  _$$_SignupStateCopyWith<_$_SignupState> get copyWith =>
+  _$$SignupStateImplCopyWith<_$SignupStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

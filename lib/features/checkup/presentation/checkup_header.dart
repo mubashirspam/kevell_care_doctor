@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:dr_kevell/features/video_call/presentation/call_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
-import 'package:dr_kevell/features/widgets/avatar/active_avatar.dart';
+
 
 import '../../video_call/presentation/join_screen.dart';
 import '../../video_call/service/signaling_service.dart';
@@ -47,8 +47,6 @@ class _CheckupHeaderWidgetState extends State<CheckupHeaderWidget> {
         setState(() => incomingSDPOffer = data);
       }
     });
-
-   
   }
 
   // join Call
@@ -151,47 +149,21 @@ class HeaderWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SafeArea(
-            bottom: false,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Column(
-                  children: [
-                    ActiveAvatar(
-                      isActive: true,
-                      imageUrl: imageUrl,
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      name,
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            color: context.theme.backround,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                  ],
+          JoinOrCallWidget(
+            answerCall: answerCall,
+            joinCall: joinCall,
+            incomingSDPOffer: incomingSDPOffer,
+            makeCall: makeCall,
+            cutCall: cutCall,
+            imageUrl: imageUrl,
+          ),
+          const SizedBox(height: 15),
+          Text(
+            name,
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  color: context.theme.backround,
+                  fontWeight: FontWeight.bold,
                 ),
-                JoinOrCallWidget(
-                    answerCall: answerCall,
-                    joinCall: joinCall,
-                    incomingSDPOffer: incomingSDPOffer,
-                    makeCall: makeCall,
-                    cutCall: cutCall),
-                // const Spacer(),
-                // TextButton(
-                //     style: TextButton.styleFrom(
-                //         padding: const EdgeInsets.symmetric(horizontal: 20),
-                //         shape: RoundedRectangleBorder(
-                //             borderRadius: BorderRadius.circular(10)),
-                //         elevation: 10,
-                //         backgroundColor: context.theme.secondary,
-                //         foregroundColor: context.theme.primary),
-                //     onPressed: () {},
-                //     child: const Text("Patient History"))
-              ],
-            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 15),

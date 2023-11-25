@@ -1,10 +1,10 @@
 import 'dart:developer';
 
+import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dr_kevell/features/signup/presentation/bloc/signup_bloc.dart';
 import 'package:dr_kevell/features/widgets/input_field/input_field_widget.dart';
-
 
 import '../../../core/helper/validater.dart';
 import '../../../pages/login_scrren/presentation/login_screen.dart';
@@ -163,14 +163,42 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
-                      content: Text(state.message ?? ""),
+                      backgroundColor: Colors.white,
+                      title: Text(
+                        "Success",
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                              color: Colors.black,
+                              fontSize: 18,
+                            ),
+                      ),
+                      content: Text(
+                        "Congratulations! Your registration has unfurled its wings of success. Kindly take a triumphant step back into our realm by logging in once more.",
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
+                      ),
                       actions: [
-                        TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pushNamedAndRemoveUntil(
-                                  LoginScreen.routeName, (route) => false);
-                            },
-                            child: const Text("Click here to login"))
+                        Center(
+                          child: TextButton(
+                              style: TextButton.styleFrom(
+                                  backgroundColor: context.theme.primary,
+                                  foregroundColor: Colors.white,
+                                  padding: EdgeInsets.symmetric(horizontal: 30),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(100))),
+                              onPressed: () {
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                    LoginScreen.routeName, (route) => false);
+                              },
+                              child: const Text(
+                                "Login",
+                              )),
+                        )
                       ],
                     ),
                   );

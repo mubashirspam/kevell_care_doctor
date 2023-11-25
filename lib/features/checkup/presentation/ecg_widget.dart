@@ -9,14 +9,16 @@ class EcgWidget extends StatelessWidget {
   final bool isReading;
   final List<ECGData> data;
   final bool isLoading;
+  final Map<String, String> ecgResults;
 
-  const EcgWidget(
-      {super.key,
-      required this.onpress,
-      required this.isReading,
-   
-      required this.data,
-      required this.isLoading});
+  const EcgWidget({
+    super.key,
+    required this.onpress,
+    required this.isReading,
+    required this.data,
+    required this.ecgResults,
+    required this.isLoading,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +28,29 @@ class EcgWidget extends StatelessWidget {
       name: "ECG",
       onPress: onpress,
       children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: List.generate(
+            ecgResults.length,
+            (idx) => Text.rich(
+              TextSpan(
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge!
+                    .copyWith(fontSize: 16),
+                text: "${ecgResults.keys.elementAt(idx)} : ",
+                children: [
+                  TextSpan(
+                    text: ecgResults[key],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 15),
         SizedBox(
-          height: 150,
+          height: 170,
           child: ECGGraph(
             data: data,
           ),

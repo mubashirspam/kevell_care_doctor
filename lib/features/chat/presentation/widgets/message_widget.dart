@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 
-import '../../../widgets/avatar/active_avatar.dart';
 
 class MessageWidget extends StatelessWidget {
   final String msg;

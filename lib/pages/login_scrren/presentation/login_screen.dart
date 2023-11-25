@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:dr_kevell/settings/assets_manage/images.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/pages/signup_screen/presentation/lsignup_screen.dart';
-import '../../../core/helper/toast.dart';
 import '../../../features/login/presentation/login.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -12,7 +11,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-            //  key: scaffoldMessengerKey,
+      //  key: scaffoldMessengerKey,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: SafeArea(
@@ -39,7 +38,8 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 20),
               GestureDetector(
                 onTap: () =>
-                    Navigator.of(context).pushNamed(SignupScreen.routeName),
+                Navigator.of(context).pushNamed(SignupScreen.routeName),
+
                 child: RichText(
                   text: TextSpan(
                     style: const TextStyle(color: Colors.black, fontSize: 16),

@@ -32,7 +32,8 @@ class WaitingPatientCard extends StatelessWidget {
         children: [
           ActiveAvatar(
             isActive: data.isTimeup,
-            imageUrl: data.profileImagelink ?? imageUrlForDummy,
+            imageUrl: data.profileImagelink ??'',
+            // imageUrl: "",
           ),
           const SizedBox(width: 15),
           Column(

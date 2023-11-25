@@ -27,7 +27,7 @@ class ReportScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<ECGData> ecgData = [];
-    List<int> voltageValues;
+    List<double> voltageValues;
 
     if (data.ecginfo!.isNotEmpty) {
       String? value = data.ecginfo!.first.data?.content;
@@ -38,9 +38,9 @@ class ReportScreen extends StatelessWidget {
             .where((element) => element.isNotEmpty)
             .map((e) {
           try {
-            return int.parse(e);
+            return double.parse(e);
           } catch (_) {
-            return 0; // Handle non-numeric values or provide a suitable default
+            return 0.0; // Handle non-numeric values or provide a suitable default
           }
         }).toList();
 
@@ -53,7 +53,7 @@ class ReportScreen extends StatelessWidget {
       }
     }
     List<ECGData> grsData = [];
-    List<int> grsvoltageValues;
+    List<double> grsvoltageValues;
 
     if (data.gsrinfo!.isNotEmpty) {
       String? value = data.gsrinfo!.first.data?.content;
@@ -64,9 +64,9 @@ class ReportScreen extends StatelessWidget {
             .where((element) => element.isNotEmpty)
             .map((e) {
           try {
-            return int.parse(e);
+            return double.parse(e);
           } catch (_) {
-            return 0; // Handle non-numeric values or provide a suitable default
+            return 0.0; // Handle non-numeric values or provide a suitable default
           }
         }).toList();
 
@@ -119,6 +119,7 @@ class ReportScreen extends StatelessWidget {
                 parameter: "Blood pressure",
                 value: data.bpinfo!.data!,
               ),
+             
             if (data.ecginfo!.isNotEmpty)
               EcgResultCard(
                 ecgData: ecgData,

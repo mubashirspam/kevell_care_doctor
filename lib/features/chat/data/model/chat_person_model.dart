@@ -1,25 +1,25 @@
 // To parse this JSON data, do
 //
-//     final chatPersonModel = chatPersonModelFromJson(jsonString);
+//     final ChatProfileModel = ChatProfileModelFromJson(jsonString);
 
 import 'dart:convert';
 
-ChatPersonModel chatPersonModelFromJson(String str) => ChatPersonModel.fromJson(json.decode(str));
+ChatProfileModel chatProfileModelFromJson(String str) => ChatProfileModel.fromJson(json.decode(str));
 
-String chatPersonModelToJson(ChatPersonModel data) => json.encode(data.toJson());
+String chatProfileModelToJson(ChatProfileModel data) => json.encode(data.toJson());
 
-class ChatPersonModel {
+class ChatProfileModel {
     int? responseCode;
     bool? success;
     List<Result>? result;
 
-    ChatPersonModel({
+    ChatProfileModel({
         this.responseCode,
         this.success,
         this.result,
     });
 
-    factory ChatPersonModel.fromJson(Map<String, dynamic> json) => ChatPersonModel(
+    factory ChatProfileModel.fromJson(Map<String, dynamic> json) => ChatProfileModel(
         responseCode: json["responseCode"],
         success: json["success"],
         result: json["result"] == null ? [] : List<Result>.from(json["result"]!.map((x) => Result.fromJson(x))),

@@ -36,6 +36,7 @@ class UpdateProfileRepoImpliment implements GetWaitingPatientRepository {
         ApiEndPoints.homeWaitingPatient,
         options: Options(
           headers: headers,
+          validateStatus: (_) => true,
         ),
         data: {'doctorId': int.parse(id.toString())},
       );

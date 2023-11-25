@@ -18,8 +18,6 @@ class ProfileNameCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Uint8List imageBytes = decodeBase64Image(imageUrl);
-
     return Row(
       children: [
         SizedBox(
@@ -39,9 +37,15 @@ class ProfileNameCard extends StatelessWidget {
                   ),
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
-                      child: Image.memory(
-                        imageBytes,
+                      child: Image.network(
+                        imageUrl,
                         fit: BoxFit.cover,
+                        errorBuilder: (
+                          context,
+                          _,
+                          __,
+                        ) =>
+                            Icon(Icons.image_not_supported_outlined),
                       )),
                 ),
               ),
@@ -94,4 +98,3 @@ class ProfileNameCard extends StatelessWidget {
     );
   }
 }
-

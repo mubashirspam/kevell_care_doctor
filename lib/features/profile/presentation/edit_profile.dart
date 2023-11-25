@@ -40,22 +40,6 @@ class _EditMyProfileState extends State<EditMyProfile> {
   late TextEditingController dobController;
   late TextEditingController addressController;
 
-  bool isButtonDisabled = true;
-
-  void validateForm() {
-    if (_formKey.currentState!.validate()) {
-      // Form is valid
-      setState(() {
-        isButtonDisabled = false; // Enable the button
-      });
-    } else {
-      // Form is invalid
-      setState(() {
-        isButtonDisabled = true; // Disable the button
-      });
-    }
-  }
-
   @override
   void initState() {
     nameController = TextEditingController(text: widget.name);
@@ -92,6 +76,8 @@ class _EditMyProfileState extends State<EditMyProfile> {
             return Form(
               key: _formKey,
               child: SingleChildScrollView(
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,9 +92,6 @@ class _EditMyProfileState extends State<EditMyProfile> {
                     const SizedBox(height: 10),
                     TextFieldWidget(
                       textEditingController: nameController,
-                      onChanged: (value) {
-                        validateForm();
-                      },
                       hintText: "Name",
                       keyboardType: TextInputType.name,
                       validate: (name) {
@@ -124,9 +107,6 @@ class _EditMyProfileState extends State<EditMyProfile> {
                     const SizedBox(height: 10),
                     TextFieldWidget(
                       textEditingController: mobileController,
-                      onChanged: (value) {
-                        validateForm();
-                      },
                       hintText: "+91",
                       keyboardType: TextInputType.number,
                       validate: (number) {
@@ -144,6 +124,7 @@ class _EditMyProfileState extends State<EditMyProfile> {
                     const SizedBox(height: 10),
                     TextFieldWidget(
                       textEditingController: dobController,
+                      readOnly: true,
                       hintText: "12/12/2023",
                       inputFormatters: [DateInputFormatter()],
                       validate: DateValidator.validateDate,
@@ -188,9 +169,6 @@ class _EditMyProfileState extends State<EditMyProfile> {
                     const SizedBox(height: 10),
                     TextFieldWidget(
                       textEditingController: addressController,
-                      onChanged: (value) {
-                        validateForm();
-                      },
                       hintText: "Adress",
                       keyboardType: TextInputType.visiblePassword,
                       validate: (value) {
@@ -218,27 +196,23 @@ class _EditMyProfileState extends State<EditMyProfile> {
                           const SizedBox(width: 10),
                           Expanded(
                             child: TextButtonWidget(
-                              onPressed: isButtonDisabled
-                                  ? null
-                                  : () {
-                                      context.read<ProfileBloc>().add(
-                                            ProfileEvent.updateProfile(
-                                              profileData: Data(
-                                                  registeredUserId: state
-                                                      .result!
-                                                      .data!
-                                                      .registeredUserId,
-                                                  address: addressController
-                                                      .value.text,
-                                                  dob: state.date,
-                                                  
-                                                  name:
-                                                      nameController.value.text,
-                                                  mobileNo: mobileController
-                                                      .value.text),
-                                            ),
-                                          );
-                                    },
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  context.read<ProfileBloc>().add(
+                                        ProfileEvent.updateProfile(
+                                          profileData: Data(
+                                              registeredUserId: state.result!
+                                                  .data!.registeredUserId,
+                                              address:
+                                                  addressController.value.text,
+                                              dob: state.date,
+                                              name: nameController.value.text,
+                                              mobileNo:
+                                                  mobileController.value.text),
+                                        ),
+                                      );
+                                }
+                              },
                               name: "Update",
                               isLoading: state.isUpdateLoading,
                             ),

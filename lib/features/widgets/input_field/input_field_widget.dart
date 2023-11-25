@@ -19,11 +19,11 @@ class TextFieldWidget extends StatelessWidget {
   final Widget? suffixIcon;
   final String? labelText;
   final int? maxLines;
+  final bool? readOnly;
   // final void Function (String value) onSaved;
-    final List<TextInputFormatter>? inputFormatters;
+  final List<TextInputFormatter>? inputFormatters;
 
   const TextFieldWidget({
-    
     super.key,
     this.inputFormatters,
     this.onTap,
@@ -42,6 +42,7 @@ class TextFieldWidget extends StatelessWidget {
     this.initialValue,
     this.maxLines,
     this.fillColor,
+    this.readOnly,
 
     // required this.onSaved,
   });
@@ -53,6 +54,7 @@ class TextFieldWidget extends StatelessWidget {
         children: [
           Expanded(
             child: TextFormField(
+              readOnly: readOnly??false,
               // maxLines: maxLines,
               initialValue: initialValue,
 

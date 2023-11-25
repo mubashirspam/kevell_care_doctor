@@ -31,13 +31,13 @@ class Prescription extends StatelessWidget {
             context: context,
             message: "Unauthrized",
           );
-          await deleteFromSS(secureStoreKey)
-              .then((value) => Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(
-                      builder: (context) => const Initialize(),
-                    ),
-                    (route) => false,
-                  ));
+          // await deleteFromSS(secureStoreKey)
+              // .then((value) => Navigator.of(context).pushAndRemoveUntil(
+              //       MaterialPageRoute(
+              //         builder: (context) => const Initialize(),
+              //       ),
+              //       (route) => false,
+              //     ));
         } else if (state.isError) {
           // Toast.showToast(context: context, message: "Network Error");
         }
@@ -114,7 +114,7 @@ class Prescription extends StatelessWidget {
               context.read<PrecriptionBloc>().add(
                   PrecriptionEvent.getPrescriptionList(
                       appointmentId:
-                          int.parse(checkupDetalis['appointmentID'])));
+                          int.parse(checkupDetalis['appointmentID'].toString())));
             },
             isLoading: state.isGetLoading,
           ),

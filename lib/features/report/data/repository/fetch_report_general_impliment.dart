@@ -8,6 +8,8 @@ import 'package:dr_kevell/settings/api/endpoints.dart';
 
 import '../../../../core/failiar/failiur_model.dart';
 import '../../../../core/failiar/main_failures.dart';
+import '../../../../settings/value/constant.dart';
+import '../../../../settings/value/secure_storage.dart';
 import '../../domain/repositories/fetch_report_general_repository.dart';
 
 @LazySingleton(as: FetchReportGeneraInfoRepository)
@@ -18,17 +20,17 @@ class FetchReportGeneraInfoRepoImpliment
     required int id,
   }) async {
     try {
-      // final token = await getTokenFromSS(secureStoreKey);
-      // final id = await getTokenFromSS(drIdsecureStoreKey);
+      final token = await getTokenFromSS(secureStoreKey);
+    
 
-      // final headers = {
-      //   'Authorization': 'Bearer $token',
-      //   'Content-Type': 'application/json',
-      // };
+      final headers = {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      };
 
       final response = await Dio(BaseOptions()).post(
         ApiEndPoints.patientreportgeneralinfo,
-        // options: Options(headers: headers),
+        options: Options(headers: headers),
         data: {'patientId': id},
       );
 

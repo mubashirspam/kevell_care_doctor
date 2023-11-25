@@ -28,7 +28,7 @@ class UpdatePrescriptionListRepoImpliment
 
       final response = await Dio(BaseOptions()).post(
           ApiEndPoints.updatePrescription,
-          options: Options(headers: headers),
+          options: Options(headers: headers,  validateStatus: (_) => true,),
           data: prescriptionElement.toJson());
 
       if (response.statusCode == 200 || response.statusCode == 201) {

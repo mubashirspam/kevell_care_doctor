@@ -7,13 +7,18 @@ import 'package:dr_kevell/features/chat/presentation/widgets/chat_person_card.da
 import 'package:dr_kevell/pages/chat/presentation/chating_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../settings/value/constant.dart';
+import '../../../settings/value/secure_storage.dart';
 import '../data/model/chat_person_model.dart';
+import '../data/model/message_isar_model.dart';
 import '../domain/chat_service.dart';
-import '../domain/db_helper.dart';
+import '../domain/message_isar_repo.dart';
 import 'bloc/chat_bloc.dart';
 
 class AllChatListWidget extends StatefulWidget {
-  const AllChatListWidget({super.key});
+  const AllChatListWidget({
+    super.key,
+  });
 
   @override
   State<AllChatListWidget> createState() => _AllChatListWidgetState();
@@ -21,45 +26,57 @@ class AllChatListWidget extends StatefulWidget {
 
 class _AllChatListWidgetState extends State<AllChatListWidget> {
   Map<int, List<Map<String, dynamic>>> sortedData = {};
-  final dbHelper = DatabaseHelper();
 
   @override
   void initState() {
-    ChatService.instance.init(userId: 1014);
+    chatServiceIniti();
+
+    super.initState();
+  }
+
+  void chatServiceIniti() async {
+    await ChatService.instance.init();
 
     ChatService.instance.socket!.on("get-users", (data) {
       log("get-users called ======= $data");
       if (mounted) {
-     
         setState(() {});
       }
     });
     ChatService.instance.socket!.on("offline-messages", (response) {
       if (mounted) {
         setState(() {
+          log("offline-messages called");
           addReceivedMessages(response);
-          log("offline-messages $sortedData");
         });
       }
     });
-
-    super.initState();
   }
 
   void addReceivedMessages(response) async {
-    await dbHelper.open().then((value) async {
+    final id = await getFromSS(drIdsecureStoreKey);
+    if (id != null) {
+      log("db opened");
       for (var item in response) {
         final from = item["from"];
         final msg = item["msg"];
-        final time = item["time"];
+        final time = DateTime.parse(item["time"]);
         if (!sortedData.containsKey(from)) {
           sortedData[from] = [];
         }
 
-        await dbHelper.insertMessage(from, msg, time);
-        sortedData[from]!.add({"msg": msg, "time": time});
+        MessageIsarRepo.instance.saveMessage(
+            MessageIsar(message: msg, time: time, isReceiving: false),
+            int.parse(id),
+            "thulasiraman");
       }
-    });
+
+      if (mounted) {
+        setState(() {
+          log("offline-messages $sortedData");
+        });
+      }
+    }
   }
 
   @override
@@ -79,15 +96,16 @@ class _AllChatListWidgetState extends State<AllChatListWidget> {
                   count = sortedData[id]!.length;
                 }
                 return GestureDetector(
-                    onTap: () {
-                      // setState(() => count == null);
-
-                      Navigator.of(context).pushNamed(ChatingScreen.routeName,
-                          arguments: {
-                            'from': 1014,
-                            'to': 1003,
-                            'oldMessage': sortedData[id]
-                          });
+                    onTap: () async {
+                   final token=   await getFromSS(fcmStoreKey);
+                      await getFromSS(drIdsecureStoreKey).then((value) =>
+                          Navigator.of(context)
+                              .pushNamed(ChatingScreen.routeName, arguments: {
+                            'data': profiles[index],
+                            'from': int.parse(value!),
+                            'to': profiles[index].id,
+                            'token': token
+                          }));
                     },
                     child: ChatPersonCard(
                       result: profiles[index],

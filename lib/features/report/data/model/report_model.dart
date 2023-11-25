@@ -63,7 +63,7 @@ class Datum {
   DateTime? appointmentdate;
   List<dynamic>? preexistingdisease;
   bool? isvisited;
-  bool? isTimeup;
+  bool? isTimeup; // Corrected field name
   String? date;
   int? userdoctorrating;
   String? userdoctorcommand;
@@ -94,6 +94,9 @@ class Datum {
   Bodyfatinfo? otoscopeinfo8;
   Bodyfatinfo? otoscopeinfo9;
   Bodyfatinfo? otoscopeinfo10;
+
+  // Rest of the class remains unchanged...
+
 
   Datum({
     this.id,

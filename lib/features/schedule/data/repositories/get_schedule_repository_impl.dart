@@ -16,25 +16,25 @@ class GetScheduleRepoImpliment implements GetScheduleRepository {
   @override
   Future<Either<MainFailure, ScheduleModel>> getSchedule() async {
     try {
-      // final token = await getTokenFromSS(secureStoreKey);
+      final token = await getTokenFromSS(secureStoreKey);
       final id = await getTokenFromSS(drIdsecureStoreKey);
-
-      // final headers = {
-      //   'Authorization': 'Bearer $token',
-      //   'Content-Type': 'application/json',
-      // };
+      log(id.toString());
+      final headers = {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      };
 
 // production
-      // final response = await Dio(BaseOptions()).get(
-      //   ApiEndPoints.getSchedule,
-      //   options: Options(headers: headers),
-      //   data: {'doctor_id': id},
-      // );
-
       final response = await Dio(BaseOptions()).get(
         ApiEndPoints.getSchedule,
+        options: Options(headers: headers),
         data: {'doctor_id': id},
       );
+
+      // final response = await Dio(BaseOptions()).get(
+      //   ApiEndPoints.getSchedule,
+      //   data: {'doctor_id': id},
+      // );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = ScheduleModel.fromJson(response.data);

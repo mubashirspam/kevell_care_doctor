@@ -22,17 +22,18 @@ class SignupRepoImpliment implements SignupRepository {
     try {
       final response = await Dio(BaseOptions()).post(
         ApiEndPoints.register,
-        queryParameters: {
+        data: {
           "username": fullName,
           "email": email,
           "mobile": phone,
-          "password": password,
+          "password": password
         },
       );
 
+      log(response.data.toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
         final registerResult = SignupModel.fromJson(response.data);
-        log(registerResult.toString());
+        log(registerResult.toJson().toString());
 
         return Right(registerResult);
       } else if (response.statusCode == 400 || response.statusCode == 401) {

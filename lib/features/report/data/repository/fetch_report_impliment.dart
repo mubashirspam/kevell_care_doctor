@@ -7,6 +7,8 @@ import 'package:dr_kevell/settings/api/endpoints.dart';
 
 import '../../../../core/failiar/failiur_model.dart';
 import '../../../../core/failiar/main_failures.dart';
+import '../../../../settings/value/constant.dart';
+import '../../../../settings/value/secure_storage.dart';
 import '../../domain/entities/fetch_report_payload.dart';
 import '../../domain/repositories/fetch_report_repository.dart';
 import '../model/report_model.dart';
@@ -18,24 +20,24 @@ class FetchReportRepoImpliment implements FetchReportRepository {
     required FetchReportPayload fetchReportPayload,
   }) async {
     try {
-      // final token = await getTokenFromSS(secureStoreKey);
+      final token = await getTokenFromSS(secureStoreKey);
       // final id = await getTokenFromSS(drIdsecureStoreKey);
 
-      // final headers = {
-      //   'Authorization': 'Bearer $token',
-      //   'Content-Type': 'application/json',
-      // };
+      final headers = {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      };
 
       final response = await Dio(BaseOptions()).post(
         ApiEndPoints.patientreport,
-        // options: Options(headers: headers),
+        options: Options(headers: headers),
         data: fetchReportPayload.toJson(),
       );
-
+log(response.data.toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = ReportModel.fromJson(response.data);
 
-        log(result.toJson().toString());
+        
 
         return Right(result);
       } else if (response.statusCode == 400 || response.statusCode == 401) {

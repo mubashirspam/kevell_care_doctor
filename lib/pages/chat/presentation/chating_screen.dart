@@ -1,17 +1,18 @@
+import 'package:dr_kevell/features/chat/data/model/chat_person_model.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/features/chat/presentation/chating_list_widget.dart';
 import 'package:dr_kevell/features/widgets/avatar/active_avatar.dart';
 
 class ChatingScreen extends StatelessWidget {
-
-  final Map  chatParameter;
+  final Map chatParameter;
   static const routeName = '/chating-screen';
 
-  const ChatingScreen({super.key,required this.chatParameter});
+  const ChatingScreen({super.key, required this.chatParameter});
 
   @override
   Widget build(BuildContext context) {
+    Result result = chatParameter["data"];
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 10,
@@ -34,14 +35,14 @@ class ChatingScreen extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 10),
           child: Row(
             children: [
-              const ActiveAvatar(
-                radius: 25,
-                imageUrl:
+              ActiveAvatar(
+                radius: 40,
+                imageUrl: result.profileImagelink ??
                     "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
               ),
               const SizedBox(width: 10),
               Text(
-                "Eleanor Pena",
+                result.username ?? "Eleanor Pena",
                 style: Theme.of(context)
                     .textTheme
                     .titleLarge!
@@ -60,7 +61,7 @@ class ChatingScreen extends StatelessWidget {
           )
         ],
       ),
-      body:  ChatingListWidget(chatParameter: chatParameter),
+      body: ChatingListWidget(chatParameter: chatParameter),
     );
   }
 }

@@ -178,20 +178,20 @@ class _$CheckupEventCopyWithImpl<$Res, $Val extends CheckupEvent>
 }
 
 /// @nodoc
-abstract class _$$_UnloackKItCopyWith<$Res> {
-  factory _$$_UnloackKItCopyWith(
-          _$_UnloackKIt value, $Res Function(_$_UnloackKIt) then) =
-      __$$_UnloackKItCopyWithImpl<$Res>;
+abstract class _$$UnloackKItImplCopyWith<$Res> {
+  factory _$$UnloackKItImplCopyWith(
+          _$UnloackKItImpl value, $Res Function(_$UnloackKItImpl) then) =
+      __$$UnloackKItImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Map<String, dynamic> payload, String topic});
 }
 
 /// @nodoc
-class __$$_UnloackKItCopyWithImpl<$Res>
-    extends _$CheckupEventCopyWithImpl<$Res, _$_UnloackKIt>
-    implements _$$_UnloackKItCopyWith<$Res> {
-  __$$_UnloackKItCopyWithImpl(
-      _$_UnloackKIt _value, $Res Function(_$_UnloackKIt) _then)
+class __$$UnloackKItImplCopyWithImpl<$Res>
+    extends _$CheckupEventCopyWithImpl<$Res, _$UnloackKItImpl>
+    implements _$$UnloackKItImplCopyWith<$Res> {
+  __$$UnloackKItImplCopyWithImpl(
+      _$UnloackKItImpl _value, $Res Function(_$UnloackKItImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -200,7 +200,7 @@ class __$$_UnloackKItCopyWithImpl<$Res>
     Object? payload = null,
     Object? topic = null,
   }) {
-    return _then(_$_UnloackKIt(
+    return _then(_$UnloackKItImpl(
       payload: null == payload
           ? _value._payload
           : payload // ignore: cast_nullable_to_non_nullable
@@ -215,8 +215,8 @@ class __$$_UnloackKItCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UnloackKIt implements _UnloackKIt {
-  const _$_UnloackKIt(
+class _$UnloackKItImpl implements _UnloackKIt {
+  const _$UnloackKItImpl(
       {required final Map<String, dynamic> payload, required this.topic})
       : _payload = payload;
 
@@ -240,7 +240,7 @@ class _$_UnloackKIt implements _UnloackKIt {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UnloackKIt &&
+            other is _$UnloackKItImpl &&
             const DeepCollectionEquality().equals(other._payload, _payload) &&
             (identical(other.topic, topic) || other.topic == topic));
   }
@@ -252,8 +252,8 @@ class _$_UnloackKIt implements _UnloackKIt {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UnloackKItCopyWith<_$_UnloackKIt> get copyWith =>
-      __$$_UnloackKItCopyWithImpl<_$_UnloackKIt>(this, _$identity);
+  _$$UnloackKItImplCopyWith<_$UnloackKItImpl> get copyWith =>
+      __$$UnloackKItImplCopyWithImpl<_$UnloackKItImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -424,30 +424,30 @@ class _$_UnloackKIt implements _UnloackKIt {
 abstract class _UnloackKIt implements CheckupEvent {
   const factory _UnloackKIt(
       {required final Map<String, dynamic> payload,
-      required final String topic}) = _$_UnloackKIt;
+      required final String topic}) = _$UnloackKItImpl;
 
   Map<String, dynamic> get payload;
   String get topic;
   @JsonKey(ignore: true)
-  _$$_UnloackKItCopyWith<_$_UnloackKIt> get copyWith =>
+  _$$UnloackKItImplCopyWith<_$UnloackKItImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_LoackKItCopyWith<$Res> {
-  factory _$$_LoackKItCopyWith(
-          _$_LoackKIt value, $Res Function(_$_LoackKIt) then) =
-      __$$_LoackKItCopyWithImpl<$Res>;
+abstract class _$$LoackKItImplCopyWith<$Res> {
+  factory _$$LoackKItImplCopyWith(
+          _$LoackKItImpl value, $Res Function(_$LoackKItImpl) then) =
+      __$$LoackKItImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String topic});
 }
 
 /// @nodoc
-class __$$_LoackKItCopyWithImpl<$Res>
-    extends _$CheckupEventCopyWithImpl<$Res, _$_LoackKIt>
-    implements _$$_LoackKItCopyWith<$Res> {
-  __$$_LoackKItCopyWithImpl(
-      _$_LoackKIt _value, $Res Function(_$_LoackKIt) _then)
+class __$$LoackKItImplCopyWithImpl<$Res>
+    extends _$CheckupEventCopyWithImpl<$Res, _$LoackKItImpl>
+    implements _$$LoackKItImplCopyWith<$Res> {
+  __$$LoackKItImplCopyWithImpl(
+      _$LoackKItImpl _value, $Res Function(_$LoackKItImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -455,7 +455,7 @@ class __$$_LoackKItCopyWithImpl<$Res>
   $Res call({
     Object? topic = null,
   }) {
-    return _then(_$_LoackKIt(
+    return _then(_$LoackKItImpl(
       topic: null == topic
           ? _value.topic
           : topic // ignore: cast_nullable_to_non_nullable
@@ -466,8 +466,8 @@ class __$$_LoackKItCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LoackKIt implements _LoackKIt {
-  const _$_LoackKIt({required this.topic});
+class _$LoackKItImpl implements _LoackKIt {
+  const _$LoackKItImpl({required this.topic});
 
   @override
   final String topic;
@@ -481,7 +481,7 @@ class _$_LoackKIt implements _LoackKIt {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LoackKIt &&
+            other is _$LoackKItImpl &&
             (identical(other.topic, topic) || other.topic == topic));
   }
 
@@ -491,8 +491,8 @@ class _$_LoackKIt implements _LoackKIt {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LoackKItCopyWith<_$_LoackKIt> get copyWith =>
-      __$$_LoackKItCopyWithImpl<_$_LoackKIt>(this, _$identity);
+  _$$LoackKItImplCopyWith<_$LoackKItImpl> get copyWith =>
+      __$$LoackKItImplCopyWithImpl<_$LoackKItImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -661,29 +661,29 @@ class _$_LoackKIt implements _LoackKIt {
 }
 
 abstract class _LoackKIt implements CheckupEvent {
-  const factory _LoackKIt({required final String topic}) = _$_LoackKIt;
+  const factory _LoackKIt({required final String topic}) = _$LoackKItImpl;
 
   String get topic;
   @JsonKey(ignore: true)
-  _$$_LoackKItCopyWith<_$_LoackKIt> get copyWith =>
+  _$$LoackKItImplCopyWith<_$LoackKItImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_SubscribeCopyWith<$Res> {
-  factory _$$_SubscribeCopyWith(
-          _$_Subscribe value, $Res Function(_$_Subscribe) then) =
-      __$$_SubscribeCopyWithImpl<$Res>;
+abstract class _$$SubscribeImplCopyWith<$Res> {
+  factory _$$SubscribeImplCopyWith(
+          _$SubscribeImpl value, $Res Function(_$SubscribeImpl) then) =
+      __$$SubscribeImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String topic});
 }
 
 /// @nodoc
-class __$$_SubscribeCopyWithImpl<$Res>
-    extends _$CheckupEventCopyWithImpl<$Res, _$_Subscribe>
-    implements _$$_SubscribeCopyWith<$Res> {
-  __$$_SubscribeCopyWithImpl(
-      _$_Subscribe _value, $Res Function(_$_Subscribe) _then)
+class __$$SubscribeImplCopyWithImpl<$Res>
+    extends _$CheckupEventCopyWithImpl<$Res, _$SubscribeImpl>
+    implements _$$SubscribeImplCopyWith<$Res> {
+  __$$SubscribeImplCopyWithImpl(
+      _$SubscribeImpl _value, $Res Function(_$SubscribeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -691,7 +691,7 @@ class __$$_SubscribeCopyWithImpl<$Res>
   $Res call({
     Object? topic = null,
   }) {
-    return _then(_$_Subscribe(
+    return _then(_$SubscribeImpl(
       topic: null == topic
           ? _value.topic
           : topic // ignore: cast_nullable_to_non_nullable
@@ -702,8 +702,8 @@ class __$$_SubscribeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Subscribe implements _Subscribe {
-  const _$_Subscribe({required this.topic});
+class _$SubscribeImpl implements _Subscribe {
+  const _$SubscribeImpl({required this.topic});
 
   @override
   final String topic;
@@ -717,7 +717,7 @@ class _$_Subscribe implements _Subscribe {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Subscribe &&
+            other is _$SubscribeImpl &&
             (identical(other.topic, topic) || other.topic == topic));
   }
 
@@ -727,8 +727,8 @@ class _$_Subscribe implements _Subscribe {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SubscribeCopyWith<_$_Subscribe> get copyWith =>
-      __$$_SubscribeCopyWithImpl<_$_Subscribe>(this, _$identity);
+  _$$SubscribeImplCopyWith<_$SubscribeImpl> get copyWith =>
+      __$$SubscribeImplCopyWithImpl<_$SubscribeImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -897,27 +897,29 @@ class _$_Subscribe implements _Subscribe {
 }
 
 abstract class _Subscribe implements CheckupEvent {
-  const factory _Subscribe({required final String topic}) = _$_Subscribe;
+  const factory _Subscribe({required final String topic}) = _$SubscribeImpl;
 
   String get topic;
   @JsonKey(ignore: true)
-  _$$_SubscribeCopyWith<_$_Subscribe> get copyWith =>
+  _$$SubscribeImplCopyWith<_$SubscribeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_GetdthCopyWith<$Res> {
-  factory _$$_GetdthCopyWith(_$_Getdth value, $Res Function(_$_Getdth) then) =
-      __$$_GetdthCopyWithImpl<$Res>;
+abstract class _$$GetdthImplCopyWith<$Res> {
+  factory _$$GetdthImplCopyWith(
+          _$GetdthImpl value, $Res Function(_$GetdthImpl) then) =
+      __$$GetdthImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Map<String, dynamic> payload});
 }
 
 /// @nodoc
-class __$$_GetdthCopyWithImpl<$Res>
-    extends _$CheckupEventCopyWithImpl<$Res, _$_Getdth>
-    implements _$$_GetdthCopyWith<$Res> {
-  __$$_GetdthCopyWithImpl(_$_Getdth _value, $Res Function(_$_Getdth) _then)
+class __$$GetdthImplCopyWithImpl<$Res>
+    extends _$CheckupEventCopyWithImpl<$Res, _$GetdthImpl>
+    implements _$$GetdthImplCopyWith<$Res> {
+  __$$GetdthImplCopyWithImpl(
+      _$GetdthImpl _value, $Res Function(_$GetdthImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -925,7 +927,7 @@ class __$$_GetdthCopyWithImpl<$Res>
   $Res call({
     Object? payload = null,
   }) {
-    return _then(_$_Getdth(
+    return _then(_$GetdthImpl(
       payload: null == payload
           ? _value._payload
           : payload // ignore: cast_nullable_to_non_nullable
@@ -936,8 +938,8 @@ class __$$_GetdthCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Getdth implements _Getdth {
-  const _$_Getdth({required final Map<String, dynamic> payload})
+class _$GetdthImpl implements _Getdth {
+  const _$GetdthImpl({required final Map<String, dynamic> payload})
       : _payload = payload;
 
   final Map<String, dynamic> _payload;
@@ -957,7 +959,7 @@ class _$_Getdth implements _Getdth {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Getdth &&
+            other is _$GetdthImpl &&
             const DeepCollectionEquality().equals(other._payload, _payload));
   }
 
@@ -968,8 +970,8 @@ class _$_Getdth implements _Getdth {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GetdthCopyWith<_$_Getdth> get copyWith =>
-      __$$_GetdthCopyWithImpl<_$_Getdth>(this, _$identity);
+  _$$GetdthImplCopyWith<_$GetdthImpl> get copyWith =>
+      __$$GetdthImplCopyWithImpl<_$GetdthImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1139,29 +1141,29 @@ class _$_Getdth implements _Getdth {
 
 abstract class _Getdth implements CheckupEvent {
   const factory _Getdth({required final Map<String, dynamic> payload}) =
-      _$_Getdth;
+      _$GetdthImpl;
 
   Map<String, dynamic> get payload;
   @JsonKey(ignore: true)
-  _$$_GetdthCopyWith<_$_Getdth> get copyWith =>
+  _$$GetdthImplCopyWith<_$GetdthImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_GettemperatureCopyWith<$Res> {
-  factory _$$_GettemperatureCopyWith(
-          _$_Gettemperature value, $Res Function(_$_Gettemperature) then) =
-      __$$_GettemperatureCopyWithImpl<$Res>;
+abstract class _$$GettemperatureImplCopyWith<$Res> {
+  factory _$$GettemperatureImplCopyWith(_$GettemperatureImpl value,
+          $Res Function(_$GettemperatureImpl) then) =
+      __$$GettemperatureImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String topic, Map<String, dynamic> payload});
 }
 
 /// @nodoc
-class __$$_GettemperatureCopyWithImpl<$Res>
-    extends _$CheckupEventCopyWithImpl<$Res, _$_Gettemperature>
-    implements _$$_GettemperatureCopyWith<$Res> {
-  __$$_GettemperatureCopyWithImpl(
-      _$_Gettemperature _value, $Res Function(_$_Gettemperature) _then)
+class __$$GettemperatureImplCopyWithImpl<$Res>
+    extends _$CheckupEventCopyWithImpl<$Res, _$GettemperatureImpl>
+    implements _$$GettemperatureImplCopyWith<$Res> {
+  __$$GettemperatureImplCopyWithImpl(
+      _$GettemperatureImpl _value, $Res Function(_$GettemperatureImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1170,7 +1172,7 @@ class __$$_GettemperatureCopyWithImpl<$Res>
     Object? topic = null,
     Object? payload = null,
   }) {
-    return _then(_$_Gettemperature(
+    return _then(_$GettemperatureImpl(
       topic: null == topic
           ? _value.topic
           : topic // ignore: cast_nullable_to_non_nullable
@@ -1185,8 +1187,8 @@ class __$$_GettemperatureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Gettemperature implements _Gettemperature {
-  const _$_Gettemperature(
+class _$GettemperatureImpl implements _Gettemperature {
+  const _$GettemperatureImpl(
       {required this.topic, required final Map<String, dynamic> payload})
       : _payload = payload;
 
@@ -1209,7 +1211,7 @@ class _$_Gettemperature implements _Gettemperature {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Gettemperature &&
+            other is _$GettemperatureImpl &&
             (identical(other.topic, topic) || other.topic == topic) &&
             const DeepCollectionEquality().equals(other._payload, _payload));
   }
@@ -1221,8 +1223,9 @@ class _$_Gettemperature implements _Gettemperature {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GettemperatureCopyWith<_$_Gettemperature> get copyWith =>
-      __$$_GettemperatureCopyWithImpl<_$_Gettemperature>(this, _$identity);
+  _$$GettemperatureImplCopyWith<_$GettemperatureImpl> get copyWith =>
+      __$$GettemperatureImplCopyWithImpl<_$GettemperatureImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1393,29 +1396,30 @@ class _$_Gettemperature implements _Gettemperature {
 abstract class _Gettemperature implements CheckupEvent {
   const factory _Gettemperature(
       {required final String topic,
-      required final Map<String, dynamic> payload}) = _$_Gettemperature;
+      required final Map<String, dynamic> payload}) = _$GettemperatureImpl;
 
   String get topic;
   Map<String, dynamic> get payload;
   @JsonKey(ignore: true)
-  _$$_GettemperatureCopyWith<_$_Gettemperature> get copyWith =>
+  _$$GettemperatureImplCopyWith<_$GettemperatureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_Getspo2CopyWith<$Res> {
-  factory _$$_Getspo2CopyWith(
-          _$_Getspo2 value, $Res Function(_$_Getspo2) then) =
-      __$$_Getspo2CopyWithImpl<$Res>;
+abstract class _$$Getspo2ImplCopyWith<$Res> {
+  factory _$$Getspo2ImplCopyWith(
+          _$Getspo2Impl value, $Res Function(_$Getspo2Impl) then) =
+      __$$Getspo2ImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String topic, Map<String, dynamic> payload});
 }
 
 /// @nodoc
-class __$$_Getspo2CopyWithImpl<$Res>
-    extends _$CheckupEventCopyWithImpl<$Res, _$_Getspo2>
-    implements _$$_Getspo2CopyWith<$Res> {
-  __$$_Getspo2CopyWithImpl(_$_Getspo2 _value, $Res Function(_$_Getspo2) _then)
+class __$$Getspo2ImplCopyWithImpl<$Res>
+    extends _$CheckupEventCopyWithImpl<$Res, _$Getspo2Impl>
+    implements _$$Getspo2ImplCopyWith<$Res> {
+  __$$Getspo2ImplCopyWithImpl(
+      _$Getspo2Impl _value, $Res Function(_$Getspo2Impl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1424,7 +1428,7 @@ class __$$_Getspo2CopyWithImpl<$Res>
     Object? topic = null,
     Object? payload = null,
   }) {
-    return _then(_$_Getspo2(
+    return _then(_$Getspo2Impl(
       topic: null == topic
           ? _value.topic
           : topic // ignore: cast_nullable_to_non_nullable
@@ -1439,8 +1443,8 @@ class __$$_Getspo2CopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Getspo2 implements _Getspo2 {
-  const _$_Getspo2(
+class _$Getspo2Impl implements _Getspo2 {
+  const _$Getspo2Impl(
       {required this.topic, required final Map<String, dynamic> payload})
       : _payload = payload;
 
@@ -1463,7 +1467,7 @@ class _$_Getspo2 implements _Getspo2 {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Getspo2 &&
+            other is _$Getspo2Impl &&
             (identical(other.topic, topic) || other.topic == topic) &&
             const DeepCollectionEquality().equals(other._payload, _payload));
   }
@@ -1475,8 +1479,8 @@ class _$_Getspo2 implements _Getspo2 {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_Getspo2CopyWith<_$_Getspo2> get copyWith =>
-      __$$_Getspo2CopyWithImpl<_$_Getspo2>(this, _$identity);
+  _$$Getspo2ImplCopyWith<_$Getspo2Impl> get copyWith =>
+      __$$Getspo2ImplCopyWithImpl<_$Getspo2Impl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1647,30 +1651,30 @@ class _$_Getspo2 implements _Getspo2 {
 abstract class _Getspo2 implements CheckupEvent {
   const factory _Getspo2(
       {required final String topic,
-      required final Map<String, dynamic> payload}) = _$_Getspo2;
+      required final Map<String, dynamic> payload}) = _$Getspo2Impl;
 
   String get topic;
   Map<String, dynamic> get payload;
   @JsonKey(ignore: true)
-  _$$_Getspo2CopyWith<_$_Getspo2> get copyWith =>
+  _$$Getspo2ImplCopyWith<_$Getspo2Impl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_GetpositionCopyWith<$Res> {
-  factory _$$_GetpositionCopyWith(
-          _$_Getposition value, $Res Function(_$_Getposition) then) =
-      __$$_GetpositionCopyWithImpl<$Res>;
+abstract class _$$GetpositionImplCopyWith<$Res> {
+  factory _$$GetpositionImplCopyWith(
+          _$GetpositionImpl value, $Res Function(_$GetpositionImpl) then) =
+      __$$GetpositionImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String topic, Map<String, dynamic> payload});
 }
 
 /// @nodoc
-class __$$_GetpositionCopyWithImpl<$Res>
-    extends _$CheckupEventCopyWithImpl<$Res, _$_Getposition>
-    implements _$$_GetpositionCopyWith<$Res> {
-  __$$_GetpositionCopyWithImpl(
-      _$_Getposition _value, $Res Function(_$_Getposition) _then)
+class __$$GetpositionImplCopyWithImpl<$Res>
+    extends _$CheckupEventCopyWithImpl<$Res, _$GetpositionImpl>
+    implements _$$GetpositionImplCopyWith<$Res> {
+  __$$GetpositionImplCopyWithImpl(
+      _$GetpositionImpl _value, $Res Function(_$GetpositionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1679,7 +1683,7 @@ class __$$_GetpositionCopyWithImpl<$Res>
     Object? topic = null,
     Object? payload = null,
   }) {
-    return _then(_$_Getposition(
+    return _then(_$GetpositionImpl(
       topic: null == topic
           ? _value.topic
           : topic // ignore: cast_nullable_to_non_nullable
@@ -1694,8 +1698,8 @@ class __$$_GetpositionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Getposition implements _Getposition {
-  const _$_Getposition(
+class _$GetpositionImpl implements _Getposition {
+  const _$GetpositionImpl(
       {required this.topic, required final Map<String, dynamic> payload})
       : _payload = payload;
 
@@ -1718,7 +1722,7 @@ class _$_Getposition implements _Getposition {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Getposition &&
+            other is _$GetpositionImpl &&
             (identical(other.topic, topic) || other.topic == topic) &&
             const DeepCollectionEquality().equals(other._payload, _payload));
   }
@@ -1730,8 +1734,8 @@ class _$_Getposition implements _Getposition {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GetpositionCopyWith<_$_Getposition> get copyWith =>
-      __$$_GetpositionCopyWithImpl<_$_Getposition>(this, _$identity);
+  _$$GetpositionImplCopyWith<_$GetpositionImpl> get copyWith =>
+      __$$GetpositionImplCopyWithImpl<_$GetpositionImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1902,30 +1906,30 @@ class _$_Getposition implements _Getposition {
 abstract class _Getposition implements CheckupEvent {
   const factory _Getposition(
       {required final String topic,
-      required final Map<String, dynamic> payload}) = _$_Getposition;
+      required final Map<String, dynamic> payload}) = _$GetpositionImpl;
 
   String get topic;
   Map<String, dynamic> get payload;
   @JsonKey(ignore: true)
-  _$$_GetpositionCopyWith<_$_Getposition> get copyWith =>
+  _$$GetpositionImplCopyWith<_$GetpositionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_GetbloodPresureCopyWith<$Res> {
-  factory _$$_GetbloodPresureCopyWith(
-          _$_GetbloodPresure value, $Res Function(_$_GetbloodPresure) then) =
-      __$$_GetbloodPresureCopyWithImpl<$Res>;
+abstract class _$$GetbloodPresureImplCopyWith<$Res> {
+  factory _$$GetbloodPresureImplCopyWith(_$GetbloodPresureImpl value,
+          $Res Function(_$GetbloodPresureImpl) then) =
+      __$$GetbloodPresureImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String topic, Map<String, dynamic> payload});
 }
 
 /// @nodoc
-class __$$_GetbloodPresureCopyWithImpl<$Res>
-    extends _$CheckupEventCopyWithImpl<$Res, _$_GetbloodPresure>
-    implements _$$_GetbloodPresureCopyWith<$Res> {
-  __$$_GetbloodPresureCopyWithImpl(
-      _$_GetbloodPresure _value, $Res Function(_$_GetbloodPresure) _then)
+class __$$GetbloodPresureImplCopyWithImpl<$Res>
+    extends _$CheckupEventCopyWithImpl<$Res, _$GetbloodPresureImpl>
+    implements _$$GetbloodPresureImplCopyWith<$Res> {
+  __$$GetbloodPresureImplCopyWithImpl(
+      _$GetbloodPresureImpl _value, $Res Function(_$GetbloodPresureImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1934,7 +1938,7 @@ class __$$_GetbloodPresureCopyWithImpl<$Res>
     Object? topic = null,
     Object? payload = null,
   }) {
-    return _then(_$_GetbloodPresure(
+    return _then(_$GetbloodPresureImpl(
       topic: null == topic
           ? _value.topic
           : topic // ignore: cast_nullable_to_non_nullable
@@ -1949,8 +1953,8 @@ class __$$_GetbloodPresureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GetbloodPresure implements _GetbloodPresure {
-  const _$_GetbloodPresure(
+class _$GetbloodPresureImpl implements _GetbloodPresure {
+  const _$GetbloodPresureImpl(
       {required this.topic, required final Map<String, dynamic> payload})
       : _payload = payload;
 
@@ -1973,7 +1977,7 @@ class _$_GetbloodPresure implements _GetbloodPresure {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GetbloodPresure &&
+            other is _$GetbloodPresureImpl &&
             (identical(other.topic, topic) || other.topic == topic) &&
             const DeepCollectionEquality().equals(other._payload, _payload));
   }
@@ -1985,8 +1989,9 @@ class _$_GetbloodPresure implements _GetbloodPresure {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GetbloodPresureCopyWith<_$_GetbloodPresure> get copyWith =>
-      __$$_GetbloodPresureCopyWithImpl<_$_GetbloodPresure>(this, _$identity);
+  _$$GetbloodPresureImplCopyWith<_$GetbloodPresureImpl> get copyWith =>
+      __$$GetbloodPresureImplCopyWithImpl<_$GetbloodPresureImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2157,28 +2162,30 @@ class _$_GetbloodPresure implements _GetbloodPresure {
 abstract class _GetbloodPresure implements CheckupEvent {
   const factory _GetbloodPresure(
       {required final String topic,
-      required final Map<String, dynamic> payload}) = _$_GetbloodPresure;
+      required final Map<String, dynamic> payload}) = _$GetbloodPresureImpl;
 
   String get topic;
   Map<String, dynamic> get payload;
   @JsonKey(ignore: true)
-  _$$_GetbloodPresureCopyWith<_$_GetbloodPresure> get copyWith =>
+  _$$GetbloodPresureImplCopyWith<_$GetbloodPresureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_GetecgCopyWith<$Res> {
-  factory _$$_GetecgCopyWith(_$_Getecg value, $Res Function(_$_Getecg) then) =
-      __$$_GetecgCopyWithImpl<$Res>;
+abstract class _$$GetecgImplCopyWith<$Res> {
+  factory _$$GetecgImplCopyWith(
+          _$GetecgImpl value, $Res Function(_$GetecgImpl) then) =
+      __$$GetecgImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String topic, Map<String, dynamic> payload});
 }
 
 /// @nodoc
-class __$$_GetecgCopyWithImpl<$Res>
-    extends _$CheckupEventCopyWithImpl<$Res, _$_Getecg>
-    implements _$$_GetecgCopyWith<$Res> {
-  __$$_GetecgCopyWithImpl(_$_Getecg _value, $Res Function(_$_Getecg) _then)
+class __$$GetecgImplCopyWithImpl<$Res>
+    extends _$CheckupEventCopyWithImpl<$Res, _$GetecgImpl>
+    implements _$$GetecgImplCopyWith<$Res> {
+  __$$GetecgImplCopyWithImpl(
+      _$GetecgImpl _value, $Res Function(_$GetecgImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2187,7 +2194,7 @@ class __$$_GetecgCopyWithImpl<$Res>
     Object? topic = null,
     Object? payload = null,
   }) {
-    return _then(_$_Getecg(
+    return _then(_$GetecgImpl(
       topic: null == topic
           ? _value.topic
           : topic // ignore: cast_nullable_to_non_nullable
@@ -2202,8 +2209,8 @@ class __$$_GetecgCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Getecg implements _Getecg {
-  const _$_Getecg(
+class _$GetecgImpl implements _Getecg {
+  const _$GetecgImpl(
       {required this.topic, required final Map<String, dynamic> payload})
       : _payload = payload;
 
@@ -2226,7 +2233,7 @@ class _$_Getecg implements _Getecg {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Getecg &&
+            other is _$GetecgImpl &&
             (identical(other.topic, topic) || other.topic == topic) &&
             const DeepCollectionEquality().equals(other._payload, _payload));
   }
@@ -2238,8 +2245,8 @@ class _$_Getecg implements _Getecg {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GetecgCopyWith<_$_Getecg> get copyWith =>
-      __$$_GetecgCopyWithImpl<_$_Getecg>(this, _$identity);
+  _$$GetecgImplCopyWith<_$GetecgImpl> get copyWith =>
+      __$$GetecgImplCopyWithImpl<_$GetecgImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2410,28 +2417,30 @@ class _$_Getecg implements _Getecg {
 abstract class _Getecg implements CheckupEvent {
   const factory _Getecg(
       {required final String topic,
-      required final Map<String, dynamic> payload}) = _$_Getecg;
+      required final Map<String, dynamic> payload}) = _$GetecgImpl;
 
   String get topic;
   Map<String, dynamic> get payload;
   @JsonKey(ignore: true)
-  _$$_GetecgCopyWith<_$_Getecg> get copyWith =>
+  _$$GetecgImplCopyWith<_$GetecgImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_GetemgCopyWith<$Res> {
-  factory _$$_GetemgCopyWith(_$_Getemg value, $Res Function(_$_Getemg) then) =
-      __$$_GetemgCopyWithImpl<$Res>;
+abstract class _$$GetemgImplCopyWith<$Res> {
+  factory _$$GetemgImplCopyWith(
+          _$GetemgImpl value, $Res Function(_$GetemgImpl) then) =
+      __$$GetemgImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String topic, Map<String, dynamic> payload});
 }
 
 /// @nodoc
-class __$$_GetemgCopyWithImpl<$Res>
-    extends _$CheckupEventCopyWithImpl<$Res, _$_Getemg>
-    implements _$$_GetemgCopyWith<$Res> {
-  __$$_GetemgCopyWithImpl(_$_Getemg _value, $Res Function(_$_Getemg) _then)
+class __$$GetemgImplCopyWithImpl<$Res>
+    extends _$CheckupEventCopyWithImpl<$Res, _$GetemgImpl>
+    implements _$$GetemgImplCopyWith<$Res> {
+  __$$GetemgImplCopyWithImpl(
+      _$GetemgImpl _value, $Res Function(_$GetemgImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2440,7 +2449,7 @@ class __$$_GetemgCopyWithImpl<$Res>
     Object? topic = null,
     Object? payload = null,
   }) {
-    return _then(_$_Getemg(
+    return _then(_$GetemgImpl(
       topic: null == topic
           ? _value.topic
           : topic // ignore: cast_nullable_to_non_nullable
@@ -2455,8 +2464,8 @@ class __$$_GetemgCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Getemg implements _Getemg {
-  const _$_Getemg(
+class _$GetemgImpl implements _Getemg {
+  const _$GetemgImpl(
       {required this.topic, required final Map<String, dynamic> payload})
       : _payload = payload;
 
@@ -2479,7 +2488,7 @@ class _$_Getemg implements _Getemg {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Getemg &&
+            other is _$GetemgImpl &&
             (identical(other.topic, topic) || other.topic == topic) &&
             const DeepCollectionEquality().equals(other._payload, _payload));
   }
@@ -2491,8 +2500,8 @@ class _$_Getemg implements _Getemg {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GetemgCopyWith<_$_Getemg> get copyWith =>
-      __$$_GetemgCopyWithImpl<_$_Getemg>(this, _$identity);
+  _$$GetemgImplCopyWith<_$GetemgImpl> get copyWith =>
+      __$$GetemgImplCopyWithImpl<_$GetemgImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2663,28 +2672,30 @@ class _$_Getemg implements _Getemg {
 abstract class _Getemg implements CheckupEvent {
   const factory _Getemg(
       {required final String topic,
-      required final Map<String, dynamic> payload}) = _$_Getemg;
+      required final Map<String, dynamic> payload}) = _$GetemgImpl;
 
   String get topic;
   Map<String, dynamic> get payload;
   @JsonKey(ignore: true)
-  _$$_GetemgCopyWith<_$_Getemg> get copyWith =>
+  _$$GetemgImplCopyWith<_$GetemgImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_GetgsrCopyWith<$Res> {
-  factory _$$_GetgsrCopyWith(_$_Getgsr value, $Res Function(_$_Getgsr) then) =
-      __$$_GetgsrCopyWithImpl<$Res>;
+abstract class _$$GetgsrImplCopyWith<$Res> {
+  factory _$$GetgsrImplCopyWith(
+          _$GetgsrImpl value, $Res Function(_$GetgsrImpl) then) =
+      __$$GetgsrImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String topic, Map<String, dynamic> payload});
 }
 
 /// @nodoc
-class __$$_GetgsrCopyWithImpl<$Res>
-    extends _$CheckupEventCopyWithImpl<$Res, _$_Getgsr>
-    implements _$$_GetgsrCopyWith<$Res> {
-  __$$_GetgsrCopyWithImpl(_$_Getgsr _value, $Res Function(_$_Getgsr) _then)
+class __$$GetgsrImplCopyWithImpl<$Res>
+    extends _$CheckupEventCopyWithImpl<$Res, _$GetgsrImpl>
+    implements _$$GetgsrImplCopyWith<$Res> {
+  __$$GetgsrImplCopyWithImpl(
+      _$GetgsrImpl _value, $Res Function(_$GetgsrImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2693,7 +2704,7 @@ class __$$_GetgsrCopyWithImpl<$Res>
     Object? topic = null,
     Object? payload = null,
   }) {
-    return _then(_$_Getgsr(
+    return _then(_$GetgsrImpl(
       topic: null == topic
           ? _value.topic
           : topic // ignore: cast_nullable_to_non_nullable
@@ -2708,8 +2719,8 @@ class __$$_GetgsrCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Getgsr implements _Getgsr {
-  const _$_Getgsr(
+class _$GetgsrImpl implements _Getgsr {
+  const _$GetgsrImpl(
       {required this.topic, required final Map<String, dynamic> payload})
       : _payload = payload;
 
@@ -2732,7 +2743,7 @@ class _$_Getgsr implements _Getgsr {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Getgsr &&
+            other is _$GetgsrImpl &&
             (identical(other.topic, topic) || other.topic == topic) &&
             const DeepCollectionEquality().equals(other._payload, _payload));
   }
@@ -2744,8 +2755,8 @@ class _$_Getgsr implements _Getgsr {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GetgsrCopyWith<_$_Getgsr> get copyWith =>
-      __$$_GetgsrCopyWithImpl<_$_Getgsr>(this, _$identity);
+  _$$GetgsrImplCopyWith<_$GetgsrImpl> get copyWith =>
+      __$$GetgsrImplCopyWithImpl<_$GetgsrImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2916,28 +2927,30 @@ class _$_Getgsr implements _Getgsr {
 abstract class _Getgsr implements CheckupEvent {
   const factory _Getgsr(
       {required final String topic,
-      required final Map<String, dynamic> payload}) = _$_Getgsr;
+      required final Map<String, dynamic> payload}) = _$GetgsrImpl;
 
   String get topic;
   Map<String, dynamic> get payload;
   @JsonKey(ignore: true)
-  _$$_GetgsrCopyWith<_$_Getgsr> get copyWith =>
+  _$$GetgsrImplCopyWith<_$GetgsrImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_GetbmiCopyWith<$Res> {
-  factory _$$_GetbmiCopyWith(_$_Getbmi value, $Res Function(_$_Getbmi) then) =
-      __$$_GetbmiCopyWithImpl<$Res>;
+abstract class _$$GetbmiImplCopyWith<$Res> {
+  factory _$$GetbmiImplCopyWith(
+          _$GetbmiImpl value, $Res Function(_$GetbmiImpl) then) =
+      __$$GetbmiImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String topic, Map<String, dynamic> payload});
 }
 
 /// @nodoc
-class __$$_GetbmiCopyWithImpl<$Res>
-    extends _$CheckupEventCopyWithImpl<$Res, _$_Getbmi>
-    implements _$$_GetbmiCopyWith<$Res> {
-  __$$_GetbmiCopyWithImpl(_$_Getbmi _value, $Res Function(_$_Getbmi) _then)
+class __$$GetbmiImplCopyWithImpl<$Res>
+    extends _$CheckupEventCopyWithImpl<$Res, _$GetbmiImpl>
+    implements _$$GetbmiImplCopyWith<$Res> {
+  __$$GetbmiImplCopyWithImpl(
+      _$GetbmiImpl _value, $Res Function(_$GetbmiImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2946,7 +2959,7 @@ class __$$_GetbmiCopyWithImpl<$Res>
     Object? topic = null,
     Object? payload = null,
   }) {
-    return _then(_$_Getbmi(
+    return _then(_$GetbmiImpl(
       topic: null == topic
           ? _value.topic
           : topic // ignore: cast_nullable_to_non_nullable
@@ -2961,8 +2974,8 @@ class __$$_GetbmiCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Getbmi implements _Getbmi {
-  const _$_Getbmi(
+class _$GetbmiImpl implements _Getbmi {
+  const _$GetbmiImpl(
       {required this.topic, required final Map<String, dynamic> payload})
       : _payload = payload;
 
@@ -2985,7 +2998,7 @@ class _$_Getbmi implements _Getbmi {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Getbmi &&
+            other is _$GetbmiImpl &&
             (identical(other.topic, topic) || other.topic == topic) &&
             const DeepCollectionEquality().equals(other._payload, _payload));
   }
@@ -2997,8 +3010,8 @@ class _$_Getbmi implements _Getbmi {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GetbmiCopyWith<_$_Getbmi> get copyWith =>
-      __$$_GetbmiCopyWithImpl<_$_Getbmi>(this, _$identity);
+  _$$GetbmiImplCopyWith<_$GetbmiImpl> get copyWith =>
+      __$$GetbmiImplCopyWithImpl<_$GetbmiImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -3169,30 +3182,30 @@ class _$_Getbmi implements _Getbmi {
 abstract class _Getbmi implements CheckupEvent {
   const factory _Getbmi(
       {required final String topic,
-      required final Map<String, dynamic> payload}) = _$_Getbmi;
+      required final Map<String, dynamic> payload}) = _$GetbmiImpl;
 
   String get topic;
   Map<String, dynamic> get payload;
   @JsonKey(ignore: true)
-  _$$_GetbmiCopyWith<_$_Getbmi> get copyWith =>
+  _$$GetbmiImplCopyWith<_$GetbmiImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_GetglucoseCopyWith<$Res> {
-  factory _$$_GetglucoseCopyWith(
-          _$_Getglucose value, $Res Function(_$_Getglucose) then) =
-      __$$_GetglucoseCopyWithImpl<$Res>;
+abstract class _$$GetglucoseImplCopyWith<$Res> {
+  factory _$$GetglucoseImplCopyWith(
+          _$GetglucoseImpl value, $Res Function(_$GetglucoseImpl) then) =
+      __$$GetglucoseImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String topic, Map<String, dynamic> payload});
 }
 
 /// @nodoc
-class __$$_GetglucoseCopyWithImpl<$Res>
-    extends _$CheckupEventCopyWithImpl<$Res, _$_Getglucose>
-    implements _$$_GetglucoseCopyWith<$Res> {
-  __$$_GetglucoseCopyWithImpl(
-      _$_Getglucose _value, $Res Function(_$_Getglucose) _then)
+class __$$GetglucoseImplCopyWithImpl<$Res>
+    extends _$CheckupEventCopyWithImpl<$Res, _$GetglucoseImpl>
+    implements _$$GetglucoseImplCopyWith<$Res> {
+  __$$GetglucoseImplCopyWithImpl(
+      _$GetglucoseImpl _value, $Res Function(_$GetglucoseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3201,7 +3214,7 @@ class __$$_GetglucoseCopyWithImpl<$Res>
     Object? topic = null,
     Object? payload = null,
   }) {
-    return _then(_$_Getglucose(
+    return _then(_$GetglucoseImpl(
       topic: null == topic
           ? _value.topic
           : topic // ignore: cast_nullable_to_non_nullable
@@ -3216,8 +3229,8 @@ class __$$_GetglucoseCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Getglucose implements _Getglucose {
-  const _$_Getglucose(
+class _$GetglucoseImpl implements _Getglucose {
+  const _$GetglucoseImpl(
       {required this.topic, required final Map<String, dynamic> payload})
       : _payload = payload;
 
@@ -3240,7 +3253,7 @@ class _$_Getglucose implements _Getglucose {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Getglucose &&
+            other is _$GetglucoseImpl &&
             (identical(other.topic, topic) || other.topic == topic) &&
             const DeepCollectionEquality().equals(other._payload, _payload));
   }
@@ -3252,8 +3265,8 @@ class _$_Getglucose implements _Getglucose {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GetglucoseCopyWith<_$_Getglucose> get copyWith =>
-      __$$_GetglucoseCopyWithImpl<_$_Getglucose>(this, _$identity);
+  _$$GetglucoseImplCopyWith<_$GetglucoseImpl> get copyWith =>
+      __$$GetglucoseImplCopyWithImpl<_$GetglucoseImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -3424,30 +3437,30 @@ class _$_Getglucose implements _Getglucose {
 abstract class _Getglucose implements CheckupEvent {
   const factory _Getglucose(
       {required final String topic,
-      required final Map<String, dynamic> payload}) = _$_Getglucose;
+      required final Map<String, dynamic> payload}) = _$GetglucoseImpl;
 
   String get topic;
   Map<String, dynamic> get payload;
   @JsonKey(ignore: true)
-  _$$_GetglucoseCopyWith<_$_Getglucose> get copyWith =>
+  _$$GetglucoseImplCopyWith<_$GetglucoseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_GetstethoscopeCopyWith<$Res> {
-  factory _$$_GetstethoscopeCopyWith(
-          _$_Getstethoscope value, $Res Function(_$_Getstethoscope) then) =
-      __$$_GetstethoscopeCopyWithImpl<$Res>;
+abstract class _$$GetstethoscopeImplCopyWith<$Res> {
+  factory _$$GetstethoscopeImplCopyWith(_$GetstethoscopeImpl value,
+          $Res Function(_$GetstethoscopeImpl) then) =
+      __$$GetstethoscopeImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String topic, Map<String, dynamic> payload});
 }
 
 /// @nodoc
-class __$$_GetstethoscopeCopyWithImpl<$Res>
-    extends _$CheckupEventCopyWithImpl<$Res, _$_Getstethoscope>
-    implements _$$_GetstethoscopeCopyWith<$Res> {
-  __$$_GetstethoscopeCopyWithImpl(
-      _$_Getstethoscope _value, $Res Function(_$_Getstethoscope) _then)
+class __$$GetstethoscopeImplCopyWithImpl<$Res>
+    extends _$CheckupEventCopyWithImpl<$Res, _$GetstethoscopeImpl>
+    implements _$$GetstethoscopeImplCopyWith<$Res> {
+  __$$GetstethoscopeImplCopyWithImpl(
+      _$GetstethoscopeImpl _value, $Res Function(_$GetstethoscopeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3456,7 +3469,7 @@ class __$$_GetstethoscopeCopyWithImpl<$Res>
     Object? topic = null,
     Object? payload = null,
   }) {
-    return _then(_$_Getstethoscope(
+    return _then(_$GetstethoscopeImpl(
       topic: null == topic
           ? _value.topic
           : topic // ignore: cast_nullable_to_non_nullable
@@ -3471,8 +3484,8 @@ class __$$_GetstethoscopeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Getstethoscope implements _Getstethoscope {
-  const _$_Getstethoscope(
+class _$GetstethoscopeImpl implements _Getstethoscope {
+  const _$GetstethoscopeImpl(
       {required this.topic, required final Map<String, dynamic> payload})
       : _payload = payload;
 
@@ -3495,7 +3508,7 @@ class _$_Getstethoscope implements _Getstethoscope {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Getstethoscope &&
+            other is _$GetstethoscopeImpl &&
             (identical(other.topic, topic) || other.topic == topic) &&
             const DeepCollectionEquality().equals(other._payload, _payload));
   }
@@ -3507,8 +3520,9 @@ class _$_Getstethoscope implements _Getstethoscope {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GetstethoscopeCopyWith<_$_Getstethoscope> get copyWith =>
-      __$$_GetstethoscopeCopyWithImpl<_$_Getstethoscope>(this, _$identity);
+  _$$GetstethoscopeImplCopyWith<_$GetstethoscopeImpl> get copyWith =>
+      __$$GetstethoscopeImplCopyWithImpl<_$GetstethoscopeImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -3679,30 +3693,30 @@ class _$_Getstethoscope implements _Getstethoscope {
 abstract class _Getstethoscope implements CheckupEvent {
   const factory _Getstethoscope(
       {required final String topic,
-      required final Map<String, dynamic> payload}) = _$_Getstethoscope;
+      required final Map<String, dynamic> payload}) = _$GetstethoscopeImpl;
 
   String get topic;
   Map<String, dynamic> get payload;
   @JsonKey(ignore: true)
-  _$$_GetstethoscopeCopyWith<_$_Getstethoscope> get copyWith =>
+  _$$GetstethoscopeImplCopyWith<_$GetstethoscopeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_GetotoscopeCopyWith<$Res> {
-  factory _$$_GetotoscopeCopyWith(
-          _$_Getotoscope value, $Res Function(_$_Getotoscope) then) =
-      __$$_GetotoscopeCopyWithImpl<$Res>;
+abstract class _$$GetotoscopeImplCopyWith<$Res> {
+  factory _$$GetotoscopeImplCopyWith(
+          _$GetotoscopeImpl value, $Res Function(_$GetotoscopeImpl) then) =
+      __$$GetotoscopeImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String topic, Map<String, dynamic> payload});
 }
 
 /// @nodoc
-class __$$_GetotoscopeCopyWithImpl<$Res>
-    extends _$CheckupEventCopyWithImpl<$Res, _$_Getotoscope>
-    implements _$$_GetotoscopeCopyWith<$Res> {
-  __$$_GetotoscopeCopyWithImpl(
-      _$_Getotoscope _value, $Res Function(_$_Getotoscope) _then)
+class __$$GetotoscopeImplCopyWithImpl<$Res>
+    extends _$CheckupEventCopyWithImpl<$Res, _$GetotoscopeImpl>
+    implements _$$GetotoscopeImplCopyWith<$Res> {
+  __$$GetotoscopeImplCopyWithImpl(
+      _$GetotoscopeImpl _value, $Res Function(_$GetotoscopeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3711,7 +3725,7 @@ class __$$_GetotoscopeCopyWithImpl<$Res>
     Object? topic = null,
     Object? payload = null,
   }) {
-    return _then(_$_Getotoscope(
+    return _then(_$GetotoscopeImpl(
       topic: null == topic
           ? _value.topic
           : topic // ignore: cast_nullable_to_non_nullable
@@ -3726,8 +3740,8 @@ class __$$_GetotoscopeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Getotoscope implements _Getotoscope {
-  const _$_Getotoscope(
+class _$GetotoscopeImpl implements _Getotoscope {
+  const _$GetotoscopeImpl(
       {required this.topic, required final Map<String, dynamic> payload})
       : _payload = payload;
 
@@ -3750,7 +3764,7 @@ class _$_Getotoscope implements _Getotoscope {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Getotoscope &&
+            other is _$GetotoscopeImpl &&
             (identical(other.topic, topic) || other.topic == topic) &&
             const DeepCollectionEquality().equals(other._payload, _payload));
   }
@@ -3762,8 +3776,8 @@ class _$_Getotoscope implements _Getotoscope {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GetotoscopeCopyWith<_$_Getotoscope> get copyWith =>
-      __$$_GetotoscopeCopyWithImpl<_$_Getotoscope>(this, _$identity);
+  _$$GetotoscopeImplCopyWith<_$GetotoscopeImpl> get copyWith =>
+      __$$GetotoscopeImplCopyWithImpl<_$GetotoscopeImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -3934,30 +3948,30 @@ class _$_Getotoscope implements _Getotoscope {
 abstract class _Getotoscope implements CheckupEvent {
   const factory _Getotoscope(
       {required final String topic,
-      required final Map<String, dynamic> payload}) = _$_Getotoscope;
+      required final Map<String, dynamic> payload}) = _$GetotoscopeImpl;
 
   String get topic;
   Map<String, dynamic> get payload;
   @JsonKey(ignore: true)
-  _$$_GetotoscopeCopyWith<_$_Getotoscope> get copyWith =>
+  _$$GetotoscopeImplCopyWith<_$GetotoscopeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_EndAppoinmentCopyWith<$Res> {
-  factory _$$_EndAppoinmentCopyWith(
-          _$_EndAppoinment value, $Res Function(_$_EndAppoinment) then) =
-      __$$_EndAppoinmentCopyWithImpl<$Res>;
+abstract class _$$EndAppoinmentImplCopyWith<$Res> {
+  factory _$$EndAppoinmentImplCopyWith(
+          _$EndAppoinmentImpl value, $Res Function(_$EndAppoinmentImpl) then) =
+      __$$EndAppoinmentImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String patientId, String appoinmentId});
 }
 
 /// @nodoc
-class __$$_EndAppoinmentCopyWithImpl<$Res>
-    extends _$CheckupEventCopyWithImpl<$Res, _$_EndAppoinment>
-    implements _$$_EndAppoinmentCopyWith<$Res> {
-  __$$_EndAppoinmentCopyWithImpl(
-      _$_EndAppoinment _value, $Res Function(_$_EndAppoinment) _then)
+class __$$EndAppoinmentImplCopyWithImpl<$Res>
+    extends _$CheckupEventCopyWithImpl<$Res, _$EndAppoinmentImpl>
+    implements _$$EndAppoinmentImplCopyWith<$Res> {
+  __$$EndAppoinmentImplCopyWithImpl(
+      _$EndAppoinmentImpl _value, $Res Function(_$EndAppoinmentImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3966,7 +3980,7 @@ class __$$_EndAppoinmentCopyWithImpl<$Res>
     Object? patientId = null,
     Object? appoinmentId = null,
   }) {
-    return _then(_$_EndAppoinment(
+    return _then(_$EndAppoinmentImpl(
       patientId: null == patientId
           ? _value.patientId
           : patientId // ignore: cast_nullable_to_non_nullable
@@ -3981,8 +3995,9 @@ class __$$_EndAppoinmentCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_EndAppoinment implements _EndAppoinment {
-  const _$_EndAppoinment({required this.patientId, required this.appoinmentId});
+class _$EndAppoinmentImpl implements _EndAppoinment {
+  const _$EndAppoinmentImpl(
+      {required this.patientId, required this.appoinmentId});
 
   @override
   final String patientId;
@@ -3998,7 +4013,7 @@ class _$_EndAppoinment implements _EndAppoinment {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_EndAppoinment &&
+            other is _$EndAppoinmentImpl &&
             (identical(other.patientId, patientId) ||
                 other.patientId == patientId) &&
             (identical(other.appoinmentId, appoinmentId) ||
@@ -4011,8 +4026,8 @@ class _$_EndAppoinment implements _EndAppoinment {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_EndAppoinmentCopyWith<_$_EndAppoinment> get copyWith =>
-      __$$_EndAppoinmentCopyWithImpl<_$_EndAppoinment>(this, _$identity);
+  _$$EndAppoinmentImplCopyWith<_$EndAppoinmentImpl> get copyWith =>
+      __$$EndAppoinmentImplCopyWithImpl<_$EndAppoinmentImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -4183,12 +4198,12 @@ class _$_EndAppoinment implements _EndAppoinment {
 abstract class _EndAppoinment implements CheckupEvent {
   const factory _EndAppoinment(
       {required final String patientId,
-      required final String appoinmentId}) = _$_EndAppoinment;
+      required final String appoinmentId}) = _$EndAppoinmentImpl;
 
   String get patientId;
   String get appoinmentId;
   @JsonKey(ignore: true)
-  _$$_EndAppoinmentCopyWith<_$_EndAppoinment> get copyWith =>
+  _$$EndAppoinmentImplCopyWith<_$EndAppoinmentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -4370,11 +4385,11 @@ class _$CheckupStateCopyWithImpl<$Res, $Val extends CheckupState>
 }
 
 /// @nodoc
-abstract class _$$_CheckupStateCopyWith<$Res>
+abstract class _$$CheckupStateImplCopyWith<$Res>
     implements $CheckupStateCopyWith<$Res> {
-  factory _$$_CheckupStateCopyWith(
-          _$_CheckupState value, $Res Function(_$_CheckupState) then) =
-      __$$_CheckupStateCopyWithImpl<$Res>;
+  factory _$$CheckupStateImplCopyWith(
+          _$CheckupStateImpl value, $Res Function(_$CheckupStateImpl) then) =
+      __$$CheckupStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -4401,11 +4416,11 @@ abstract class _$$_CheckupStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CheckupStateCopyWithImpl<$Res>
-    extends _$CheckupStateCopyWithImpl<$Res, _$_CheckupState>
-    implements _$$_CheckupStateCopyWith<$Res> {
-  __$$_CheckupStateCopyWithImpl(
-      _$_CheckupState _value, $Res Function(_$_CheckupState) _then)
+class __$$CheckupStateImplCopyWithImpl<$Res>
+    extends _$CheckupStateCopyWithImpl<$Res, _$CheckupStateImpl>
+    implements _$$CheckupStateImplCopyWith<$Res> {
+  __$$CheckupStateImplCopyWithImpl(
+      _$CheckupStateImpl _value, $Res Function(_$CheckupStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -4432,7 +4447,7 @@ class __$$_CheckupStateCopyWithImpl<$Res>
     Object? hasData = null,
     Object? endAppoinmentResult = freezed,
   }) {
-    return _then(_$_CheckupState(
+    return _then(_$CheckupStateImpl(
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -4519,8 +4534,8 @@ class __$$_CheckupStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CheckupState implements _CheckupState {
-  const _$_CheckupState(
+class _$CheckupStateImpl implements _CheckupState {
+  const _$CheckupStateImpl(
       {required this.isLoading,
       required this.isConnected,
       required this.isUnloacked,
@@ -4592,7 +4607,7 @@ class _$_CheckupState implements _CheckupState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CheckupState &&
+            other is _$CheckupStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.isConnected, isConnected) ||
@@ -4653,8 +4668,8 @@ class _$_CheckupState implements _CheckupState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CheckupStateCopyWith<_$_CheckupState> get copyWith =>
-      __$$_CheckupStateCopyWithImpl<_$_CheckupState>(this, _$identity);
+  _$$CheckupStateImplCopyWith<_$CheckupStateImpl> get copyWith =>
+      __$$CheckupStateImplCopyWithImpl<_$CheckupStateImpl>(this, _$identity);
 }
 
 abstract class _CheckupState implements CheckupState {
@@ -4679,7 +4694,7 @@ abstract class _CheckupState implements CheckupState {
           required final String message,
           required final bool hasData,
           required final EndAppoinmentModel? endAppoinmentResult}) =
-      _$_CheckupState;
+      _$CheckupStateImpl;
 
   @override
   bool get isLoading;
@@ -4723,6 +4738,6 @@ abstract class _CheckupState implements CheckupState {
   EndAppoinmentModel? get endAppoinmentResult;
   @override
   @JsonKey(ignore: true)
-  _$$_CheckupStateCopyWith<_$_CheckupState> get copyWith =>
+  _$$CheckupStateImplCopyWith<_$CheckupStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

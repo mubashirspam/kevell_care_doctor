@@ -26,9 +26,9 @@ class GetProfileRepoImpliment implements GetHomeStatusRepository {
     try {
       // String? token = await getTokenFromSS(secureStoreKey);
 
-      final token = await getTokenFromSS(secureStoreKey);
       final id = await getTokenFromSS(drIdsecureStoreKey);
 
+      final token = await getTokenFromSS(secureStoreKey);
       final headers = {
         'Authorization': 'Bearer $token',
         'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ class GetProfileRepoImpliment implements GetHomeStatusRepository {
 
       final response = await Dio(BaseOptions()).get(
         ApiEndPoints.homeStatus,
-        options: Options(headers: headers),
+        options: Options(headers: headers, validateStatus: (_) => true,),
         data: {'doctorId': int.parse(id.toString())},
       );
 

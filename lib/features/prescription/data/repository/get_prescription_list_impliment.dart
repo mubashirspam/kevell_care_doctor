@@ -27,9 +27,14 @@ class GetPrescriptionListRepoImpliment
         'Content-Type': 'application/json',
       };
 
+      print(token);
+
       final response = await Dio(BaseOptions()).get(
           ApiEndPoints.getPrescription,
-          options: Options(headers: headers),
+          options: Options(
+            headers: headers,
+            validateStatus: (_) => true,
+          ),
           data: {"doctorID": int.parse(id!), "appointmentID": appointmentId});
 
       if (response.statusCode == 200 || response.statusCode == 201) {

@@ -15,7 +15,6 @@ class ViewMyProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
     return BlocConsumer<ProfileBloc, ProfileState>(
       listener: (context, state) {
         if (state.unauthorized) {}
@@ -31,7 +30,7 @@ class ViewMyProfile extends StatelessWidget {
             address: state.result!.data!.address ?? "No Adress",
             dob: state.result!.data!.dob.toString(),
             email: state.result!.data!.email ?? "",
-            imgUrl: state.result!.data!.profileImagelink !,
+            imgUrl: state.result!.data!.profileImagelink!,
             mobile: state.result!.data!.mobileNo ?? "No mobile",
             name: state.result!.data!.name ?? "",
           );
@@ -71,8 +70,7 @@ class ViewMyProfileBlocBody extends StatelessWidget {
         children: [
           ProfileNameCard(
             email: email,
-            imageUrl:imgUrl
-                ,
+            imageUrl: imgUrl,
             name: name,
           ),
           const SizedBox(
@@ -121,14 +119,19 @@ class ViewMyProfileBlocBody extends StatelessWidget {
             onPressed: () {
               showModalBottomSheet(
                 backgroundColor: Colors.transparent,
+                useSafeArea: true,
                 elevation: 0,
                 isScrollControlled: true,
                 context: context,
-                builder: (context) => EditMyProfile(
-                  adress: address,
-                  name: name,
-                  mobile: mobile,
-                  dob: dob,
+                builder: (context) => Padding(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom),
+                  child: EditMyProfile(
+                    adress: address,
+                    name: name,
+                    mobile: mobile,
+                    dob: dob,
+                  ),
                 ),
               );
             },

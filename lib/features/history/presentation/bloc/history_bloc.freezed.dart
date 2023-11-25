@@ -82,20 +82,20 @@ class _$HistoryEventCopyWithImpl<$Res, $Val extends HistoryEvent>
 }
 
 /// @nodoc
-abstract class _$$_GePatientHistoryListCopyWith<$Res> {
-  factory _$$_GePatientHistoryListCopyWith(_$_GePatientHistoryList value,
-          $Res Function(_$_GePatientHistoryList) then) =
-      __$$_GePatientHistoryListCopyWithImpl<$Res>;
+abstract class _$$GePatientHistoryListImplCopyWith<$Res> {
+  factory _$$GePatientHistoryListImplCopyWith(_$GePatientHistoryListImpl value,
+          $Res Function(_$GePatientHistoryListImpl) then) =
+      __$$GePatientHistoryListImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String fromDate, String toDate});
 }
 
 /// @nodoc
-class __$$_GePatientHistoryListCopyWithImpl<$Res>
-    extends _$HistoryEventCopyWithImpl<$Res, _$_GePatientHistoryList>
-    implements _$$_GePatientHistoryListCopyWith<$Res> {
-  __$$_GePatientHistoryListCopyWithImpl(_$_GePatientHistoryList _value,
-      $Res Function(_$_GePatientHistoryList) _then)
+class __$$GePatientHistoryListImplCopyWithImpl<$Res>
+    extends _$HistoryEventCopyWithImpl<$Res, _$GePatientHistoryListImpl>
+    implements _$$GePatientHistoryListImplCopyWith<$Res> {
+  __$$GePatientHistoryListImplCopyWithImpl(_$GePatientHistoryListImpl _value,
+      $Res Function(_$GePatientHistoryListImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -104,7 +104,7 @@ class __$$_GePatientHistoryListCopyWithImpl<$Res>
     Object? fromDate = null,
     Object? toDate = null,
   }) {
-    return _then(_$_GePatientHistoryList(
+    return _then(_$GePatientHistoryListImpl(
       fromDate: null == fromDate
           ? _value.fromDate
           : fromDate // ignore: cast_nullable_to_non_nullable
@@ -119,8 +119,9 @@ class __$$_GePatientHistoryListCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GePatientHistoryList implements _GePatientHistoryList {
-  const _$_GePatientHistoryList({required this.fromDate, required this.toDate});
+class _$GePatientHistoryListImpl implements _GePatientHistoryList {
+  const _$GePatientHistoryListImpl(
+      {required this.fromDate, required this.toDate});
 
   @override
   final String fromDate;
@@ -136,7 +137,7 @@ class _$_GePatientHistoryList implements _GePatientHistoryList {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GePatientHistoryList &&
+            other is _$GePatientHistoryListImpl &&
             (identical(other.fromDate, fromDate) ||
                 other.fromDate == fromDate) &&
             (identical(other.toDate, toDate) || other.toDate == toDate));
@@ -148,9 +149,10 @@ class _$_GePatientHistoryList implements _GePatientHistoryList {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GePatientHistoryListCopyWith<_$_GePatientHistoryList> get copyWith =>
-      __$$_GePatientHistoryListCopyWithImpl<_$_GePatientHistoryList>(
-          this, _$identity);
+  _$$GePatientHistoryListImplCopyWith<_$GePatientHistoryListImpl>
+      get copyWith =>
+          __$$GePatientHistoryListImplCopyWithImpl<_$GePatientHistoryListImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -225,30 +227,30 @@ class _$_GePatientHistoryList implements _GePatientHistoryList {
 abstract class _GePatientHistoryList implements HistoryEvent {
   const factory _GePatientHistoryList(
       {required final String fromDate,
-      required final String toDate}) = _$_GePatientHistoryList;
+      required final String toDate}) = _$GePatientHistoryListImpl;
 
   String get fromDate;
   String get toDate;
   @JsonKey(ignore: true)
-  _$$_GePatientHistoryListCopyWith<_$_GePatientHistoryList> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$GePatientHistoryListImplCopyWith<_$GePatientHistoryListImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_PickDateCopyWith<$Res> {
-  factory _$$_PickDateCopyWith(
-          _$_PickDate value, $Res Function(_$_PickDate) then) =
-      __$$_PickDateCopyWithImpl<$Res>;
+abstract class _$$PickDateImplCopyWith<$Res> {
+  factory _$$PickDateImplCopyWith(
+          _$PickDateImpl value, $Res Function(_$PickDateImpl) then) =
+      __$$PickDateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DateTime startDate, DateTime endDate, HistoryType historyType});
 }
 
 /// @nodoc
-class __$$_PickDateCopyWithImpl<$Res>
-    extends _$HistoryEventCopyWithImpl<$Res, _$_PickDate>
-    implements _$$_PickDateCopyWith<$Res> {
-  __$$_PickDateCopyWithImpl(
-      _$_PickDate _value, $Res Function(_$_PickDate) _then)
+class __$$PickDateImplCopyWithImpl<$Res>
+    extends _$HistoryEventCopyWithImpl<$Res, _$PickDateImpl>
+    implements _$$PickDateImplCopyWith<$Res> {
+  __$$PickDateImplCopyWithImpl(
+      _$PickDateImpl _value, $Res Function(_$PickDateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -258,7 +260,7 @@ class __$$_PickDateCopyWithImpl<$Res>
     Object? endDate = null,
     Object? historyType = null,
   }) {
-    return _then(_$_PickDate(
+    return _then(_$PickDateImpl(
       startDate: null == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
@@ -277,8 +279,8 @@ class __$$_PickDateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PickDate implements _PickDate {
-  const _$_PickDate(
+class _$PickDateImpl implements _PickDate {
+  const _$PickDateImpl(
       {required this.startDate,
       required this.endDate,
       required this.historyType});
@@ -299,7 +301,7 @@ class _$_PickDate implements _PickDate {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PickDate &&
+            other is _$PickDateImpl &&
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
             (identical(other.endDate, endDate) || other.endDate == endDate) &&
@@ -313,8 +315,8 @@ class _$_PickDate implements _PickDate {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PickDateCopyWith<_$_PickDate> get copyWith =>
-      __$$_PickDateCopyWithImpl<_$_PickDate>(this, _$identity);
+  _$$PickDateImplCopyWith<_$PickDateImpl> get copyWith =>
+      __$$PickDateImplCopyWithImpl<_$PickDateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -390,13 +392,13 @@ abstract class _PickDate implements HistoryEvent {
   const factory _PickDate(
       {required final DateTime startDate,
       required final DateTime endDate,
-      required final HistoryType historyType}) = _$_PickDate;
+      required final HistoryType historyType}) = _$PickDateImpl;
 
   DateTime get startDate;
   DateTime get endDate;
   HistoryType get historyType;
   @JsonKey(ignore: true)
-  _$$_PickDateCopyWith<_$_PickDate> get copyWith =>
+  _$$PickDateImplCopyWith<_$PickDateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -508,11 +510,11 @@ class _$HistoryStateCopyWithImpl<$Res, $Val extends HistoryState>
 }
 
 /// @nodoc
-abstract class _$$_HistoryStateCopyWith<$Res>
+abstract class _$$HistoryStateImplCopyWith<$Res>
     implements $HistoryStateCopyWith<$Res> {
-  factory _$$_HistoryStateCopyWith(
-          _$_HistoryState value, $Res Function(_$_HistoryState) then) =
-      __$$_HistoryStateCopyWithImpl<$Res>;
+  factory _$$HistoryStateImplCopyWith(
+          _$HistoryStateImpl value, $Res Function(_$HistoryStateImpl) then) =
+      __$$HistoryStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -529,11 +531,11 @@ abstract class _$$_HistoryStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_HistoryStateCopyWithImpl<$Res>
-    extends _$HistoryStateCopyWithImpl<$Res, _$_HistoryState>
-    implements _$$_HistoryStateCopyWith<$Res> {
-  __$$_HistoryStateCopyWithImpl(
-      _$_HistoryState _value, $Res Function(_$_HistoryState) _then)
+class __$$HistoryStateImplCopyWithImpl<$Res>
+    extends _$HistoryStateCopyWithImpl<$Res, _$HistoryStateImpl>
+    implements _$$HistoryStateImplCopyWith<$Res> {
+  __$$HistoryStateImplCopyWithImpl(
+      _$HistoryStateImpl _value, $Res Function(_$HistoryStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -550,7 +552,7 @@ class __$$_HistoryStateCopyWithImpl<$Res>
     Object? historyType = null,
     Object? patientListResult = freezed,
   }) {
-    return _then(_$_HistoryState(
+    return _then(_$HistoryStateImpl(
       isPatientListLoading: null == isPatientListLoading
           ? _value.isPatientListLoading
           : isPatientListLoading // ignore: cast_nullable_to_non_nullable
@@ -597,8 +599,8 @@ class __$$_HistoryStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HistoryState implements _HistoryState {
-  const _$_HistoryState(
+class _$HistoryStateImpl implements _HistoryState {
+  const _$HistoryStateImpl(
       {required this.isPatientListLoading,
       required this.hasPatientListData,
       required this.unauthorized,
@@ -640,7 +642,7 @@ class _$_HistoryState implements _HistoryState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HistoryState &&
+            other is _$HistoryStateImpl &&
             (identical(other.isPatientListLoading, isPatientListLoading) ||
                 other.isPatientListLoading == isPatientListLoading) &&
             (identical(other.hasPatientListData, hasPatientListData) ||
@@ -677,8 +679,8 @@ class _$_HistoryState implements _HistoryState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HistoryStateCopyWith<_$_HistoryState> get copyWith =>
-      __$$_HistoryStateCopyWithImpl<_$_HistoryState>(this, _$identity);
+  _$$HistoryStateImplCopyWith<_$HistoryStateImpl> get copyWith =>
+      __$$HistoryStateImplCopyWithImpl<_$HistoryStateImpl>(this, _$identity);
 }
 
 abstract class _HistoryState implements HistoryState {
@@ -692,7 +694,7 @@ abstract class _HistoryState implements HistoryState {
       required final String message,
       required final bool noDatafound,
       required final HistoryType historyType,
-      final HistoryPatientListModel? patientListResult}) = _$_HistoryState;
+      final HistoryPatientListModel? patientListResult}) = _$HistoryStateImpl;
 
   @override
   bool get isPatientListLoading;
@@ -716,6 +718,6 @@ abstract class _HistoryState implements HistoryState {
   HistoryPatientListModel? get patientListResult;
   @override
   @JsonKey(ignore: true)
-  _$$_HistoryStateCopyWith<_$_HistoryState> get copyWith =>
+  _$$HistoryStateImplCopyWith<_$HistoryStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -118,20 +118,20 @@ class _$PrecriptionEventCopyWithImpl<$Res, $Val extends PrecriptionEvent>
 }
 
 /// @nodoc
-abstract class _$$_GetPrescriptionListCopyWith<$Res> {
-  factory _$$_GetPrescriptionListCopyWith(_$_GetPrescriptionList value,
-          $Res Function(_$_GetPrescriptionList) then) =
-      __$$_GetPrescriptionListCopyWithImpl<$Res>;
+abstract class _$$GetPrescriptionListImplCopyWith<$Res> {
+  factory _$$GetPrescriptionListImplCopyWith(_$GetPrescriptionListImpl value,
+          $Res Function(_$GetPrescriptionListImpl) then) =
+      __$$GetPrescriptionListImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int appointmentId});
 }
 
 /// @nodoc
-class __$$_GetPrescriptionListCopyWithImpl<$Res>
-    extends _$PrecriptionEventCopyWithImpl<$Res, _$_GetPrescriptionList>
-    implements _$$_GetPrescriptionListCopyWith<$Res> {
-  __$$_GetPrescriptionListCopyWithImpl(_$_GetPrescriptionList _value,
-      $Res Function(_$_GetPrescriptionList) _then)
+class __$$GetPrescriptionListImplCopyWithImpl<$Res>
+    extends _$PrecriptionEventCopyWithImpl<$Res, _$GetPrescriptionListImpl>
+    implements _$$GetPrescriptionListImplCopyWith<$Res> {
+  __$$GetPrescriptionListImplCopyWithImpl(_$GetPrescriptionListImpl _value,
+      $Res Function(_$GetPrescriptionListImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -139,7 +139,7 @@ class __$$_GetPrescriptionListCopyWithImpl<$Res>
   $Res call({
     Object? appointmentId = null,
   }) {
-    return _then(_$_GetPrescriptionList(
+    return _then(_$GetPrescriptionListImpl(
       appointmentId: null == appointmentId
           ? _value.appointmentId
           : appointmentId // ignore: cast_nullable_to_non_nullable
@@ -150,8 +150,8 @@ class __$$_GetPrescriptionListCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GetPrescriptionList implements _GetPrescriptionList {
-  const _$_GetPrescriptionList({required this.appointmentId});
+class _$GetPrescriptionListImpl implements _GetPrescriptionList {
+  const _$GetPrescriptionListImpl({required this.appointmentId});
 
   @override
   final int appointmentId;
@@ -165,7 +165,7 @@ class _$_GetPrescriptionList implements _GetPrescriptionList {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GetPrescriptionList &&
+            other is _$GetPrescriptionListImpl &&
             (identical(other.appointmentId, appointmentId) ||
                 other.appointmentId == appointmentId));
   }
@@ -176,8 +176,8 @@ class _$_GetPrescriptionList implements _GetPrescriptionList {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GetPrescriptionListCopyWith<_$_GetPrescriptionList> get copyWith =>
-      __$$_GetPrescriptionListCopyWithImpl<_$_GetPrescriptionList>(
+  _$$GetPrescriptionListImplCopyWith<_$GetPrescriptionListImpl> get copyWith =>
+      __$$GetPrescriptionListImplCopyWithImpl<_$GetPrescriptionListImpl>(
           this, _$identity);
 
   @override
@@ -288,34 +288,36 @@ class _$_GetPrescriptionList implements _GetPrescriptionList {
 
 abstract class _GetPrescriptionList implements PrecriptionEvent {
   const factory _GetPrescriptionList({required final int appointmentId}) =
-      _$_GetPrescriptionList;
+      _$GetPrescriptionListImpl;
 
   int get appointmentId;
   @JsonKey(ignore: true)
-  _$$_GetPrescriptionListCopyWith<_$_GetPrescriptionList> get copyWith =>
+  _$$GetPrescriptionListImplCopyWith<_$GetPrescriptionListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_GetPrescriptionSettingsCopyWith<$Res> {
-  factory _$$_GetPrescriptionSettingsCopyWith(_$_GetPrescriptionSettings value,
-          $Res Function(_$_GetPrescriptionSettings) then) =
-      __$$_GetPrescriptionSettingsCopyWithImpl<$Res>;
+abstract class _$$GetPrescriptionSettingsImplCopyWith<$Res> {
+  factory _$$GetPrescriptionSettingsImplCopyWith(
+          _$GetPrescriptionSettingsImpl value,
+          $Res Function(_$GetPrescriptionSettingsImpl) then) =
+      __$$GetPrescriptionSettingsImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_GetPrescriptionSettingsCopyWithImpl<$Res>
-    extends _$PrecriptionEventCopyWithImpl<$Res, _$_GetPrescriptionSettings>
-    implements _$$_GetPrescriptionSettingsCopyWith<$Res> {
-  __$$_GetPrescriptionSettingsCopyWithImpl(_$_GetPrescriptionSettings _value,
-      $Res Function(_$_GetPrescriptionSettings) _then)
+class __$$GetPrescriptionSettingsImplCopyWithImpl<$Res>
+    extends _$PrecriptionEventCopyWithImpl<$Res, _$GetPrescriptionSettingsImpl>
+    implements _$$GetPrescriptionSettingsImplCopyWith<$Res> {
+  __$$GetPrescriptionSettingsImplCopyWithImpl(
+      _$GetPrescriptionSettingsImpl _value,
+      $Res Function(_$GetPrescriptionSettingsImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_GetPrescriptionSettings implements _GetPrescriptionSettings {
-  const _$_GetPrescriptionSettings();
+class _$GetPrescriptionSettingsImpl implements _GetPrescriptionSettings {
+  const _$GetPrescriptionSettingsImpl();
 
   @override
   String toString() {
@@ -326,7 +328,7 @@ class _$_GetPrescriptionSettings implements _GetPrescriptionSettings {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GetPrescriptionSettings);
+            other is _$GetPrescriptionSettingsImpl);
   }
 
   @override
@@ -439,24 +441,24 @@ class _$_GetPrescriptionSettings implements _GetPrescriptionSettings {
 }
 
 abstract class _GetPrescriptionSettings implements PrecriptionEvent {
-  const factory _GetPrescriptionSettings() = _$_GetPrescriptionSettings;
+  const factory _GetPrescriptionSettings() = _$GetPrescriptionSettingsImpl;
 }
 
 /// @nodoc
-abstract class _$$_CreatePrescriptionCopyWith<$Res> {
-  factory _$$_CreatePrescriptionCopyWith(_$_CreatePrescription value,
-          $Res Function(_$_CreatePrescription) then) =
-      __$$_CreatePrescriptionCopyWithImpl<$Res>;
+abstract class _$$CreatePrescriptionImplCopyWith<$Res> {
+  factory _$$CreatePrescriptionImplCopyWith(_$CreatePrescriptionImpl value,
+          $Res Function(_$CreatePrescriptionImpl) then) =
+      __$$CreatePrescriptionImplCopyWithImpl<$Res>;
   @useResult
   $Res call({PrescriptionElement prescriptionElement});
 }
 
 /// @nodoc
-class __$$_CreatePrescriptionCopyWithImpl<$Res>
-    extends _$PrecriptionEventCopyWithImpl<$Res, _$_CreatePrescription>
-    implements _$$_CreatePrescriptionCopyWith<$Res> {
-  __$$_CreatePrescriptionCopyWithImpl(
-      _$_CreatePrescription _value, $Res Function(_$_CreatePrescription) _then)
+class __$$CreatePrescriptionImplCopyWithImpl<$Res>
+    extends _$PrecriptionEventCopyWithImpl<$Res, _$CreatePrescriptionImpl>
+    implements _$$CreatePrescriptionImplCopyWith<$Res> {
+  __$$CreatePrescriptionImplCopyWithImpl(_$CreatePrescriptionImpl _value,
+      $Res Function(_$CreatePrescriptionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -464,7 +466,7 @@ class __$$_CreatePrescriptionCopyWithImpl<$Res>
   $Res call({
     Object? prescriptionElement = null,
   }) {
-    return _then(_$_CreatePrescription(
+    return _then(_$CreatePrescriptionImpl(
       prescriptionElement: null == prescriptionElement
           ? _value.prescriptionElement
           : prescriptionElement // ignore: cast_nullable_to_non_nullable
@@ -475,8 +477,8 @@ class __$$_CreatePrescriptionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CreatePrescription implements _CreatePrescription {
-  const _$_CreatePrescription({required this.prescriptionElement});
+class _$CreatePrescriptionImpl implements _CreatePrescription {
+  const _$CreatePrescriptionImpl({required this.prescriptionElement});
 
   @override
   final PrescriptionElement prescriptionElement;
@@ -490,7 +492,7 @@ class _$_CreatePrescription implements _CreatePrescription {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CreatePrescription &&
+            other is _$CreatePrescriptionImpl &&
             (identical(other.prescriptionElement, prescriptionElement) ||
                 other.prescriptionElement == prescriptionElement));
   }
@@ -501,8 +503,8 @@ class _$_CreatePrescription implements _CreatePrescription {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CreatePrescriptionCopyWith<_$_CreatePrescription> get copyWith =>
-      __$$_CreatePrescriptionCopyWithImpl<_$_CreatePrescription>(
+  _$$CreatePrescriptionImplCopyWith<_$CreatePrescriptionImpl> get copyWith =>
+      __$$CreatePrescriptionImplCopyWithImpl<_$CreatePrescriptionImpl>(
           this, _$identity);
 
   @override
@@ -614,29 +616,29 @@ class _$_CreatePrescription implements _CreatePrescription {
 abstract class _CreatePrescription implements PrecriptionEvent {
   const factory _CreatePrescription(
           {required final PrescriptionElement prescriptionElement}) =
-      _$_CreatePrescription;
+      _$CreatePrescriptionImpl;
 
   PrescriptionElement get prescriptionElement;
   @JsonKey(ignore: true)
-  _$$_CreatePrescriptionCopyWith<_$_CreatePrescription> get copyWith =>
+  _$$CreatePrescriptionImplCopyWith<_$CreatePrescriptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_UpdatePrescriptionCopyWith<$Res> {
-  factory _$$_UpdatePrescriptionCopyWith(_$_UpdatePrescription value,
-          $Res Function(_$_UpdatePrescription) then) =
-      __$$_UpdatePrescriptionCopyWithImpl<$Res>;
+abstract class _$$UpdatePrescriptionImplCopyWith<$Res> {
+  factory _$$UpdatePrescriptionImplCopyWith(_$UpdatePrescriptionImpl value,
+          $Res Function(_$UpdatePrescriptionImpl) then) =
+      __$$UpdatePrescriptionImplCopyWithImpl<$Res>;
   @useResult
   $Res call({PrescriptionElement prescriptionElement});
 }
 
 /// @nodoc
-class __$$_UpdatePrescriptionCopyWithImpl<$Res>
-    extends _$PrecriptionEventCopyWithImpl<$Res, _$_UpdatePrescription>
-    implements _$$_UpdatePrescriptionCopyWith<$Res> {
-  __$$_UpdatePrescriptionCopyWithImpl(
-      _$_UpdatePrescription _value, $Res Function(_$_UpdatePrescription) _then)
+class __$$UpdatePrescriptionImplCopyWithImpl<$Res>
+    extends _$PrecriptionEventCopyWithImpl<$Res, _$UpdatePrescriptionImpl>
+    implements _$$UpdatePrescriptionImplCopyWith<$Res> {
+  __$$UpdatePrescriptionImplCopyWithImpl(_$UpdatePrescriptionImpl _value,
+      $Res Function(_$UpdatePrescriptionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -644,7 +646,7 @@ class __$$_UpdatePrescriptionCopyWithImpl<$Res>
   $Res call({
     Object? prescriptionElement = null,
   }) {
-    return _then(_$_UpdatePrescription(
+    return _then(_$UpdatePrescriptionImpl(
       prescriptionElement: null == prescriptionElement
           ? _value.prescriptionElement
           : prescriptionElement // ignore: cast_nullable_to_non_nullable
@@ -655,8 +657,8 @@ class __$$_UpdatePrescriptionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UpdatePrescription implements _UpdatePrescription {
-  const _$_UpdatePrescription({required this.prescriptionElement});
+class _$UpdatePrescriptionImpl implements _UpdatePrescription {
+  const _$UpdatePrescriptionImpl({required this.prescriptionElement});
 
   @override
   final PrescriptionElement prescriptionElement;
@@ -670,7 +672,7 @@ class _$_UpdatePrescription implements _UpdatePrescription {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdatePrescription &&
+            other is _$UpdatePrescriptionImpl &&
             (identical(other.prescriptionElement, prescriptionElement) ||
                 other.prescriptionElement == prescriptionElement));
   }
@@ -681,8 +683,8 @@ class _$_UpdatePrescription implements _UpdatePrescription {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UpdatePrescriptionCopyWith<_$_UpdatePrescription> get copyWith =>
-      __$$_UpdatePrescriptionCopyWithImpl<_$_UpdatePrescription>(
+  _$$UpdatePrescriptionImplCopyWith<_$UpdatePrescriptionImpl> get copyWith =>
+      __$$UpdatePrescriptionImplCopyWithImpl<_$UpdatePrescriptionImpl>(
           this, _$identity);
 
   @override
@@ -794,29 +796,29 @@ class _$_UpdatePrescription implements _UpdatePrescription {
 abstract class _UpdatePrescription implements PrecriptionEvent {
   const factory _UpdatePrescription(
           {required final PrescriptionElement prescriptionElement}) =
-      _$_UpdatePrescription;
+      _$UpdatePrescriptionImpl;
 
   PrescriptionElement get prescriptionElement;
   @JsonKey(ignore: true)
-  _$$_UpdatePrescriptionCopyWith<_$_UpdatePrescription> get copyWith =>
+  _$$UpdatePrescriptionImplCopyWith<_$UpdatePrescriptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_SelectTimeOfTheDayCopyWith<$Res> {
-  factory _$$_SelectTimeOfTheDayCopyWith(_$_SelectTimeOfTheDay value,
-          $Res Function(_$_SelectTimeOfTheDay) then) =
-      __$$_SelectTimeOfTheDayCopyWithImpl<$Res>;
+abstract class _$$SelectTimeOfTheDayImplCopyWith<$Res> {
+  factory _$$SelectTimeOfTheDayImplCopyWith(_$SelectTimeOfTheDayImpl value,
+          $Res Function(_$SelectTimeOfTheDayImpl) then) =
+      __$$SelectTimeOfTheDayImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<DataObjec> data});
 }
 
 /// @nodoc
-class __$$_SelectTimeOfTheDayCopyWithImpl<$Res>
-    extends _$PrecriptionEventCopyWithImpl<$Res, _$_SelectTimeOfTheDay>
-    implements _$$_SelectTimeOfTheDayCopyWith<$Res> {
-  __$$_SelectTimeOfTheDayCopyWithImpl(
-      _$_SelectTimeOfTheDay _value, $Res Function(_$_SelectTimeOfTheDay) _then)
+class __$$SelectTimeOfTheDayImplCopyWithImpl<$Res>
+    extends _$PrecriptionEventCopyWithImpl<$Res, _$SelectTimeOfTheDayImpl>
+    implements _$$SelectTimeOfTheDayImplCopyWith<$Res> {
+  __$$SelectTimeOfTheDayImplCopyWithImpl(_$SelectTimeOfTheDayImpl _value,
+      $Res Function(_$SelectTimeOfTheDayImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -824,7 +826,7 @@ class __$$_SelectTimeOfTheDayCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$_SelectTimeOfTheDay(
+    return _then(_$SelectTimeOfTheDayImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -835,8 +837,8 @@ class __$$_SelectTimeOfTheDayCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SelectTimeOfTheDay implements _SelectTimeOfTheDay {
-  const _$_SelectTimeOfTheDay({required final List<DataObjec> data})
+class _$SelectTimeOfTheDayImpl implements _SelectTimeOfTheDay {
+  const _$SelectTimeOfTheDayImpl({required final List<DataObjec> data})
       : _data = data;
 
   final List<DataObjec> _data;
@@ -856,7 +858,7 @@ class _$_SelectTimeOfTheDay implements _SelectTimeOfTheDay {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SelectTimeOfTheDay &&
+            other is _$SelectTimeOfTheDayImpl &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
@@ -867,8 +869,8 @@ class _$_SelectTimeOfTheDay implements _SelectTimeOfTheDay {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SelectTimeOfTheDayCopyWith<_$_SelectTimeOfTheDay> get copyWith =>
-      __$$_SelectTimeOfTheDayCopyWithImpl<_$_SelectTimeOfTheDay>(
+  _$$SelectTimeOfTheDayImplCopyWith<_$SelectTimeOfTheDayImpl> get copyWith =>
+      __$$SelectTimeOfTheDayImplCopyWithImpl<_$SelectTimeOfTheDayImpl>(
           this, _$identity);
 
   @override
@@ -979,29 +981,29 @@ class _$_SelectTimeOfTheDay implements _SelectTimeOfTheDay {
 
 abstract class _SelectTimeOfTheDay implements PrecriptionEvent {
   const factory _SelectTimeOfTheDay({required final List<DataObjec> data}) =
-      _$_SelectTimeOfTheDay;
+      _$SelectTimeOfTheDayImpl;
 
   List<DataObjec> get data;
   @JsonKey(ignore: true)
-  _$$_SelectTimeOfTheDayCopyWith<_$_SelectTimeOfTheDay> get copyWith =>
+  _$$SelectTimeOfTheDayImplCopyWith<_$SelectTimeOfTheDayImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_SelectTobetakenCopyWith<$Res> {
-  factory _$$_SelectTobetakenCopyWith(
-          _$_SelectTobetaken value, $Res Function(_$_SelectTobetaken) then) =
-      __$$_SelectTobetakenCopyWithImpl<$Res>;
+abstract class _$$SelectTobetakenImplCopyWith<$Res> {
+  factory _$$SelectTobetakenImplCopyWith(_$SelectTobetakenImpl value,
+          $Res Function(_$SelectTobetakenImpl) then) =
+      __$$SelectTobetakenImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<DataObjec> data});
 }
 
 /// @nodoc
-class __$$_SelectTobetakenCopyWithImpl<$Res>
-    extends _$PrecriptionEventCopyWithImpl<$Res, _$_SelectTobetaken>
-    implements _$$_SelectTobetakenCopyWith<$Res> {
-  __$$_SelectTobetakenCopyWithImpl(
-      _$_SelectTobetaken _value, $Res Function(_$_SelectTobetaken) _then)
+class __$$SelectTobetakenImplCopyWithImpl<$Res>
+    extends _$PrecriptionEventCopyWithImpl<$Res, _$SelectTobetakenImpl>
+    implements _$$SelectTobetakenImplCopyWith<$Res> {
+  __$$SelectTobetakenImplCopyWithImpl(
+      _$SelectTobetakenImpl _value, $Res Function(_$SelectTobetakenImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1009,7 +1011,7 @@ class __$$_SelectTobetakenCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$_SelectTobetaken(
+    return _then(_$SelectTobetakenImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -1020,8 +1022,8 @@ class __$$_SelectTobetakenCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SelectTobetaken implements _SelectTobetaken {
-  const _$_SelectTobetaken({required final List<DataObjec> data})
+class _$SelectTobetakenImpl implements _SelectTobetaken {
+  const _$SelectTobetakenImpl({required final List<DataObjec> data})
       : _data = data;
 
   final List<DataObjec> _data;
@@ -1041,7 +1043,7 @@ class _$_SelectTobetaken implements _SelectTobetaken {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SelectTobetaken &&
+            other is _$SelectTobetakenImpl &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
@@ -1052,8 +1054,9 @@ class _$_SelectTobetaken implements _SelectTobetaken {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SelectTobetakenCopyWith<_$_SelectTobetaken> get copyWith =>
-      __$$_SelectTobetakenCopyWithImpl<_$_SelectTobetaken>(this, _$identity);
+  _$$SelectTobetakenImplCopyWith<_$SelectTobetakenImpl> get copyWith =>
+      __$$SelectTobetakenImplCopyWithImpl<_$SelectTobetakenImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1163,29 +1166,29 @@ class _$_SelectTobetaken implements _SelectTobetaken {
 
 abstract class _SelectTobetaken implements PrecriptionEvent {
   const factory _SelectTobetaken({required final List<DataObjec> data}) =
-      _$_SelectTobetaken;
+      _$SelectTobetakenImpl;
 
   List<DataObjec> get data;
   @JsonKey(ignore: true)
-  _$$_SelectTobetakenCopyWith<_$_SelectTobetaken> get copyWith =>
+  _$$SelectTobetakenImplCopyWith<_$SelectTobetakenImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_GeneratePdfCopyWith<$Res> {
-  factory _$$_GeneratePdfCopyWith(
-          _$_GeneratePdf value, $Res Function(_$_GeneratePdf) then) =
-      __$$_GeneratePdfCopyWithImpl<$Res>;
+abstract class _$$GeneratePdfImplCopyWith<$Res> {
+  factory _$$GeneratePdfImplCopyWith(
+          _$GeneratePdfImpl value, $Res Function(_$GeneratePdfImpl) then) =
+      __$$GeneratePdfImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<PrescriptionPdfModel> data});
 }
 
 /// @nodoc
-class __$$_GeneratePdfCopyWithImpl<$Res>
-    extends _$PrecriptionEventCopyWithImpl<$Res, _$_GeneratePdf>
-    implements _$$_GeneratePdfCopyWith<$Res> {
-  __$$_GeneratePdfCopyWithImpl(
-      _$_GeneratePdf _value, $Res Function(_$_GeneratePdf) _then)
+class __$$GeneratePdfImplCopyWithImpl<$Res>
+    extends _$PrecriptionEventCopyWithImpl<$Res, _$GeneratePdfImpl>
+    implements _$$GeneratePdfImplCopyWith<$Res> {
+  __$$GeneratePdfImplCopyWithImpl(
+      _$GeneratePdfImpl _value, $Res Function(_$GeneratePdfImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1193,7 +1196,7 @@ class __$$_GeneratePdfCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$_GeneratePdf(
+    return _then(_$GeneratePdfImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -1204,8 +1207,8 @@ class __$$_GeneratePdfCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GeneratePdf implements _GeneratePdf {
-  const _$_GeneratePdf({required final List<PrescriptionPdfModel> data})
+class _$GeneratePdfImpl implements _GeneratePdf {
+  const _$GeneratePdfImpl({required final List<PrescriptionPdfModel> data})
       : _data = data;
 
   final List<PrescriptionPdfModel> _data;
@@ -1225,7 +1228,7 @@ class _$_GeneratePdf implements _GeneratePdf {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GeneratePdf &&
+            other is _$GeneratePdfImpl &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
@@ -1236,8 +1239,8 @@ class _$_GeneratePdf implements _GeneratePdf {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GeneratePdfCopyWith<_$_GeneratePdf> get copyWith =>
-      __$$_GeneratePdfCopyWithImpl<_$_GeneratePdf>(this, _$identity);
+  _$$GeneratePdfImplCopyWith<_$GeneratePdfImpl> get copyWith =>
+      __$$GeneratePdfImplCopyWithImpl<_$GeneratePdfImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1347,29 +1350,29 @@ class _$_GeneratePdf implements _GeneratePdf {
 
 abstract class _GeneratePdf implements PrecriptionEvent {
   const factory _GeneratePdf({required final List<PrescriptionPdfModel> data}) =
-      _$_GeneratePdf;
+      _$GeneratePdfImpl;
 
   List<PrescriptionPdfModel> get data;
   @JsonKey(ignore: true)
-  _$$_GeneratePdfCopyWith<_$_GeneratePdf> get copyWith =>
+  _$$GeneratePdfImplCopyWith<_$GeneratePdfImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_DeletePrescriptionCopyWith<$Res> {
-  factory _$$_DeletePrescriptionCopyWith(_$_DeletePrescription value,
-          $Res Function(_$_DeletePrescription) then) =
-      __$$_DeletePrescriptionCopyWithImpl<$Res>;
+abstract class _$$DeletePrescriptionImplCopyWith<$Res> {
+  factory _$$DeletePrescriptionImplCopyWith(_$DeletePrescriptionImpl value,
+          $Res Function(_$DeletePrescriptionImpl) then) =
+      __$$DeletePrescriptionImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int pno, int appoinmentId});
 }
 
 /// @nodoc
-class __$$_DeletePrescriptionCopyWithImpl<$Res>
-    extends _$PrecriptionEventCopyWithImpl<$Res, _$_DeletePrescription>
-    implements _$$_DeletePrescriptionCopyWith<$Res> {
-  __$$_DeletePrescriptionCopyWithImpl(
-      _$_DeletePrescription _value, $Res Function(_$_DeletePrescription) _then)
+class __$$DeletePrescriptionImplCopyWithImpl<$Res>
+    extends _$PrecriptionEventCopyWithImpl<$Res, _$DeletePrescriptionImpl>
+    implements _$$DeletePrescriptionImplCopyWith<$Res> {
+  __$$DeletePrescriptionImplCopyWithImpl(_$DeletePrescriptionImpl _value,
+      $Res Function(_$DeletePrescriptionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1378,7 +1381,7 @@ class __$$_DeletePrescriptionCopyWithImpl<$Res>
     Object? pno = null,
     Object? appoinmentId = null,
   }) {
-    return _then(_$_DeletePrescription(
+    return _then(_$DeletePrescriptionImpl(
       pno: null == pno
           ? _value.pno
           : pno // ignore: cast_nullable_to_non_nullable
@@ -1393,8 +1396,9 @@ class __$$_DeletePrescriptionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DeletePrescription implements _DeletePrescription {
-  const _$_DeletePrescription({required this.pno, required this.appoinmentId});
+class _$DeletePrescriptionImpl implements _DeletePrescription {
+  const _$DeletePrescriptionImpl(
+      {required this.pno, required this.appoinmentId});
 
   @override
   final int pno;
@@ -1410,7 +1414,7 @@ class _$_DeletePrescription implements _DeletePrescription {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DeletePrescription &&
+            other is _$DeletePrescriptionImpl &&
             (identical(other.pno, pno) || other.pno == pno) &&
             (identical(other.appoinmentId, appoinmentId) ||
                 other.appoinmentId == appoinmentId));
@@ -1422,8 +1426,8 @@ class _$_DeletePrescription implements _DeletePrescription {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DeletePrescriptionCopyWith<_$_DeletePrescription> get copyWith =>
-      __$$_DeletePrescriptionCopyWithImpl<_$_DeletePrescription>(
+  _$$DeletePrescriptionImplCopyWith<_$DeletePrescriptionImpl> get copyWith =>
+      __$$DeletePrescriptionImplCopyWithImpl<_$DeletePrescriptionImpl>(
           this, _$identity);
 
   @override
@@ -1535,12 +1539,12 @@ class _$_DeletePrescription implements _DeletePrescription {
 abstract class _DeletePrescription implements PrecriptionEvent {
   const factory _DeletePrescription(
       {required final int pno,
-      required final int appoinmentId}) = _$_DeletePrescription;
+      required final int appoinmentId}) = _$DeletePrescriptionImpl;
 
   int get pno;
   int get appoinmentId;
   @JsonKey(ignore: true)
-  _$$_DeletePrescriptionCopyWith<_$_DeletePrescription> get copyWith =>
+  _$$DeletePrescriptionImplCopyWith<_$DeletePrescriptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1752,11 +1756,11 @@ class _$PrecriptionStateCopyWithImpl<$Res, $Val extends PrecriptionState>
 }
 
 /// @nodoc
-abstract class _$$_PrecriptionStateCopyWith<$Res>
+abstract class _$$PrecriptionStateImplCopyWith<$Res>
     implements $PrecriptionStateCopyWith<$Res> {
-  factory _$$_PrecriptionStateCopyWith(
-          _$_PrecriptionState value, $Res Function(_$_PrecriptionState) then) =
-      __$$_PrecriptionStateCopyWithImpl<$Res>;
+  factory _$$PrecriptionStateImplCopyWith(_$PrecriptionStateImpl value,
+          $Res Function(_$PrecriptionStateImpl) then) =
+      __$$PrecriptionStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1787,11 +1791,11 @@ abstract class _$$_PrecriptionStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PrecriptionStateCopyWithImpl<$Res>
-    extends _$PrecriptionStateCopyWithImpl<$Res, _$_PrecriptionState>
-    implements _$$_PrecriptionStateCopyWith<$Res> {
-  __$$_PrecriptionStateCopyWithImpl(
-      _$_PrecriptionState _value, $Res Function(_$_PrecriptionState) _then)
+class __$$PrecriptionStateImplCopyWithImpl<$Res>
+    extends _$PrecriptionStateCopyWithImpl<$Res, _$PrecriptionStateImpl>
+    implements _$$PrecriptionStateImplCopyWith<$Res> {
+  __$$PrecriptionStateImplCopyWithImpl(_$PrecriptionStateImpl _value,
+      $Res Function(_$PrecriptionStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1822,7 +1826,7 @@ class __$$_PrecriptionStateCopyWithImpl<$Res>
     Object? pdfErrorMessage = null,
     Object? pdfPath = freezed,
   }) {
-    return _then(_$_PrecriptionState(
+    return _then(_$PrecriptionStateImpl(
       isGetLoading: null == isGetLoading
           ? _value.isGetLoading
           : isGetLoading // ignore: cast_nullable_to_non_nullable
@@ -1925,8 +1929,8 @@ class __$$_PrecriptionStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PrecriptionState implements _PrecriptionState {
-  const _$_PrecriptionState(
+class _$PrecriptionStateImpl implements _PrecriptionState {
+  const _$PrecriptionStateImpl(
       {required this.isGetLoading,
       required this.isGetSettingsLoading,
       required this.isUpdateLoading,
@@ -2029,7 +2033,7 @@ class _$_PrecriptionState implements _PrecriptionState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PrecriptionState &&
+            other is _$PrecriptionStateImpl &&
             (identical(other.isGetLoading, isGetLoading) ||
                 other.isGetLoading == isGetLoading) &&
             (identical(other.isGetSettingsLoading, isGetSettingsLoading) ||
@@ -2107,8 +2111,9 @@ class _$_PrecriptionState implements _PrecriptionState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PrecriptionStateCopyWith<_$_PrecriptionState> get copyWith =>
-      __$$_PrecriptionStateCopyWithImpl<_$_PrecriptionState>(this, _$identity);
+  _$$PrecriptionStateImplCopyWith<_$PrecriptionStateImpl> get copyWith =>
+      __$$PrecriptionStateImplCopyWithImpl<_$PrecriptionStateImpl>(
+          this, _$identity);
 }
 
 abstract class _PrecriptionState implements PrecriptionState {
@@ -2136,7 +2141,7 @@ abstract class _PrecriptionState implements PrecriptionState {
       required final pw.Document? pdf,
       required final bool pdfError,
       required final String pdfErrorMessage,
-      final String? pdfPath}) = _$_PrecriptionState;
+      final String? pdfPath}) = _$PrecriptionStateImpl;
 
   @override
   bool get isGetLoading;
@@ -2188,6 +2193,6 @@ abstract class _PrecriptionState implements PrecriptionState {
   String? get pdfPath;
   @override
   @JsonKey(ignore: true)
-  _$$_PrecriptionStateCopyWith<_$_PrecriptionState> get copyWith =>
+  _$$PrecriptionStateImplCopyWith<_$PrecriptionStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

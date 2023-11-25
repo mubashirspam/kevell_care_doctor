@@ -83,20 +83,22 @@ class _$ReportEventCopyWithImpl<$Res, $Val extends ReportEvent>
 }
 
 /// @nodoc
-abstract class _$$_FetchReportGeneralinfoCopyWith<$Res> {
-  factory _$$_FetchReportGeneralinfoCopyWith(_$_FetchReportGeneralinfo value,
-          $Res Function(_$_FetchReportGeneralinfo) then) =
-      __$$_FetchReportGeneralinfoCopyWithImpl<$Res>;
+abstract class _$$FetchReportGeneralinfoImplCopyWith<$Res> {
+  factory _$$FetchReportGeneralinfoImplCopyWith(
+          _$FetchReportGeneralinfoImpl value,
+          $Res Function(_$FetchReportGeneralinfoImpl) then) =
+      __$$FetchReportGeneralinfoImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int id});
 }
 
 /// @nodoc
-class __$$_FetchReportGeneralinfoCopyWithImpl<$Res>
-    extends _$ReportEventCopyWithImpl<$Res, _$_FetchReportGeneralinfo>
-    implements _$$_FetchReportGeneralinfoCopyWith<$Res> {
-  __$$_FetchReportGeneralinfoCopyWithImpl(_$_FetchReportGeneralinfo _value,
-      $Res Function(_$_FetchReportGeneralinfo) _then)
+class __$$FetchReportGeneralinfoImplCopyWithImpl<$Res>
+    extends _$ReportEventCopyWithImpl<$Res, _$FetchReportGeneralinfoImpl>
+    implements _$$FetchReportGeneralinfoImplCopyWith<$Res> {
+  __$$FetchReportGeneralinfoImplCopyWithImpl(
+      _$FetchReportGeneralinfoImpl _value,
+      $Res Function(_$FetchReportGeneralinfoImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -104,7 +106,7 @@ class __$$_FetchReportGeneralinfoCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
   }) {
-    return _then(_$_FetchReportGeneralinfo(
+    return _then(_$FetchReportGeneralinfoImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -115,8 +117,8 @@ class __$$_FetchReportGeneralinfoCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_FetchReportGeneralinfo implements _FetchReportGeneralinfo {
-  const _$_FetchReportGeneralinfo({required this.id});
+class _$FetchReportGeneralinfoImpl implements _FetchReportGeneralinfo {
+  const _$FetchReportGeneralinfoImpl({required this.id});
 
   @override
   final int id;
@@ -130,7 +132,7 @@ class _$_FetchReportGeneralinfo implements _FetchReportGeneralinfo {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_FetchReportGeneralinfo &&
+            other is _$FetchReportGeneralinfoImpl &&
             (identical(other.id, id) || other.id == id));
   }
 
@@ -140,9 +142,9 @@ class _$_FetchReportGeneralinfo implements _FetchReportGeneralinfo {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_FetchReportGeneralinfoCopyWith<_$_FetchReportGeneralinfo> get copyWith =>
-      __$$_FetchReportGeneralinfoCopyWithImpl<_$_FetchReportGeneralinfo>(
-          this, _$identity);
+  _$$FetchReportGeneralinfoImplCopyWith<_$FetchReportGeneralinfoImpl>
+      get copyWith => __$$FetchReportGeneralinfoImplCopyWithImpl<
+          _$FetchReportGeneralinfoImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -217,29 +219,29 @@ class _$_FetchReportGeneralinfo implements _FetchReportGeneralinfo {
 
 abstract class _FetchReportGeneralinfo implements ReportEvent {
   const factory _FetchReportGeneralinfo({required final int id}) =
-      _$_FetchReportGeneralinfo;
+      _$FetchReportGeneralinfoImpl;
 
   int get id;
   @JsonKey(ignore: true)
-  _$$_FetchReportGeneralinfoCopyWith<_$_FetchReportGeneralinfo> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$FetchReportGeneralinfoImplCopyWith<_$FetchReportGeneralinfoImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_FetchReportCopyWith<$Res> {
-  factory _$$_FetchReportCopyWith(
-          _$_FetchReport value, $Res Function(_$_FetchReport) then) =
-      __$$_FetchReportCopyWithImpl<$Res>;
+abstract class _$$FetchReportImplCopyWith<$Res> {
+  factory _$$FetchReportImplCopyWith(
+          _$FetchReportImpl value, $Res Function(_$FetchReportImpl) then) =
+      __$$FetchReportImplCopyWithImpl<$Res>;
   @useResult
   $Res call({FetchReportPayload fetchReportPayload});
 }
 
 /// @nodoc
-class __$$_FetchReportCopyWithImpl<$Res>
-    extends _$ReportEventCopyWithImpl<$Res, _$_FetchReport>
-    implements _$$_FetchReportCopyWith<$Res> {
-  __$$_FetchReportCopyWithImpl(
-      _$_FetchReport _value, $Res Function(_$_FetchReport) _then)
+class __$$FetchReportImplCopyWithImpl<$Res>
+    extends _$ReportEventCopyWithImpl<$Res, _$FetchReportImpl>
+    implements _$$FetchReportImplCopyWith<$Res> {
+  __$$FetchReportImplCopyWithImpl(
+      _$FetchReportImpl _value, $Res Function(_$FetchReportImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -247,7 +249,7 @@ class __$$_FetchReportCopyWithImpl<$Res>
   $Res call({
     Object? fetchReportPayload = null,
   }) {
-    return _then(_$_FetchReport(
+    return _then(_$FetchReportImpl(
       fetchReportPayload: null == fetchReportPayload
           ? _value.fetchReportPayload
           : fetchReportPayload // ignore: cast_nullable_to_non_nullable
@@ -258,8 +260,8 @@ class __$$_FetchReportCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_FetchReport implements _FetchReport {
-  const _$_FetchReport({required this.fetchReportPayload});
+class _$FetchReportImpl implements _FetchReport {
+  const _$FetchReportImpl({required this.fetchReportPayload});
 
   @override
   final FetchReportPayload fetchReportPayload;
@@ -273,7 +275,7 @@ class _$_FetchReport implements _FetchReport {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_FetchReport &&
+            other is _$FetchReportImpl &&
             (identical(other.fetchReportPayload, fetchReportPayload) ||
                 other.fetchReportPayload == fetchReportPayload));
   }
@@ -284,8 +286,8 @@ class _$_FetchReport implements _FetchReport {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_FetchReportCopyWith<_$_FetchReport> get copyWith =>
-      __$$_FetchReportCopyWithImpl<_$_FetchReport>(this, _$identity);
+  _$$FetchReportImplCopyWith<_$FetchReportImpl> get copyWith =>
+      __$$FetchReportImplCopyWithImpl<_$FetchReportImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -360,29 +362,30 @@ class _$_FetchReport implements _FetchReport {
 
 abstract class _FetchReport implements ReportEvent {
   const factory _FetchReport(
-      {required final FetchReportPayload fetchReportPayload}) = _$_FetchReport;
+          {required final FetchReportPayload fetchReportPayload}) =
+      _$FetchReportImpl;
 
   FetchReportPayload get fetchReportPayload;
   @JsonKey(ignore: true)
-  _$$_FetchReportCopyWith<_$_FetchReport> get copyWith =>
+  _$$FetchReportImplCopyWith<_$FetchReportImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_PickDateCopyWith<$Res> {
-  factory _$$_PickDateCopyWith(
-          _$_PickDate value, $Res Function(_$_PickDate) then) =
-      __$$_PickDateCopyWithImpl<$Res>;
+abstract class _$$PickDateImplCopyWith<$Res> {
+  factory _$$PickDateImplCopyWith(
+          _$PickDateImpl value, $Res Function(_$PickDateImpl) then) =
+      __$$PickDateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DateTime startDate, DateTime endDate});
 }
 
 /// @nodoc
-class __$$_PickDateCopyWithImpl<$Res>
-    extends _$ReportEventCopyWithImpl<$Res, _$_PickDate>
-    implements _$$_PickDateCopyWith<$Res> {
-  __$$_PickDateCopyWithImpl(
-      _$_PickDate _value, $Res Function(_$_PickDate) _then)
+class __$$PickDateImplCopyWithImpl<$Res>
+    extends _$ReportEventCopyWithImpl<$Res, _$PickDateImpl>
+    implements _$$PickDateImplCopyWith<$Res> {
+  __$$PickDateImplCopyWithImpl(
+      _$PickDateImpl _value, $Res Function(_$PickDateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -391,7 +394,7 @@ class __$$_PickDateCopyWithImpl<$Res>
     Object? startDate = null,
     Object? endDate = null,
   }) {
-    return _then(_$_PickDate(
+    return _then(_$PickDateImpl(
       startDate: null == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
@@ -406,8 +409,8 @@ class __$$_PickDateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PickDate implements _PickDate {
-  const _$_PickDate({required this.startDate, required this.endDate});
+class _$PickDateImpl implements _PickDate {
+  const _$PickDateImpl({required this.startDate, required this.endDate});
 
   @override
   final DateTime startDate;
@@ -423,7 +426,7 @@ class _$_PickDate implements _PickDate {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PickDate &&
+            other is _$PickDateImpl &&
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
             (identical(other.endDate, endDate) || other.endDate == endDate));
@@ -435,8 +438,8 @@ class _$_PickDate implements _PickDate {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PickDateCopyWith<_$_PickDate> get copyWith =>
-      __$$_PickDateCopyWithImpl<_$_PickDate>(this, _$identity);
+  _$$PickDateImplCopyWith<_$PickDateImpl> get copyWith =>
+      __$$PickDateImplCopyWithImpl<_$PickDateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -512,12 +515,12 @@ class _$_PickDate implements _PickDate {
 abstract class _PickDate implements ReportEvent {
   const factory _PickDate(
       {required final DateTime startDate,
-      required final DateTime endDate}) = _$_PickDate;
+      required final DateTime endDate}) = _$PickDateImpl;
 
   DateTime get startDate;
   DateTime get endDate;
   @JsonKey(ignore: true)
-  _$$_PickDateCopyWith<_$_PickDate> get copyWith =>
+  _$$PickDateImplCopyWith<_$PickDateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -629,11 +632,11 @@ class _$ReportStateCopyWithImpl<$Res, $Val extends ReportState>
 }
 
 /// @nodoc
-abstract class _$$_ReportStateCopyWith<$Res>
+abstract class _$$ReportStateImplCopyWith<$Res>
     implements $ReportStateCopyWith<$Res> {
-  factory _$$_ReportStateCopyWith(
-          _$_ReportState value, $Res Function(_$_ReportState) then) =
-      __$$_ReportStateCopyWithImpl<$Res>;
+  factory _$$ReportStateImplCopyWith(
+          _$ReportStateImpl value, $Res Function(_$ReportStateImpl) then) =
+      __$$ReportStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -650,11 +653,11 @@ abstract class _$$_ReportStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ReportStateCopyWithImpl<$Res>
-    extends _$ReportStateCopyWithImpl<$Res, _$_ReportState>
-    implements _$$_ReportStateCopyWith<$Res> {
-  __$$_ReportStateCopyWithImpl(
-      _$_ReportState _value, $Res Function(_$_ReportState) _then)
+class __$$ReportStateImplCopyWithImpl<$Res>
+    extends _$ReportStateCopyWithImpl<$Res, _$ReportStateImpl>
+    implements _$$ReportStateImplCopyWith<$Res> {
+  __$$ReportStateImplCopyWithImpl(
+      _$ReportStateImpl _value, $Res Function(_$ReportStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -671,7 +674,7 @@ class __$$_ReportStateCopyWithImpl<$Res>
     Object? reportGeneraInfo = freezed,
     Object? reportData = freezed,
   }) {
-    return _then(_$_ReportState(
+    return _then(_$ReportStateImpl(
       isGenaralInfoLoading: null == isGenaralInfoLoading
           ? _value.isGenaralInfoLoading
           : isGenaralInfoLoading // ignore: cast_nullable_to_non_nullable
@@ -718,8 +721,8 @@ class __$$_ReportStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ReportState implements _ReportState {
-  const _$_ReportState(
+class _$ReportStateImpl implements _ReportState {
+  const _$ReportStateImpl(
       {required this.isGenaralInfoLoading,
       required this.isReportDataLoading,
       required this.hasGenaralInfoData,
@@ -761,7 +764,7 @@ class _$_ReportState implements _ReportState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ReportState &&
+            other is _$ReportStateImpl &&
             (identical(other.isGenaralInfoLoading, isGenaralInfoLoading) ||
                 other.isGenaralInfoLoading == isGenaralInfoLoading) &&
             (identical(other.isReportDataLoading, isReportDataLoading) ||
@@ -799,8 +802,8 @@ class _$_ReportState implements _ReportState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ReportStateCopyWith<_$_ReportState> get copyWith =>
-      __$$_ReportStateCopyWithImpl<_$_ReportState>(this, _$identity);
+  _$$ReportStateImplCopyWith<_$ReportStateImpl> get copyWith =>
+      __$$ReportStateImplCopyWithImpl<_$ReportStateImpl>(this, _$identity);
 }
 
 abstract class _ReportState implements ReportState {
@@ -814,7 +817,7 @@ abstract class _ReportState implements ReportState {
       required final DateTime endDate,
       required final bool isError,
       final ReportGeneraInfoModel? reportGeneraInfo,
-      final ReportModel? reportData}) = _$_ReportState;
+      final ReportModel? reportData}) = _$ReportStateImpl;
 
   @override
   bool get isGenaralInfoLoading;
@@ -838,6 +841,6 @@ abstract class _ReportState implements ReportState {
   ReportModel? get reportData;
   @override
   @JsonKey(ignore: true)
-  _$$_ReportStateCopyWith<_$_ReportState> get copyWith =>
+  _$$ReportStateImplCopyWith<_$ReportStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

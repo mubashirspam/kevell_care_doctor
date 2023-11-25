@@ -10,14 +10,15 @@ class SignallingService {
 
   init({required String websocketUrl, required String selfCallerID}) {
     // init Socket
-    socket = io(websocketUrl, {
+    socket = io(
+        "https://kevelldigital.com/videochat?type=videocall&callerId=$selfCallerID", {
       "transports": ['websocket'],
       "query": {"callerId": selfCallerID}
     });
 
     // listen onConnect event
     socket!.onConnect((data) {
-      log("Socket connected !!");
+      log("Video Call Socket connected on $selfCallerID !!");
     });
 
     // listen onConnectError event
