@@ -5,6 +5,7 @@ class InitializeState with _$InitializeState {
   const factory InitializeState({
     required bool isLoading,
     required bool isToken,
+    required bool isVerified,
     required bool connectionStatus,
     // required HelpCenterModel? helpCenter,
   }) = _InitializeState;
@@ -12,6 +13,7 @@ class InitializeState with _$InitializeState {
   factory InitializeState.initial() => const InitializeState(
         isLoading: false,
         isToken: true,
+        isVerified: false,
         connectionStatus: false,
         // helpCenter: null,
       );

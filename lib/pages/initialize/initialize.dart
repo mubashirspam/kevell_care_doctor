@@ -1,3 +1,4 @@
+import 'package:dr_kevell/features/profile/presentation/view_my_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dr_kevell/features/widgets/loading_widget.dart';
@@ -25,9 +26,17 @@ class Initialize extends StatelessWidget {
         if (state.isLoading) {
           return const Scaffold(body: Center(child: LoadingWIdget()));
         } else if (state.isToken) {
-          return const Dashboard();
+          if (state.isVerified) {
+            return const Dashboard();
+          }
+          return const Scaffold(
+              body: SafeArea(
+                  child: Padding(
+            padding: EdgeInsets.all(20),
+            child: ViewMyProfile(notverified: true),
+          )));
         } else if (!state.isToken) {
-           selectedIndexNorifier.value==0;
+          selectedIndexNorifier.value == 0;
           return const LoginScreen();
         } else {
           return const Scaffold(body: Center(child: LoadingWIdget()));

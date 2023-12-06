@@ -16,27 +16,27 @@ class WaitingPatient extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeBloc, HomeState>(
-      listener: (context, state) async {
-        if (state.unauthorized) {
-          // Toast.showToast(
-          //   context: context,
-          //   message: "Unauthrized",
-          // );
-          await deleteFromSS(secureStoreKey)
-              .then((value) => Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(
-                      builder: (context) => const Initialize(),
-                    ),
-                    (route) => false,
-                  ));
-        } else if (state.isError) {
-          Toast.showToast(context: context, message: "Network Error");
-        }
-      },
-      listenWhen: (previous, current) {
-        return previous != current;
-      },
+    return BlocBuilder<HomeBloc, HomeState>(
+      // listener: (context, state) async {
+      //   if (state.unauthorized) {
+      //     // Toast.showToast(
+      //     //   context: context,
+      //     //   message: "Unauthrized",
+      //     // );
+      //     await deleteFromSS(secureStoreKey)
+      //         .then((value) => Navigator.of(context).pushAndRemoveUntil(
+      //               MaterialPageRoute(
+      //                 builder: (context) => const Initialize(),
+      //               ),
+      //               (route) => false,
+      //             ));
+      //   } else if (state.isError) {
+      //     Toast.showToast(context: context, message: "Network Error");
+      //   }
+      // },
+      // listenWhen: (previous, current) {
+      //   return previous != current;
+      // },
       builder: (context, state) {
         if (state.isWaitingPatientLoading && !state.hasWaitingPatientData) {
           return MultiSliver(children: const [

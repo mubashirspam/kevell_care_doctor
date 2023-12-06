@@ -1,9 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:dr_kevell/features/prescription/data/model/prescription_list_model.dart';
-
 
 import '../../../../core/failiar/main_failures.dart';
+import '../../data/model/prescription_model.dart';
+
 
 abstract class UpdatePrescriptionListRepository {
-  Future<Either<MainFailure, PrescriptionModel>> updatePrescriptionList({ required PrescriptionElement prescriptionElement,});
+  Future<Either<MainFailure, PrescriptionModel>> updatePrescriptionList({
+    required Map<String, dynamic> payload,
+  });
 }

@@ -1,184 +1,232 @@
-import 'dart:io';
-
-
-import 'package:path_provider/path_provider.dart';
-
 import 'package:pdf/widgets.dart' as pw;
-
-import '../model/prescription_pdf_model.dart';
+import 'package:flutter/services.dart';
+import 'package:pdf/pdf.dart';
+import '../../../report/data/model/report_model.dart';
 
 class GeneratePrescriptionPdfRepoImpliment {
-  Future<pw.Document> generatePDF(List<PrescriptionPdfModel> data) async {
+  Future<pw.Document> generatePDF(List<ReportPrescription> prescription) async {
+    final img = await rootBundle.load('assets/images/logo.png');
+    final imageBytes = img.buffer.asUint8List();
+    pw.Image image1 = pw.Image(pw.MemoryImage(imageBytes));
     final pdf = pw.Document();
-
-    final tableRows = <pw.TableRow>[];
-
-    for (var entry in data) {
-      tableRows.add(pw.TableRow(
-        decoration: pw.BoxDecoration(border: pw.Border.all(width: 0.5)),
-        children: [
-          pw.Text(entry.name ?? ''),
-          pw.Text(entry.type ?? ''),
-
-          pw.Row(
-            children: List.generate(
-                entry.timeoftheday!.length,
-                (index) => pw.Row(children: [
-                      pw.Text(entry.timeoftheday![index].name!,
+    final data = prescription;
+    pdf.addPage(pw.Page(
+      pageFormat: PdfPageFormat.a4,
+      build: (pw.Context context) {
+        return pw.Column(
+          mainAxisAlignment: pw.MainAxisAlignment.start,
+          crossAxisAlignment: pw.CrossAxisAlignment.start,
+          children: [
+            pw.Row(
+              mainAxisAlignment: pw.MainAxisAlignment.start,
+              crossAxisAlignment: pw.CrossAxisAlignment.start,
+              children: [
+                pw.Container(height: 50, width: 50, child: image1),
+                pw.SizedBox(width: 10),
+                pw.Expanded(
+                  child: pw.Container(
+                    height: 50,
+                    child: pw.Column(
+                      mainAxisAlignment: pw.MainAxisAlignment.start,
+                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                      children: [
+                        pw.Text(
+                          "Kevell Hospital",
                           style: pw.TextStyle(
-                            fontSize: 8,
-                            fontWeight: pw.FontWeight.normal,
-                          )),
-                      pw.SizedBox(width: 5),
-                      pw.Checkbox(
-                        value: entry.timeoftheday![index].value!,
-                        name: entry.timeoftheday![index].name!,
-                      ),
-                      pw.SizedBox(width: 5),
-                    ])),
-          ),
-          pw.Row(
-            children: List.generate(
-                entry.tobetaken!.length,
-                (index) => pw.Row(children: [
-                      pw.Text(entry.tobetaken![index].name!,
+                            color: PdfColors.black,
+                            fontSize: 18,
+                            fontWeight: pw.FontWeight.bold,
+                          ),
+                        ),
+                        pw.SizedBox(height: 5),
+                        pw.Text(
+                          "Your Wellness, Our Priority.",
                           style: pw.TextStyle(
-                            fontSize: 8,
-                            fontWeight: pw.FontWeight.normal,
-                          )),
-                      pw.SizedBox(width: 5),
-                      pw.Checkbox(
-                        value: entry.tobetaken![index].value!,
-                        name: entry.tobetaken![index].name!,
-                      ),
-                      pw.SizedBox(width: 5),
-                    ])),
-          ),
-
-          pw.Text(entry.duration ?? ''),
-
-          // Add more cells as needed
-        ],
-      ));
-    }
-
-    pdf.addPage(
-      pw.Page(
-        build: (pw.Context context) {
-          return pw.Column(
-            crossAxisAlignment: pw.CrossAxisAlignment.start,
-            children: [
-              pw.Text(
-                "Prescription",
-                style: const pw.TextStyle(
-                  fontSize: 16,
-                ),
-              ),
-              pw.Row(
-                children: [
-                  pw.Text(
-                    "Patient Information",
-                    style: pw.TextStyle(
-                        fontSize: 14, fontWeight: pw.FontWeight.bold),
+                            color: PdfColors.black,
+                            fontSize: 10,
+                            fontWeight: pw.FontWeight.bold,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ],
-              ),
-              pw.Padding(
-                padding: const pw.EdgeInsets.only(top: 15),
-                child: pw.Row(
-                  children: [
-                    pw.Text(
-                      "Appoinment No : ",
-                      style: pw.TextStyle(
-                          fontSize: 14, fontWeight: pw.FontWeight.bold),
-                    ),
-                    pw.Text(
-                      data.first.appointmentId.toString(),
-                      style: const pw.TextStyle(
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
                 ),
-              ),
-              pw.Padding(
-                padding: const pw.EdgeInsets.only(top: 15),
-                child: pw.Row(
-                  children: [
-                    pw.Text(
-                      "Patient Name : ",
-                      style: pw.TextStyle(
-                          fontSize: 14, fontWeight: pw.FontWeight.bold),
-                    ),
-                    pw.Text(
-                      data.first.name.toString(),
-                      style: const pw.TextStyle(
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              pw.SizedBox(height: 50),
-              pw.Table(
-            
-                border: pw.TableBorder.all(width: 0.5),
-                columnWidths: {
-                  0: const pw.FlexColumnWidth(1),
-                  1: const pw.FlexColumnWidth(1),
-                  2: const pw.FlexColumnWidth(4),
-                  3: const pw.FlexColumnWidth(3),
-                  4: const pw.FlexColumnWidth(0.5),
-                },
-                children: [
-                  pw.TableRow(
+                pw.Expanded(
+                  child: pw.Column(
+                    crossAxisAlignment: pw.CrossAxisAlignment.end,
                     children: [
-                      pw.Text('Name',
-                          style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
-                      pw.Text('Type',
-                          style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
-
-                      pw.Text('Time',
-                          style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
-                      pw.Text('To be Taken',
-                          style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
-
-                      pw.Text('days',
-                          style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
-                      // Add more headers as needed
+                      pw.Text(
+                        "Dr.Mubashir Ahammed ",
+                        style: pw.TextStyle(
+                          color: PdfColors.black,
+                          fontSize: 12,
+                          fontWeight: pw.FontWeight.normal,
+                        ),
+                      ),
+                      pw.SizedBox(height: 5),
+                      pw.Text(
+                        "MBBS (Ortho)",
+                        style: pw.TextStyle(
+                          color: PdfColors.black,
+                          fontSize: 12,
+                          fontWeight: pw.FontWeight.normal,
+                        ),
+                      ),
+                      pw.SizedBox(height: 5),
+                      pw.Text(
+                        "PH:9562229979",
+                        style: pw.TextStyle(
+                          color: PdfColors.black,
+                          fontSize: 12,
+                          fontWeight: pw.FontWeight.normal,
+                        ),
+                      ),
                     ],
                   ),
-                  ...tableRows,
+                ),
+              ],
+            ),
+            pw.Container(
+              height: 2,
+              width: double.maxFinite,
+              margin: const pw.EdgeInsets.symmetric(vertical: 20),
+              color: PdfColors.green,
+            ),
+            pw.Row(
+              crossAxisAlignment: pw.CrossAxisAlignment.center,
+              children: [
+                pw.Expanded(
+                  child: pw.Text(
+                    "Patient Name : Mubashir",
+                    style: pw.TextStyle(
+                      color: PdfColors.black,
+                      fontSize: 12,
+                      fontWeight: pw.FontWeight.normal,
+                    ),
+                  ),
+                ),
+                pw.Text(
+                  "Age : 23",
+                  style: pw.TextStyle(
+                    color: PdfColors.black,
+                    fontSize: 12,
+                    fontWeight: pw.FontWeight.normal,
+                  ),
+                ),
+                pw.SizedBox(width: 10),
+                pw.Text(
+                  "Gender : Male",
+                  style: pw.TextStyle(
+                    color: PdfColors.black,
+                    fontSize: 12,
+                    fontWeight: pw.FontWeight.normal,
+                  ),
+                ),
+                pw.SizedBox(width: 10),
+                pw.Text(
+                  "Date : 20/12/2023",
+                  style: pw.TextStyle(
+                    color: PdfColors.black,
+                    fontSize: 12,
+                    fontWeight: pw.FontWeight.normal,
+                  ),
+                ),
+              ],
+            ),
+            pw.SizedBox(height: 15),
+            pw.Container(
+              padding:
+                  const pw.EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              color: PdfColors.greenAccent,
+              child: pw.Row(
+                children: [
+                  pw.SizedBox(width: 50, child: heading("SNO")),
+                  pw.Expanded(child: heading("Drug")),
+                  pw.SizedBox(width: 50, child: heading("Morning")),
+                  pw.SizedBox(width: 50, child: heading("Noon")),
+                  pw.SizedBox(width: 50, child: heading("Evening")),
+                  pw.SizedBox(width: 50, child: heading("Night")),
+                  pw.SizedBox(width: 50, child: heading("Duration")),
                 ],
               ),
-            ],
-          );
-        },
-      ),
-    );
-
-    // Save the PDF to a file
-    final bytes = await pdf.save();
-    final tempDir = await getTemporaryDirectory();
-    final file = File('${tempDir.path}/statement.pdf');
-    await file.writeAsBytes(bytes);
+            ),
+            for (int i = 0; i < data.length; i++)
+              pw.Container(
+                padding:
+                    const pw.EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                color: colors[i % colors.length],
+                child: pw.Row(
+                  children: [
+                    pw.SizedBox(width: 50, child: content("${i + 1}")),
+                    pw.Expanded(child: content(data[i].name.toString())),
+                    pw.SizedBox(
+                        width: 50,
+                        child:
+                            content(data[i].timeoftheday!.morning.toString())),
+                    pw.SizedBox(width: 50, child: content(data[i].timeoftheday!.noon.toString())),
+                    pw.SizedBox(width: 50, child: content(data[i].timeoftheday!.evening.toString())),
+                    pw.SizedBox(width: 50, child: content(data[i].timeoftheday!.night.toString())),
+                    pw.SizedBox(
+                        width: 50, child: content("${data[i].duration} Days")),
+                  ],
+                ),
+              ),
+            pw.Container(
+              height: 2,
+              width: double.maxFinite,
+              margin: const pw.EdgeInsets.symmetric(vertical: 20),
+              color: PdfColors.green,
+            ),
+            pw.Row(
+              mainAxisAlignment: pw.MainAxisAlignment.end,
+              crossAxisAlignment: pw.CrossAxisAlignment.start,
+              children: [
+                pw.Text(
+                  "Signature",
+                  style: pw.TextStyle(
+                    color: PdfColors.black,
+                    fontSize: 12,
+                    fontWeight: pw.FontWeight.normal,
+                  ),
+                ),
+                pw.Text(
+                  "  --------------",
+                  style: pw.TextStyle(
+                    color: PdfColors.black,
+                    fontSize: 12,
+                    fontWeight: pw.FontWeight.normal,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        );
+      },
+    ));
 
     return pdf;
   }
 
-  pw.Widget _buildTable(PrescriptionPdfModel entry, pw.Context context) {
-    final tableData = [
-      ['Name', entry.name],
-      ['Type', entry.type],
-      ['Duration', entry.duration],
-      // Add more rows as needed
-    ];
+  static pw.Widget heading(String text) => pw.Text(
+        text,
+        style: pw.TextStyle(
+          color: PdfColors.black,
+          fontSize: 10,
+          fontWeight: pw.FontWeight.normal,
+        ),
+      );
 
-    return pw.TableHelper.fromTextArray(
-      context: context,
-      data: tableData,
-      tableWidth: pw.TableWidth.min,
-      border: null,
-    );
-  }
+  static pw.Widget content(String text) => pw.Text(
+        text,
+        style: pw.TextStyle(
+          color: PdfColors.black,
+          fontSize: 10,
+          fontWeight: pw.FontWeight.normal,
+        ),
+      );
+
+  static List<PdfColor> colors = [
+    PdfColors.green50,
+    PdfColors.green100,
+  ];
 }

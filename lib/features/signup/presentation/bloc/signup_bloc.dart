@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../data/models/signup_model.dart';
+import '../../domain/entities/signup_payload.dart';
 import '../../domain/repositories/signup_repository.dart';
 
 part 'signup_event.dart';
@@ -27,10 +28,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
         ));
 
         final response = await signupRepository.signup(
-          phone: event.phone,
-          email: event.email,
-          fullName: event.fullName,
-          password: event.password,
+         singupPayload: event.payload
         );
 
         response.fold(

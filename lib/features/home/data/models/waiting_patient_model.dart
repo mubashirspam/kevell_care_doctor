@@ -64,7 +64,6 @@ class WaitingPatient {
     int? doctorId;
     int? appointmentId;
     String? name;
-    String? type;
     bool? isvisited;
     bool? isTimeup;
     DateTime? createdAt;
@@ -79,7 +78,6 @@ class WaitingPatient {
         this.doctorId,
         this.appointmentId,
         this.name,
-        this.type,
         this.isvisited,
         this.isTimeup,
         this.createdAt,
@@ -95,7 +93,6 @@ class WaitingPatient {
         doctorId: json["doctor_id"],
         appointmentId: json["appointment_id"],
         name: json["name"],
-        type: json["type"],
         isvisited: json["isvisited"],
         isTimeup: json["is_timeup"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
@@ -111,7 +108,6 @@ class WaitingPatient {
         "doctor_id": doctorId,
         "appointment_id": appointmentId,
         "name": name,
-        "type": type,
         "isvisited": isvisited,
         "is_timeup": isTimeup,
         "createdAt": createdAt?.toIso8601String(),

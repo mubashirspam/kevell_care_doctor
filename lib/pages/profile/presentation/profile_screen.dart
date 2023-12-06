@@ -51,6 +51,7 @@ class ProfileScreen extends StatelessWidget {
                 if (state.hasData) {
                   log(state.result!.data!.profileImagelink.toString());
                   return ProfileNameCard(
+                    isverified: state.result!.data!.doctorapproved??false ,
                     email: state.result!.data!.email ?? "",
                     imageUrl: state.result!.data!.profileImagelink??"",
                     name: state.result!.data!.name ?? "No Name",
@@ -58,8 +59,9 @@ class ProfileScreen extends StatelessWidget {
                 }
 
                 return const ProfileNameCard(
+                  isverified: false,
                   email: "johndoe@gmail.com",
-                  imageUrl: "imageUrlForDummy",
+                  imageUrl: "",
                   name: "Johndoe",
                 );
               },

@@ -1,5 +1,4 @@
 import 'package:dr_kevell/pages/checkup/presentation/widgets/checkup_body.dart';
-import 'package:dr_kevell/settings/value/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 import '../../../features/home/data/models/waiting_patient_model.dart';
@@ -47,7 +46,7 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
           SliverPinnedHeader(
             child: CheckupHeaderWidget(
               name: widget.checkupDetalis.name ?? "No name found",
-              type: widget.checkupDetalis.type ?? "No case found",
+              type:  "No case found",
               imageUrl: widget.checkupDetalis.profileImagelink??"",
               paitentCallerId: patientID.toString(),
               selfCallerId: doctorID.toString(),

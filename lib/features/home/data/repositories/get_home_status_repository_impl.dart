@@ -34,9 +34,12 @@ class GetProfileRepoImpliment implements GetHomeStatusRepository {
         'Content-Type': 'application/json',
       };
 
-      final response = await Dio(BaseOptions()).get(
+      final response = await Dio().post(
         ApiEndPoints.homeStatus,
-        options: Options(headers: headers, validateStatus: (_) => true,),
+        options: Options(
+          headers: headers,
+          validateStatus: (_) => true,
+        ),
         data: {'doctorId': int.parse(id.toString())},
       );
 

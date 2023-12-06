@@ -20,42 +20,41 @@ mixin _$PrecriptionEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(int appointmentId) getPrescriptionList,
     required TResult Function() getPrescriptionSettings,
-    required TResult Function(PrescriptionElement prescriptionElement)
+    required TResult Function(CreatePrescriptionPayload payload)
         createPrescription,
-    required TResult Function(PrescriptionElement prescriptionElement)
-        updatePrescription,
-    required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
-    required TResult Function(List<DataObjec> data) selectTobetaken,
-    required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
-    required TResult Function(int pno, int appoinmentId) deletePrescription,
+    required TResult Function(Map<String, dynamic> payload) updatePrescription,
+    required TResult Function(
+            Prescription prescriptions, bool isEditing, int? index)
+        editOrCreatePrescription,
+    required TResult Function(List<ReportPrescription> data, PdfActions action)
+        genaratePdf,
+    required TResult Function(int index) deletePrescription,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int appointmentId)? getPrescriptionList,
     TResult? Function()? getPrescriptionSettings,
-    TResult? Function(PrescriptionElement prescriptionElement)?
-        createPrescription,
-    TResult? Function(PrescriptionElement prescriptionElement)?
-        updatePrescription,
-    TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
-    TResult? Function(List<DataObjec> data)? selectTobetaken,
-    TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult? Function(int pno, int appoinmentId)? deletePrescription,
+    TResult? Function(CreatePrescriptionPayload payload)? createPrescription,
+    TResult? Function(Map<String, dynamic> payload)? updatePrescription,
+    TResult? Function(Prescription prescriptions, bool isEditing, int? index)?
+        editOrCreatePrescription,
+    TResult? Function(List<ReportPrescription> data, PdfActions action)?
+        genaratePdf,
+    TResult? Function(int index)? deletePrescription,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int appointmentId)? getPrescriptionList,
     TResult Function()? getPrescriptionSettings,
-    TResult Function(PrescriptionElement prescriptionElement)?
-        createPrescription,
-    TResult Function(PrescriptionElement prescriptionElement)?
-        updatePrescription,
-    TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
-    TResult Function(List<DataObjec> data)? selectTobetaken,
-    TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult Function(int pno, int appoinmentId)? deletePrescription,
+    TResult Function(CreatePrescriptionPayload payload)? createPrescription,
+    TResult Function(Map<String, dynamic> payload)? updatePrescription,
+    TResult Function(Prescription prescriptions, bool isEditing, int? index)?
+        editOrCreatePrescription,
+    TResult Function(List<ReportPrescription> data, PdfActions action)?
+        genaratePdf,
+    TResult Function(int index)? deletePrescription,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -66,8 +65,8 @@ mixin _$PrecriptionEvent {
         getPrescriptionSettings,
     required TResult Function(_CreatePrescription value) createPrescription,
     required TResult Function(_UpdatePrescription value) updatePrescription,
-    required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
-    required TResult Function(_SelectTobetaken value) selectTobetaken,
+    required TResult Function(_EditOrCreatePrescription value)
+        editOrCreatePrescription,
     required TResult Function(_GeneratePdf value) genaratePdf,
     required TResult Function(_DeletePrescription value) deletePrescription,
   }) =>
@@ -78,8 +77,8 @@ mixin _$PrecriptionEvent {
     TResult? Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult? Function(_CreatePrescription value)? createPrescription,
     TResult? Function(_UpdatePrescription value)? updatePrescription,
-    TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
-    TResult? Function(_SelectTobetaken value)? selectTobetaken,
+    TResult? Function(_EditOrCreatePrescription value)?
+        editOrCreatePrescription,
     TResult? Function(_GeneratePdf value)? genaratePdf,
     TResult? Function(_DeletePrescription value)? deletePrescription,
   }) =>
@@ -90,8 +89,7 @@ mixin _$PrecriptionEvent {
     TResult Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult Function(_CreatePrescription value)? createPrescription,
     TResult Function(_UpdatePrescription value)? updatePrescription,
-    TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
-    TResult Function(_SelectTobetaken value)? selectTobetaken,
+    TResult Function(_EditOrCreatePrescription value)? editOrCreatePrescription,
     TResult Function(_GeneratePdf value)? genaratePdf,
     TResult Function(_DeletePrescription value)? deletePrescription,
     required TResult orElse(),
@@ -185,14 +183,15 @@ class _$GetPrescriptionListImpl implements _GetPrescriptionList {
   TResult when<TResult extends Object?>({
     required TResult Function(int appointmentId) getPrescriptionList,
     required TResult Function() getPrescriptionSettings,
-    required TResult Function(PrescriptionElement prescriptionElement)
+    required TResult Function(CreatePrescriptionPayload payload)
         createPrescription,
-    required TResult Function(PrescriptionElement prescriptionElement)
-        updatePrescription,
-    required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
-    required TResult Function(List<DataObjec> data) selectTobetaken,
-    required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
-    required TResult Function(int pno, int appoinmentId) deletePrescription,
+    required TResult Function(Map<String, dynamic> payload) updatePrescription,
+    required TResult Function(
+            Prescription prescriptions, bool isEditing, int? index)
+        editOrCreatePrescription,
+    required TResult Function(List<ReportPrescription> data, PdfActions action)
+        genaratePdf,
+    required TResult Function(int index) deletePrescription,
   }) {
     return getPrescriptionList(appointmentId);
   }
@@ -202,14 +201,13 @@ class _$GetPrescriptionListImpl implements _GetPrescriptionList {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int appointmentId)? getPrescriptionList,
     TResult? Function()? getPrescriptionSettings,
-    TResult? Function(PrescriptionElement prescriptionElement)?
-        createPrescription,
-    TResult? Function(PrescriptionElement prescriptionElement)?
-        updatePrescription,
-    TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
-    TResult? Function(List<DataObjec> data)? selectTobetaken,
-    TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult? Function(int pno, int appoinmentId)? deletePrescription,
+    TResult? Function(CreatePrescriptionPayload payload)? createPrescription,
+    TResult? Function(Map<String, dynamic> payload)? updatePrescription,
+    TResult? Function(Prescription prescriptions, bool isEditing, int? index)?
+        editOrCreatePrescription,
+    TResult? Function(List<ReportPrescription> data, PdfActions action)?
+        genaratePdf,
+    TResult? Function(int index)? deletePrescription,
   }) {
     return getPrescriptionList?.call(appointmentId);
   }
@@ -219,14 +217,13 @@ class _$GetPrescriptionListImpl implements _GetPrescriptionList {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int appointmentId)? getPrescriptionList,
     TResult Function()? getPrescriptionSettings,
-    TResult Function(PrescriptionElement prescriptionElement)?
-        createPrescription,
-    TResult Function(PrescriptionElement prescriptionElement)?
-        updatePrescription,
-    TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
-    TResult Function(List<DataObjec> data)? selectTobetaken,
-    TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult Function(int pno, int appoinmentId)? deletePrescription,
+    TResult Function(CreatePrescriptionPayload payload)? createPrescription,
+    TResult Function(Map<String, dynamic> payload)? updatePrescription,
+    TResult Function(Prescription prescriptions, bool isEditing, int? index)?
+        editOrCreatePrescription,
+    TResult Function(List<ReportPrescription> data, PdfActions action)?
+        genaratePdf,
+    TResult Function(int index)? deletePrescription,
     required TResult orElse(),
   }) {
     if (getPrescriptionList != null) {
@@ -243,8 +240,8 @@ class _$GetPrescriptionListImpl implements _GetPrescriptionList {
         getPrescriptionSettings,
     required TResult Function(_CreatePrescription value) createPrescription,
     required TResult Function(_UpdatePrescription value) updatePrescription,
-    required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
-    required TResult Function(_SelectTobetaken value) selectTobetaken,
+    required TResult Function(_EditOrCreatePrescription value)
+        editOrCreatePrescription,
     required TResult Function(_GeneratePdf value) genaratePdf,
     required TResult Function(_DeletePrescription value) deletePrescription,
   }) {
@@ -258,8 +255,8 @@ class _$GetPrescriptionListImpl implements _GetPrescriptionList {
     TResult? Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult? Function(_CreatePrescription value)? createPrescription,
     TResult? Function(_UpdatePrescription value)? updatePrescription,
-    TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
-    TResult? Function(_SelectTobetaken value)? selectTobetaken,
+    TResult? Function(_EditOrCreatePrescription value)?
+        editOrCreatePrescription,
     TResult? Function(_GeneratePdf value)? genaratePdf,
     TResult? Function(_DeletePrescription value)? deletePrescription,
   }) {
@@ -273,8 +270,7 @@ class _$GetPrescriptionListImpl implements _GetPrescriptionList {
     TResult Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult Function(_CreatePrescription value)? createPrescription,
     TResult Function(_UpdatePrescription value)? updatePrescription,
-    TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
-    TResult Function(_SelectTobetaken value)? selectTobetaken,
+    TResult Function(_EditOrCreatePrescription value)? editOrCreatePrescription,
     TResult Function(_GeneratePdf value)? genaratePdf,
     TResult Function(_DeletePrescription value)? deletePrescription,
     required TResult orElse(),
@@ -339,14 +335,15 @@ class _$GetPrescriptionSettingsImpl implements _GetPrescriptionSettings {
   TResult when<TResult extends Object?>({
     required TResult Function(int appointmentId) getPrescriptionList,
     required TResult Function() getPrescriptionSettings,
-    required TResult Function(PrescriptionElement prescriptionElement)
+    required TResult Function(CreatePrescriptionPayload payload)
         createPrescription,
-    required TResult Function(PrescriptionElement prescriptionElement)
-        updatePrescription,
-    required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
-    required TResult Function(List<DataObjec> data) selectTobetaken,
-    required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
-    required TResult Function(int pno, int appoinmentId) deletePrescription,
+    required TResult Function(Map<String, dynamic> payload) updatePrescription,
+    required TResult Function(
+            Prescription prescriptions, bool isEditing, int? index)
+        editOrCreatePrescription,
+    required TResult Function(List<ReportPrescription> data, PdfActions action)
+        genaratePdf,
+    required TResult Function(int index) deletePrescription,
   }) {
     return getPrescriptionSettings();
   }
@@ -356,14 +353,13 @@ class _$GetPrescriptionSettingsImpl implements _GetPrescriptionSettings {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int appointmentId)? getPrescriptionList,
     TResult? Function()? getPrescriptionSettings,
-    TResult? Function(PrescriptionElement prescriptionElement)?
-        createPrescription,
-    TResult? Function(PrescriptionElement prescriptionElement)?
-        updatePrescription,
-    TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
-    TResult? Function(List<DataObjec> data)? selectTobetaken,
-    TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult? Function(int pno, int appoinmentId)? deletePrescription,
+    TResult? Function(CreatePrescriptionPayload payload)? createPrescription,
+    TResult? Function(Map<String, dynamic> payload)? updatePrescription,
+    TResult? Function(Prescription prescriptions, bool isEditing, int? index)?
+        editOrCreatePrescription,
+    TResult? Function(List<ReportPrescription> data, PdfActions action)?
+        genaratePdf,
+    TResult? Function(int index)? deletePrescription,
   }) {
     return getPrescriptionSettings?.call();
   }
@@ -373,14 +369,13 @@ class _$GetPrescriptionSettingsImpl implements _GetPrescriptionSettings {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int appointmentId)? getPrescriptionList,
     TResult Function()? getPrescriptionSettings,
-    TResult Function(PrescriptionElement prescriptionElement)?
-        createPrescription,
-    TResult Function(PrescriptionElement prescriptionElement)?
-        updatePrescription,
-    TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
-    TResult Function(List<DataObjec> data)? selectTobetaken,
-    TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult Function(int pno, int appoinmentId)? deletePrescription,
+    TResult Function(CreatePrescriptionPayload payload)? createPrescription,
+    TResult Function(Map<String, dynamic> payload)? updatePrescription,
+    TResult Function(Prescription prescriptions, bool isEditing, int? index)?
+        editOrCreatePrescription,
+    TResult Function(List<ReportPrescription> data, PdfActions action)?
+        genaratePdf,
+    TResult Function(int index)? deletePrescription,
     required TResult orElse(),
   }) {
     if (getPrescriptionSettings != null) {
@@ -397,8 +392,8 @@ class _$GetPrescriptionSettingsImpl implements _GetPrescriptionSettings {
         getPrescriptionSettings,
     required TResult Function(_CreatePrescription value) createPrescription,
     required TResult Function(_UpdatePrescription value) updatePrescription,
-    required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
-    required TResult Function(_SelectTobetaken value) selectTobetaken,
+    required TResult Function(_EditOrCreatePrescription value)
+        editOrCreatePrescription,
     required TResult Function(_GeneratePdf value) genaratePdf,
     required TResult Function(_DeletePrescription value) deletePrescription,
   }) {
@@ -412,8 +407,8 @@ class _$GetPrescriptionSettingsImpl implements _GetPrescriptionSettings {
     TResult? Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult? Function(_CreatePrescription value)? createPrescription,
     TResult? Function(_UpdatePrescription value)? updatePrescription,
-    TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
-    TResult? Function(_SelectTobetaken value)? selectTobetaken,
+    TResult? Function(_EditOrCreatePrescription value)?
+        editOrCreatePrescription,
     TResult? Function(_GeneratePdf value)? genaratePdf,
     TResult? Function(_DeletePrescription value)? deletePrescription,
   }) {
@@ -427,8 +422,7 @@ class _$GetPrescriptionSettingsImpl implements _GetPrescriptionSettings {
     TResult Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult Function(_CreatePrescription value)? createPrescription,
     TResult Function(_UpdatePrescription value)? updatePrescription,
-    TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
-    TResult Function(_SelectTobetaken value)? selectTobetaken,
+    TResult Function(_EditOrCreatePrescription value)? editOrCreatePrescription,
     TResult Function(_GeneratePdf value)? genaratePdf,
     TResult Function(_DeletePrescription value)? deletePrescription,
     required TResult orElse(),
@@ -450,7 +444,7 @@ abstract class _$$CreatePrescriptionImplCopyWith<$Res> {
           $Res Function(_$CreatePrescriptionImpl) then) =
       __$$CreatePrescriptionImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({PrescriptionElement prescriptionElement});
+  $Res call({CreatePrescriptionPayload payload});
 }
 
 /// @nodoc
@@ -464,13 +458,13 @@ class __$$CreatePrescriptionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? prescriptionElement = null,
+    Object? payload = null,
   }) {
     return _then(_$CreatePrescriptionImpl(
-      prescriptionElement: null == prescriptionElement
-          ? _value.prescriptionElement
-          : prescriptionElement // ignore: cast_nullable_to_non_nullable
-              as PrescriptionElement,
+      payload: null == payload
+          ? _value.payload
+          : payload // ignore: cast_nullable_to_non_nullable
+              as CreatePrescriptionPayload,
     ));
   }
 }
@@ -478,14 +472,14 @@ class __$$CreatePrescriptionImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CreatePrescriptionImpl implements _CreatePrescription {
-  const _$CreatePrescriptionImpl({required this.prescriptionElement});
+  const _$CreatePrescriptionImpl({required this.payload});
 
   @override
-  final PrescriptionElement prescriptionElement;
+  final CreatePrescriptionPayload payload;
 
   @override
   String toString() {
-    return 'PrecriptionEvent.createPrescription(prescriptionElement: $prescriptionElement)';
+    return 'PrecriptionEvent.createPrescription(payload: $payload)';
   }
 
   @override
@@ -493,12 +487,11 @@ class _$CreatePrescriptionImpl implements _CreatePrescription {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreatePrescriptionImpl &&
-            (identical(other.prescriptionElement, prescriptionElement) ||
-                other.prescriptionElement == prescriptionElement));
+            (identical(other.payload, payload) || other.payload == payload));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, prescriptionElement);
+  int get hashCode => Object.hash(runtimeType, payload);
 
   @JsonKey(ignore: true)
   @override
@@ -512,16 +505,17 @@ class _$CreatePrescriptionImpl implements _CreatePrescription {
   TResult when<TResult extends Object?>({
     required TResult Function(int appointmentId) getPrescriptionList,
     required TResult Function() getPrescriptionSettings,
-    required TResult Function(PrescriptionElement prescriptionElement)
+    required TResult Function(CreatePrescriptionPayload payload)
         createPrescription,
-    required TResult Function(PrescriptionElement prescriptionElement)
-        updatePrescription,
-    required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
-    required TResult Function(List<DataObjec> data) selectTobetaken,
-    required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
-    required TResult Function(int pno, int appoinmentId) deletePrescription,
+    required TResult Function(Map<String, dynamic> payload) updatePrescription,
+    required TResult Function(
+            Prescription prescriptions, bool isEditing, int? index)
+        editOrCreatePrescription,
+    required TResult Function(List<ReportPrescription> data, PdfActions action)
+        genaratePdf,
+    required TResult Function(int index) deletePrescription,
   }) {
-    return createPrescription(prescriptionElement);
+    return createPrescription(payload);
   }
 
   @override
@@ -529,16 +523,15 @@ class _$CreatePrescriptionImpl implements _CreatePrescription {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int appointmentId)? getPrescriptionList,
     TResult? Function()? getPrescriptionSettings,
-    TResult? Function(PrescriptionElement prescriptionElement)?
-        createPrescription,
-    TResult? Function(PrescriptionElement prescriptionElement)?
-        updatePrescription,
-    TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
-    TResult? Function(List<DataObjec> data)? selectTobetaken,
-    TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult? Function(int pno, int appoinmentId)? deletePrescription,
+    TResult? Function(CreatePrescriptionPayload payload)? createPrescription,
+    TResult? Function(Map<String, dynamic> payload)? updatePrescription,
+    TResult? Function(Prescription prescriptions, bool isEditing, int? index)?
+        editOrCreatePrescription,
+    TResult? Function(List<ReportPrescription> data, PdfActions action)?
+        genaratePdf,
+    TResult? Function(int index)? deletePrescription,
   }) {
-    return createPrescription?.call(prescriptionElement);
+    return createPrescription?.call(payload);
   }
 
   @override
@@ -546,18 +539,17 @@ class _$CreatePrescriptionImpl implements _CreatePrescription {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int appointmentId)? getPrescriptionList,
     TResult Function()? getPrescriptionSettings,
-    TResult Function(PrescriptionElement prescriptionElement)?
-        createPrescription,
-    TResult Function(PrescriptionElement prescriptionElement)?
-        updatePrescription,
-    TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
-    TResult Function(List<DataObjec> data)? selectTobetaken,
-    TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult Function(int pno, int appoinmentId)? deletePrescription,
+    TResult Function(CreatePrescriptionPayload payload)? createPrescription,
+    TResult Function(Map<String, dynamic> payload)? updatePrescription,
+    TResult Function(Prescription prescriptions, bool isEditing, int? index)?
+        editOrCreatePrescription,
+    TResult Function(List<ReportPrescription> data, PdfActions action)?
+        genaratePdf,
+    TResult Function(int index)? deletePrescription,
     required TResult orElse(),
   }) {
     if (createPrescription != null) {
-      return createPrescription(prescriptionElement);
+      return createPrescription(payload);
     }
     return orElse();
   }
@@ -570,8 +562,8 @@ class _$CreatePrescriptionImpl implements _CreatePrescription {
         getPrescriptionSettings,
     required TResult Function(_CreatePrescription value) createPrescription,
     required TResult Function(_UpdatePrescription value) updatePrescription,
-    required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
-    required TResult Function(_SelectTobetaken value) selectTobetaken,
+    required TResult Function(_EditOrCreatePrescription value)
+        editOrCreatePrescription,
     required TResult Function(_GeneratePdf value) genaratePdf,
     required TResult Function(_DeletePrescription value) deletePrescription,
   }) {
@@ -585,8 +577,8 @@ class _$CreatePrescriptionImpl implements _CreatePrescription {
     TResult? Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult? Function(_CreatePrescription value)? createPrescription,
     TResult? Function(_UpdatePrescription value)? updatePrescription,
-    TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
-    TResult? Function(_SelectTobetaken value)? selectTobetaken,
+    TResult? Function(_EditOrCreatePrescription value)?
+        editOrCreatePrescription,
     TResult? Function(_GeneratePdf value)? genaratePdf,
     TResult? Function(_DeletePrescription value)? deletePrescription,
   }) {
@@ -600,8 +592,7 @@ class _$CreatePrescriptionImpl implements _CreatePrescription {
     TResult Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult Function(_CreatePrescription value)? createPrescription,
     TResult Function(_UpdatePrescription value)? updatePrescription,
-    TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
-    TResult Function(_SelectTobetaken value)? selectTobetaken,
+    TResult Function(_EditOrCreatePrescription value)? editOrCreatePrescription,
     TResult Function(_GeneratePdf value)? genaratePdf,
     TResult Function(_DeletePrescription value)? deletePrescription,
     required TResult orElse(),
@@ -615,10 +606,10 @@ class _$CreatePrescriptionImpl implements _CreatePrescription {
 
 abstract class _CreatePrescription implements PrecriptionEvent {
   const factory _CreatePrescription(
-          {required final PrescriptionElement prescriptionElement}) =
+          {required final CreatePrescriptionPayload payload}) =
       _$CreatePrescriptionImpl;
 
-  PrescriptionElement get prescriptionElement;
+  CreatePrescriptionPayload get payload;
   @JsonKey(ignore: true)
   _$$CreatePrescriptionImplCopyWith<_$CreatePrescriptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -630,7 +621,7 @@ abstract class _$$UpdatePrescriptionImplCopyWith<$Res> {
           $Res Function(_$UpdatePrescriptionImpl) then) =
       __$$UpdatePrescriptionImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({PrescriptionElement prescriptionElement});
+  $Res call({Map<String, dynamic> payload});
 }
 
 /// @nodoc
@@ -644,13 +635,13 @@ class __$$UpdatePrescriptionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? prescriptionElement = null,
+    Object? payload = null,
   }) {
     return _then(_$UpdatePrescriptionImpl(
-      prescriptionElement: null == prescriptionElement
-          ? _value.prescriptionElement
-          : prescriptionElement // ignore: cast_nullable_to_non_nullable
-              as PrescriptionElement,
+      payload: null == payload
+          ? _value._payload
+          : payload // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
     ));
   }
 }
@@ -658,14 +649,20 @@ class __$$UpdatePrescriptionImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UpdatePrescriptionImpl implements _UpdatePrescription {
-  const _$UpdatePrescriptionImpl({required this.prescriptionElement});
+  const _$UpdatePrescriptionImpl({required final Map<String, dynamic> payload})
+      : _payload = payload;
 
+  final Map<String, dynamic> _payload;
   @override
-  final PrescriptionElement prescriptionElement;
+  Map<String, dynamic> get payload {
+    if (_payload is EqualUnmodifiableMapView) return _payload;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_payload);
+  }
 
   @override
   String toString() {
-    return 'PrecriptionEvent.updatePrescription(prescriptionElement: $prescriptionElement)';
+    return 'PrecriptionEvent.updatePrescription(payload: $payload)';
   }
 
   @override
@@ -673,12 +670,12 @@ class _$UpdatePrescriptionImpl implements _UpdatePrescription {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdatePrescriptionImpl &&
-            (identical(other.prescriptionElement, prescriptionElement) ||
-                other.prescriptionElement == prescriptionElement));
+            const DeepCollectionEquality().equals(other._payload, _payload));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, prescriptionElement);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_payload));
 
   @JsonKey(ignore: true)
   @override
@@ -692,16 +689,17 @@ class _$UpdatePrescriptionImpl implements _UpdatePrescription {
   TResult when<TResult extends Object?>({
     required TResult Function(int appointmentId) getPrescriptionList,
     required TResult Function() getPrescriptionSettings,
-    required TResult Function(PrescriptionElement prescriptionElement)
+    required TResult Function(CreatePrescriptionPayload payload)
         createPrescription,
-    required TResult Function(PrescriptionElement prescriptionElement)
-        updatePrescription,
-    required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
-    required TResult Function(List<DataObjec> data) selectTobetaken,
-    required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
-    required TResult Function(int pno, int appoinmentId) deletePrescription,
+    required TResult Function(Map<String, dynamic> payload) updatePrescription,
+    required TResult Function(
+            Prescription prescriptions, bool isEditing, int? index)
+        editOrCreatePrescription,
+    required TResult Function(List<ReportPrescription> data, PdfActions action)
+        genaratePdf,
+    required TResult Function(int index) deletePrescription,
   }) {
-    return updatePrescription(prescriptionElement);
+    return updatePrescription(payload);
   }
 
   @override
@@ -709,16 +707,15 @@ class _$UpdatePrescriptionImpl implements _UpdatePrescription {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int appointmentId)? getPrescriptionList,
     TResult? Function()? getPrescriptionSettings,
-    TResult? Function(PrescriptionElement prescriptionElement)?
-        createPrescription,
-    TResult? Function(PrescriptionElement prescriptionElement)?
-        updatePrescription,
-    TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
-    TResult? Function(List<DataObjec> data)? selectTobetaken,
-    TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult? Function(int pno, int appoinmentId)? deletePrescription,
+    TResult? Function(CreatePrescriptionPayload payload)? createPrescription,
+    TResult? Function(Map<String, dynamic> payload)? updatePrescription,
+    TResult? Function(Prescription prescriptions, bool isEditing, int? index)?
+        editOrCreatePrescription,
+    TResult? Function(List<ReportPrescription> data, PdfActions action)?
+        genaratePdf,
+    TResult? Function(int index)? deletePrescription,
   }) {
-    return updatePrescription?.call(prescriptionElement);
+    return updatePrescription?.call(payload);
   }
 
   @override
@@ -726,18 +723,17 @@ class _$UpdatePrescriptionImpl implements _UpdatePrescription {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int appointmentId)? getPrescriptionList,
     TResult Function()? getPrescriptionSettings,
-    TResult Function(PrescriptionElement prescriptionElement)?
-        createPrescription,
-    TResult Function(PrescriptionElement prescriptionElement)?
-        updatePrescription,
-    TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
-    TResult Function(List<DataObjec> data)? selectTobetaken,
-    TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult Function(int pno, int appoinmentId)? deletePrescription,
+    TResult Function(CreatePrescriptionPayload payload)? createPrescription,
+    TResult Function(Map<String, dynamic> payload)? updatePrescription,
+    TResult Function(Prescription prescriptions, bool isEditing, int? index)?
+        editOrCreatePrescription,
+    TResult Function(List<ReportPrescription> data, PdfActions action)?
+        genaratePdf,
+    TResult Function(int index)? deletePrescription,
     required TResult orElse(),
   }) {
     if (updatePrescription != null) {
-      return updatePrescription(prescriptionElement);
+      return updatePrescription(payload);
     }
     return orElse();
   }
@@ -750,8 +746,8 @@ class _$UpdatePrescriptionImpl implements _UpdatePrescription {
         getPrescriptionSettings,
     required TResult Function(_CreatePrescription value) createPrescription,
     required TResult Function(_UpdatePrescription value) updatePrescription,
-    required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
-    required TResult Function(_SelectTobetaken value) selectTobetaken,
+    required TResult Function(_EditOrCreatePrescription value)
+        editOrCreatePrescription,
     required TResult Function(_GeneratePdf value) genaratePdf,
     required TResult Function(_DeletePrescription value) deletePrescription,
   }) {
@@ -765,8 +761,8 @@ class _$UpdatePrescriptionImpl implements _UpdatePrescription {
     TResult? Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult? Function(_CreatePrescription value)? createPrescription,
     TResult? Function(_UpdatePrescription value)? updatePrescription,
-    TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
-    TResult? Function(_SelectTobetaken value)? selectTobetaken,
+    TResult? Function(_EditOrCreatePrescription value)?
+        editOrCreatePrescription,
     TResult? Function(_GeneratePdf value)? genaratePdf,
     TResult? Function(_DeletePrescription value)? deletePrescription,
   }) {
@@ -780,8 +776,7 @@ class _$UpdatePrescriptionImpl implements _UpdatePrescription {
     TResult Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult Function(_CreatePrescription value)? createPrescription,
     TResult Function(_UpdatePrescription value)? updatePrescription,
-    TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
-    TResult Function(_SelectTobetaken value)? selectTobetaken,
+    TResult Function(_EditOrCreatePrescription value)? editOrCreatePrescription,
     TResult Function(_GeneratePdf value)? genaratePdf,
     TResult Function(_DeletePrescription value)? deletePrescription,
     required TResult orElse(),
@@ -795,99 +790,113 @@ class _$UpdatePrescriptionImpl implements _UpdatePrescription {
 
 abstract class _UpdatePrescription implements PrecriptionEvent {
   const factory _UpdatePrescription(
-          {required final PrescriptionElement prescriptionElement}) =
-      _$UpdatePrescriptionImpl;
+      {required final Map<String, dynamic> payload}) = _$UpdatePrescriptionImpl;
 
-  PrescriptionElement get prescriptionElement;
+  Map<String, dynamic> get payload;
   @JsonKey(ignore: true)
   _$$UpdatePrescriptionImplCopyWith<_$UpdatePrescriptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SelectTimeOfTheDayImplCopyWith<$Res> {
-  factory _$$SelectTimeOfTheDayImplCopyWith(_$SelectTimeOfTheDayImpl value,
-          $Res Function(_$SelectTimeOfTheDayImpl) then) =
-      __$$SelectTimeOfTheDayImplCopyWithImpl<$Res>;
+abstract class _$$EditOrCreatePrescriptionImplCopyWith<$Res> {
+  factory _$$EditOrCreatePrescriptionImplCopyWith(
+          _$EditOrCreatePrescriptionImpl value,
+          $Res Function(_$EditOrCreatePrescriptionImpl) then) =
+      __$$EditOrCreatePrescriptionImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<DataObjec> data});
+  $Res call({Prescription prescriptions, bool isEditing, int? index});
 }
 
 /// @nodoc
-class __$$SelectTimeOfTheDayImplCopyWithImpl<$Res>
-    extends _$PrecriptionEventCopyWithImpl<$Res, _$SelectTimeOfTheDayImpl>
-    implements _$$SelectTimeOfTheDayImplCopyWith<$Res> {
-  __$$SelectTimeOfTheDayImplCopyWithImpl(_$SelectTimeOfTheDayImpl _value,
-      $Res Function(_$SelectTimeOfTheDayImpl) _then)
+class __$$EditOrCreatePrescriptionImplCopyWithImpl<$Res>
+    extends _$PrecriptionEventCopyWithImpl<$Res, _$EditOrCreatePrescriptionImpl>
+    implements _$$EditOrCreatePrescriptionImplCopyWith<$Res> {
+  __$$EditOrCreatePrescriptionImplCopyWithImpl(
+      _$EditOrCreatePrescriptionImpl _value,
+      $Res Function(_$EditOrCreatePrescriptionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = null,
+    Object? prescriptions = null,
+    Object? isEditing = null,
+    Object? index = freezed,
   }) {
-    return _then(_$SelectTimeOfTheDayImpl(
-      data: null == data
-          ? _value._data
-          : data // ignore: cast_nullable_to_non_nullable
-              as List<DataObjec>,
+    return _then(_$EditOrCreatePrescriptionImpl(
+      prescriptions: null == prescriptions
+          ? _value.prescriptions
+          : prescriptions // ignore: cast_nullable_to_non_nullable
+              as Prescription,
+      isEditing: null == isEditing
+          ? _value.isEditing
+          : isEditing // ignore: cast_nullable_to_non_nullable
+              as bool,
+      index: freezed == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$SelectTimeOfTheDayImpl implements _SelectTimeOfTheDay {
-  const _$SelectTimeOfTheDayImpl({required final List<DataObjec> data})
-      : _data = data;
+class _$EditOrCreatePrescriptionImpl implements _EditOrCreatePrescription {
+  const _$EditOrCreatePrescriptionImpl(
+      {required this.prescriptions, required this.isEditing, this.index});
 
-  final List<DataObjec> _data;
   @override
-  List<DataObjec> get data {
-    if (_data is EqualUnmodifiableListView) return _data;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_data);
-  }
+  final Prescription prescriptions;
+  @override
+  final bool isEditing;
+  @override
+  final int? index;
 
   @override
   String toString() {
-    return 'PrecriptionEvent.selectTimeOfTheDay(data: $data)';
+    return 'PrecriptionEvent.editOrCreatePrescription(prescriptions: $prescriptions, isEditing: $isEditing, index: $index)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SelectTimeOfTheDayImpl &&
-            const DeepCollectionEquality().equals(other._data, _data));
+            other is _$EditOrCreatePrescriptionImpl &&
+            (identical(other.prescriptions, prescriptions) ||
+                other.prescriptions == prescriptions) &&
+            (identical(other.isEditing, isEditing) ||
+                other.isEditing == isEditing) &&
+            (identical(other.index, index) || other.index == index));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
+  int get hashCode => Object.hash(runtimeType, prescriptions, isEditing, index);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SelectTimeOfTheDayImplCopyWith<_$SelectTimeOfTheDayImpl> get copyWith =>
-      __$$SelectTimeOfTheDayImplCopyWithImpl<_$SelectTimeOfTheDayImpl>(
-          this, _$identity);
+  _$$EditOrCreatePrescriptionImplCopyWith<_$EditOrCreatePrescriptionImpl>
+      get copyWith => __$$EditOrCreatePrescriptionImplCopyWithImpl<
+          _$EditOrCreatePrescriptionImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int appointmentId) getPrescriptionList,
     required TResult Function() getPrescriptionSettings,
-    required TResult Function(PrescriptionElement prescriptionElement)
+    required TResult Function(CreatePrescriptionPayload payload)
         createPrescription,
-    required TResult Function(PrescriptionElement prescriptionElement)
-        updatePrescription,
-    required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
-    required TResult Function(List<DataObjec> data) selectTobetaken,
-    required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
-    required TResult Function(int pno, int appoinmentId) deletePrescription,
+    required TResult Function(Map<String, dynamic> payload) updatePrescription,
+    required TResult Function(
+            Prescription prescriptions, bool isEditing, int? index)
+        editOrCreatePrescription,
+    required TResult Function(List<ReportPrescription> data, PdfActions action)
+        genaratePdf,
+    required TResult Function(int index) deletePrescription,
   }) {
-    return selectTimeOfTheDay(data);
+    return editOrCreatePrescription(prescriptions, isEditing, index);
   }
 
   @override
@@ -895,16 +904,15 @@ class _$SelectTimeOfTheDayImpl implements _SelectTimeOfTheDay {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int appointmentId)? getPrescriptionList,
     TResult? Function()? getPrescriptionSettings,
-    TResult? Function(PrescriptionElement prescriptionElement)?
-        createPrescription,
-    TResult? Function(PrescriptionElement prescriptionElement)?
-        updatePrescription,
-    TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
-    TResult? Function(List<DataObjec> data)? selectTobetaken,
-    TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult? Function(int pno, int appoinmentId)? deletePrescription,
+    TResult? Function(CreatePrescriptionPayload payload)? createPrescription,
+    TResult? Function(Map<String, dynamic> payload)? updatePrescription,
+    TResult? Function(Prescription prescriptions, bool isEditing, int? index)?
+        editOrCreatePrescription,
+    TResult? Function(List<ReportPrescription> data, PdfActions action)?
+        genaratePdf,
+    TResult? Function(int index)? deletePrescription,
   }) {
-    return selectTimeOfTheDay?.call(data);
+    return editOrCreatePrescription?.call(prescriptions, isEditing, index);
   }
 
   @override
@@ -912,18 +920,17 @@ class _$SelectTimeOfTheDayImpl implements _SelectTimeOfTheDay {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int appointmentId)? getPrescriptionList,
     TResult Function()? getPrescriptionSettings,
-    TResult Function(PrescriptionElement prescriptionElement)?
-        createPrescription,
-    TResult Function(PrescriptionElement prescriptionElement)?
-        updatePrescription,
-    TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
-    TResult Function(List<DataObjec> data)? selectTobetaken,
-    TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult Function(int pno, int appoinmentId)? deletePrescription,
+    TResult Function(CreatePrescriptionPayload payload)? createPrescription,
+    TResult Function(Map<String, dynamic> payload)? updatePrescription,
+    TResult Function(Prescription prescriptions, bool isEditing, int? index)?
+        editOrCreatePrescription,
+    TResult Function(List<ReportPrescription> data, PdfActions action)?
+        genaratePdf,
+    TResult Function(int index)? deletePrescription,
     required TResult orElse(),
   }) {
-    if (selectTimeOfTheDay != null) {
-      return selectTimeOfTheDay(data);
+    if (editOrCreatePrescription != null) {
+      return editOrCreatePrescription(prescriptions, isEditing, index);
     }
     return orElse();
   }
@@ -936,12 +943,12 @@ class _$SelectTimeOfTheDayImpl implements _SelectTimeOfTheDay {
         getPrescriptionSettings,
     required TResult Function(_CreatePrescription value) createPrescription,
     required TResult Function(_UpdatePrescription value) updatePrescription,
-    required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
-    required TResult Function(_SelectTobetaken value) selectTobetaken,
+    required TResult Function(_EditOrCreatePrescription value)
+        editOrCreatePrescription,
     required TResult Function(_GeneratePdf value) genaratePdf,
     required TResult Function(_DeletePrescription value) deletePrescription,
   }) {
-    return selectTimeOfTheDay(this);
+    return editOrCreatePrescription(this);
   }
 
   @override
@@ -951,12 +958,12 @@ class _$SelectTimeOfTheDayImpl implements _SelectTimeOfTheDay {
     TResult? Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult? Function(_CreatePrescription value)? createPrescription,
     TResult? Function(_UpdatePrescription value)? updatePrescription,
-    TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
-    TResult? Function(_SelectTobetaken value)? selectTobetaken,
+    TResult? Function(_EditOrCreatePrescription value)?
+        editOrCreatePrescription,
     TResult? Function(_GeneratePdf value)? genaratePdf,
     TResult? Function(_DeletePrescription value)? deletePrescription,
   }) {
-    return selectTimeOfTheDay?.call(this);
+    return editOrCreatePrescription?.call(this);
   }
 
   @override
@@ -966,212 +973,30 @@ class _$SelectTimeOfTheDayImpl implements _SelectTimeOfTheDay {
     TResult Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult Function(_CreatePrescription value)? createPrescription,
     TResult Function(_UpdatePrescription value)? updatePrescription,
-    TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
-    TResult Function(_SelectTobetaken value)? selectTobetaken,
+    TResult Function(_EditOrCreatePrescription value)? editOrCreatePrescription,
     TResult Function(_GeneratePdf value)? genaratePdf,
     TResult Function(_DeletePrescription value)? deletePrescription,
     required TResult orElse(),
   }) {
-    if (selectTimeOfTheDay != null) {
-      return selectTimeOfTheDay(this);
+    if (editOrCreatePrescription != null) {
+      return editOrCreatePrescription(this);
     }
     return orElse();
   }
 }
 
-abstract class _SelectTimeOfTheDay implements PrecriptionEvent {
-  const factory _SelectTimeOfTheDay({required final List<DataObjec> data}) =
-      _$SelectTimeOfTheDayImpl;
+abstract class _EditOrCreatePrescription implements PrecriptionEvent {
+  const factory _EditOrCreatePrescription(
+      {required final Prescription prescriptions,
+      required final bool isEditing,
+      final int? index}) = _$EditOrCreatePrescriptionImpl;
 
-  List<DataObjec> get data;
+  Prescription get prescriptions;
+  bool get isEditing;
+  int? get index;
   @JsonKey(ignore: true)
-  _$$SelectTimeOfTheDayImplCopyWith<_$SelectTimeOfTheDayImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SelectTobetakenImplCopyWith<$Res> {
-  factory _$$SelectTobetakenImplCopyWith(_$SelectTobetakenImpl value,
-          $Res Function(_$SelectTobetakenImpl) then) =
-      __$$SelectTobetakenImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<DataObjec> data});
-}
-
-/// @nodoc
-class __$$SelectTobetakenImplCopyWithImpl<$Res>
-    extends _$PrecriptionEventCopyWithImpl<$Res, _$SelectTobetakenImpl>
-    implements _$$SelectTobetakenImplCopyWith<$Res> {
-  __$$SelectTobetakenImplCopyWithImpl(
-      _$SelectTobetakenImpl _value, $Res Function(_$SelectTobetakenImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? data = null,
-  }) {
-    return _then(_$SelectTobetakenImpl(
-      data: null == data
-          ? _value._data
-          : data // ignore: cast_nullable_to_non_nullable
-              as List<DataObjec>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$SelectTobetakenImpl implements _SelectTobetaken {
-  const _$SelectTobetakenImpl({required final List<DataObjec> data})
-      : _data = data;
-
-  final List<DataObjec> _data;
-  @override
-  List<DataObjec> get data {
-    if (_data is EqualUnmodifiableListView) return _data;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_data);
-  }
-
-  @override
-  String toString() {
-    return 'PrecriptionEvent.selectTobetaken(data: $data)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SelectTobetakenImpl &&
-            const DeepCollectionEquality().equals(other._data, _data));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SelectTobetakenImplCopyWith<_$SelectTobetakenImpl> get copyWith =>
-      __$$SelectTobetakenImplCopyWithImpl<_$SelectTobetakenImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int appointmentId) getPrescriptionList,
-    required TResult Function() getPrescriptionSettings,
-    required TResult Function(PrescriptionElement prescriptionElement)
-        createPrescription,
-    required TResult Function(PrescriptionElement prescriptionElement)
-        updatePrescription,
-    required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
-    required TResult Function(List<DataObjec> data) selectTobetaken,
-    required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
-    required TResult Function(int pno, int appoinmentId) deletePrescription,
-  }) {
-    return selectTobetaken(data);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int appointmentId)? getPrescriptionList,
-    TResult? Function()? getPrescriptionSettings,
-    TResult? Function(PrescriptionElement prescriptionElement)?
-        createPrescription,
-    TResult? Function(PrescriptionElement prescriptionElement)?
-        updatePrescription,
-    TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
-    TResult? Function(List<DataObjec> data)? selectTobetaken,
-    TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult? Function(int pno, int appoinmentId)? deletePrescription,
-  }) {
-    return selectTobetaken?.call(data);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int appointmentId)? getPrescriptionList,
-    TResult Function()? getPrescriptionSettings,
-    TResult Function(PrescriptionElement prescriptionElement)?
-        createPrescription,
-    TResult Function(PrescriptionElement prescriptionElement)?
-        updatePrescription,
-    TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
-    TResult Function(List<DataObjec> data)? selectTobetaken,
-    TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult Function(int pno, int appoinmentId)? deletePrescription,
-    required TResult orElse(),
-  }) {
-    if (selectTobetaken != null) {
-      return selectTobetaken(data);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetPrescriptionList value) getPrescriptionList,
-    required TResult Function(_GetPrescriptionSettings value)
-        getPrescriptionSettings,
-    required TResult Function(_CreatePrescription value) createPrescription,
-    required TResult Function(_UpdatePrescription value) updatePrescription,
-    required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
-    required TResult Function(_SelectTobetaken value) selectTobetaken,
-    required TResult Function(_GeneratePdf value) genaratePdf,
-    required TResult Function(_DeletePrescription value) deletePrescription,
-  }) {
-    return selectTobetaken(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetPrescriptionList value)? getPrescriptionList,
-    TResult? Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
-    TResult? Function(_CreatePrescription value)? createPrescription,
-    TResult? Function(_UpdatePrescription value)? updatePrescription,
-    TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
-    TResult? Function(_SelectTobetaken value)? selectTobetaken,
-    TResult? Function(_GeneratePdf value)? genaratePdf,
-    TResult? Function(_DeletePrescription value)? deletePrescription,
-  }) {
-    return selectTobetaken?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetPrescriptionList value)? getPrescriptionList,
-    TResult Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
-    TResult Function(_CreatePrescription value)? createPrescription,
-    TResult Function(_UpdatePrescription value)? updatePrescription,
-    TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
-    TResult Function(_SelectTobetaken value)? selectTobetaken,
-    TResult Function(_GeneratePdf value)? genaratePdf,
-    TResult Function(_DeletePrescription value)? deletePrescription,
-    required TResult orElse(),
-  }) {
-    if (selectTobetaken != null) {
-      return selectTobetaken(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SelectTobetaken implements PrecriptionEvent {
-  const factory _SelectTobetaken({required final List<DataObjec> data}) =
-      _$SelectTobetakenImpl;
-
-  List<DataObjec> get data;
-  @JsonKey(ignore: true)
-  _$$SelectTobetakenImplCopyWith<_$SelectTobetakenImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$EditOrCreatePrescriptionImplCopyWith<_$EditOrCreatePrescriptionImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1180,7 +1005,7 @@ abstract class _$$GeneratePdfImplCopyWith<$Res> {
           _$GeneratePdfImpl value, $Res Function(_$GeneratePdfImpl) then) =
       __$$GeneratePdfImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<PrescriptionPdfModel> data});
+  $Res call({List<ReportPrescription> data, PdfActions action});
 }
 
 /// @nodoc
@@ -1195,12 +1020,17 @@ class __$$GeneratePdfImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? data = null,
+    Object? action = null,
   }) {
     return _then(_$GeneratePdfImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<PrescriptionPdfModel>,
+              as List<ReportPrescription>,
+      action: null == action
+          ? _value.action
+          : action // ignore: cast_nullable_to_non_nullable
+              as PdfActions,
     ));
   }
 }
@@ -1208,20 +1038,24 @@ class __$$GeneratePdfImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GeneratePdfImpl implements _GeneratePdf {
-  const _$GeneratePdfImpl({required final List<PrescriptionPdfModel> data})
+  const _$GeneratePdfImpl(
+      {required final List<ReportPrescription> data, required this.action})
       : _data = data;
 
-  final List<PrescriptionPdfModel> _data;
+  final List<ReportPrescription> _data;
   @override
-  List<PrescriptionPdfModel> get data {
+  List<ReportPrescription> get data {
     if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_data);
   }
 
   @override
+  final PdfActions action;
+
+  @override
   String toString() {
-    return 'PrecriptionEvent.genaratePdf(data: $data)';
+    return 'PrecriptionEvent.genaratePdf(data: $data, action: $action)';
   }
 
   @override
@@ -1229,12 +1063,13 @@ class _$GeneratePdfImpl implements _GeneratePdf {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GeneratePdfImpl &&
-            const DeepCollectionEquality().equals(other._data, _data));
+            const DeepCollectionEquality().equals(other._data, _data) &&
+            (identical(other.action, action) || other.action == action));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_data), action);
 
   @JsonKey(ignore: true)
   @override
@@ -1247,16 +1082,17 @@ class _$GeneratePdfImpl implements _GeneratePdf {
   TResult when<TResult extends Object?>({
     required TResult Function(int appointmentId) getPrescriptionList,
     required TResult Function() getPrescriptionSettings,
-    required TResult Function(PrescriptionElement prescriptionElement)
+    required TResult Function(CreatePrescriptionPayload payload)
         createPrescription,
-    required TResult Function(PrescriptionElement prescriptionElement)
-        updatePrescription,
-    required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
-    required TResult Function(List<DataObjec> data) selectTobetaken,
-    required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
-    required TResult Function(int pno, int appoinmentId) deletePrescription,
+    required TResult Function(Map<String, dynamic> payload) updatePrescription,
+    required TResult Function(
+            Prescription prescriptions, bool isEditing, int? index)
+        editOrCreatePrescription,
+    required TResult Function(List<ReportPrescription> data, PdfActions action)
+        genaratePdf,
+    required TResult Function(int index) deletePrescription,
   }) {
-    return genaratePdf(data);
+    return genaratePdf(data, action);
   }
 
   @override
@@ -1264,16 +1100,15 @@ class _$GeneratePdfImpl implements _GeneratePdf {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int appointmentId)? getPrescriptionList,
     TResult? Function()? getPrescriptionSettings,
-    TResult? Function(PrescriptionElement prescriptionElement)?
-        createPrescription,
-    TResult? Function(PrescriptionElement prescriptionElement)?
-        updatePrescription,
-    TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
-    TResult? Function(List<DataObjec> data)? selectTobetaken,
-    TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult? Function(int pno, int appoinmentId)? deletePrescription,
+    TResult? Function(CreatePrescriptionPayload payload)? createPrescription,
+    TResult? Function(Map<String, dynamic> payload)? updatePrescription,
+    TResult? Function(Prescription prescriptions, bool isEditing, int? index)?
+        editOrCreatePrescription,
+    TResult? Function(List<ReportPrescription> data, PdfActions action)?
+        genaratePdf,
+    TResult? Function(int index)? deletePrescription,
   }) {
-    return genaratePdf?.call(data);
+    return genaratePdf?.call(data, action);
   }
 
   @override
@@ -1281,18 +1116,17 @@ class _$GeneratePdfImpl implements _GeneratePdf {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int appointmentId)? getPrescriptionList,
     TResult Function()? getPrescriptionSettings,
-    TResult Function(PrescriptionElement prescriptionElement)?
-        createPrescription,
-    TResult Function(PrescriptionElement prescriptionElement)?
-        updatePrescription,
-    TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
-    TResult Function(List<DataObjec> data)? selectTobetaken,
-    TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult Function(int pno, int appoinmentId)? deletePrescription,
+    TResult Function(CreatePrescriptionPayload payload)? createPrescription,
+    TResult Function(Map<String, dynamic> payload)? updatePrescription,
+    TResult Function(Prescription prescriptions, bool isEditing, int? index)?
+        editOrCreatePrescription,
+    TResult Function(List<ReportPrescription> data, PdfActions action)?
+        genaratePdf,
+    TResult Function(int index)? deletePrescription,
     required TResult orElse(),
   }) {
     if (genaratePdf != null) {
-      return genaratePdf(data);
+      return genaratePdf(data, action);
     }
     return orElse();
   }
@@ -1305,8 +1139,8 @@ class _$GeneratePdfImpl implements _GeneratePdf {
         getPrescriptionSettings,
     required TResult Function(_CreatePrescription value) createPrescription,
     required TResult Function(_UpdatePrescription value) updatePrescription,
-    required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
-    required TResult Function(_SelectTobetaken value) selectTobetaken,
+    required TResult Function(_EditOrCreatePrescription value)
+        editOrCreatePrescription,
     required TResult Function(_GeneratePdf value) genaratePdf,
     required TResult Function(_DeletePrescription value) deletePrescription,
   }) {
@@ -1320,8 +1154,8 @@ class _$GeneratePdfImpl implements _GeneratePdf {
     TResult? Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult? Function(_CreatePrescription value)? createPrescription,
     TResult? Function(_UpdatePrescription value)? updatePrescription,
-    TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
-    TResult? Function(_SelectTobetaken value)? selectTobetaken,
+    TResult? Function(_EditOrCreatePrescription value)?
+        editOrCreatePrescription,
     TResult? Function(_GeneratePdf value)? genaratePdf,
     TResult? Function(_DeletePrescription value)? deletePrescription,
   }) {
@@ -1335,8 +1169,7 @@ class _$GeneratePdfImpl implements _GeneratePdf {
     TResult Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult Function(_CreatePrescription value)? createPrescription,
     TResult Function(_UpdatePrescription value)? updatePrescription,
-    TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
-    TResult Function(_SelectTobetaken value)? selectTobetaken,
+    TResult Function(_EditOrCreatePrescription value)? editOrCreatePrescription,
     TResult Function(_GeneratePdf value)? genaratePdf,
     TResult Function(_DeletePrescription value)? deletePrescription,
     required TResult orElse(),
@@ -1349,10 +1182,12 @@ class _$GeneratePdfImpl implements _GeneratePdf {
 }
 
 abstract class _GeneratePdf implements PrecriptionEvent {
-  const factory _GeneratePdf({required final List<PrescriptionPdfModel> data}) =
-      _$GeneratePdfImpl;
+  const factory _GeneratePdf(
+      {required final List<ReportPrescription> data,
+      required final PdfActions action}) = _$GeneratePdfImpl;
 
-  List<PrescriptionPdfModel> get data;
+  List<ReportPrescription> get data;
+  PdfActions get action;
   @JsonKey(ignore: true)
   _$$GeneratePdfImplCopyWith<_$GeneratePdfImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1364,7 +1199,7 @@ abstract class _$$DeletePrescriptionImplCopyWith<$Res> {
           $Res Function(_$DeletePrescriptionImpl) then) =
       __$$DeletePrescriptionImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int pno, int appoinmentId});
+  $Res call({int index});
 }
 
 /// @nodoc
@@ -1378,17 +1213,12 @@ class __$$DeletePrescriptionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? pno = null,
-    Object? appoinmentId = null,
+    Object? index = null,
   }) {
     return _then(_$DeletePrescriptionImpl(
-      pno: null == pno
-          ? _value.pno
-          : pno // ignore: cast_nullable_to_non_nullable
-              as int,
-      appoinmentId: null == appoinmentId
-          ? _value.appoinmentId
-          : appoinmentId // ignore: cast_nullable_to_non_nullable
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -1397,17 +1227,14 @@ class __$$DeletePrescriptionImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DeletePrescriptionImpl implements _DeletePrescription {
-  const _$DeletePrescriptionImpl(
-      {required this.pno, required this.appoinmentId});
+  const _$DeletePrescriptionImpl({required this.index});
 
   @override
-  final int pno;
-  @override
-  final int appoinmentId;
+  final int index;
 
   @override
   String toString() {
-    return 'PrecriptionEvent.deletePrescription(pno: $pno, appoinmentId: $appoinmentId)';
+    return 'PrecriptionEvent.deletePrescription(index: $index)';
   }
 
   @override
@@ -1415,13 +1242,11 @@ class _$DeletePrescriptionImpl implements _DeletePrescription {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DeletePrescriptionImpl &&
-            (identical(other.pno, pno) || other.pno == pno) &&
-            (identical(other.appoinmentId, appoinmentId) ||
-                other.appoinmentId == appoinmentId));
+            (identical(other.index, index) || other.index == index));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pno, appoinmentId);
+  int get hashCode => Object.hash(runtimeType, index);
 
   @JsonKey(ignore: true)
   @override
@@ -1435,16 +1260,17 @@ class _$DeletePrescriptionImpl implements _DeletePrescription {
   TResult when<TResult extends Object?>({
     required TResult Function(int appointmentId) getPrescriptionList,
     required TResult Function() getPrescriptionSettings,
-    required TResult Function(PrescriptionElement prescriptionElement)
+    required TResult Function(CreatePrescriptionPayload payload)
         createPrescription,
-    required TResult Function(PrescriptionElement prescriptionElement)
-        updatePrescription,
-    required TResult Function(List<DataObjec> data) selectTimeOfTheDay,
-    required TResult Function(List<DataObjec> data) selectTobetaken,
-    required TResult Function(List<PrescriptionPdfModel> data) genaratePdf,
-    required TResult Function(int pno, int appoinmentId) deletePrescription,
+    required TResult Function(Map<String, dynamic> payload) updatePrescription,
+    required TResult Function(
+            Prescription prescriptions, bool isEditing, int? index)
+        editOrCreatePrescription,
+    required TResult Function(List<ReportPrescription> data, PdfActions action)
+        genaratePdf,
+    required TResult Function(int index) deletePrescription,
   }) {
-    return deletePrescription(pno, appoinmentId);
+    return deletePrescription(index);
   }
 
   @override
@@ -1452,16 +1278,15 @@ class _$DeletePrescriptionImpl implements _DeletePrescription {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int appointmentId)? getPrescriptionList,
     TResult? Function()? getPrescriptionSettings,
-    TResult? Function(PrescriptionElement prescriptionElement)?
-        createPrescription,
-    TResult? Function(PrescriptionElement prescriptionElement)?
-        updatePrescription,
-    TResult? Function(List<DataObjec> data)? selectTimeOfTheDay,
-    TResult? Function(List<DataObjec> data)? selectTobetaken,
-    TResult? Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult? Function(int pno, int appoinmentId)? deletePrescription,
+    TResult? Function(CreatePrescriptionPayload payload)? createPrescription,
+    TResult? Function(Map<String, dynamic> payload)? updatePrescription,
+    TResult? Function(Prescription prescriptions, bool isEditing, int? index)?
+        editOrCreatePrescription,
+    TResult? Function(List<ReportPrescription> data, PdfActions action)?
+        genaratePdf,
+    TResult? Function(int index)? deletePrescription,
   }) {
-    return deletePrescription?.call(pno, appoinmentId);
+    return deletePrescription?.call(index);
   }
 
   @override
@@ -1469,18 +1294,17 @@ class _$DeletePrescriptionImpl implements _DeletePrescription {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int appointmentId)? getPrescriptionList,
     TResult Function()? getPrescriptionSettings,
-    TResult Function(PrescriptionElement prescriptionElement)?
-        createPrescription,
-    TResult Function(PrescriptionElement prescriptionElement)?
-        updatePrescription,
-    TResult Function(List<DataObjec> data)? selectTimeOfTheDay,
-    TResult Function(List<DataObjec> data)? selectTobetaken,
-    TResult Function(List<PrescriptionPdfModel> data)? genaratePdf,
-    TResult Function(int pno, int appoinmentId)? deletePrescription,
+    TResult Function(CreatePrescriptionPayload payload)? createPrescription,
+    TResult Function(Map<String, dynamic> payload)? updatePrescription,
+    TResult Function(Prescription prescriptions, bool isEditing, int? index)?
+        editOrCreatePrescription,
+    TResult Function(List<ReportPrescription> data, PdfActions action)?
+        genaratePdf,
+    TResult Function(int index)? deletePrescription,
     required TResult orElse(),
   }) {
     if (deletePrescription != null) {
-      return deletePrescription(pno, appoinmentId);
+      return deletePrescription(index);
     }
     return orElse();
   }
@@ -1493,8 +1317,8 @@ class _$DeletePrescriptionImpl implements _DeletePrescription {
         getPrescriptionSettings,
     required TResult Function(_CreatePrescription value) createPrescription,
     required TResult Function(_UpdatePrescription value) updatePrescription,
-    required TResult Function(_SelectTimeOfTheDay value) selectTimeOfTheDay,
-    required TResult Function(_SelectTobetaken value) selectTobetaken,
+    required TResult Function(_EditOrCreatePrescription value)
+        editOrCreatePrescription,
     required TResult Function(_GeneratePdf value) genaratePdf,
     required TResult Function(_DeletePrescription value) deletePrescription,
   }) {
@@ -1508,8 +1332,8 @@ class _$DeletePrescriptionImpl implements _DeletePrescription {
     TResult? Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult? Function(_CreatePrescription value)? createPrescription,
     TResult? Function(_UpdatePrescription value)? updatePrescription,
-    TResult? Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
-    TResult? Function(_SelectTobetaken value)? selectTobetaken,
+    TResult? Function(_EditOrCreatePrescription value)?
+        editOrCreatePrescription,
     TResult? Function(_GeneratePdf value)? genaratePdf,
     TResult? Function(_DeletePrescription value)? deletePrescription,
   }) {
@@ -1523,8 +1347,7 @@ class _$DeletePrescriptionImpl implements _DeletePrescription {
     TResult Function(_GetPrescriptionSettings value)? getPrescriptionSettings,
     TResult Function(_CreatePrescription value)? createPrescription,
     TResult Function(_UpdatePrescription value)? updatePrescription,
-    TResult Function(_SelectTimeOfTheDay value)? selectTimeOfTheDay,
-    TResult Function(_SelectTobetaken value)? selectTobetaken,
+    TResult Function(_EditOrCreatePrescription value)? editOrCreatePrescription,
     TResult Function(_GeneratePdf value)? genaratePdf,
     TResult Function(_DeletePrescription value)? deletePrescription,
     required TResult orElse(),
@@ -1537,12 +1360,10 @@ class _$DeletePrescriptionImpl implements _DeletePrescription {
 }
 
 abstract class _DeletePrescription implements PrecriptionEvent {
-  const factory _DeletePrescription(
-      {required final int pno,
-      required final int appoinmentId}) = _$DeletePrescriptionImpl;
+  const factory _DeletePrescription({required final int index}) =
+      _$DeletePrescriptionImpl;
 
-  int get pno;
-  int get appoinmentId;
+  int get index;
   @JsonKey(ignore: true)
   _$$DeletePrescriptionImplCopyWith<_$DeletePrescriptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1555,6 +1376,7 @@ mixin _$PrecriptionState {
   bool get isUpdateLoading => throw _privateConstructorUsedError;
   bool get isCreateLoading => throw _privateConstructorUsedError;
   bool get isDeleted => throw _privateConstructorUsedError;
+  int? get deletedIndex => throw _privateConstructorUsedError;
   bool get isDeleteLoading => throw _privateConstructorUsedError;
   bool get updated => throw _privateConstructorUsedError;
   bool get created => throw _privateConstructorUsedError;
@@ -1567,8 +1389,7 @@ mixin _$PrecriptionState {
   List<DataObjec>? get timeoftheDayData => throw _privateConstructorUsedError;
   PrescriptionModel? get prescriptionResult =>
       throw _privateConstructorUsedError;
-  DeletePrescriptionModel? get deleteResponse =>
-      throw _privateConstructorUsedError;
+  List<Prescription>? get prescriptions => throw _privateConstructorUsedError;
   PrescriptionSettingsModel? get prescriptionSettingsResult =>
       throw _privateConstructorUsedError;
   bool get isPdfLoading => throw _privateConstructorUsedError;
@@ -1576,6 +1397,10 @@ mixin _$PrecriptionState {
   pw.Document? get pdf => throw _privateConstructorUsedError;
   bool get pdfError => throw _privateConstructorUsedError;
   String get pdfErrorMessage => throw _privateConstructorUsedError;
+  CreatePrescriptionPayload? get createPrescriptionPayload =>
+      throw _privateConstructorUsedError;
+  bool get isCreateHasdata => throw _privateConstructorUsedError;
+  PdfActions? get action => throw _privateConstructorUsedError;
   String? get pdfPath => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -1595,6 +1420,7 @@ abstract class $PrecriptionStateCopyWith<$Res> {
       bool isUpdateLoading,
       bool isCreateLoading,
       bool isDeleted,
+      int? deletedIndex,
       bool isDeleteLoading,
       bool updated,
       bool created,
@@ -1606,13 +1432,16 @@ abstract class $PrecriptionStateCopyWith<$Res> {
       List<DataObjec>? tobeTakeData,
       List<DataObjec>? timeoftheDayData,
       PrescriptionModel? prescriptionResult,
-      DeletePrescriptionModel? deleteResponse,
+      List<Prescription>? prescriptions,
       PrescriptionSettingsModel? prescriptionSettingsResult,
       bool isPdfLoading,
       bool pdfCreated,
       pw.Document? pdf,
       bool pdfError,
       String pdfErrorMessage,
+      CreatePrescriptionPayload? createPrescriptionPayload,
+      bool isCreateHasdata,
+      PdfActions? action,
       String? pdfPath});
 }
 
@@ -1634,6 +1463,7 @@ class _$PrecriptionStateCopyWithImpl<$Res, $Val extends PrecriptionState>
     Object? isUpdateLoading = null,
     Object? isCreateLoading = null,
     Object? isDeleted = null,
+    Object? deletedIndex = freezed,
     Object? isDeleteLoading = null,
     Object? updated = null,
     Object? created = null,
@@ -1645,13 +1475,16 @@ class _$PrecriptionStateCopyWithImpl<$Res, $Val extends PrecriptionState>
     Object? tobeTakeData = freezed,
     Object? timeoftheDayData = freezed,
     Object? prescriptionResult = freezed,
-    Object? deleteResponse = freezed,
+    Object? prescriptions = freezed,
     Object? prescriptionSettingsResult = freezed,
     Object? isPdfLoading = null,
     Object? pdfCreated = null,
     Object? pdf = freezed,
     Object? pdfError = null,
     Object? pdfErrorMessage = null,
+    Object? createPrescriptionPayload = freezed,
+    Object? isCreateHasdata = null,
+    Object? action = freezed,
     Object? pdfPath = freezed,
   }) {
     return _then(_value.copyWith(
@@ -1675,6 +1508,10 @@ class _$PrecriptionStateCopyWithImpl<$Res, $Val extends PrecriptionState>
           ? _value.isDeleted
           : isDeleted // ignore: cast_nullable_to_non_nullable
               as bool,
+      deletedIndex: freezed == deletedIndex
+          ? _value.deletedIndex
+          : deletedIndex // ignore: cast_nullable_to_non_nullable
+              as int?,
       isDeleteLoading: null == isDeleteLoading
           ? _value.isDeleteLoading
           : isDeleteLoading // ignore: cast_nullable_to_non_nullable
@@ -1719,10 +1556,10 @@ class _$PrecriptionStateCopyWithImpl<$Res, $Val extends PrecriptionState>
           ? _value.prescriptionResult
           : prescriptionResult // ignore: cast_nullable_to_non_nullable
               as PrescriptionModel?,
-      deleteResponse: freezed == deleteResponse
-          ? _value.deleteResponse
-          : deleteResponse // ignore: cast_nullable_to_non_nullable
-              as DeletePrescriptionModel?,
+      prescriptions: freezed == prescriptions
+          ? _value.prescriptions
+          : prescriptions // ignore: cast_nullable_to_non_nullable
+              as List<Prescription>?,
       prescriptionSettingsResult: freezed == prescriptionSettingsResult
           ? _value.prescriptionSettingsResult
           : prescriptionSettingsResult // ignore: cast_nullable_to_non_nullable
@@ -1747,6 +1584,18 @@ class _$PrecriptionStateCopyWithImpl<$Res, $Val extends PrecriptionState>
           ? _value.pdfErrorMessage
           : pdfErrorMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      createPrescriptionPayload: freezed == createPrescriptionPayload
+          ? _value.createPrescriptionPayload
+          : createPrescriptionPayload // ignore: cast_nullable_to_non_nullable
+              as CreatePrescriptionPayload?,
+      isCreateHasdata: null == isCreateHasdata
+          ? _value.isCreateHasdata
+          : isCreateHasdata // ignore: cast_nullable_to_non_nullable
+              as bool,
+      action: freezed == action
+          ? _value.action
+          : action // ignore: cast_nullable_to_non_nullable
+              as PdfActions?,
       pdfPath: freezed == pdfPath
           ? _value.pdfPath
           : pdfPath // ignore: cast_nullable_to_non_nullable
@@ -1769,6 +1618,7 @@ abstract class _$$PrecriptionStateImplCopyWith<$Res>
       bool isUpdateLoading,
       bool isCreateLoading,
       bool isDeleted,
+      int? deletedIndex,
       bool isDeleteLoading,
       bool updated,
       bool created,
@@ -1780,13 +1630,16 @@ abstract class _$$PrecriptionStateImplCopyWith<$Res>
       List<DataObjec>? tobeTakeData,
       List<DataObjec>? timeoftheDayData,
       PrescriptionModel? prescriptionResult,
-      DeletePrescriptionModel? deleteResponse,
+      List<Prescription>? prescriptions,
       PrescriptionSettingsModel? prescriptionSettingsResult,
       bool isPdfLoading,
       bool pdfCreated,
       pw.Document? pdf,
       bool pdfError,
       String pdfErrorMessage,
+      CreatePrescriptionPayload? createPrescriptionPayload,
+      bool isCreateHasdata,
+      PdfActions? action,
       String? pdfPath});
 }
 
@@ -1806,6 +1659,7 @@ class __$$PrecriptionStateImplCopyWithImpl<$Res>
     Object? isUpdateLoading = null,
     Object? isCreateLoading = null,
     Object? isDeleted = null,
+    Object? deletedIndex = freezed,
     Object? isDeleteLoading = null,
     Object? updated = null,
     Object? created = null,
@@ -1817,13 +1671,16 @@ class __$$PrecriptionStateImplCopyWithImpl<$Res>
     Object? tobeTakeData = freezed,
     Object? timeoftheDayData = freezed,
     Object? prescriptionResult = freezed,
-    Object? deleteResponse = freezed,
+    Object? prescriptions = freezed,
     Object? prescriptionSettingsResult = freezed,
     Object? isPdfLoading = null,
     Object? pdfCreated = null,
     Object? pdf = freezed,
     Object? pdfError = null,
     Object? pdfErrorMessage = null,
+    Object? createPrescriptionPayload = freezed,
+    Object? isCreateHasdata = null,
+    Object? action = freezed,
     Object? pdfPath = freezed,
   }) {
     return _then(_$PrecriptionStateImpl(
@@ -1847,6 +1704,10 @@ class __$$PrecriptionStateImplCopyWithImpl<$Res>
           ? _value.isDeleted
           : isDeleted // ignore: cast_nullable_to_non_nullable
               as bool,
+      deletedIndex: freezed == deletedIndex
+          ? _value.deletedIndex
+          : deletedIndex // ignore: cast_nullable_to_non_nullable
+              as int?,
       isDeleteLoading: null == isDeleteLoading
           ? _value.isDeleteLoading
           : isDeleteLoading // ignore: cast_nullable_to_non_nullable
@@ -1891,10 +1752,10 @@ class __$$PrecriptionStateImplCopyWithImpl<$Res>
           ? _value.prescriptionResult
           : prescriptionResult // ignore: cast_nullable_to_non_nullable
               as PrescriptionModel?,
-      deleteResponse: freezed == deleteResponse
-          ? _value.deleteResponse
-          : deleteResponse // ignore: cast_nullable_to_non_nullable
-              as DeletePrescriptionModel?,
+      prescriptions: freezed == prescriptions
+          ? _value._prescriptions
+          : prescriptions // ignore: cast_nullable_to_non_nullable
+              as List<Prescription>?,
       prescriptionSettingsResult: freezed == prescriptionSettingsResult
           ? _value.prescriptionSettingsResult
           : prescriptionSettingsResult // ignore: cast_nullable_to_non_nullable
@@ -1919,6 +1780,18 @@ class __$$PrecriptionStateImplCopyWithImpl<$Res>
           ? _value.pdfErrorMessage
           : pdfErrorMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      createPrescriptionPayload: freezed == createPrescriptionPayload
+          ? _value.createPrescriptionPayload
+          : createPrescriptionPayload // ignore: cast_nullable_to_non_nullable
+              as CreatePrescriptionPayload?,
+      isCreateHasdata: null == isCreateHasdata
+          ? _value.isCreateHasdata
+          : isCreateHasdata // ignore: cast_nullable_to_non_nullable
+              as bool,
+      action: freezed == action
+          ? _value.action
+          : action // ignore: cast_nullable_to_non_nullable
+              as PdfActions?,
       pdfPath: freezed == pdfPath
           ? _value.pdfPath
           : pdfPath // ignore: cast_nullable_to_non_nullable
@@ -1936,6 +1809,7 @@ class _$PrecriptionStateImpl implements _PrecriptionState {
       required this.isUpdateLoading,
       required this.isCreateLoading,
       required this.isDeleted,
+      this.deletedIndex,
       required this.isDeleteLoading,
       required this.updated,
       required this.created,
@@ -1947,16 +1821,20 @@ class _$PrecriptionStateImpl implements _PrecriptionState {
       required final List<DataObjec>? tobeTakeData,
       required final List<DataObjec>? timeoftheDayData,
       this.prescriptionResult,
-      this.deleteResponse,
+      final List<Prescription>? prescriptions,
       this.prescriptionSettingsResult,
       required this.isPdfLoading,
       required this.pdfCreated,
       required this.pdf,
       required this.pdfError,
       required this.pdfErrorMessage,
+      required this.createPrescriptionPayload,
+      required this.isCreateHasdata,
+      required this.action,
       this.pdfPath})
       : _tobeTakeData = tobeTakeData,
-        _timeoftheDayData = timeoftheDayData;
+        _timeoftheDayData = timeoftheDayData,
+        _prescriptions = prescriptions;
 
   @override
   final bool isGetLoading;
@@ -1968,6 +1846,8 @@ class _$PrecriptionStateImpl implements _PrecriptionState {
   final bool isCreateLoading;
   @override
   final bool isDeleted;
+  @override
+  final int? deletedIndex;
   @override
   final bool isDeleteLoading;
   @override
@@ -2007,8 +1887,16 @@ class _$PrecriptionStateImpl implements _PrecriptionState {
 
   @override
   final PrescriptionModel? prescriptionResult;
+  final List<Prescription>? _prescriptions;
   @override
-  final DeletePrescriptionModel? deleteResponse;
+  List<Prescription>? get prescriptions {
+    final value = _prescriptions;
+    if (value == null) return null;
+    if (_prescriptions is EqualUnmodifiableListView) return _prescriptions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final PrescriptionSettingsModel? prescriptionSettingsResult;
   @override
@@ -2022,11 +1910,17 @@ class _$PrecriptionStateImpl implements _PrecriptionState {
   @override
   final String pdfErrorMessage;
   @override
+  final CreatePrescriptionPayload? createPrescriptionPayload;
+  @override
+  final bool isCreateHasdata;
+  @override
+  final PdfActions? action;
+  @override
   final String? pdfPath;
 
   @override
   String toString() {
-    return 'PrecriptionState(isGetLoading: $isGetLoading, isGetSettingsLoading: $isGetSettingsLoading, isUpdateLoading: $isUpdateLoading, isCreateLoading: $isCreateLoading, isDeleted: $isDeleted, isDeleteLoading: $isDeleteLoading, updated: $updated, created: $created, unauthorized: $unauthorized, isError: $isError, hasData: $hasData, hasSettingsData: $hasSettingsData, message: $message, tobeTakeData: $tobeTakeData, timeoftheDayData: $timeoftheDayData, prescriptionResult: $prescriptionResult, deleteResponse: $deleteResponse, prescriptionSettingsResult: $prescriptionSettingsResult, isPdfLoading: $isPdfLoading, pdfCreated: $pdfCreated, pdf: $pdf, pdfError: $pdfError, pdfErrorMessage: $pdfErrorMessage, pdfPath: $pdfPath)';
+    return 'PrecriptionState(isGetLoading: $isGetLoading, isGetSettingsLoading: $isGetSettingsLoading, isUpdateLoading: $isUpdateLoading, isCreateLoading: $isCreateLoading, isDeleted: $isDeleted, deletedIndex: $deletedIndex, isDeleteLoading: $isDeleteLoading, updated: $updated, created: $created, unauthorized: $unauthorized, isError: $isError, hasData: $hasData, hasSettingsData: $hasSettingsData, message: $message, tobeTakeData: $tobeTakeData, timeoftheDayData: $timeoftheDayData, prescriptionResult: $prescriptionResult, prescriptions: $prescriptions, prescriptionSettingsResult: $prescriptionSettingsResult, isPdfLoading: $isPdfLoading, pdfCreated: $pdfCreated, pdf: $pdf, pdfError: $pdfError, pdfErrorMessage: $pdfErrorMessage, createPrescriptionPayload: $createPrescriptionPayload, isCreateHasdata: $isCreateHasdata, action: $action, pdfPath: $pdfPath)';
   }
 
   @override
@@ -2044,6 +1938,8 @@ class _$PrecriptionStateImpl implements _PrecriptionState {
                 other.isCreateLoading == isCreateLoading) &&
             (identical(other.isDeleted, isDeleted) ||
                 other.isDeleted == isDeleted) &&
+            (identical(other.deletedIndex, deletedIndex) ||
+                other.deletedIndex == deletedIndex) &&
             (identical(other.isDeleteLoading, isDeleteLoading) ||
                 other.isDeleteLoading == isDeleteLoading) &&
             (identical(other.updated, updated) || other.updated == updated) &&
@@ -2061,8 +1957,8 @@ class _$PrecriptionStateImpl implements _PrecriptionState {
                 .equals(other._timeoftheDayData, _timeoftheDayData) &&
             (identical(other.prescriptionResult, prescriptionResult) ||
                 other.prescriptionResult == prescriptionResult) &&
-            (identical(other.deleteResponse, deleteResponse) ||
-                other.deleteResponse == deleteResponse) &&
+            const DeepCollectionEquality()
+                .equals(other._prescriptions, _prescriptions) &&
             (identical(other.prescriptionSettingsResult,
                     prescriptionSettingsResult) ||
                 other.prescriptionSettingsResult ==
@@ -2076,6 +1972,12 @@ class _$PrecriptionStateImpl implements _PrecriptionState {
                 other.pdfError == pdfError) &&
             (identical(other.pdfErrorMessage, pdfErrorMessage) ||
                 other.pdfErrorMessage == pdfErrorMessage) &&
+            (identical(other.createPrescriptionPayload,
+                    createPrescriptionPayload) ||
+                other.createPrescriptionPayload == createPrescriptionPayload) &&
+            (identical(other.isCreateHasdata, isCreateHasdata) ||
+                other.isCreateHasdata == isCreateHasdata) &&
+            (identical(other.action, action) || other.action == action) &&
             (identical(other.pdfPath, pdfPath) || other.pdfPath == pdfPath));
   }
 
@@ -2087,6 +1989,7 @@ class _$PrecriptionStateImpl implements _PrecriptionState {
         isUpdateLoading,
         isCreateLoading,
         isDeleted,
+        deletedIndex,
         isDeleteLoading,
         updated,
         created,
@@ -2098,13 +2001,16 @@ class _$PrecriptionStateImpl implements _PrecriptionState {
         const DeepCollectionEquality().hash(_tobeTakeData),
         const DeepCollectionEquality().hash(_timeoftheDayData),
         prescriptionResult,
-        deleteResponse,
+        const DeepCollectionEquality().hash(_prescriptions),
         prescriptionSettingsResult,
         isPdfLoading,
         pdfCreated,
         pdf,
         pdfError,
         pdfErrorMessage,
+        createPrescriptionPayload,
+        isCreateHasdata,
+        action,
         pdfPath
       ]);
 
@@ -2123,6 +2029,7 @@ abstract class _PrecriptionState implements PrecriptionState {
       required final bool isUpdateLoading,
       required final bool isCreateLoading,
       required final bool isDeleted,
+      final int? deletedIndex,
       required final bool isDeleteLoading,
       required final bool updated,
       required final bool created,
@@ -2134,13 +2041,16 @@ abstract class _PrecriptionState implements PrecriptionState {
       required final List<DataObjec>? tobeTakeData,
       required final List<DataObjec>? timeoftheDayData,
       final PrescriptionModel? prescriptionResult,
-      final DeletePrescriptionModel? deleteResponse,
+      final List<Prescription>? prescriptions,
       final PrescriptionSettingsModel? prescriptionSettingsResult,
       required final bool isPdfLoading,
       required final bool pdfCreated,
       required final pw.Document? pdf,
       required final bool pdfError,
       required final String pdfErrorMessage,
+      required final CreatePrescriptionPayload? createPrescriptionPayload,
+      required final bool isCreateHasdata,
+      required final PdfActions? action,
       final String? pdfPath}) = _$PrecriptionStateImpl;
 
   @override
@@ -2153,6 +2063,8 @@ abstract class _PrecriptionState implements PrecriptionState {
   bool get isCreateLoading;
   @override
   bool get isDeleted;
+  @override
+  int? get deletedIndex;
   @override
   bool get isDeleteLoading;
   @override
@@ -2176,7 +2088,7 @@ abstract class _PrecriptionState implements PrecriptionState {
   @override
   PrescriptionModel? get prescriptionResult;
   @override
-  DeletePrescriptionModel? get deleteResponse;
+  List<Prescription>? get prescriptions;
   @override
   PrescriptionSettingsModel? get prescriptionSettingsResult;
   @override
@@ -2189,6 +2101,12 @@ abstract class _PrecriptionState implements PrecriptionState {
   bool get pdfError;
   @override
   String get pdfErrorMessage;
+  @override
+  CreatePrescriptionPayload? get createPrescriptionPayload;
+  @override
+  bool get isCreateHasdata;
+  @override
+  PdfActions? get action;
   @override
   String? get pdfPath;
   @override

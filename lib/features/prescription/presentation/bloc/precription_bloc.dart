@@ -1,11 +1,10 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:dr_kevell/features/prescription/data/model/delete_prescription_model.dart';
+import 'package:dr_kevell/features/report/data/model/report_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-
 import 'package:dr_kevell/features/prescription/data/model/prescription_settings_model.dart';
 import 'package:dr_kevell/features/prescription/domain/repositories/create_prescription_repository.dart';
 import 'package:dr_kevell/features/prescription/domain/repositories/get_prescription_list_repository.dart';
@@ -13,11 +12,11 @@ import 'package:dr_kevell/features/prescription/domain/repositories/get_prescrip
 import 'package:dr_kevell/features/prescription/domain/repositories/update_prescription_repository.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:path_provider/path_provider.dart';
-
-import '../../data/model/prescription_list_model.dart';
+import '../../../../core/helper/enums.dart';
+import '../../data/model/prescription_model.dart';
 import '../../data/model/prescription_pdf_model.dart';
 import '../../data/repository/genarate_prescription_pdf_impliment.dart';
-import '../../domain/repositories/delete_prescription_repository.dart';
+import '../../domain/entities/create_prescription_payload.dart';
 
 part 'precription_event.dart';
 part 'precription_state.dart';
@@ -29,30 +28,45 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
   final GetPrescriptionSettingsRepository getPrescriptionSettingsRepository;
   final CreatePrescriptionListRepository createPrescriptionListRepository;
   final UpdatePrescriptionListRepository updatePrescriptionListRepository;
-  final DeletePrescriptionRepository deletePrescriptionRepository;
 
   PrecriptionBloc(
-      this.getPrescriptionListRepository,
-      this.getPrescriptionSettingsRepository,
-      this.createPrescriptionListRepository,
-      this.updatePrescriptionListRepository,
-      this.deletePrescriptionRepository)
-      : super(PrecriptionState.initial()) {
+    this.getPrescriptionListRepository,
+    this.getPrescriptionSettingsRepository,
+    this.createPrescriptionListRepository,
+    this.updatePrescriptionListRepository,
+  ) : super(PrecriptionState.initial()) {
     on<_GetPrescriptionList>((event, emit) async {
       emit(
         state.copyWith(
           isGetLoading: true,
           created: false,
-          isDeleted: false,
           updated: false,
           isError: false,
           unauthorized: false,
           hasData: false,
+          pdfCreated: false,
         ),
       );
 
       final response = await getPrescriptionListRepository.getPrescriptionList(
           appointmentId: event.appointmentId);
+
+      // final result = PrescriptionModel.fromJson(dummyJson);
+
+      // if (result.prescription != null) {
+      //   prescriptionList = result.prescription!;
+      // }
+
+      // emit(
+      //   state.copyWith(
+      //     isError: false,
+      //     unauthorized: false,
+      //     isGetLoading: false,
+      //     hasData: true,
+      //     prescriptions: prescriptionList,
+      //     prescriptionResult: result,
+      //   ),
+      // );
 
       response.fold(
           (failure) => {
@@ -136,17 +150,53 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
       emit(result);
     });
 
-    on<_SelectTimeOfTheDay>((event, emit) async {
-      emit(
-        state.copyWith(
-          timeoftheDayData: event.data,
-        ),
-      );
+    on<_EditOrCreatePrescription>((event, emit) async {
+      emit(state.copyWith(
+        isCreateLoading: true,
+        isCreateHasdata: false,
+        created: false,
+      ));
+      if (event.isEditing) {
+        CreatePrescriptionPayload prescription =
+            state.createPrescriptionPayload!;
+        prescription.updatePrescription(event.index!, event.prescriptions);
+
+        emit(
+          state.copyWith(
+            createPrescriptionPayload: prescription,
+            isCreateLoading: false,
+            isCreateHasdata: true,
+          ),
+        );
+      } else {
+        CreatePrescriptionPayload prescription =
+            state.createPrescriptionPayload ?? CreatePrescriptionPayload();
+        prescription.addPrescription(event.prescriptions);
+
+        emit(
+          state.copyWith(
+            isCreateHasdata: true,
+            createPrescriptionPayload: prescription,
+            isCreateLoading: false,
+          ),
+        );
+      }
     });
-    on<_SelectTobetaken>((event, emit) async {
+
+    on<_DeletePrescription>((event, emit) async {
+      emit(
+        state.copyWith(isDeleted: false, isDeleteLoading: true),
+      );
+
+      CreatePrescriptionPayload prescription = state.createPrescriptionPayload!;
+      prescription.removePrescription(event.index);
+      await Future.delayed(const Duration(milliseconds: 300));
       emit(
         state.copyWith(
-          tobeTakeData: event.data,
+          isDeleted: true,
+          deletedIndex: event.index,
+          isDeleteLoading: false,
+          createPrescriptionPayload: prescription,
         ),
       );
     });
@@ -161,9 +211,8 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
         ),
       );
 
-      final response =
-          await updatePrescriptionListRepository.updatePrescriptionList(
-              prescriptionElement: event.prescriptionElement);
+      final response = await updatePrescriptionListRepository
+          .updatePrescriptionList(payload: event.payload);
 
       final result = response.fold(
         (failure) => state.copyWith(
@@ -185,7 +234,7 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
     on<_CreatePrescription>((event, emit) async {
       emit(
         state.copyWith(
-          isCreateLoading: true,
+          isGetLoading: true,
           isError: false,
           created: false,
           unauthorized: false,
@@ -193,54 +242,21 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
         ),
       );
 
-      final response =
-          await createPrescriptionListRepository.createPrescriptionList(
-              prescriptionElement: event.prescriptionElement);
+      final response = await createPrescriptionListRepository
+          .createPrescriptionList(payload: event.payload);
 
       final result = response.fold(
         (failure) => state.copyWith(
-          isCreateLoading: false,
+          isGetLoading: false,
           hasData: false,
           isError: true,
         ),
         (success) => state.copyWith(
           isError: false,
-          isCreateLoading: false,
+          isGetLoading: false,
           created: true,
           hasData: false,
           // prescriptionResult: success,
-        ),
-      );
-      emit(result);
-    });
-
-    on<_DeletePrescription>((event, emit) async {
-      emit(
-        state.copyWith(
-          isDeleteLoading: true,
-          isDeleted: false,
-          deleteResponse: null,
-          isError: false,
-        ),
-      );
-
-      final response = await deletePrescriptionRepository.deletePrescription(
-        pno: event.pno,
-        appoinmentId: event.appoinmentId,
-      );
-
-      log("deleted called ===============");
-
-      final result = response.fold(
-        (failure) => state.copyWith(
-          isDeleteLoading: false,
-          isDeleted: false,
-          isError: true,
-        ),
-        (success) => state.copyWith(
-          isDeleteLoading: false,
-          isDeleted: true,
-          deleteResponse: success,
         ),
       );
       emit(result);
@@ -250,6 +266,7 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
       (event, emit) async {
         emit(
           state.copyWith(
+            action: null,
             isPdfLoading: true,
             pdfCreated: false,
             pdfError: false,
@@ -258,18 +275,13 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
 
         try {
           final pdf = await generatePDF(event.data);
-          log(pdf.document.toString());
-
           final bytes = await pdf.save();
           final tempDir = await getTemporaryDirectory();
           final file = File('${tempDir.path}/prescription.pdf');
-
           await file.writeAsBytes(bytes);
-          log(file.toString());
-          log("emmited suscseeeeee");
-
           emit(
             state.copyWith(
+              action: event.action,
               pdfError: false,
               isPdfLoading: false,
               pdfCreated: true,
@@ -277,7 +289,6 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
               pdfPath: file.path,
             ),
           );
-          log(pdf.toString());
         } catch (e) {
           log("error $e");
           emit(state.copyWith(
@@ -285,13 +296,14 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
             pdfCreated: false,
             pdfErrorMessage: e.toString(),
             isPdfLoading: false,
+
           ));
         }
       },
     );
   }
 
-  Future<pw.Document> generatePDF(List<PrescriptionPdfModel> data) async {
+  Future<pw.Document> generatePDF(List<ReportPrescription> data) async {
     GeneratePrescriptionPdfRepoImpliment pdfClass =
         GeneratePrescriptionPdfRepoImpliment();
     final pdf = pdfClass.generatePDF(data);

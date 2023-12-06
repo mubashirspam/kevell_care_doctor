@@ -16,29 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SignupEvent {
-  String get fullName => throw _privateConstructorUsedError;
-  String get phone => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
+  SingupPayload get payload => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String fullName, String phone, String email, String password)
-        signup,
+    required TResult Function(SingupPayload payload) signup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            String fullName, String phone, String email, String password)?
-        signup,
+    TResult? Function(SingupPayload payload)? signup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            String fullName, String phone, String email, String password)?
-        signup,
+    TResult Function(SingupPayload payload)? signup,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -70,7 +61,7 @@ abstract class $SignupEventCopyWith<$Res> {
           SignupEvent value, $Res Function(SignupEvent) then) =
       _$SignupEventCopyWithImpl<$Res, SignupEvent>;
   @useResult
-  $Res call({String fullName, String phone, String email, String password});
+  $Res call({SingupPayload payload});
 }
 
 /// @nodoc
@@ -86,28 +77,13 @@ class _$SignupEventCopyWithImpl<$Res, $Val extends SignupEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fullName = null,
-    Object? phone = null,
-    Object? email = null,
-    Object? password = null,
+    Object? payload = null,
   }) {
     return _then(_value.copyWith(
-      fullName: null == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
+      payload: null == payload
+          ? _value.payload
+          : payload // ignore: cast_nullable_to_non_nullable
+              as SingupPayload,
     ) as $Val);
   }
 }
@@ -120,7 +96,7 @@ abstract class _$$SignupImplCopyWith<$Res>
       __$$SignupImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String fullName, String phone, String email, String password});
+  $Res call({SingupPayload payload});
 }
 
 /// @nodoc
@@ -134,28 +110,13 @@ class __$$SignupImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fullName = null,
-    Object? phone = null,
-    Object? email = null,
-    Object? password = null,
+    Object? payload = null,
   }) {
     return _then(_$SignupImpl(
-      fullName: null == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
+      payload: null == payload
+          ? _value.payload
+          : payload // ignore: cast_nullable_to_non_nullable
+              as SingupPayload,
     ));
   }
 }
@@ -163,24 +124,14 @@ class __$$SignupImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SignupImpl implements _Signup {
-  const _$SignupImpl(
-      {required this.fullName,
-      required this.phone,
-      required this.email,
-      required this.password});
+  const _$SignupImpl({required this.payload});
 
   @override
-  final String fullName;
-  @override
-  final String phone;
-  @override
-  final String email;
-  @override
-  final String password;
+  final SingupPayload payload;
 
   @override
   String toString() {
-    return 'SignupEvent.signup(fullName: $fullName, phone: $phone, email: $email, password: $password)';
+    return 'SignupEvent.signup(payload: $payload)';
   }
 
   @override
@@ -188,17 +139,11 @@ class _$SignupImpl implements _Signup {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignupImpl &&
-            (identical(other.fullName, fullName) ||
-                other.fullName == fullName) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) ||
-                other.password == password));
+            (identical(other.payload, payload) || other.payload == payload));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, fullName, phone, email, password);
+  int get hashCode => Object.hash(runtimeType, payload);
 
   @JsonKey(ignore: true)
   @override
@@ -209,33 +154,27 @@ class _$SignupImpl implements _Signup {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String fullName, String phone, String email, String password)
-        signup,
+    required TResult Function(SingupPayload payload) signup,
   }) {
-    return signup(fullName, phone, email, password);
+    return signup(payload);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            String fullName, String phone, String email, String password)?
-        signup,
+    TResult? Function(SingupPayload payload)? signup,
   }) {
-    return signup?.call(fullName, phone, email, password);
+    return signup?.call(payload);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            String fullName, String phone, String email, String password)?
-        signup,
+    TResult Function(SingupPayload payload)? signup,
     required TResult orElse(),
   }) {
     if (signup != null) {
-      return signup(fullName, phone, email, password);
+      return signup(payload);
     }
     return orElse();
   }
@@ -270,20 +209,10 @@ class _$SignupImpl implements _Signup {
 }
 
 abstract class _Signup implements SignupEvent {
-  const factory _Signup(
-      {required final String fullName,
-      required final String phone,
-      required final String email,
-      required final String password}) = _$SignupImpl;
+  const factory _Signup({required final SingupPayload payload}) = _$SignupImpl;
 
   @override
-  String get fullName;
-  @override
-  String get phone;
-  @override
-  String get email;
-  @override
-  String get password;
+  SingupPayload get payload;
   @override
   @JsonKey(ignore: true)
   _$$SignupImplCopyWith<_$SignupImpl> get copyWith =>

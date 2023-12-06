@@ -1,10 +1,12 @@
 import 'package:dartz/dartz.dart';
-import 'package:dr_kevell/features/prescription/data/model/prescription_list_model.dart';
+
 
 import '../../../../core/failiar/main_failures.dart';
+import '../../data/model/prescription_model.dart';
+import '../entities/create_prescription_payload.dart';
 
 abstract class CreatePrescriptionListRepository {
   Future<Either<MainFailure, PrescriptionModel>> createPrescriptionList({
-    required PrescriptionElement prescriptionElement,
+    required CreatePrescriptionPayload payload,
   });
 }

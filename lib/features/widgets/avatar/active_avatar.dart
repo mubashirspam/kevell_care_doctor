@@ -1,10 +1,9 @@
-
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 
 import '../../../settings/color/main_color.dart';
-
+import 'package:shimmer/shimmer.dart';
 
 class ActiveAvatar extends StatelessWidget {
   final double? radius;
@@ -28,12 +27,25 @@ class ActiveAvatar extends StatelessWidget {
             shape: BoxShape.circle,
           ),
           child: ClipRRect(
-              borderRadius: BorderRadius.circular(100),
-              child: Image.network(
-                imageUrl,
-                errorBuilder: (context, error, stackTrace) =>
-                    const Icon(Icons.image_not_supported_outlined),
-              )),
+            borderRadius: BorderRadius.circular(100),
+            child: CachedNetworkImage(
+              imageUrl: imageUrl,
+              placeholder: (context, url) => Shimmer.fromColors(
+                  baseColor: context.theme.secondary!,
+                  highlightColor: Colors.white,
+                  child: CircleAvatar(
+                    backgroundColor: context.theme.secondary,
+                  )),
+              errorWidget: (context, url, error) =>
+                  const Icon(Icons.image_not_supported_rounded),
+            ),
+
+            // Image.network(
+            //   imageUrl,
+            //   errorBuilder: (context, error, stackTrace) =>
+            //       const Icon(Icons.image_not_supported_outlined),
+            // )
+          ),
         ),
         isActive ?? true
             ? Positioned(

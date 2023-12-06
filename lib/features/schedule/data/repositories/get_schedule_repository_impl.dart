@@ -27,7 +27,7 @@ class GetScheduleRepoImpliment implements GetScheduleRepository {
 // production
       final response = await Dio(BaseOptions()).get(
         ApiEndPoints.getSchedule,
-        options: Options(headers: headers),
+        options: Options(headers: headers, validateStatus: (_) => true,),
         data: {'doctor_id': id},
       );
 

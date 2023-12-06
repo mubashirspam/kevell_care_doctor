@@ -442,6 +442,7 @@ abstract class _ConnectionCheck implements InitializeEvent {
 mixin _$InitializeState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isToken => throw _privateConstructorUsedError;
+  bool get isVerified => throw _privateConstructorUsedError;
   bool get connectionStatus => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -455,7 +456,8 @@ abstract class $InitializeStateCopyWith<$Res> {
           InitializeState value, $Res Function(InitializeState) then) =
       _$InitializeStateCopyWithImpl<$Res, InitializeState>;
   @useResult
-  $Res call({bool isLoading, bool isToken, bool connectionStatus});
+  $Res call(
+      {bool isLoading, bool isToken, bool isVerified, bool connectionStatus});
 }
 
 /// @nodoc
@@ -473,6 +475,7 @@ class _$InitializeStateCopyWithImpl<$Res, $Val extends InitializeState>
   $Res call({
     Object? isLoading = null,
     Object? isToken = null,
+    Object? isVerified = null,
     Object? connectionStatus = null,
   }) {
     return _then(_value.copyWith(
@@ -483,6 +486,10 @@ class _$InitializeStateCopyWithImpl<$Res, $Val extends InitializeState>
       isToken: null == isToken
           ? _value.isToken
           : isToken // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isVerified: null == isVerified
+          ? _value.isVerified
+          : isVerified // ignore: cast_nullable_to_non_nullable
               as bool,
       connectionStatus: null == connectionStatus
           ? _value.connectionStatus
@@ -500,7 +507,8 @@ abstract class _$$InitializeStateImplCopyWith<$Res>
       __$$InitializeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, bool isToken, bool connectionStatus});
+  $Res call(
+      {bool isLoading, bool isToken, bool isVerified, bool connectionStatus});
 }
 
 /// @nodoc
@@ -516,6 +524,7 @@ class __$$InitializeStateImplCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? isToken = null,
+    Object? isVerified = null,
     Object? connectionStatus = null,
   }) {
     return _then(_$InitializeStateImpl(
@@ -526,6 +535,10 @@ class __$$InitializeStateImplCopyWithImpl<$Res>
       isToken: null == isToken
           ? _value.isToken
           : isToken // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isVerified: null == isVerified
+          ? _value.isVerified
+          : isVerified // ignore: cast_nullable_to_non_nullable
               as bool,
       connectionStatus: null == connectionStatus
           ? _value.connectionStatus
@@ -541,6 +554,7 @@ class _$InitializeStateImpl implements _InitializeState {
   const _$InitializeStateImpl(
       {required this.isLoading,
       required this.isToken,
+      required this.isVerified,
       required this.connectionStatus});
 
   @override
@@ -548,11 +562,13 @@ class _$InitializeStateImpl implements _InitializeState {
   @override
   final bool isToken;
   @override
+  final bool isVerified;
+  @override
   final bool connectionStatus;
 
   @override
   String toString() {
-    return 'InitializeState(isLoading: $isLoading, isToken: $isToken, connectionStatus: $connectionStatus)';
+    return 'InitializeState(isLoading: $isLoading, isToken: $isToken, isVerified: $isVerified, connectionStatus: $connectionStatus)';
   }
 
   @override
@@ -563,13 +579,15 @@ class _$InitializeStateImpl implements _InitializeState {
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.isToken, isToken) || other.isToken == isToken) &&
+            (identical(other.isVerified, isVerified) ||
+                other.isVerified == isVerified) &&
             (identical(other.connectionStatus, connectionStatus) ||
                 other.connectionStatus == connectionStatus));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, isLoading, isToken, connectionStatus);
+  int get hashCode => Object.hash(
+      runtimeType, isLoading, isToken, isVerified, connectionStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -583,12 +601,15 @@ abstract class _InitializeState implements InitializeState {
   const factory _InitializeState(
       {required final bool isLoading,
       required final bool isToken,
+      required final bool isVerified,
       required final bool connectionStatus}) = _$InitializeStateImpl;
 
   @override
   bool get isLoading;
   @override
   bool get isToken;
+  @override
+  bool get isVerified;
   @override
   bool get connectionStatus;
   @override

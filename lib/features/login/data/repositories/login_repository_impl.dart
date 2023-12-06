@@ -19,10 +19,12 @@ class LoginRepoImpliment implements LoginRepository {
     required String email,
     required String password,
   }) async {
+    final dio = Dio();
     try {
       final fcm = await getTokenFromSS(fcmStoreKey);
-      final response = await Dio(BaseOptions()).post(
+      final response = await dio.post(
         ApiEndPoints.login,
+        
         data: {
           'Emailid': email,
           'password': password,

@@ -9,7 +9,7 @@ import 'dart:convert';
 ReportModel reportModelFromJson(String str) =>
     ReportModel.fromJson(json.decode(str));
 
-String reportModelToJson(ReportModel data) => json.encode(data.toJson());
+
 
 class ReportModel {
   int? responseCode;
@@ -38,16 +38,7 @@ class ReportModel {
             : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
       );
 
-  Map<String, dynamic> toJson() => {
-        "responseCode": responseCode,
-        "status": status,
-        "message": message,
-        "startdate":
-            "${startdate!.year.toString().padLeft(4, '0')}-${startdate!.month.toString().padLeft(2, '0')}-${startdate!.day.toString().padLeft(2, '0')}",
-        "data": data == null
-            ? []
-            : List<dynamic>.from(data!.map((x) => x.toJson())),
-      };
+  
 }
 
 class Datum {
@@ -78,7 +69,7 @@ class Datum {
   Bpinfo? bpinfo;
   List<Info>? ecginfo;
   List<Info>? gsrinfo;
-  List<Prescription>? prescription;
+  List<ReportPrescription>? prescription;
   Bodyfatinfo? hwinfo;
   Bodyfatinfo? bodyfatinfo;
   Bodyfatinfo? glucometerinfo;
@@ -196,8 +187,8 @@ class Datum {
             : List<Info>.from(json["gsrinfo"]!.map((x) => Info.fromJson(x))),
         prescription: json["prescription"] == null
             ? []
-            : List<Prescription>.from(
-                json["prescription"]!.map((x) => Prescription.fromJson(x))),
+            : List<ReportPrescription>.from(
+                json["prescription"]!.map((x) => ReportPrescription.fromJson(x))),
         hwinfo: json["hwinfo"] == null
             ? null
             : Bodyfatinfo.fromJson(json["hwinfo"]),
@@ -245,62 +236,86 @@ class Datum {
             : Bodyfatinfo.fromJson(json["otoscopeinfo10"]),
       );
 
-  Map<String, dynamic> toJson() => {
-        "_id": id,
-        "patientId": patientId,
-        "patientid": patientid,
-        "patientname": patientname,
-        "Reasonformeetingdoctor": reasonformeetingdoctor,
-        "appointmentstarttime": appointmentstarttime?.toIso8601String(),
-        "appointmentendtime": appointmentendtime?.toIso8601String(),
-        "doctornameid": doctornameid,
-        "doctorname": doctorname,
-        "appointmentdate":
-            "${appointmentdate!.year.toString().padLeft(4, '0')}-${appointmentdate!.month.toString().padLeft(2, '0')}-${appointmentdate!.day.toString().padLeft(2, '0')}",
-        "preexistingdisease": preexistingdisease == null
-            ? []
-            : List<dynamic>.from(preexistingdisease!.map((x) => x)),
-        "isvisited": isvisited,
-        "is_timeup": isTimeup,
-        "date": date,
-        "userdoctorrating": userdoctorrating,
-        "userdoctorcommand": userdoctorcommand,
-        "patientpdflink": patientpdflink,
-        "createdAt": createdAt?.toIso8601String(),
-        "updatedAt": updatedAt?.toIso8601String(),
-        "sno": sno,
-        "__v": v,
-        "temperatureinfo": temperatureinfo?.toJson(),
-        "isvisiteddate":
-            "${isvisiteddate!.year.toString().padLeft(4, '0')}-${isvisiteddate!.month.toString().padLeft(2, '0')}-${isvisiteddate!.day.toString().padLeft(2, '0')}",
-        "spO2info": spO2Info?.toJson(),
-        "bpinfo": bpinfo?.toJson(),
-        "ecginfo": ecginfo == null
-            ? []
-            : List<dynamic>.from(ecginfo!.map((x) => x.toJson())),
-        "gsrinfo": gsrinfo == null
-            ? []
-            : List<dynamic>.from(gsrinfo!.map((x) => x.toJson())),
-        "prescription": prescription == null
-            ? []
-            : List<dynamic>.from(prescription!.map((x) => x.toJson())),
-        "hwinfo": hwinfo?.toJson(),
-        "bodyfatinfo": bodyfatinfo?.toJson(),
-        "glucometerinfo": glucometerinfo?.toJson(),
-        "emginfo":
-            emginfo == null ? [] : List<dynamic>.from(emginfo!.map((x) => x)),
-        "stestoscopeinfo": stestoscopeinfo?.toJson(),
-        "otoscopeinfo1": otoscopeinfo1?.toJson(),
-        "otoscopeinfo2": otoscopeinfo2?.toJson(),
-        "otoscopeinfo3": otoscopeinfo3?.toJson(),
-        "otoscopeinfo4": otoscopeinfo4?.toJson(),
-        "otoscopeinfo5": otoscopeinfo5?.toJson(),
-        "otoscopeinfo6": otoscopeinfo6?.toJson(),
-        "otoscopeinfo7": otoscopeinfo7?.toJson(),
-        "otoscopeinfo8": otoscopeinfo8?.toJson(),
-        "otoscopeinfo9": otoscopeinfo9?.toJson(),
-        "otoscopeinfo10": otoscopeinfo10?.toJson(),
-      };
+  
+}
+class ReportPrescription {
+    String? name;
+    String? type;
+    String? duration;
+    Timeoftheday? timeoftheday;
+    List<Tobetaken>? tobetaken;
+
+    ReportPrescription({
+        this.name,
+        this.type,
+        this.duration,
+        this.timeoftheday,
+        this.tobetaken,
+    });
+
+    factory ReportPrescription.fromJson(Map<String, dynamic> json) => ReportPrescription(
+        name: json["name"],
+        type: json["type"],
+        duration: json["duration"],
+        timeoftheday: json["timeoftheday"] == null ? null : Timeoftheday.fromJson(json["timeoftheday"]),
+        tobetaken: json["tobetaken"] == null ? [] : List<Tobetaken>.from(json["tobetaken"]!.map((x) => Tobetaken.fromJson(x))),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "name": name,
+        "type": type,
+        "duration": duration,
+        "timeoftheday": timeoftheday?.toJson(),
+        "tobetaken": tobetaken == null ? [] : List<dynamic>.from(tobetaken!.map((x) => x.toJson())),
+    };
+}
+
+class Timeoftheday {
+    String? morning;
+    String? evening;
+    String? noon;
+    String? night;
+
+    Timeoftheday({
+        this.morning,
+        this.evening,
+        this.noon,
+        this.night,
+    });
+
+    factory Timeoftheday.fromJson(Map<String, dynamic> json) => Timeoftheday(
+        morning: json["morning"],
+        evening: json["evening"],
+        noon: json["noon"],
+        night: json["night"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "morning": morning,
+        "evening": evening,
+        "noon": noon,
+        "night": night,
+    };
+}
+
+class Tobetaken {
+    String? name;
+    bool? value;
+
+    Tobetaken({
+        this.name,
+        this.value,
+    });
+
+    factory Tobetaken.fromJson(Map<String, dynamic> json) => Tobetaken(
+        name: json["name"],
+        value: json["value"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "name": name,
+        "value": value,
+    };
 }
 
 class Bodyfatinfo {
@@ -447,87 +462,8 @@ class EcginfoData {
       };
 }
 
-class Prescription {
-  dynamic doctorId;
-  dynamic appointmentId;
-  String? patientId;
-  String? name;
-  String? type;
-  String? duration;
-  List<Timeoftheday>? timeoftheday;
-  List<Timeoftheday>? tobetaken;
-  String? remark;
-  int? pno;
 
-  Prescription({
-    this.doctorId,
-    this.appointmentId,
-    this.patientId,
-    this.name,
-    this.type,
-    this.duration,
-    this.timeoftheday,
-    this.tobetaken,
-    this.remark,
-    this.pno,
-  });
 
-  factory Prescription.fromJson(Map<String, dynamic> json) => Prescription(
-        doctorId: json["doctorID"],
-        appointmentId: json["appointmentID"],
-        patientId: json["patient_id"],
-        name: json["name"],
-        type: json["type"],
-        duration: json["duration"],
-        timeoftheday: json["timeoftheday"] == null
-            ? []
-            : List<Timeoftheday>.from(
-                json["timeoftheday"]!.map((x) => Timeoftheday.fromJson(x))),
-        tobetaken: json["tobetaken"] == null
-            ? []
-            : List<Timeoftheday>.from(
-                json["tobetaken"]!.map((x) => Timeoftheday.fromJson(x))),
-        remark: json["remark"],
-        pno: json["pno"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "doctorID": doctorId,
-        "appointmentID": appointmentId,
-        "patient_id": patientId,
-        "name": name,
-        "type": type,
-        "duration": duration,
-        "timeoftheday": timeoftheday == null
-            ? []
-            : List<dynamic>.from(timeoftheday!.map((x) => x.toJson())),
-        "tobetaken": tobetaken == null
-            ? []
-            : List<dynamic>.from(tobetaken!.map((x) => x.toJson())),
-        "remark": remark,
-        "pno": pno,
-      };
-}
-
-class Timeoftheday {
-  String? name;
-  bool? value;
-
-  Timeoftheday({
-    this.name,
-    this.value,
-  });
-
-  factory Timeoftheday.fromJson(Map<String, dynamic> json) => Timeoftheday(
-        name: json["name"],
-        value: json["value"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "name": name,
-        "value": value,
-      };
-}
 
 class SpO2Info {
   String? id;

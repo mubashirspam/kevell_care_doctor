@@ -6,12 +6,12 @@ import 'package:dr_kevell/features/login/presentation/login.dart';
 import 'package:dr_kevell/features/widgets/avatar/active_avatar.dart';
 import 'package:dr_kevell/features/widgets/buttons/text_button_widget.dart';
 import 'package:dr_kevell/pages/initialize/initialize.dart';
-import 'package:dr_kevell/pages/prescription/presentation/prescription_screen.dart';
+import 'package:dr_kevell/features/prescription/presentation/pages/create_prescription_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/helper/date.dart';
-import '../../../pages/report/presentation/report_screen.dart';
+import '../../report/presetantion/pages/report_screen.dart';
 import '../../report/data/model/report_model.dart';
 import 'bloc/checkup_bloc.dart';
 import 'widgets/ecg_graph.dart';
@@ -189,7 +189,7 @@ class AppoinmentsEndReportScrenn extends StatelessWidget {
                                 name: "Prescription + ",
                                 onPressed: () {
                                   Navigator.of(context).pushNamed(
-                                      PrescriptionScreen.routeName,
+                                      CreatePrescriptionScreen.routeName,
                                       arguments: {
                                         "appointmentID": datas.id,
                                         "doctorID": datas.doctorid,

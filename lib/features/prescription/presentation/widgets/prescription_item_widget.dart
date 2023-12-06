@@ -1,21 +1,21 @@
-import 'dart:developer';
+import 'package:dr_kevell/features/prescription/presentation/pages/edit_or_create_prescription.dart';
 
-import 'package:dr_kevell/settings/color/main_color.dart';
-import 'package:dr_kevell/features/prescription/presentation/bloc/precription_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/helper/alert.dart';
-import '../../data/model/prescription_list_model.dart';
-import 'edit_prescription.dart';
+import '../../data/model/prescription_model.dart';
+import '../bloc/precription_bloc.dart';
 
 class PrescriptionItemWidget extends StatelessWidget {
-  final PrescriptionElement prescriptionElement;
-   final Map<String, dynamic> checkupDetalis;
+  final Prescription prescription;
+  final int index;
+  final Map<String, dynamic> checkupDetalis;
   const PrescriptionItemWidget({
-    required this.prescriptionElement,
+    required this.prescription,
     required this.checkupDetalis,
+    required this.index,
     super.key,
   });
 
@@ -27,87 +27,70 @@ class PrescriptionItemWidget extends StatelessWidget {
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
-          12,
+          6,
         ),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    prescriptionElement.name ?? "Medicin not Mentioned",
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium!
-                        .copyWith(color: context.theme.textPrimary),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text(
-                      prescriptionElement.type ?? "No type mentioned",
-                      style: Theme.of(context).textTheme.titleSmall,
+      child: Row(
+        children: [
+          const SizedBox(width: 15),
+          Expanded(
+            child: Text(prescription.name ?? "Medicin not Mentioned",
+                style: Theme.of(context).textTheme.titleLarge!),
+          ),
+          Container(
+            width: 2,
+            height: 50,
+            color: Colors.white,
+          ),
+          IconButton(
+              icon: Icon(Icons.edit, color: context.theme.primary),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => EditOrCreatePrescription(
+                      isEdit: true,
+                      prescription: prescription,
+                      checkupDetalis: checkupDetalis,
+                      index: index,
                     ),
                   ),
-                ],
-              ),
-            ),
-            IconButton(
-              icon: Icon(Icons.edit, color: context.theme.primary),
-              onPressed: () => showModalBottomSheet(
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                isScrollControlled: true,
-                context: context,
-                builder: (context) => AddOrEditPrescriptionWidget(
-                  isEdit: true,
-                  prescriptionElement: prescriptionElement,
-                  checkupDetalis:  checkupDetalis,
-                ),
-              ),
-            ),
-            IconButton(
-                icon: const Icon(Icons.delete,
-                    color: MainConfigColorsDarkThem.danger),
-                onPressed: () => showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return BlocBuilder<PrecriptionBloc, PrecriptionState>(
-                          builder: (context, state) {
-                            log(state.isDeleted.toString());
-                            return MyCustomAlertDialog(
-                              successMessage:
-                                  "Successfully deleted your prescription.",
-                              questionMesage:
-                                  'Are you sure you want to delete the prescription?',
-                              okPressed: () {
-                                context.read<PrecriptionBloc>().add(
-                                      PrecriptionEvent.getPrescriptionList(
-                                          appointmentId: prescriptionElement
-                                              .appointmentId!),
-                                    );
-                                Navigator.of(context).pop();
-                              },
-                              onPress: () {
-                                context.read<PrecriptionBloc>().add(
-                                      PrecriptionEvent.deletePrescription(
-                                        pno: prescriptionElement.pno!,
-                                        appoinmentId: prescriptionElement.appointmentId!,
-                                      ),
-                                    );
-                              },
-                              isLoading: state.isDeleteLoading,
-                              isCompleted: state.isDeleted,
-                            );
-                          },
-                        );
+                );
+              }),
+          Container(
+            width: 2,
+            height: 50,
+            color: Colors.white,
+          ),
+          IconButton(
+            icon:
+                const Icon(Icons.delete, color: Color.fromRGBO(244, 67, 54, 1)),
+            onPressed: () => showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return BlocBuilder<PrecriptionBloc, PrecriptionState>(
+                  builder: (context, state) {
+                    return MyCustomAlertDialog(
+                      successMessage: "Successfully deleted your prescription.",
+                      questionMesage:
+                          'Are you sure you want to delete the prescription?',
+                      okPressed: () {
+                        Navigator.of(context).pop();
                       },
-                    )),
-          ],
-        ),
+                      onPress: () {
+                        context.read<PrecriptionBloc>().add(
+                              PrecriptionEvent.deletePrescription(index: index),
+                            );
+                      },
+                      isLoading: state.isDeleteLoading,
+                      isCompleted:
+                          state.deletedIndex == index && state.isDeleted,
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

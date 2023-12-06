@@ -1,18 +1,19 @@
-import 'dart:typed_data';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dr_kevell/features/profile/presentation/upload_image.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
-
-import '../../../../settings/utlis.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ProfileNameCard extends StatelessWidget {
   final String name;
   final String email;
   final String imageUrl;
+  final bool isverified;
   const ProfileNameCard({
     required this.email,
     required this.imageUrl,
     required this.name,
+    required this.isverified,
     super.key,
   });
 
@@ -21,8 +22,8 @@ class ProfileNameCard extends StatelessWidget {
     return Row(
       children: [
         SizedBox(
-          height: 75,
-          width: 75,
+          height: 65,
+          width: 65,
           child: Stack(
             children: [
               Positioned(
@@ -30,23 +31,26 @@ class ProfileNameCard extends StatelessWidget {
                 left: 0,
                 child: Container(
                   margin: const EdgeInsets.only(right: 20),
-                  height: 70,
-                  width: 70,
+                  height: 60,
+                  width: 60,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.network(
-                        imageUrl,
-                        fit: BoxFit.cover,
-                        errorBuilder: (
-                          context,
-                          _,
-                          __,
-                        ) =>
-                            Icon(Icons.image_not_supported_outlined),
-                      )),
+                    borderRadius: BorderRadius.circular(30),
+                    child: CachedNetworkImage(
+                      fit: BoxFit.cover,
+                      imageUrl: imageUrl,
+                      placeholder: (context, url) => Shimmer.fromColors(
+                          baseColor: context.theme.secondary!,
+                          highlightColor: Colors.white,
+                          child: CircleAvatar(
+                            backgroundColor: context.theme.secondary,
+                          )),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.image_not_supported_rounded),
+                    ),
+                  ),
                 ),
               ),
               Positioned(
@@ -94,6 +98,13 @@ class ProfileNameCard extends StatelessWidget {
             ),
           ),
         ),
+        Icon(
+          isverified ? Icons.verified : Icons.cancel_outlined,
+          color: isverified ? Colors.green : Colors.red,
+        ),
+        SizedBox(
+          width: 20,
+        )
       ],
     );
   }

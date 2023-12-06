@@ -5,9 +5,11 @@ const v1 = "v1";
 const secureStoreKey = 'doctortoken@key';
 
 const mailsecureStoreKey = 'mail@key';
+
+const isVeryfiedKey = 'isVeryfied@key';
 const fcmStoreKey = 'fcmStoreKey@key';
 
-const drIdsecureStoreKey = 'drId@key';
+const drIdsecureStoreKey = 'drjjjjjjId@key';
 
 const nameKey = '@#KL778@username';
 

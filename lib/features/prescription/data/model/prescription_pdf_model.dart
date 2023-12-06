@@ -1,4 +1,7 @@
+
+
 import '../../../report/data/model/report_model.dart';
+import 'prescription_model.dart';
 
 class PrescriptionPdfModel {
   int? doctorId;
@@ -8,8 +11,8 @@ class PrescriptionPdfModel {
   String? name;
   String? type;
   String? duration;
-  List<Timeoftheday>? timeoftheday;
-  List<Timeoftheday>? tobetaken;
+  // List<Timeoftheday>? timeoftheday;
+  // List<Timeoftheday>? tobetaken;
   String? remark;
 
   PrescriptionPdfModel({
@@ -19,20 +22,20 @@ class PrescriptionPdfModel {
     this.name,
     this.type,
     this.duration,
-    this.timeoftheday,
-    this.tobetaken,
+    // this.timeoftheday,
+    // this.tobetaken,
     this.remark,
   });
-  PrescriptionPdfModel.fromPrescriptionElement(Prescription element) {
-    doctorId = element.doctorId==null? 1003  :int.parse(element.doctorId.toString());
-    appointmentId = element.appointmentId==null? 1003 : int.parse(element.appointmentId.toString());
-    patientId = element.patientId==null? 1003 : int.parse(element.patientId.toString());
-    name = element.name;
-    type = element.type;
-    duration = element.duration;
-    timeoftheday = element.timeoftheday;
-    tobetaken = element.tobetaken;
-    remark = element.remark;
-    pno = element.pno;
-  }
+  // PrescriptionPdfModel.fromPrescriptionElement(Prescription element) {
+  //   doctorId = element.doctorId==null? 1003  :int.parse(element.doctorId.toString());
+  //   appointmentId = element.appointmentId==null? 1003 : int.parse(element.appointmentId.toString());
+  //   patientId = element.patientId==null? 1003 : int.parse(element.patientId.toString());
+  //   name = element.name;
+  //   type = element.type;
+  //   duration = element.duration;
+  //   timeoftheday = element.timeoftheday;
+  //   tobetaken = element.tobetaken;
+  //   remark = element.remark;
+  //   pno = element.pno;
+  // }
 }

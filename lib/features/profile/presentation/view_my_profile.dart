@@ -1,3 +1,4 @@
+import 'package:dr_kevell/features/login/presentation/logout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
@@ -11,10 +12,20 @@ import 'edit_profile.dart';
 import 'widgets/profile_name_card.dart';
 
 class ViewMyProfile extends StatelessWidget {
-  const ViewMyProfile({super.key});
+  final bool? notverified;
+  const ViewMyProfile({
+    super.key,
+    this.notverified,
+  });
 
   @override
   Widget build(BuildContext context) {
+    if (notverified ?? false) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        context.read<ProfileBloc>().add(const ProfileEvent.getProfile());
+      });
+    }
+
     return BlocConsumer<ProfileBloc, ProfileState>(
       listener: (context, state) {
         if (state.unauthorized) {}
@@ -27,12 +38,14 @@ class ViewMyProfile extends StatelessWidget {
           return const Center(child: LoadingWIdget());
         } else if (state.hasData) {
           return ViewMyProfileBlocBody(
+            notverified: notverified ?? false,
             address: state.result!.data!.address ?? "No Adress",
             dob: state.result!.data!.dob.toString(),
             email: state.result!.data!.email ?? "",
             imgUrl: state.result!.data!.profileImagelink!,
             mobile: state.result!.data!.mobileNo ?? "No mobile",
             name: state.result!.data!.name ?? "",
+            isverified: state.result!.data!.doctorapproved ?? false,
           );
         } else if (state.isError) {
           return const Center(child: AppErrorWidget());
@@ -50,6 +63,8 @@ class ViewMyProfileBlocBody extends StatelessWidget {
   final String mobile;
   final String dob;
   final String address;
+  final bool notverified;
+  final bool isverified;
 
   const ViewMyProfileBlocBody({
     required this.address,
@@ -58,6 +73,8 @@ class ViewMyProfileBlocBody extends StatelessWidget {
     required this.imgUrl,
     required this.mobile,
     required this.name,
+    required this.isverified,
+    required this.notverified,
     super.key,
   });
 
@@ -69,6 +86,7 @@ class ViewMyProfileBlocBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ProfileNameCard(
+            isverified: isverified,
             email: email,
             imageUrl: imgUrl,
             name: name,
@@ -114,6 +132,12 @@ class ViewMyProfileBlocBody extends StatelessWidget {
                     .headlineMedium!
                     .copyWith(fontWeight: FontWeight.normal)),
           ),
+          notverified && isverified
+              ? Text(
+                  "If you see this message, please log out and log in again.",
+                  style: Theme.of(context).textTheme.headlineMedium)
+              :const SizedBox(),
+          notverified && isverified ? const Logout() :const SizedBox(),
           const Spacer(),
           TextButtonWidget(
             onPressed: () {

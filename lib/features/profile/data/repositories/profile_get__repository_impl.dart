@@ -34,7 +34,7 @@ class GetProfileRepoImpliment implements GetProfileRepository {
 
       final response = await Dio(BaseOptions()).get(
         ApiEndPoints.getprofile,
-        options: Options(headers: headers),
+        options: Options(headers: headers, validateStatus: (_) => true,),
         data: {'Emailid': mail},
       );
 

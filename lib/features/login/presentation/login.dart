@@ -6,7 +6,7 @@ import 'package:dr_kevell/core/helper/toast.dart';
 import 'package:dr_kevell/core/helper/validater.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/pages/initialize/initialize.dart';
-import 'package:dr_kevell/pages/signup_screen/presentation/lsignup_screen.dart';
+import 'package:dr_kevell/features/signup/presentation/pages/lsignup_screen.dart';
 
 import '../../../settings/value/constant.dart';
 import '../../../settings/value/secure_storage.dart';
@@ -149,8 +149,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                   if (state.loginDetails!.data!.first.token != null &&
                       state.loginDetails!.data!.first.emailid != null &&
                       state.loginDetails!.data!.first.id != null) {
-                    addToSS(
-                        mailsecureStoreKey, state.loginDetails!.data!.first.emailid!);
+
+
+                    addToSS(isVeryfiedKey,
+                        state.loginDetails!.data!.first.doctorapproved.toString());
+
+                    addToSS(mailsecureStoreKey,
+                        state.loginDetails!.data!.first.emailid!);
 
                     addToSS(drIdsecureStoreKey,
                         state.loginDetails!.data!.first.id.toString());

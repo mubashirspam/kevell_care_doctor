@@ -3,21 +3,20 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dr_kevell/settings/api/endpoints.dart';
-import 'package:dr_kevell/features/prescription/data/model/prescription_list_model.dart';
 
 import '../../domain/repositories/update_prescription_repository.dart';
 import '../../../../settings/value/constant.dart';
 import '../../../../settings/value/secure_storage.dart';
 import '../../../../core/failiar/failiur_model.dart';
 import '../../../../core/failiar/main_failures.dart';
+import '../model/prescription_model.dart';
 
 @LazySingleton(as: UpdatePrescriptionListRepository)
 class UpdatePrescriptionListRepoImpliment
     implements UpdatePrescriptionListRepository {
   @override
-  Future<Either<MainFailure, PrescriptionModel>> updatePrescriptionList({
-    required PrescriptionElement prescriptionElement,
-  }) async {
+  Future<Either<MainFailure, PrescriptionModel>> updatePrescriptionList(
+      {required Map<String, dynamic> payload}) async {
     try {
       final token = await getTokenFromSS(secureStoreKey);
 
@@ -26,10 +25,13 @@ class UpdatePrescriptionListRepoImpliment
         'Content-Type': 'application/json',
       };
 
-      final response = await Dio(BaseOptions()).post(
-          ApiEndPoints.updatePrescription,
-          options: Options(headers: headers,  validateStatus: (_) => true,),
-          data: prescriptionElement.toJson());
+      final response =
+          await Dio(BaseOptions()).post(ApiEndPoints.updatePrescription,
+              options: Options(
+                headers: headers,
+                validateStatus: (_) => true,
+              ),
+              data: payload);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = PrescriptionModel.fromJson(response.data);

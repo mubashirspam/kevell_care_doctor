@@ -6,8 +6,8 @@ import 'package:dr_kevell/pages/schedule/presentation/schedule_screen.dart';
 import 'package:dr_kevell/pages/schedule/presentation/widgets/schedule_appbar.dart';
 import '../../chat/presentation/widgets/chat_appbar.dart';
 import '../../history/presentation/history_screen.dart';
-import '../../home_screen/presentation/home_screen.dart';
-import '../../home_screen/presentation/widgets/home_appbar.dart';
+import '../../../features/home/presentation/pages/home_screen.dart';
+import '../../../features/home/presentation/widgets/home_appbar.dart';
 import '../../profile/presentation/widgets/profile_appbar.dart';
 import 'widgets/bottom_navigation.dart';
 

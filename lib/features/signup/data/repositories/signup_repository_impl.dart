@@ -8,34 +8,28 @@ import 'package:dr_kevell/features/signup/data/models/signup_model.dart';
 import '../../../../core/failiar/failiur_model.dart';
 import '../../../../core/failiar/main_failures.dart';
 
+import '../../domain/entities/signup_payload.dart';
 import '../../domain/repositories/signup_repository.dart';
 
 @LazySingleton(as: SignupRepository)
 class SignupRepoImpliment implements SignupRepository {
   @override
   Future<Either<MainFailure, SignupModel>> signup({
-    required String email,
-    required String phone,
-    required String fullName,
-    required String password,
+    required SingupPayload singupPayload
+    
   }) async {
     try {
       final response = await Dio(BaseOptions()).post(
         ApiEndPoints.register,
-        data: {
-          "username": fullName,
-          "email": email,
-          "mobile": phone,
-          "password": password
-        },
+        data: singupPayload.toJson()
       );
 
       log(response.data.toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final registerResult = SignupModel.fromJson(response.data);
-        log(registerResult.toJson().toString());
+        // final registerResult = SignupModel.fromJson(response.data);
+        // log(registerResult.toJson().toString());
 
-        return Right(registerResult);
+        return Right(SignupModel());
       } else if (response.statusCode == 400 || response.statusCode == 401) {
         final result = FailureModel.fromJson(response.data);
         return Left(

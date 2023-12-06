@@ -33,12 +33,11 @@ class FetchReportRepoImpliment implements FetchReportRepository {
         options: Options(headers: headers),
         data: fetchReportPayload.toJson(),
       );
-log(response.data.toString());
+
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = ReportModel.fromJson(response.data);
 
-        
-
+      
         return Right(result);
       } else if (response.statusCode == 400 || response.statusCode == 401) {
         final result = FailureModel.fromJson(response.data);

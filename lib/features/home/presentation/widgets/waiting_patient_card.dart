@@ -4,7 +4,6 @@ import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 
 import '../../../../pages/checkup/presentation/patient_checkup_screen.dart';
 
-import '../../../../settings/value/constant.dart';
 import '../../../widgets/avatar/active_avatar.dart';
 import '../../data/models/waiting_patient_model.dart';
 

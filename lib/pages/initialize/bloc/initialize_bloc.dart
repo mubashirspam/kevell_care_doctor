@@ -27,23 +27,26 @@ class InitializeBloc extends Bloc<InitializeEvent, InitializeState> {
       emit(
         state.copyWith(
           isLoading: true,
-        
         ),
       );
 
       final token = await getTokenFromSS(secureStoreKey);
-      
+      final isVerified = await getTokenFromSS(isVeryfiedKey);
 
       if (token != null) {
-        emit(state.copyWith(
-          isLoading: false,
-          isToken: true,
-        ));
+        emit(
+          state.copyWith(
+            isLoading: false,
+            isToken: true,
+            isVerified: isVerified == "true",
+          ),
+        );
       } else {
         emit(
           state.copyWith(
             isLoading: false,
             isToken: false,
+            isVerified: false
           ),
         );
       }

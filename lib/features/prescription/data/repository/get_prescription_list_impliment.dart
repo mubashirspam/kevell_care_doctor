@@ -4,13 +4,14 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dr_kevell/settings/api/endpoints.dart';
-import 'package:dr_kevell/features/prescription/data/model/prescription_list_model.dart';
+
 import '../../../../settings/value/constant.dart';
 import '../../../../settings/value/secure_storage.dart';
 import '../../../../core/failiar/failiur_model.dart';
 import '../../../../core/failiar/main_failures.dart';
 
 import '../../domain/repositories/get_prescription_list_repository.dart';
+import '../model/prescription_model.dart';
 
 @LazySingleton(as: GetPrescriptionListRepository)
 class GetPrescriptionListRepoImpliment
@@ -27,8 +28,6 @@ class GetPrescriptionListRepoImpliment
         'Content-Type': 'application/json',
       };
 
-      print(token);
-
       final response = await Dio(BaseOptions()).get(
           ApiEndPoints.getPrescription,
           options: Options(
@@ -39,8 +38,8 @@ class GetPrescriptionListRepoImpliment
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = PrescriptionModel.fromJson(response.data);
-        log(result.toString());
-
+        log(result.toJson().toString());
+        // final result = PrescriptionModel.fromJson(dummyJson);
         return Right(result);
       } else if (response.statusCode == 400 || response.statusCode == 401) {
         final result = FailureModel.fromJson(response.data);
@@ -59,7 +58,10 @@ class GetPrescriptionListRepoImpliment
               MainFailure.unauthorized(message: result.message ?? "Error"));
         }
       }
+      // final result = PrescriptionModel.fromJson(dummyJson);
+   
       return const Left(MainFailure.clientFailure());
     }
   }
 }
+
