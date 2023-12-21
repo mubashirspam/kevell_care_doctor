@@ -1,4 +1,4 @@
-import 'dart:io';
+
 
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/features/prescription/presentation/pages/create_prescription_screen.dart';
@@ -11,6 +11,7 @@ import 'package:share/share.dart';
 
 import '../../../../core/helper/enums.dart';
 import '../../../../core/helper/toast.dart';
+import '../../../../settings/color/main_color.dart';
 import '../../../prescription/presentation/bloc/precription_bloc.dart';
 import '../../data/model/report_model.dart';
 
@@ -77,7 +78,6 @@ class PrescriptionReportsCard extends StatelessWidget {
               OpenFile.open('${value.path}/prescription.pdf');
             }
             if (pdfState.action == PdfActions.view) {
-          
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -95,7 +95,7 @@ class PrescriptionReportsCard extends StatelessWidget {
           padding: const EdgeInsets.all(15),
           margin: const EdgeInsets.symmetric(horizontal: 20),
           decoration: ShapeDecoration(
-            color: context.theme.primary,
+            color: generateLightColor(),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
@@ -109,7 +109,7 @@ class PrescriptionReportsCard extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.picture_as_pdf,
-                        color: context.theme.backround,
+                        color: context.theme.textPrimary,
                       ),
                       const SizedBox(width: 15),
                       Text(
@@ -135,7 +135,10 @@ class PrescriptionReportsCard extends StatelessWidget {
                             backgroundColor: context.theme.backround,
                             foregroundColor: context.theme.primary,
                           ),
-                          child: const Text("Edit"),
+                          child: Text(
+                            "Edit",
+                            style: TextStyle(color: context.theme.textPrimary),
+                          ),
                         ),
                       ),
                       const SizedBox(width: 15),
@@ -152,7 +155,9 @@ class PrescriptionReportsCard extends StatelessWidget {
                               backgroundColor: context.theme.backround,
                               foregroundColor: context.theme.primary,
                             ),
-                            child: const Text("Download")),
+                            child: Text("Download",
+                                style: TextStyle(
+                                    color: context.theme.textPrimary))),
                       ),
                       const SizedBox(width: 15),
                       Expanded(
@@ -167,7 +172,9 @@ class PrescriptionReportsCard extends StatelessWidget {
                             backgroundColor: context.theme.backround,
                             foregroundColor: context.theme.primary,
                           ),
-                          child: const Text("share"),
+                          child: Text("share",
+                              style:
+                                  TextStyle(color: context.theme.textPrimary)),
                         ),
                       ),
                     ],

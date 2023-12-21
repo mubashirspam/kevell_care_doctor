@@ -3,14 +3,12 @@ import 'package:dr_kevell/features/report/data/model/report_model.dart'
     as report;
 import 'package:flutter/material.dart';
 
-
+import '../../../../settings/color/main_color.dart';
 import '../../../checkup/presentation/end_appoinment_report_screen.dart';
 import '../../../checkup/presentation/widgets/ecg_graph.dart';
 
 import '../widgets/prescription_reports.dart';
 import '../widgets/report_appbar.dart';
-
-
 
 class ReportScreen extends StatelessWidget {
   final report.Datum data;
@@ -24,7 +22,7 @@ class ReportScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     List<ECGData> ecgData = [];
     List<double> voltageValues;
-
+    double widthEcg = 1;
     if (data.ecginfo!.isNotEmpty) {
       String? value = data.ecginfo!.first.data?.content;
       if (value != null && value.isNotEmpty) {
@@ -39,7 +37,7 @@ class ReportScreen extends StatelessWidget {
             return 0.0; // Handle non-numeric values or provide a suitable default
           }
         }).toList();
-
+        widthEcg = double.parse(voltageValues.length.toString());
         for (int i = 0; i < voltageValues.length; i++) {
           ecgData.add(ECGData(
             time: i,
@@ -50,6 +48,7 @@ class ReportScreen extends StatelessWidget {
     }
     List<ECGData> grsData = [];
     List<double> grsvoltageValues;
+    double widthGsr = 1;
 
     if (data.gsrinfo!.isNotEmpty) {
       String? value = data.gsrinfo!.first.data?.content;
@@ -65,7 +64,7 @@ class ReportScreen extends StatelessWidget {
             return 0.0; // Handle non-numeric values or provide a suitable default
           }
         }).toList();
-
+        widthGsr = double.parse(grsvoltageValues.length.toString());
         for (int i = 0; i < grsvoltageValues.length; i++) {
           grsData.add(ECGData(
             time: i,
@@ -117,16 +116,26 @@ class ReportScreen extends StatelessWidget {
               ),
             if (data.ecginfo!.isNotEmpty)
               EcgResultCard(
+                width: 2 * widthEcg,
+                colors: [
+                  generateLightColor(),
+                  generateLightColor(),
+                ],
                 ecgData: ecgData,
-                name: "ECG Graph",
+                name: "ECG",
               ),
             if (data.gsrinfo!.isNotEmpty)
               EcgResultCard(
+                width: 2 * widthGsr,
+                colors: [
+                  generateLightColor(),
+                  generateLightColor(),
+                ],
                 ecgData: grsData,
-                name: "GRS Graph",
+                name: "GRS ",
               ),
-              if(data.prescription!.isNotEmpty)
-             PrescriptionReportsCard(data: data.prescription!),
+            if (data.prescription!.isNotEmpty)
+              PrescriptionReportsCard(data: data.prescription!),
             const SizedBox(
               height: 30,
             )
@@ -138,23 +147,27 @@ class ReportScreen extends StatelessWidget {
 }
 
 class EcgResultCard extends StatelessWidget {
-  const EcgResultCard({super.key, required this.ecgData, required this.name});
+  const EcgResultCard(
+      {super.key,
+      required this.ecgData,
+      required this.width,
+      required this.name,
+      required this.colors});
 
   final List<ECGData> ecgData;
   final String name;
+  final List<Color> colors;
+  final double width;
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.maxFinite,
       margin: const EdgeInsets.all(20).copyWith(top: 0),
-      padding: const EdgeInsets.all(14),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         gradient: LinearGradient(
-          colors: [
-            context.theme.secondary!,
-            context.theme.primary!,
-          ],
+          colors: colors,
         ),
       ),
       child: Column(
@@ -168,8 +181,14 @@ class EcgResultCard extends StatelessWidget {
                 .copyWith(fontSize: 16),
           ),
           const SizedBox(height: 10),
-          ECGGraph(
-            data: ecgData,
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: SizedBox(
+              width: width,
+              child: ECGGraph(
+                data: ecgData,
+              ),
+            ),
           ),
         ],
       ),

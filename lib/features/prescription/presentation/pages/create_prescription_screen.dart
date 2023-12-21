@@ -55,6 +55,7 @@ class CreatePrescriptionScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: Row(
+        
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -75,7 +76,7 @@ class CreatePrescriptionScreen extends StatelessWidget {
                           if (state.isCreateHasdata) {
                             CreatePrescriptionPayload prescriptionData =
                                 state.createPrescriptionPayload!;
-
+                
                             context.read<PrecriptionBloc>().add(
                                   PrecriptionEvent.createPrescription(
                                     payload: CreatePrescriptionPayload(

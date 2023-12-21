@@ -3,7 +3,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 
 class ECGGraph extends StatelessWidget {
   final List<ECGData> data;
-  
+
   const ECGGraph({
     super.key,
     required this.data,
@@ -14,10 +14,9 @@ class ECGGraph extends StatelessWidget {
     return SfCartesianChart(
       primaryXAxis: NumericAxis(),
       primaryYAxis: NumericAxis(),
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.transparent,
       borderWidth: 1,
       enableAxisAnimation: true,
-
       series: <ChartSeries>[
         LineSeries<ECGData, int>(
           dataSource: data,

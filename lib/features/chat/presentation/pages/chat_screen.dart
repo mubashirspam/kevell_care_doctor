@@ -2,7 +2,9 @@ import 'package:dr_kevell/features/chat/presentation/bloc/chat_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../features/chat/presentation/all_chat_list_widget.dart';
+import '../all_chat_list_widget.dart';
+
+
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});

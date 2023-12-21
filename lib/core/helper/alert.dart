@@ -1,6 +1,6 @@
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:dr_kevell/pages/login_scrren/presentation/login_screen.dart';
+import 'package:dr_kevell/features/login/presentation/pages/login_screen.dart';
 
 class Alert {
   static void showAlert({

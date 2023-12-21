@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,19 +38,45 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
       final response = await getprofileRepository.getProfile();
 
-      final result = response.fold(
-        (failure) => state.copyWith(
-          isLoading: false,
-          isError: true,
-        ),
-        (success) => state.copyWith(
-          isError: false,
-          isLoading: false,
-          hasData: true,
-          result: success,
-        ),
-      );
-      emit(result);
+      response.fold(
+          (failure) => {
+                failure.maybeWhen(
+                  clientFailure: (s) {
+                    return emit(state.copyWith(
+                      isLoading: false,
+                      isError: true,
+                    ));
+                  },
+                  unauthorized: (String message) {
+                          log("emited unauthorized");
+                    return emit(state.copyWith(
+                      isLoading: false,
+                      unauthorized: true,
+                    ));
+                  },
+                  serverFailure: (s) {
+                    return emit(state.copyWith(
+                      isLoading: false,
+                      isError: true,
+                    ));
+                  },
+                  orElse: () {
+                    return emit(state.copyWith(
+                      isLoading: false,
+                      isError: true,
+                    ));
+                  },
+                )
+              }, (success) {
+        emit(
+          state.copyWith(
+            isError: false,
+            isLoading: false,
+            hasData: true,
+            result: success,
+          ),
+        );
+      });
     });
 
     on<_PickDate>((event, emit) {

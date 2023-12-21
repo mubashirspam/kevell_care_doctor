@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:dr_kevell/pages/chat/presentation/chat_screen.dart';
 import 'package:dr_kevell/pages/history/presentation/widgets/history_appbar.dart';
 import 'package:dr_kevell/pages/profile/presentation/profile_screen.dart';
 import 'package:dr_kevell/pages/schedule/presentation/schedule_screen.dart';
 import 'package:dr_kevell/pages/schedule/presentation/widgets/schedule_appbar.dart';
-import '../../chat/presentation/widgets/chat_appbar.dart';
+import '../../../features/chat/presentation/pages/chat_screen.dart';
+import '../../../features/chat/presentation/widgets/chat_appbar.dart';
 import '../../history/presentation/history_screen.dart';
 import '../../../features/home/presentation/pages/home_screen.dart';
 import '../../../features/home/presentation/widgets/home_appbar.dart';

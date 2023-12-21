@@ -9,7 +9,7 @@ import 'package:dr_kevell/features/signup/presentation/bloc/signup_bloc.dart';
 import 'package:dr_kevell/features/widgets/input_field/input_field_widget.dart';
 
 import '../../../core/helper/validater.dart';
-import '../../../pages/login_scrren/presentation/login_screen.dart';
+import '../../login/presentation/pages/login_screen.dart';
 import '../../widgets/buttons/text_button_widget.dart';
 import '../../widgets/input_field/drop_down.dart';
 import '../domain/entities/signup_payload.dart';
@@ -30,6 +30,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController mobileController = TextEditingController();
   TextEditingController registerIdController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
   String selectedLocation = "Please select location";
   String selectedSpecialist = "Please select specialization";
 
@@ -113,6 +114,23 @@ class _SignUpWidgetState extends State<SignUpWidget> {
     );
   }
 
+  // void signup() {
+  //   context.read<SignupBloc>().add(
+  //         SignupEvent.signup(
+  //           payload: SingupPayload(
+  //               address: "ss",
+  //               dob: DateTime.now(),
+  //               email: "mwqwwu@wwgml.com",
+  //               location: "Chengalpattu",
+  //               mobile: "3ww2232q23",
+  //               password: "11111111",
+  //               registredId: "11111111",
+  //               specialist: "Dentist",
+  //               username: "bdjbjd"),
+  //         ),
+  //       );
+  // }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -165,6 +183,21 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               validate: (number) {
                 if (number == null || number.isEmpty) {
                   return "Please enter an Registration id";
+                }
+                return null; // Return null if validation succeeds
+              },
+            ),
+            const SizedBox(height: 20),
+            Text("Adress", style: Theme.of(context).textTheme.titleLarge),
+            const SizedBox(height: 10),
+            TextFieldWidget(
+              textEditingController: addressController,
+              onChanged: (value) {},
+              hintText: "Adress",
+              keyboardType: TextInputType.name,
+              validate: (number) {
+                if (number == null || number.isEmpty) {
+                  return "Please enter an Adress";
                 }
                 return null; // Return null if validation succeeds
               },
@@ -340,11 +373,14 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                             message: "Please select an a specialization",
                             color: Colors.red);
                       } else {
+                        if (state.isLoading) {
+                          return;
+                        }
                         context.read<SignupBloc>().add(
                               SignupEvent.signup(
                                 payload: SingupPayload(
-                                  address: "",
-                                  dob: "",
+                                  address: addressController.value.text,
+                                  dob: DateTime.now(),
                                   email: emailController.value.text,
                                   location: selectedLocation,
                                   mobile: mobileController.value.text,
@@ -358,6 +394,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                             );
                       }
                     }
+                    // signup();
                   },
                   name: "Sign up",
                   isLoading: state.isLoading,

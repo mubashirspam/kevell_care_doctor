@@ -13,7 +13,7 @@ class SingupPayload {
     String? email;
     String? mobile;
     String? password;
-    String? dob;
+    DateTime? dob;
     String? address;
     String? specialist;
     String? location;
@@ -31,14 +31,37 @@ class SingupPayload {
         this.registredId,
     });
 
- 
+    SingupPayload copyWith({
+        String? username,
+        String? email,
+        String? mobile,
+        String? password,
+        DateTime? dob,
+        String? address,
+        String? specialist,
+        String? location,
+        String? registredId,
+    }) => 
+        SingupPayload(
+            username: username ?? this.username,
+            email: email ?? this.email,
+            mobile: mobile ?? this.mobile,
+            password: password ?? this.password,
+            dob: dob ?? this.dob,
+            address: address ?? this.address,
+            specialist: specialist ?? this.specialist,
+            location: location ?? this.location,
+            registredId: registredId ?? this.registredId,
+        );
+
+    
 
     Map<String, dynamic> toJson() => {
         "username": username,
         "email": email,
         "mobile": mobile,
         "password": password,
-        "dob": dob,
+        "DOB": dob?.toIso8601String(),
         "Address": address,
         "specialist": specialist,
         "location": location,

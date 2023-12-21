@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:dr_kevell/features/forgot_password_screen/presentation/pages/forgot_password_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dr_kevell/core/helper/toast.dart';
@@ -120,7 +121,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             const SizedBox(height: 20),
             GestureDetector(
               onTap: () =>
-                  Navigator.of(context).pushNamed(SignupScreen.routeName),
+                  Navigator.of(context).pushNamed(ForgotPasswordScreen.routeName),
               child: RichText(
                 text: TextSpan(
                   style: const TextStyle(color: Colors.black, fontSize: 16),

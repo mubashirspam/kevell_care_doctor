@@ -4,7 +4,7 @@ import 'package:dr_kevell/features/widgets/error_widget.dart';
 import 'package:dr_kevell/features/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/features/chat/presentation/widgets/chat_person_card.dart';
-import 'package:dr_kevell/pages/chat/presentation/chating_screen.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../settings/value/constant.dart';
@@ -14,6 +14,7 @@ import '../data/model/message_isar_model.dart';
 import '../domain/chat_service.dart';
 import '../domain/message_isar_repo.dart';
 import 'bloc/chat_bloc.dart';
+import 'pages/chating_screen.dart';
 
 class AllChatListWidget extends StatefulWidget {
   const AllChatListWidget({

@@ -5,6 +5,10 @@ import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/features/profile/presentation/bloc/profile_bloc.dart';
 
 import '../../../core/helper/date.dart';
+import '../../../core/helper/toast.dart';
+import '../../../pages/initialize/initialize.dart';
+import '../../../settings/value/constant.dart';
+import '../../../settings/value/secure_storage.dart';
 import '../../widgets/buttons/text_button_widget.dart';
 import '../../widgets/error_widget.dart';
 import '../../widgets/loading_widget.dart';
@@ -27,8 +31,20 @@ class ViewMyProfile extends StatelessWidget {
     }
 
     return BlocConsumer<ProfileBloc, ProfileState>(
-      listener: (context, state) {
-        if (state.unauthorized) {}
+      listener: (context, state) async {
+        if (state.unauthorized) {
+          Toast.showToast(
+            context: context,
+            message: "Please Login again ",
+          );
+          await deleteFromSS(secureStoreKey)
+              .then((value) => Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                      builder: (context) => const Initialize(),
+                    ),
+                    (route) => false,
+                  ));
+        }
       },
       // buildWhen: (previous, current) {
       //   return current != previous;
@@ -42,7 +58,7 @@ class ViewMyProfile extends StatelessWidget {
             address: state.result!.data!.address ?? "No Adress",
             dob: state.result!.data!.dob.toString(),
             email: state.result!.data!.email ?? "",
-            imgUrl: state.result!.data!.profileImagelink!,
+            imgUrl: state.result!.data!.profileImagelink ?? "",
             mobile: state.result!.data!.mobileNo ?? "No mobile",
             name: state.result!.data!.name ?? "",
             isverified: state.result!.data!.doctorapproved ?? false,
@@ -136,8 +152,8 @@ class ViewMyProfileBlocBody extends StatelessWidget {
               ? Text(
                   "If you see this message, please log out and log in again.",
                   style: Theme.of(context).textTheme.headlineMedium)
-              :const SizedBox(),
-          notverified && isverified ? const Logout() :const SizedBox(),
+              : const SizedBox(),
+          const Logout(),
           const Spacer(),
           TextButtonWidget(
             onPressed: () {

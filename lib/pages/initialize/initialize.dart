@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dr_kevell/features/widgets/loading_widget.dart';
 import 'package:dr_kevell/pages/dashborad/presentation/dashborad.dart';
 import 'package:dr_kevell/pages/initialize/bloc/initialize_bloc.dart';
-import 'package:dr_kevell/pages/login_scrren/presentation/login_screen.dart';
+import 'package:dr_kevell/features/login/presentation/pages/login_screen.dart';
 
 import '../dashborad/presentation/widgets/bottom_navigation.dart';
 

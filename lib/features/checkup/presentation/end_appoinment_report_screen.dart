@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/helper/date.dart';
+import '../../../settings/color/main_color.dart';
 import '../../report/presetantion/pages/report_screen.dart';
 import '../../report/data/model/report_model.dart';
 import 'bloc/checkup_bloc.dart';
@@ -46,6 +47,7 @@ class AppoinmentsEndReportScrenn extends StatelessWidget {
                 Data datas = state.endAppoinmentResult!.data!;
                 List<ECGData> ecgData = [];
                 List<double> voltageValues;
+                double widthEcg = 1;
 
                 if (datas.checkupResult!.ecg != null) {
                   String? value = datas.checkupResult!.ecg;
@@ -61,7 +63,7 @@ class AppoinmentsEndReportScrenn extends StatelessWidget {
                         return 0.0; // Handle non-numeric values or provide a suitable default
                       }
                     }).toList();
-
+                    widthEcg = double.parse(voltageValues.length.toString());
                     for (int i = 0; i < voltageValues.length; i++) {
                       ecgData.add(ECGData(
                         time: i,
@@ -169,13 +171,23 @@ class AppoinmentsEndReportScrenn extends StatelessWidget {
                         parameter: "Blood pressure",
                       ),
 
-                      if(datas.checkupResult!.glucose != null)
-                        ResultCard(
+                    if (datas.checkupResult!.glucose != null)
+                      ResultCard(
                         parameter: "Glucose",
-                        value: datas.checkupResult!.glucose??"",
+                        value: datas.checkupResult!.glucose ?? "",
                       ),
                     if (datas.checkupResult!.ecg != null)
                       EcgResultCard(
+                        width: 2 * widthEcg,
+                        colors: [
+                          generateLightColor(),
+                          generateLightColor(),
+                          generateLightColor(),
+                          generateLightColor(),
+                          generateLightColor(),
+                          generateLightColor(),
+                          generateLightColor(),
+                        ],
                         ecgData: ecgData,
                         name: "ECG Graph",
                       ),
@@ -280,8 +292,8 @@ class ResultCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           gradient: LinearGradient(
             colors: [
-              context.theme.secondary!,
-              context.theme.primary!,
+              generateLightColor(),
+              generateLightColor(),
             ],
           ),
         ),
@@ -327,8 +339,8 @@ class BpCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           gradient: LinearGradient(
             colors: [
-              context.theme.secondary!,
-              context.theme.primary!,
+              generateLightColor(),
+              generateLightColor(),
             ],
           ),
         ),

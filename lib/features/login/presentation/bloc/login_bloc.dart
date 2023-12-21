@@ -15,6 +15,7 @@ part 'login_bloc.freezed.dart';
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final LoginRepository loginRepository;
   LoginBloc(this.loginRepository) : super(LoginState.initial()) {
+    
     on<_Login>(
       (event, emit) async {
         emit(state.copyWith(
@@ -75,6 +76,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             ),
           );
         });
+
+        
       },
     );
   }

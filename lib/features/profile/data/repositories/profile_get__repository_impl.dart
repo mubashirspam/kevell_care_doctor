@@ -34,17 +34,20 @@ class GetProfileRepoImpliment implements GetProfileRepository {
 
       final response = await Dio(BaseOptions()).get(
         ApiEndPoints.getprofile,
-        options: Options(headers: headers, validateStatus: (_) => true,),
+        options: Options(
+          headers: headers,
+          validateStatus: (_) => true,
+        ),
         data: {'Emailid': mail},
       );
-
+      log("Profile : ${response.data}");
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = ProfileModel.fromJson(response.data);
-        log(result.toString());
 
         return Right(result);
       } else if (response.statusCode == 400 || response.statusCode == 401) {
         final result = FailureModel.fromJson(response.data);
+        
         return Left(
             MainFailure.unauthorized(message: result.message ?? "Error"));
       } else {

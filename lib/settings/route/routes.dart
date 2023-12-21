@@ -1,17 +1,19 @@
+import 'package:dr_kevell/features/forgot_password_screen/presentation/pages/forgot_password_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/pages/checkup/presentation/patient_checkup_screen.dart';
 import 'package:dr_kevell/pages/profile/presentation/my_profile_screen.dart';
 import 'package:dr_kevell/pages/profile/presentation/profile_screen.dart';
 import 'package:dr_kevell/features/report/presetantion/pages/report_screen.dart';
 import '../../../features/home/data/models/waiting_patient_model.dart';
-import '../../pages/chat/presentation/chating_screen.dart';
+
+import '../../features/chat/presentation/pages/chating_screen.dart';
 import '../../pages/history/presentation/single_person_history_screen.dart';
 import 'package:dr_kevell/features/report/data/model/report_model.dart'
     as report;
 
 import '../../features/prescription/presentation/pages/create_prescription_screen.dart';
 import '../../pages/dashborad/presentation/dashborad.dart';
-import '../../pages/login_scrren/presentation/login_screen.dart';
+import '../../features/login/presentation/pages/login_screen.dart';
 import '../../pages/schedule/presentation/schedule_your_time.dart';
 import '../../features/signup/presentation/pages/lsignup_screen.dart';
 
@@ -24,6 +26,7 @@ final Map<String, Widget Function(BuildContext ctx)> route = {
   ScheduleYourTime.routeName: (ctx) => const ScheduleYourTime(),
   ProfileScreen.routeName: (ctx) => const ProfileScreen(),
   MyProfileScreen.routeName: (ctx) => const MyProfileScreen(),
+  ForgotPasswordScreen.routeName: (ctx) => const ForgotPasswordScreen(),
   CreatePrescriptionScreen.routeName: (ctx) => CreatePrescriptionScreen(
         checkupDetalis:
             ModalRoute.of(ctx)!.settings.arguments as Map<String, dynamic>,

@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:dr_kevell/settings/api/endpoints.dart';
 import 'package:dr_kevell/features/signup/data/models/signup_model.dart';
 import '../../../../core/failiar/failiur_model.dart';
 import '../../../../core/failiar/main_failures.dart';
@@ -14,22 +13,19 @@ import '../../domain/repositories/signup_repository.dart';
 @LazySingleton(as: SignupRepository)
 class SignupRepoImpliment implements SignupRepository {
   @override
-  Future<Either<MainFailure, SignupModel>> signup({
-    required SingupPayload singupPayload
-    
-  }) async {
+  Future<Either<MainFailure, SignupModel>> signup(
+      {required SingupPayload singupPayload}) async {
     try {
-      final response = await Dio(BaseOptions()).post(
-        ApiEndPoints.register,
-        data: singupPayload.toJson()
-      );
+      final response = await Dio(BaseOptions(
+        validateStatus: (_) => true,
+      )).post("https://kevelldigital.com/doctor/api/register", data: singupPayload.toJson());
 
       log(response.data.toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
-        // final registerResult = SignupModel.fromJson(response.data);
+        final registerResult = SignupModel.fromJson(response.data);
         // log(registerResult.toJson().toString());
 
-        return Right(SignupModel());
+        return Right(registerResult);
       } else if (response.statusCode == 400 || response.statusCode == 401) {
         final result = FailureModel.fromJson(response.data);
         return Left(

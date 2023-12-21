@@ -37,7 +37,7 @@ class UpdateProfileRepoImpliment implements GetWaitingPatientRepository {
             headers: headers,
             validateStatus: (_) => true,
           ),
-          data: {"doctorId": "1045"});
+          data: {"doctorId": int.parse("$id")});
 
       log("todayWaitingHallPatientsdetails : ${response.data}");
 

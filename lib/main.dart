@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:dr_kevell/features/forgot_password_screen/presentation/bloc/forgot_password_bloc.dart';
 import 'package:dr_kevell/firebase_options.dart';
 import 'package:dr_kevell/pages/initialize/initialize.dart';
 import 'package:dr_kevell/settings/value/secure_storage.dart';
@@ -74,6 +75,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (ctx) => getIt<ScheduleBloc>()),
         BlocProvider(create: (ctx) => getIt<ChatBloc>()),
         BlocProvider(create: (ctx) => InitializeBloc()),
+        BlocProvider(create: (ctx) => getIt<ForgotPasswordBloc>()),
       ],
       child: MaterialApp(
         scaffoldMessengerKey: scaffoldMessengerKey,
