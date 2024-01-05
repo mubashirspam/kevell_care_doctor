@@ -4,14 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dr_kevell/core/helper/date.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 
-import '../../../core/helper/date_formater.dart';
-import '../../../core/helper/date_validater.dart';
-import '../../../core/helper/toast.dart';
-import '../../../core/helper/validater.dart';
-import '../../widgets/buttons/text_button_widget.dart';
-import '../../widgets/calender/calnder.dart';
-import '../../widgets/input_field/input_field_widget.dart';
-import 'bloc/profile_bloc.dart';
+import '../../../../core/helper/date_formater.dart';
+import '../../../../core/helper/date_validater.dart';
+import '../../../../core/helper/toast.dart';
+import '../../../../core/helper/validater.dart';
+import '../../../widgets/buttons/text_button_widget.dart';
+import '../../../widgets/calender/calnder.dart';
+import '../../../widgets/input_field/input_field_widget.dart';
+import '../bloc/profile_bloc.dart';
 
 class EditMyProfile extends StatefulWidget {
   final String? name;
@@ -43,8 +43,9 @@ class _EditMyProfileState extends State<EditMyProfile> {
   @override
   void initState() {
     nameController = TextEditingController(text: widget.name);
-    dobController = TextEditingController(
-        text: dateFormatToddmmyyyy(DateTime.parse(widget.dob.toString())));
+    // dobController = TextEditingController(
+    //     text: dateFormatToddmmyyyy(DateTime.parse(widget.dob.toString())));
+    dobController = TextEditingController();
     mobileController = TextEditingController(text: widget.mobile);
     addressController = TextEditingController(text: widget.adress);
     super.initState();
@@ -200,15 +201,7 @@ class _EditMyProfileState extends State<EditMyProfile> {
                                 if (_formKey.currentState!.validate()) {
                                   context.read<ProfileBloc>().add(
                                         ProfileEvent.updateProfile(
-                                          profileData: Data(
-                                              registeredUserId: state.result!
-                                                  .data!.registeredUserId,
-                                              address:
-                                                  addressController.value.text,
-                                              dob: state.date,
-                                              name: nameController.value.text,
-                                              mobileNo:
-                                                  mobileController.value.text),
+                                          profileData:Profile()
                                         ),
                                       );
                                 }

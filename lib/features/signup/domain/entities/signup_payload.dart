@@ -4,67 +4,75 @@
 
 import 'dart:convert';
 
-
-
 String singupPayloadToJson(SingupPayload data) => json.encode(data.toJson());
 
 class SingupPayload {
-    String? username;
-    String? email;
-    String? mobile;
-    String? password;
-    DateTime? dob;
-    String? address;
-    String? specialist;
-    String? location;
-    String? registredId;
+  String? name;
+  String? emailId;
+  String? mobileNo;
+  String? password;
+  DateTime? dob;
+  Address? address;
+  String? specialist;
+  String? location;
+  String? regId;
+  String? gender;
 
-    SingupPayload({
-        this.username,
-        this.email,
-        this.mobile,
-        this.password,
-        this.dob,
-        this.address,
-        this.specialist,
-        this.location,
-        this.registredId,
-    });
+  SingupPayload({
+    this.name,
+    this.emailId,
+    this.mobileNo,
+    this.password,
+    this.dob,
+    this.address,
+    this.specialist,
+    this.location,
+    this.regId,
+    this.gender,
+  });
 
-    SingupPayload copyWith({
-        String? username,
-        String? email,
-        String? mobile,
-        String? password,
-        DateTime? dob,
-        String? address,
-        String? specialist,
-        String? location,
-        String? registredId,
-    }) => 
-        SingupPayload(
-            username: username ?? this.username,
-            email: email ?? this.email,
-            mobile: mobile ?? this.mobile,
-            password: password ?? this.password,
-            dob: dob ?? this.dob,
-            address: address ?? this.address,
-            specialist: specialist ?? this.specialist,
-            location: location ?? this.location,
-            registredId: registredId ?? this.registredId,
-        );
-
-    
-
-    Map<String, dynamic> toJson() => {
-        "username": username,
-        "email": email,
-        "mobile": mobile,
+  Map<String, dynamic> toJson() => {
+        "name": name,
+        "email_id": emailId,
+        "mobile_no": mobileNo,
         "password": password,
-        "DOB": dob?.toIso8601String(),
-        "Address": address,
+        "dob": dob?.toIso8601String(),
+        "address": address?.toJson(),
         "specialist": specialist,
         "location": location,
-        "registred_Id": registredId,
-    };
+        "reg_id": regId,
+        "gender": gender,
+      };
+}
+
+class Address {
+  String? street;
+  String? city;
+  String? state;
+  String? district;
+  String? zipcode;
+
+  Address({
+    this.street,
+    this.city,
+    this.state,
+    this.district,
+    this.zipcode,
+  });
+
+  factory Address.fromJson(Map<String, dynamic> json) => Address(
+        street: json["street"],
+        city: json["city"],
+        state: json["state"],
+        district: json["district"],
+        zipcode: json["zipcode"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "street": street,
+        "city": city,
+        "state": state,
+        "district": district,
+        "zipcode": zipcode,
+      };
 }

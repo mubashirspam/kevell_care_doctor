@@ -1,5 +1,3 @@
-
-
 // To parse this JSON data, do
 //
 //     final profileModel = profileModelFromJson(jsonString);
@@ -14,7 +12,7 @@ class ProfileModel {
     bool? status;
     int? responsecode;
     String? message;
-    Data? data;
+    Profile? data;
 
     ProfileModel({
         this.status,
@@ -27,7 +25,7 @@ class ProfileModel {
         bool? status,
         int? responsecode,
         String? message,
-        Data? data,
+        Profile? data,
     }) => 
         ProfileModel(
             status: status ?? this.status,
@@ -40,7 +38,7 @@ class ProfileModel {
         status: json["status"],
         responsecode: json["responsecode"],
         message: json["message"],
-        data: json["data"] == null ? null : Data.fromJson(json["data"]),
+        data: json["data"] == null ? null : Profile.fromJson(json["data"]),
     );
 
     Map<String, dynamic> toJson() => {
@@ -51,83 +49,204 @@ class ProfileModel {
     };
 }
 
-class Data {
+class Profile {
     int? registeredUserId;
     String? name;
-    String? email;
+    String? emailId;
     String? mobileNo;
     String? profileImagelink;
     DateTime? dob;
-    String? address;
+    Address? address;
     DateTime? createdAt;
     DateTime? updatedAt;
-    bool? doctorapproved;
+    bool? doctorApproved;
+    String? specialist;
+    String? location;
+    String? regId;
+    String? gender;
+    String? signatureImage;
+    BiographyAndSpecializations? professionalInformation;
+    BiographyAndSpecializations? practiceInformation;
+    BiographyAndSpecializations? communicationPreferences;
+    BiographyAndSpecializations? biographyAndSpecializations;
+    BiographyAndSpecializations? consentAndAgreement;
     int? v;
 
-    Data({
+    Profile({
         this.registeredUserId,
         this.name,
-        this.email,
+        this.emailId,
         this.mobileNo,
         this.profileImagelink,
         this.dob,
         this.address,
         this.createdAt,
         this.updatedAt,
-        this.doctorapproved,
+        this.doctorApproved,
+        this.specialist,
+        this.location,
+        this.regId,
+        this.gender,
+        this.signatureImage,
+        this.professionalInformation,
+        this.practiceInformation,
+        this.communicationPreferences,
+        this.biographyAndSpecializations,
+        this.consentAndAgreement,
         this.v,
     });
 
-    Data copyWith({
+    Profile copyWith({
         int? registeredUserId,
         String? name,
-        String? email,
+        String? emailId,
         String? mobileNo,
         String? profileImagelink,
         DateTime? dob,
-        String? address,
+        Address? address,
         DateTime? createdAt,
         DateTime? updatedAt,
-        bool? doctorapproved,
+        bool? doctorApproved,
+        String? specialist,
+        String? location,
+        String? regId,
+        String? gender,
+        String? signatureImage,
+        BiographyAndSpecializations? professionalInformation,
+        BiographyAndSpecializations? practiceInformation,
+        BiographyAndSpecializations? communicationPreferences,
+        BiographyAndSpecializations? biographyAndSpecializations,
+        BiographyAndSpecializations? consentAndAgreement,
         int? v,
     }) => 
-        Data(
+        Profile(
             registeredUserId: registeredUserId ?? this.registeredUserId,
             name: name ?? this.name,
-            email: email ?? this.email,
+            emailId: emailId ?? this.emailId,
             mobileNo: mobileNo ?? this.mobileNo,
             profileImagelink: profileImagelink ?? this.profileImagelink,
             dob: dob ?? this.dob,
             address: address ?? this.address,
             createdAt: createdAt ?? this.createdAt,
             updatedAt: updatedAt ?? this.updatedAt,
-            doctorapproved: doctorapproved ?? this.doctorapproved,
+            doctorApproved: doctorApproved ?? this.doctorApproved,
+            specialist: specialist ?? this.specialist,
+            location: location ?? this.location,
+            regId: regId ?? this.regId,
+            gender: gender ?? this.gender,
+            signatureImage: signatureImage ?? this.signatureImage,
+            professionalInformation: professionalInformation ?? this.professionalInformation,
+            practiceInformation: practiceInformation ?? this.practiceInformation,
+            communicationPreferences: communicationPreferences ?? this.communicationPreferences,
+            biographyAndSpecializations: biographyAndSpecializations ?? this.biographyAndSpecializations,
+            consentAndAgreement: consentAndAgreement ?? this.consentAndAgreement,
             v: v ?? this.v,
         );
 
-    factory Data.fromJson(Map<String, dynamic> json) => Data(
+    factory Profile.fromJson(Map<String, dynamic> json) => Profile(
         registeredUserId: json["registeredUserId"],
         name: json["name"],
-        email: json["email"],
-        mobileNo: json["MobileNo"],
-        profileImagelink: json["ProfileImagelink"],
+        emailId: json["email_id"],
+        mobileNo: json["mobile_no"],
+        profileImagelink: json["profile_imagelink"],
         dob: json["dob"] == null ? null : DateTime.parse(json["dob"]),
-        address: json["address"],
+        address: json["address"] == null ? null : Address.fromJson(json["address"]),
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-        doctorapproved: json["Doctorapproved"],
+        doctorApproved: json["doctor_approved"],
+        specialist: json["specialist"],
+        location: json["location"],
+        regId: json["reg_id"],
+        gender: json["gender"],
+        signatureImage: json["signature_image"],
+        professionalInformation: json["professional_information"] == null ? null : BiographyAndSpecializations.fromJson(json["professional_information"]),
+        practiceInformation: json["practice_information"] == null ? null : BiographyAndSpecializations.fromJson(json["practice_information"]),
+        communicationPreferences: json["communication_preferences"] == null ? null : BiographyAndSpecializations.fromJson(json["communication_preferences"]),
+        biographyAndSpecializations: json["biography_and_specializations"] == null ? null : BiographyAndSpecializations.fromJson(json["biography_and_specializations"]),
+        consentAndAgreement: json["consent_and_agreement"] == null ? null : BiographyAndSpecializations.fromJson(json["consent_and_agreement"]),
         v: json["__v"],
     );
 
     Map<String, dynamic> toJson() => {
-        "id": registeredUserId,
-        "username": name,
-        if (email != null) "email": email,
-        "mobile": mobileNo,
-        if (dob != null) "dob": dob?.toIso8601String(),
-        "Address": address,
-        if (createdAt != null) "createdAt": createdAt?.toIso8601String(),
-        if (updatedAt != null) "updatedAt": updatedAt?.toIso8601String(),
-        if (v != null) "__v": v,
-      };
+        "registeredUserId": registeredUserId,
+        "name": name,
+        "email_id": emailId,
+        "mobile_no": mobileNo,
+        "profile_imagelink": profileImagelink,
+        "dob": dob?.toIso8601String(),
+        "address": address?.toJson(),
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
+        "doctor_approved": doctorApproved,
+        "specialist": specialist,
+        "location": location,
+        "reg_id": regId,
+        "gender": gender,
+        "signature_image": signatureImage,
+        "professional_information": professionalInformation?.toJson(),
+        "practice_information": practiceInformation?.toJson(),
+        "communication_preferences": communicationPreferences?.toJson(),
+        "biography_and_specializations": biographyAndSpecializations?.toJson(),
+        "consent_and_agreement": consentAndAgreement?.toJson(),
+        "__v": v,
+    };
+}
+
+class Address {
+    String? street;
+    String? city;
+    String? state;
+    String? district;
+    String? zipcode;
+
+    Address({
+        this.street,
+        this.city,
+        this.state,
+        this.district,
+        this.zipcode,
+    });
+
+    Address copyWith({
+        String? street,
+        String? city,
+        String? state,
+        String? district,
+        String? zipcode,
+    }) => 
+        Address(
+            street: street ?? this.street,
+            city: city ?? this.city,
+            state: state ?? this.state,
+            district: district ?? this.district,
+            zipcode: zipcode ?? this.zipcode,
+        );
+
+    factory Address.fromJson(Map<String, dynamic> json) => Address(
+        street: json["street"],
+        city: json["city"],
+        state: json["state"],
+        district: json["district"],
+        zipcode: json["zipcode"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "street": street,
+        "city": city,
+        "state": state,
+        "district": district,
+        "zipcode": zipcode,
+    };
+}
+
+class BiographyAndSpecializations {
+    BiographyAndSpecializations();
+
+   
+
+    factory BiographyAndSpecializations.fromJson(Map<String, dynamic> json) => BiographyAndSpecializations(
+    );
+
+    Map<String, dynamic> toJson() => {
+    };
 }

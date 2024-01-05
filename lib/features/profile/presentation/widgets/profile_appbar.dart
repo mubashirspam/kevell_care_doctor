@@ -10,6 +10,8 @@ class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      leading:const SizedBox(),
+      leadingWidth: 1,
       backgroundColor: context.theme.backround,
       centerTitle: false,
       title: Text(

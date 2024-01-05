@@ -20,7 +20,7 @@ class UpdateProfileRepoImpliment implements UpdateProfileRepository {
   // });
   @override
   Future<Either<MainFailure, ProfileModel>> updateProfile({
-    required Data profileData,
+    required Profile profileData,
   }) async {
     // if (await networkInfo.isConnected) {
     try {

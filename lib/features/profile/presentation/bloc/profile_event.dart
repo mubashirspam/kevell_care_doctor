@@ -4,7 +4,7 @@ part of 'profile_bloc.dart';
 class ProfileEvent with _$ProfileEvent {
   const factory ProfileEvent.getProfile() = _GetProfile;
   const factory ProfileEvent.updateProfile({
- required Data profileData,
+ required Profile profileData,
   }) = _UpdateProfile;
 
 

@@ -25,29 +25,29 @@ class GetProfileRepoImpliment implements GetProfileRepository {
 
     try {
       final token = await getTokenFromSS(secureStoreKey);
-      final mail = await getTokenFromSS(mailsecureStoreKey);
+      final id = await getTokenFromSS(drIdsecureStoreKey);
 
       final headers = {
         'Authorization': 'Bearer $token',
         'Content-Type': 'application/json',
       };
 
+
       final response = await Dio(BaseOptions()).get(
-        ApiEndPoints.getprofile,
+        "${V2.fetchProfile}?doctor_id=$id",
         options: Options(
           headers: headers,
           validateStatus: (_) => true,
         ),
-        data: {'Emailid': mail},
       );
-      log("Profile : ${response.data}");
+
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = ProfileModel.fromJson(response.data);
-
+        log("Profile : ${result.toJson().toString()}");
         return Right(result);
       } else if (response.statusCode == 400 || response.statusCode == 401) {
         final result = FailureModel.fromJson(response.data);
-        
+
         return Left(
             MainFailure.unauthorized(message: result.message ?? "Error"));
       } else {

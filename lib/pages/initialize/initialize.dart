@@ -2,11 +2,11 @@ import 'package:dr_kevell/features/profile/presentation/view_my_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dr_kevell/features/widgets/loading_widget.dart';
-import 'package:dr_kevell/pages/dashborad/presentation/dashborad.dart';
+import 'package:dr_kevell/features/dashborad/presentation/dashborad.dart';
 import 'package:dr_kevell/pages/initialize/bloc/initialize_bloc.dart';
 import 'package:dr_kevell/features/login/presentation/pages/login_screen.dart';
 
-import '../dashborad/presentation/widgets/bottom_navigation.dart';
+import '../../features/dashborad/presentation/widgets/bottom_navigation.dart';
 
 class Initialize extends StatelessWidget {
   const Initialize({super.key});

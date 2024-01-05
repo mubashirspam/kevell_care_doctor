@@ -21,19 +21,6 @@ class SignupModel {
         this.data,
     });
 
-    SignupModel copyWith({
-        int? responseCode,
-        bool? status,
-        String? message,
-        Data? data,
-    }) => 
-        SignupModel(
-            responseCode: responseCode ?? this.responseCode,
-            status: status ?? this.status,
-            message: message ?? this.message,
-            data: data ?? this.data,
-        );
-
     factory SignupModel.fromJson(Map<String, dynamic> json) => SignupModel(
         responseCode: json["responseCode"],
         status: json["status"],
@@ -52,7 +39,12 @@ class SignupModel {
 class Data {
     int? registeredUserId;
     String? name;
-    String? mobile;
+    String? mobileNo;
+    String? emailId;
+    String? gender;
+    Address? address;
+    String? specialist;
+    String? location;
     DateTime? createdAt;
     DateTime? updatedAt;
     int? v;
@@ -60,33 +52,26 @@ class Data {
     Data({
         this.registeredUserId,
         this.name,
-        this.mobile,
+        this.mobileNo,
+        this.emailId,
+        this.gender,
+        this.address,
+        this.specialist,
+        this.location,
         this.createdAt,
         this.updatedAt,
         this.v,
     });
 
-    Data copyWith({
-        int? registeredUserId,
-        String? name,
-        String? mobile,
-        DateTime? createdAt,
-        DateTime? updatedAt,
-        int? v,
-    }) => 
-        Data(
-            registeredUserId: registeredUserId ?? this.registeredUserId,
-            name: name ?? this.name,
-            mobile: mobile ?? this.mobile,
-            createdAt: createdAt ?? this.createdAt,
-            updatedAt: updatedAt ?? this.updatedAt,
-            v: v ?? this.v,
-        );
-
     factory Data.fromJson(Map<String, dynamic> json) => Data(
         registeredUserId: json["registeredUserId"],
         name: json["name"],
-        mobile: json["mobile"],
+        mobileNo: json["mobile_no"],
+        emailId: json["email_id"],
+        gender: json["gender"],
+        address: json["address"] == null ? null : Address.fromJson(json["address"]),
+        specialist: json["specialist"],
+        location: json["location"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         v: json["__v"],
@@ -95,9 +80,46 @@ class Data {
     Map<String, dynamic> toJson() => {
         "registeredUserId": registeredUserId,
         "name": name,
-        "mobile": mobile,
+        "mobile_no": mobileNo,
+        "email_id": emailId,
+        "gender": gender,
+        "address": address?.toJson(),
+        "specialist": specialist,
+        "location": location,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
         "__v": v,
+    };
+}
+
+class Address {
+    String? street;
+    String? city;
+    String? state;
+    String? district;
+    String? zipcode;
+
+    Address({
+        this.street,
+        this.city,
+        this.state,
+        this.district,
+        this.zipcode,
+    });
+
+    factory Address.fromJson(Map<String, dynamic> json) => Address(
+        street: json["street"],
+        city: json["city"],
+        state: json["state"],
+        district: json["district"],
+        zipcode: json["zipcode"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "street": street,
+        "city": city,
+        "state": state,
+        "district": district,
+        "zipcode": zipcode,
     };
 }

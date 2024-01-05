@@ -16,26 +16,32 @@ class BottomWidget extends StatelessWidget {
         builder: (context, int index, _) {
           return SafeArea(
             child: Container(
-              color: context.theme.backround,
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                      blurRadius: 15,
+                      color: context.theme.textPrimary!.withOpacity(0.05),
+                      offset: Offset(1, -3),
+                      spreadRadius: 5)
+                ],
+                color: context.theme.backround,
+              ),
               width: double.maxFinite,
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              height: 50,
-              child: Stack(
+              height: 70,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(child: item(context, 0, "home", AppIcons.home)),
-                      Expanded(
-                          child:
-                              item(context, 1, "Schedule", AppIcons.schedule)),
-                      Expanded(child: item(context, 2, "Chat", AppIcons.chat)),
-                      Expanded(
-                          child: item(context, 3, "History", AppIcons.history)),
-                      Expanded(
-                          child: item(context, 4, "Profile", AppIcons.profile)),
-                    ],
-                  ),
+                  Expanded(child: item(context, 0, "home", AppIcons.home)),
+                  Expanded(
+                      child: item(context, 1, "Schedule", AppIcons.schedule)),
+                  Expanded(child: item(context, 2, "Chat", AppIcons.chat)),
+                  Expanded(
+                      child: item(context, 3, "History", AppIcons.history)),
+                  Expanded(
+                      child: item(context, 4, "Profile", AppIcons.profile)),
                 ],
               ),
             ),

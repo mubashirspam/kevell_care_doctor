@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/pages/history/presentation/widgets/history_appbar.dart';
-import 'package:dr_kevell/pages/profile/presentation/profile_screen.dart';
-import 'package:dr_kevell/pages/schedule/presentation/schedule_screen.dart';
-import 'package:dr_kevell/pages/schedule/presentation/widgets/schedule_appbar.dart';
-import '../../../features/chat/presentation/pages/chat_screen.dart';
-import '../../../features/chat/presentation/widgets/chat_appbar.dart';
-import '../../history/presentation/history_screen.dart';
-import '../../../features/home/presentation/pages/home_screen.dart';
-import '../../../features/home/presentation/widgets/home_appbar.dart';
+import 'package:dr_kevell/features/profile/presentation/pages/profile_screen.dart';
+import 'package:dr_kevell/features/schedule/presentation/pages/schedule_screen.dart';
+import 'package:dr_kevell/features/schedule/presentation/widgets/schedule_appbar.dart';
+import '../../chat/presentation/pages/chat_screen.dart';
+import '../../chat/presentation/widgets/chat_appbar.dart';
+import '../../../pages/history/presentation/history_screen.dart';
+import '../../home/presentation/pages/home_screen.dart';
+import '../../home/presentation/widgets/home_appbar.dart';
 import '../../profile/presentation/widgets/profile_appbar.dart';
 import 'widgets/bottom_navigation.dart';
-
-
+import 'widgets/drawer_widget.dart';
 
 class Dashboard extends StatefulWidget {
   static const routeName = '/dashboard';
@@ -57,7 +56,8 @@ class _DashboardState extends State<Dashboard> {
       valueListenable: selectedIndexNorifier,
       builder: (context, index, _) {
         return Scaffold(
-                //  key: scaffoldMessengerKey,
+          //  key: scaffoldMessengerKey,
+          drawer: DrawerWidget(),
           appBar: _pagesOptions.elementAt(index)["appbar"],
           body: _pagesOptions.elementAt(index)["page"],
           floatingActionButton: _pagesOptions.elementAt(index)["flotingButton"],

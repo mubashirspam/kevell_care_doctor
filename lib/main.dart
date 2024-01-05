@@ -25,6 +25,7 @@ import 'features/schedule/presentation/bloc/schedule_bloc.dart';
 import 'features/checkup/presentation/bloc/checkup_bloc.dart';
 import 'features/login/presentation/bloc/login_bloc.dart';
 import 'features/profile/presentation/bloc/profile_bloc.dart';
+import 'features/schedule/presentation/pages/schedule_screen.dart';
 import 'features/signup/presentation/bloc/signup_bloc.dart';
 import 'features/chat/presentation/bloc/chat_bloc.dart';
 import 'features/history/presentation/bloc/history_bloc.dart';
@@ -84,6 +85,7 @@ class MyApp extends StatelessWidget {
         theme: lightTheme(),
         darkTheme: darkTheme(),
         themeMode: ThemeMode.light,
+
         navigatorKey: navigatorKey,
         routes: route,
         home: const Initialize(),

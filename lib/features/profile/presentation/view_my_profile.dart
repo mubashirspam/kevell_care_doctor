@@ -12,7 +12,7 @@ import '../../../settings/value/secure_storage.dart';
 import '../../widgets/buttons/text_button_widget.dart';
 import '../../widgets/error_widget.dart';
 import '../../widgets/loading_widget.dart';
-import 'edit_profile.dart';
+import 'pages/edit_profile.dart';
 import 'widgets/profile_name_card.dart';
 
 class ViewMyProfile extends StatelessWidget {
@@ -55,13 +55,13 @@ class ViewMyProfile extends StatelessWidget {
         } else if (state.hasData) {
           return ViewMyProfileBlocBody(
             notverified: notverified ?? false,
-            address: state.result!.data!.address ?? "No Adress",
+            address: state.result!.data!.address.toString() ?? "No Adress",
             dob: state.result!.data!.dob.toString(),
-            email: state.result!.data!.email ?? "",
+            email: state.result!.data!.emailId ?? "",
             imgUrl: state.result!.data!.profileImagelink ?? "",
             mobile: state.result!.data!.mobileNo ?? "No mobile",
             name: state.result!.data!.name ?? "",
-            isverified: state.result!.data!.doctorapproved ?? false,
+            isverified: state.result!.data!.doctorApproved ?? false,
           );
         } else if (state.isError) {
           return const Center(child: AppErrorWidget());

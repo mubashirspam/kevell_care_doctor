@@ -28,7 +28,7 @@ class _LoginWidgetState extends State<LoginWidget> {
   TextEditingController emailController =
       TextEditingController(text: "test@gmail.com");
   TextEditingController passwordController =
-      TextEditingController(text: "1111111");
+      TextEditingController(text: "sachin@12");
 
   //       TextEditingController emailController =
   //     TextEditingController();
@@ -120,8 +120,8 @@ class _LoginWidgetState extends State<LoginWidget> {
             ),
             const SizedBox(height: 20),
             GestureDetector(
-              onTap: () =>
-                  Navigator.of(context).pushNamed(ForgotPasswordScreen.routeName),
+              onTap: () => Navigator.of(context)
+                  .pushNamed(ForgotPasswordScreen.routeName),
               child: RichText(
                 text: TextSpan(
                   style: const TextStyle(color: Colors.black, fontSize: 16),
@@ -148,15 +148,19 @@ class _LoginWidgetState extends State<LoginWidget> {
                 }
                 if (!state.isLoading && state.hasValidationData) {
                   if (state.loginDetails!.data!.first.token != null &&
-                      state.loginDetails!.data!.first.emailid != null &&
+                      state.loginDetails!.data!.first.emailId != null &&
                       state.loginDetails!.data!.first.id != null) {
 
 
-                    addToSS(isVeryfiedKey,
-                        state.loginDetails!.data!.first.doctorapproved.toString());
+                    // addToSS(
+                    //     isVeryfiedKey,
+                    //     state.loginDetails!.data!.first.doctorApproved
+                    //         .toString());
+
+                    addToSS(isVeryfiedKey, "true");
 
                     addToSS(mailsecureStoreKey,
-                        state.loginDetails!.data!.first.emailid!);
+                        state.loginDetails!.data!.first.emailId!);
 
                     addToSS(drIdsecureStoreKey,
                         state.loginDetails!.data!.first.id.toString());
@@ -164,7 +168,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                     addTokenToSS(
                         secureStoreKey, state.loginDetails!.data!.first.token!);
 
-                    addToSS(nameKey, state.loginDetails!.data!.first.username!);
+                    addToSS(nameKey, state.loginDetails!.data!.first.name!);
 
                     Toast.showToast(
                       context: context,
@@ -181,7 +185,7 @@ class _LoginWidgetState extends State<LoginWidget> {
 
                   log("Token : ${state.loginDetails!.data?.first.token}");
                   log("id : ${state.loginDetails!.data?.first.id}");
-                  log("mail : ${state.loginDetails!.data?.first.emailid}");
+                  log("mail : ${state.loginDetails!.data?.first.emailId}");
                 }
               },
               builder: (context, state) {

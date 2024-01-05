@@ -23,10 +23,10 @@ class LoginRepoImpliment implements LoginRepository {
     try {
       final fcm = await getTokenFromSS(fcmStoreKey);
       final response = await dio.post(
-        ApiEndPoints.login,
+        V2.login,
         
         data: {
-          'Emailid': email,
+          'email_id': email,
           'password': password,
           "device_token": fcm,
           "device_type": "Android"

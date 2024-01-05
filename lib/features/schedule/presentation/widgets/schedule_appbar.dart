@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:dr_kevell/settings/assets_manage/icons.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
-import 'package:dr_kevell/pages/schedule/presentation/schedule_your_time.dart';
+import 'package:dr_kevell/features/schedule/presentation/pages/schedule_your_time.dart';
 
 class ScheduleAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ScheduleAppBar({
@@ -13,11 +13,16 @@ class ScheduleAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: context.theme.backround,
+      backgroundColor: context.theme.secondary,
       centerTitle: false,
+    leading:const SizedBox(),
+      leadingWidth: 1,
       title: Text(
         "My Schedule",
-        style: Theme.of(context).textTheme.headlineLarge,
+        style: Theme.of(context)
+            .textTheme
+            .headlineMedium!
+            .copyWith(color: context.theme.textPrimary),
       ),
       actions: [
         Padding(
@@ -25,6 +30,7 @@ class ScheduleAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: SvgPicture.asset(
             AppIcons.scheduleFilter,
             width: 30,
+            color: context.theme.textPrimary,
           ),
         ),
       ],

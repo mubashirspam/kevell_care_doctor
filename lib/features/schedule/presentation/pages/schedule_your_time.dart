@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 
-import '../../../features/schedule/presentation/schedule_your_time_widget.dart';
+import '../schedule_your_time_widget.dart';
 
 class ScheduleYourTime extends StatelessWidget {
   static const routeName = '/schedule-your-time-screen';

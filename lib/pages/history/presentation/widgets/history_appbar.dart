@@ -49,6 +49,8 @@ class HistoryAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      leading:const SizedBox(),
+      leadingWidth: 1,
       backgroundColor: context.theme.primary,
       centerTitle: false,
       title: Text(

@@ -1,4 +1,4 @@
-import 'dart:developer';
+
 
 import 'package:dr_kevell/core/helper/toast.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
@@ -11,7 +11,7 @@ import 'package:dr_kevell/features/widgets/input_field/input_field_widget.dart';
 import '../../../core/helper/validater.dart';
 import '../../login/presentation/pages/login_screen.dart';
 import '../../widgets/buttons/text_button_widget.dart';
-import '../../widgets/input_field/drop_down.dart';
+
 import '../domain/entities/signup_payload.dart';
 
 class SignUpWidget extends StatefulWidget {
@@ -379,16 +379,16 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         context.read<SignupBloc>().add(
                               SignupEvent.signup(
                                 payload: SingupPayload(
-                                  address: addressController.value.text,
+                                  // address: addressController.value.text,
                                   dob: DateTime.now(),
-                                  email: emailController.value.text,
+                                  emailId: emailController.value.text,
                                   location: selectedLocation,
-                                  mobile: mobileController.value.text,
+                                  mobileNo: mobileController.value.text,
                                   password:
                                       confirmPasswordController.value.text,
-                                  registredId: registerIdController.text,
+                                  regId: registerIdController.text,
                                   specialist: selectedSpecialist,
-                                  username: nameController.value.text,
+                                  name: nameController.value.text,
                                 ),
                               ),
                             );

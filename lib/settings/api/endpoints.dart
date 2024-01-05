@@ -1,5 +1,14 @@
 import '../value/constant.dart';
 
+class V2 {
+  // AUTH & USER
+  static const register = "$baseUrl/$service/register";
+
+  static const login = "$baseUrl/$service/login";
+
+  static const fetchProfile = "$baseUrl/$service/users/details";
+}
+
 class ApiEndPoints {
   static const String login = "$baseUrl/patient/api/Login";
   static const String register = "$baseUrl/doctor/api/register";

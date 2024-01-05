@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:dr_kevell/settings/api/endpoints.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dr_kevell/features/signup/data/models/signup_model.dart';
 import '../../../../core/failiar/failiur_model.dart';
@@ -18,7 +19,7 @@ class SignupRepoImpliment implements SignupRepository {
     try {
       final response = await Dio(BaseOptions(
         validateStatus: (_) => true,
-      )).post("https://kevelldigital.com/doctor/api/register", data: singupPayload.toJson());
+      )).post(V2.register, data: singupPayload.toJson());
 
       log(response.data.toString());
       if (response.statusCode == 200 || response.statusCode == 201) {

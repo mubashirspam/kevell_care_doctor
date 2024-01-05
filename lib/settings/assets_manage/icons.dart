@@ -5,6 +5,8 @@ class AppIcons {
 
   static const String schedule = "assets/icons/bottom_navigtion/schedule.svg";
 
+    static const String scheduleA = "assets/icons/bottom_navigtion/scheduleA.svg";
+
   static const String profile = "assets/icons/bottom_navigtion/profile.svg";
 
   static const String history = "assets/icons/bottom_navigtion/history.svg";

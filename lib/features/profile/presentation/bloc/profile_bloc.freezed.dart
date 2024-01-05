@@ -19,7 +19,7 @@ mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getProfile,
-    required TResult Function(Data profileData) updateProfile,
+    required TResult Function(Profile profileData) updateProfile,
     required TResult Function(DateTime date) pickDate,
     required TResult Function(File image) uplaodImage,
   }) =>
@@ -27,7 +27,7 @@ mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getProfile,
-    TResult? Function(Data profileData)? updateProfile,
+    TResult? Function(Profile profileData)? updateProfile,
     TResult? Function(DateTime date)? pickDate,
     TResult? Function(File image)? uplaodImage,
   }) =>
@@ -35,7 +35,7 @@ mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getProfile,
-    TResult Function(Data profileData)? updateProfile,
+    TResult Function(Profile profileData)? updateProfile,
     TResult Function(DateTime date)? pickDate,
     TResult Function(File image)? uplaodImage,
     required TResult orElse(),
@@ -125,7 +125,7 @@ class _$GetProfileImpl implements _GetProfile {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getProfile,
-    required TResult Function(Data profileData) updateProfile,
+    required TResult Function(Profile profileData) updateProfile,
     required TResult Function(DateTime date) pickDate,
     required TResult Function(File image) uplaodImage,
   }) {
@@ -136,7 +136,7 @@ class _$GetProfileImpl implements _GetProfile {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getProfile,
-    TResult? Function(Data profileData)? updateProfile,
+    TResult? Function(Profile profileData)? updateProfile,
     TResult? Function(DateTime date)? pickDate,
     TResult? Function(File image)? uplaodImage,
   }) {
@@ -147,7 +147,7 @@ class _$GetProfileImpl implements _GetProfile {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getProfile,
-    TResult Function(Data profileData)? updateProfile,
+    TResult Function(Profile profileData)? updateProfile,
     TResult Function(DateTime date)? pickDate,
     TResult Function(File image)? uplaodImage,
     required TResult orElse(),
@@ -206,7 +206,7 @@ abstract class _$$UpdateProfileImplCopyWith<$Res> {
           _$UpdateProfileImpl value, $Res Function(_$UpdateProfileImpl) then) =
       __$$UpdateProfileImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Data profileData});
+  $Res call({Profile profileData});
 }
 
 /// @nodoc
@@ -226,7 +226,7 @@ class __$$UpdateProfileImplCopyWithImpl<$Res>
       profileData: null == profileData
           ? _value.profileData
           : profileData // ignore: cast_nullable_to_non_nullable
-              as Data,
+              as Profile,
     ));
   }
 }
@@ -237,7 +237,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
   const _$UpdateProfileImpl({required this.profileData});
 
   @override
-  final Data profileData;
+  final Profile profileData;
 
   @override
   String toString() {
@@ -266,7 +266,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getProfile,
-    required TResult Function(Data profileData) updateProfile,
+    required TResult Function(Profile profileData) updateProfile,
     required TResult Function(DateTime date) pickDate,
     required TResult Function(File image) uplaodImage,
   }) {
@@ -277,7 +277,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getProfile,
-    TResult? Function(Data profileData)? updateProfile,
+    TResult? Function(Profile profileData)? updateProfile,
     TResult? Function(DateTime date)? pickDate,
     TResult? Function(File image)? uplaodImage,
   }) {
@@ -288,7 +288,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getProfile,
-    TResult Function(Data profileData)? updateProfile,
+    TResult Function(Profile profileData)? updateProfile,
     TResult Function(DateTime date)? pickDate,
     TResult Function(File image)? uplaodImage,
     required TResult orElse(),
@@ -338,10 +338,10 @@ class _$UpdateProfileImpl implements _UpdateProfile {
 }
 
 abstract class _UpdateProfile implements ProfileEvent {
-  const factory _UpdateProfile({required final Data profileData}) =
+  const factory _UpdateProfile({required final Profile profileData}) =
       _$UpdateProfileImpl;
 
-  Data get profileData;
+  Profile get profileData;
   @JsonKey(ignore: true)
   _$$UpdateProfileImplCopyWith<_$UpdateProfileImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -412,7 +412,7 @@ class _$PickDateImpl implements _PickDate {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getProfile,
-    required TResult Function(Data profileData) updateProfile,
+    required TResult Function(Profile profileData) updateProfile,
     required TResult Function(DateTime date) pickDate,
     required TResult Function(File image) uplaodImage,
   }) {
@@ -423,7 +423,7 @@ class _$PickDateImpl implements _PickDate {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getProfile,
-    TResult? Function(Data profileData)? updateProfile,
+    TResult? Function(Profile profileData)? updateProfile,
     TResult? Function(DateTime date)? pickDate,
     TResult? Function(File image)? uplaodImage,
   }) {
@@ -434,7 +434,7 @@ class _$PickDateImpl implements _PickDate {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getProfile,
-    TResult Function(Data profileData)? updateProfile,
+    TResult Function(Profile profileData)? updateProfile,
     TResult Function(DateTime date)? pickDate,
     TResult Function(File image)? uplaodImage,
     required TResult orElse(),
@@ -557,7 +557,7 @@ class _$UplaodImageImpl implements _UplaodImage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getProfile,
-    required TResult Function(Data profileData) updateProfile,
+    required TResult Function(Profile profileData) updateProfile,
     required TResult Function(DateTime date) pickDate,
     required TResult Function(File image) uplaodImage,
   }) {
@@ -568,7 +568,7 @@ class _$UplaodImageImpl implements _UplaodImage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getProfile,
-    TResult? Function(Data profileData)? updateProfile,
+    TResult? Function(Profile profileData)? updateProfile,
     TResult? Function(DateTime date)? pickDate,
     TResult? Function(File image)? uplaodImage,
   }) {
@@ -579,7 +579,7 @@ class _$UplaodImageImpl implements _UplaodImage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getProfile,
-    TResult Function(Data profileData)? updateProfile,
+    TResult Function(Profile profileData)? updateProfile,
     TResult Function(DateTime date)? pickDate,
     TResult Function(File image)? uplaodImage,
     required TResult orElse(),
