@@ -14,7 +14,6 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:path_provider/path_provider.dart';
 import '../../../../core/helper/enums.dart';
 import '../../data/model/prescription_model.dart';
-import '../../data/model/prescription_pdf_model.dart';
 import '../../data/repository/genarate_prescription_pdf_impliment.dart';
 import '../../domain/entities/create_prescription_payload.dart';
 
@@ -274,7 +273,8 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
         );
 
         try {
-          final pdf = await generatePDF(event.data);
+          final pdf = await generatePDF(event.data, event.doctorData,
+              event.patientData, event.apppoinmetDate);
           final bytes = await pdf.save();
           final tempDir = await getTemporaryDirectory();
           final file = File('${tempDir.path}/prescription.pdf');
@@ -296,17 +296,22 @@ class PrecriptionBloc extends Bloc<PrecriptionEvent, PrecriptionState> {
             pdfCreated: false,
             pdfErrorMessage: e.toString(),
             isPdfLoading: false,
-
           ));
         }
       },
     );
   }
 
-  Future<pw.Document> generatePDF(List<ReportPrescription> data) async {
+  Future<pw.Document> generatePDF(
+    List<ReportPrescription> data,
+    Doctor doctorData,
+    Patient patientData,
+    DateTime apppoinmetDate,
+  ) async {
     GeneratePrescriptionPdfRepoImpliment pdfClass =
         GeneratePrescriptionPdfRepoImpliment();
-    final pdf = pdfClass.generatePDF(data);
+    final pdf =
+        pdfClass.generatePDF(data, doctorData, patientData, apppoinmetDate);
 
     return pdf;
   }

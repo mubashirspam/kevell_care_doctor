@@ -1,117 +1,175 @@
-// To parse this JSON data, do
-//
-//     final homeWaitingPatientModel = homeWaitingPatientModelFromJson(jsonString);
-
-import 'dart:convert';
-
-HomeWaitingPatientModel homeWaitingPatientModelFromJson(String str) => HomeWaitingPatientModel.fromJson(json.decode(str));
-
-String homeWaitingPatientModelToJson(HomeWaitingPatientModel data) => json.encode(data.toJson());
-
 class HomeWaitingPatientModel {
-    int? responseCode;
-    bool? status;
-    String? message;
-    Data? data;
+  int? responseCode;
+  bool? status;
+  String? message;
+  List<Datum>? data;
 
-    HomeWaitingPatientModel({
-        this.responseCode,
-        this.status,
-        this.message,
-        this.data,
-    });
+  HomeWaitingPatientModel({
+    this.responseCode,
+    this.status,
+    this.message,
+    this.data,
+  });
 
-    factory HomeWaitingPatientModel.fromJson(Map<String, dynamic> json) => HomeWaitingPatientModel(
+  HomeWaitingPatientModel copyWith({
+    int? responseCode,
+    bool? status,
+    String? message,
+    List<Datum>? data,
+  }) =>
+      HomeWaitingPatientModel(
+        responseCode: responseCode ?? this.responseCode,
+        status: status ?? this.status,
+        message: message ?? this.message,
+        data: data ?? this.data,
+      );
+
+  factory HomeWaitingPatientModel.fromJson(Map<String, dynamic> json) =>
+      HomeWaitingPatientModel(
         responseCode: json["responseCode"],
         status: json["status"],
         message: json["message"],
-        data: json["data"] == null ? null : Data.fromJson(json["data"]),
-    );
-
-    Map<String, dynamic> toJson() => {
-        "responseCode": responseCode,
-        "status": status,
-        "message": message,
-        "data": data?.toJson(),
-    };
+        data: json["data"] == null
+            ? []
+            : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
+      );
 }
 
-class Data {
-    int? totalCount;
-    List<WaitingPatient>? waitingPatients;
+class Datum {
+  int? id;
+  int? doctorId;
+  DateTime? startDate;
+  DateTime? endDate;
+  int? dailyLimitCount;
+  DateTime? days;
+  DateTime? startTime;
+  DateTime? endTime;
+  int? timePerPatient;
+  List<WaitingPatient>? bookedappointmentdetails;
+  int? bookedTokenCount;
 
-    Data({
-        this.totalCount,
-        this.waitingPatients,
-    });
+  Datum({
+    this.id,
+    this.doctorId,
+    this.startDate,
+    this.endDate,
+    this.dailyLimitCount,
+    this.days,
+    this.startTime,
+    this.endTime,
+    this.timePerPatient,
+    this.bookedappointmentdetails,
+    this.bookedTokenCount,
+  });
 
-    factory Data.fromJson(Map<String, dynamic> json) => Data(
-        totalCount: json["totalCount"],
-        waitingPatients: json["waiting_patients"] == null ? [] : List<WaitingPatient>.from(json["waiting_patients"]!.map((x) => WaitingPatient.fromJson(x))),
-    );
+  Datum copyWith({
+    int? id,
+    int? doctorId,
+    DateTime? startDate,
+    DateTime? endDate,
+    int? dailyLimitCount,
+    DateTime? days,
+    DateTime? startTime,
+    DateTime? endTime,
+    int? timePerPatient,
+    List<WaitingPatient>? bookedappointmentdetails,
+    int? bookedTokenCount,
+  }) =>
+      Datum(
+        id: id ?? this.id,
+        doctorId: doctorId ?? this.doctorId,
+        startDate: startDate ?? this.startDate,
+        endDate: endDate ?? this.endDate,
+        dailyLimitCount: dailyLimitCount ?? this.dailyLimitCount,
+        days: days ?? this.days,
+        startTime: startTime ?? this.startTime,
+        endTime: endTime ?? this.endTime,
+        timePerPatient: timePerPatient ?? this.timePerPatient,
+        bookedappointmentdetails:
+            bookedappointmentdetails ?? this.bookedappointmentdetails,
+        bookedTokenCount: bookedTokenCount ?? this.bookedTokenCount,
+      );
 
-    Map<String, dynamic> toJson() => {
-        "totalCount": totalCount,
-        "waiting_patients": waitingPatients == null ? [] : List<dynamic>.from(waitingPatients!.map((x) => x.toJson())),
-    };
+  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+        id: json["_id"],
+        doctorId: json["doctor_id"],
+        startDate: json["start_date"] == null
+            ? null
+            : DateTime.parse(json["start_date"]),
+        endDate:
+            json["end_date"] == null ? null : DateTime.parse(json["end_date"]),
+        dailyLimitCount: json["daily_limit_count"],
+        days: json["days"] == null ? null : DateTime.parse(json["days"]),
+        startTime: json["start_time"] == null
+            ? null
+            : DateTime.parse(json["start_time"]),
+        endTime:
+            json["end_time"] == null ? null : DateTime.parse(json["end_time"]),
+        timePerPatient: json["time_per_patient"],
+        bookedappointmentdetails: json["bookedappointmentdetails"] == null
+            ? []
+            : List<WaitingPatient>.from(json["bookedappointmentdetails"]!
+                .map((x) => WaitingPatient.fromJson(x))),
+        bookedTokenCount: json["booked_token_count"],
+      );
 }
 
 class WaitingPatient {
-    int? patientId;
-    String? profileImagelink;
-    DateTime? appointmentstarttime;
-    DateTime? appointmentendtime;
-    int? doctorId;
-    int? appointmentId;
-    String? name;
-    bool? isvisited;
-    bool? isTimeup;
-    DateTime? createdAt;
-    DateTime? updatedAt;
-    int? v;
+  int? id;
+  int? patientId;
+  String? patientname;
+  DateTime? appointmentStarttime;
+  DateTime? appointmentEndtime;
+  DateTime? appointmentDate;
+  int? apptToken;
+  String? profileImagelink;
 
-    WaitingPatient({
-        this.patientId,
-        this.profileImagelink,
-        this.appointmentstarttime,
-        this.appointmentendtime,
-        this.doctorId,
-        this.appointmentId,
-        this.name,
-        this.isvisited,
-        this.isTimeup,
-        this.createdAt,
-        this.updatedAt,
-        this.v,
-    });
+  WaitingPatient({
+    this.id,
+    this.patientId,
+    this.patientname,
+    this.appointmentStarttime,
+    this.appointmentEndtime,
+    this.appointmentDate,
+    this.apptToken,
+    this.profileImagelink,
+  });
 
-    factory WaitingPatient.fromJson(Map<String, dynamic> json) => WaitingPatient(
+  WaitingPatient copyWith({
+    int? id,
+    int? patientId,
+    String? patientname,
+    DateTime? appointmentStarttime,
+    DateTime? appointmentEndtime,
+    DateTime? appointmentDate,
+    int? apptToken,
+    String? profileImagelink,
+  }) =>
+      WaitingPatient(
+        id: id ?? this.id,
+        patientId: patientId ?? this.patientId,
+        patientname: patientname ?? this.patientname,
+        appointmentStarttime: appointmentStarttime ?? this.appointmentStarttime,
+        appointmentEndtime: appointmentEndtime ?? this.appointmentEndtime,
+        appointmentDate: appointmentDate ?? this.appointmentDate,
+        apptToken: apptToken ?? this.apptToken,
+        profileImagelink: profileImagelink ?? this.profileImagelink,
+      );
+
+  factory WaitingPatient.fromJson(Map<String, dynamic> json) => WaitingPatient(
+        id: json["_id"],
         patientId: json["patient_id"],
+        patientname: json["patientname"],
+        appointmentStarttime: json["appointment_starttime"] == null
+            ? null
+            : DateTime.parse(json["appointment_starttime"]),
+        appointmentEndtime: json["appointment_endtime"] == null
+            ? null
+            : DateTime.parse(json["appointment_endtime"]),
+        appointmentDate: json["appointment_date"] == null
+            ? null
+            : DateTime.parse(json["appointment_date"]),
+        apptToken: json["appt_token"],
         profileImagelink: json["ProfileImagelink"],
-        appointmentstarttime: json["appointmentstarttime"] == null ? null : DateTime.parse(json["appointmentstarttime"]),
-        appointmentendtime: json["appointmentendtime"] == null ? null : DateTime.parse(json["appointmentendtime"]),
-        doctorId: json["doctor_id"],
-        appointmentId: json["appointment_id"],
-        name: json["name"],
-        isvisited: json["isvisited"],
-        isTimeup: json["is_timeup"],
-        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-        v: json[" __v"],
-    );
-
-    Map<String, dynamic> toJson() => {
-        "patient_id": patientId,
-        "ProfileImagelink": profileImagelink,
-        "appointmentstarttime": appointmentstarttime?.toIso8601String(),
-        "appointmentendtime": appointmentendtime?.toIso8601String(),
-        "doctor_id": doctorId,
-        "appointment_id": appointmentId,
-        "name": name,
-        "isvisited": isvisited,
-        "is_timeup": isTimeup,
-        "createdAt": createdAt?.toIso8601String(),
-        "updatedAt": updatedAt?.toIso8601String(),
-        " __v": v,
-    };
+      );
 }

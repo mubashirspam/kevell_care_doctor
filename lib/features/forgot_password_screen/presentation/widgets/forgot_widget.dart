@@ -154,7 +154,7 @@ class _OtpPopupState extends State<OtpPopup> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text("Enter OTP"),
+      title: const Text("Enter OTP"),
       content: Form(
         key: _formKey,
         child: Column(

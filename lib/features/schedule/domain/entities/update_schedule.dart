@@ -1,11 +1,3 @@
-// To parse this JSON data, do
-//
-//     final updateSchedulePayload = updateSchedulePayloadFromJson(jsonString);
-
-import 'dart:convert';
-
-String updateSchedulePayloadToJson(UpdateSchedulePayload data) =>
-    json.encode(data.toJson());
 
 class UpdateSchedulePayload {
   String? id;
@@ -24,9 +16,9 @@ class UpdateSchedulePayload {
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "starttime": starttime?.toIso8601String(),
-        "endtime": endtime?.toIso8601String(),
-        "dailylimitcount": dailylimitcount,
-        "timeperPatient": timeperPatient,
+        "start_time": starttime?.toIso8601String(),
+        "end_time": endtime?.toIso8601String(),
+        "daily_limit_count": dailylimitcount,
+        "time_per_patient": timeperPatient,
       };
 }

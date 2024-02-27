@@ -16,14 +16,14 @@ class BottomWidget extends StatelessWidget {
         builder: (context, int index, _) {
           return SafeArea(
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
                       blurRadius: 15,
                       color: context.theme.textPrimary!.withOpacity(0.05),
-                      offset: Offset(1, -3),
+                      offset: const Offset(1, -3),
                       spreadRadius: 5)
                 ],
                 color: context.theme.backround,

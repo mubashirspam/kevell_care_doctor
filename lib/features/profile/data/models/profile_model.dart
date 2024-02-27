@@ -250,3 +250,20 @@ class BiographyAndSpecializations {
     Map<String, dynamic> toJson() => {
     };
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

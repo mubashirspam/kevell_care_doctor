@@ -1,46 +1,38 @@
+import 'dart:async';
 import 'dart:developer';
+
 import 'package:socket_io_client/socket_io_client.dart';
 
 class AppointmentService {
-  // instance of Socket
   Socket? socket;
 
   AppointmentService._();
   static final instance = AppointmentService._();
 
   Future<bool> init() async {
+    Completer<bool> completer = Completer();
+
     socket = io(
-      "https://eae7-2409-4072-6c11-179-47-5c3d-5938-78be.ngrok-free.app/appointment/api",
+      "https://kevelldigital.com/v2/appointment",
       OptionBuilder().setTransports(['websocket']).build(),
     );
 
-    // listen onConnect event
     socket!.onConnect((data) {
-      log("Appointment Chat Socket connected");
-
-      return true;
-
-      // AppointmentService.instance.socket!.emit(
-      //     "check-starttime", {"appointment_id": 1289, "patient_id": 1003});
-
-      // AppointmentService.instance.socket!.on(" appiontment-starttime", (data) {
-      //   log("appiontment called ======= $data");
-      //   log(data.toString());
-      // });
+      log("Appointment  Socket connected");
+      if (!completer.isCompleted) {
+        completer.complete(true);
+      }
     });
 
-    // listen onConnectError event
     socket!.onConnectError((data) {
       log("Connect Error $data");
-
-      return false;
+      if (!completer.isCompleted) {
+        completer.complete(false);
+      }
     });
 
-    // connect socket
     socket!.connect();
 
-    return false;
+    return completer.future;
   }
-
-  // init Socket
 }

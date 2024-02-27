@@ -17,11 +17,13 @@ class SignupRepoImpliment implements SignupRepository {
   Future<Either<MainFailure, SignupModel>> signup(
       {required SingupPayload singupPayload}) async {
     try {
+      log(singupPayload.toJson().toString());
       final response = await Dio(BaseOptions(
         validateStatus: (_) => true,
       )).post(V2.register, data: singupPayload.toJson());
 
       log(response.data.toString());
+
       if (response.statusCode == 200 || response.statusCode == 201) {
         final registerResult = SignupModel.fromJson(response.data);
         // log(registerResult.toJson().toString());

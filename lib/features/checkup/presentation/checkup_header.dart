@@ -4,7 +4,6 @@ import 'package:dr_kevell/features/video_call/presentation/call_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 
-
 import '../../video_call/presentation/join_screen.dart';
 import '../../video_call/service/signaling_service.dart';
 
@@ -157,16 +156,15 @@ class HeaderWidget extends StatelessWidget {
             cutCall: cutCall,
             imageUrl: imageUrl,
           ),
-          const SizedBox(height: 15),
           Text(
             name,
-            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+            style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                   color: context.theme.backround,
                   fontWeight: FontWeight.bold,
                 ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 15),
+            padding: const EdgeInsets.only(top: 20, bottom: 5),
             child: Text(
               "Case  history",
               style: Theme.of(context)

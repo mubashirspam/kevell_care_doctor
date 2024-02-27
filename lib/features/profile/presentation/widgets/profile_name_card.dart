@@ -102,7 +102,7 @@ class ProfileNameCard extends StatelessWidget {
           isverified ? Icons.verified : Icons.cancel_outlined,
           color: isverified ? Colors.green : Colors.red,
         ),
-        SizedBox(
+        const SizedBox(
           width: 20,
         )
       ],

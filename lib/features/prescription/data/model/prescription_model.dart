@@ -1,4 +1,6 @@
-
+// To parse this JSON data, do
+//
+//     final prescriptionModel = prescriptionModelFromJson(jsonString);
 
 import 'dart:convert';
 
@@ -35,30 +37,42 @@ class PrescriptionModel {
 }
 
 class Data {
-    int? totalCount;
-    String? prescriptionid;
-    String? remark;
-    List<Prescription>? prescriptions;
+    int? id;
+    int? patientId;
+    String? patientname;
+    int? doctorId;
+    String? doctorname;
+    DateTime? appointmentDate;
+    List<Prescription>? prescription;
 
     Data({
-        this.totalCount,
-        this.prescriptionid,
-        this.remark,
-        this.prescriptions,
+        this.id,
+        this.patientId,
+        this.patientname,
+        this.doctorId,
+        this.doctorname,
+        this.appointmentDate,
+        this.prescription,
     });
 
     factory Data.fromJson(Map<String, dynamic> json) => Data(
-        totalCount: json["totalCount"],
-        prescriptionid: json["prescriptionid"],
-        remark: json["remark"],
-        prescriptions: json["Prescriptions"] == null ? [] : List<Prescription>.from(json["Prescriptions"]!.map((x) => Prescription.fromJson(x))),
+        id: json["_id"],
+        patientId: json["patient_id"],
+        patientname: json["patientname"],
+        doctorId: json["doctor_id"],
+        doctorname: json["doctorname"],
+        appointmentDate: json["appointment_date"] == null ? null : DateTime.parse(json["appointment_date"]),
+        prescription: json["prescription"] == null ? [] : List<Prescription>.from(json["prescription"]!.map((x) => Prescription.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
-        "totalCount": totalCount,
-        "prescriptionid": prescriptionid,
-        "remark": remark,
-        "Prescriptions": prescriptions == null ? [] : List<dynamic>.from(prescriptions!.map((x) => x.toJson())),
+        "_id": id,
+        "patient_id": patientId,
+        "patientname": patientname,
+        "doctor_id": doctorId,
+        "doctorname": doctorname,
+        "appointment_date": "${appointmentDate!.year.toString().padLeft(4, '0')}-${appointmentDate!.month.toString().padLeft(2, '0')}-${appointmentDate!.day.toString().padLeft(2, '0')}",
+        "prescription": prescription == null ? [] : List<dynamic>.from(prescription!.map((x) => x.toJson())),
     };
 }
 
@@ -68,6 +82,7 @@ class Prescription {
     String? duration;
     Timeoftheday? timeoftheday;
     List<Tobetaken>? tobetaken;
+    String? remarks;
 
     Prescription({
         this.name,
@@ -75,6 +90,7 @@ class Prescription {
         this.duration,
         this.timeoftheday,
         this.tobetaken,
+        this.remarks,
     });
 
     factory Prescription.fromJson(Map<String, dynamic> json) => Prescription(
@@ -83,6 +99,7 @@ class Prescription {
         duration: json["duration"],
         timeoftheday: json["timeoftheday"] == null ? null : Timeoftheday.fromJson(json["timeoftheday"]),
         tobetaken: json["tobetaken"] == null ? [] : List<Tobetaken>.from(json["tobetaken"]!.map((x) => Tobetaken.fromJson(x))),
+        remarks: json["remarks"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -91,6 +108,7 @@ class Prescription {
         "duration": duration,
         "timeoftheday": timeoftheday?.toJson(),
         "tobetaken": tobetaken == null ? [] : List<dynamic>.from(tobetaken!.map((x) => x.toJson())),
+        "remarks": remarks,
     };
 }
 

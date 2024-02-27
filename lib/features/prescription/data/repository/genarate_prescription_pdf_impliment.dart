@@ -1,10 +1,16 @@
 import 'package:pdf/widgets.dart' as pw;
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
+import '../../../../core/helper/date.dart';
 import '../../../report/data/model/report_model.dart';
 
 class GeneratePrescriptionPdfRepoImpliment {
-  Future<pw.Document> generatePDF(List<ReportPrescription> prescription) async {
+  Future<pw.Document> generatePDF(
+    List<ReportPrescription> prescription,
+    Doctor doctorData,
+    Patient patientData,
+    DateTime apppoinmetDate,
+  ) async {
     final img = await rootBundle.load('assets/images/logo.png');
     final imageBytes = img.buffer.asUint8List();
     pw.Image image1 = pw.Image(pw.MemoryImage(imageBytes));
@@ -56,7 +62,7 @@ class GeneratePrescriptionPdfRepoImpliment {
                     crossAxisAlignment: pw.CrossAxisAlignment.end,
                     children: [
                       pw.Text(
-                        "Dr.Mubashir Ahammed ",
+                        doctorData.emailId ?? "",
                         style: pw.TextStyle(
                           color: PdfColors.black,
                           fontSize: 12,
@@ -65,7 +71,7 @@ class GeneratePrescriptionPdfRepoImpliment {
                       ),
                       pw.SizedBox(height: 5),
                       pw.Text(
-                        "MBBS (Ortho)",
+                        doctorData.specialist ?? "",
                         style: pw.TextStyle(
                           color: PdfColors.black,
                           fontSize: 12,
@@ -74,7 +80,7 @@ class GeneratePrescriptionPdfRepoImpliment {
                       ),
                       pw.SizedBox(height: 5),
                       pw.Text(
-                        "PH:9562229979",
+                        "PH: ${doctorData.mobileNo ?? ""}",
                         style: pw.TextStyle(
                           color: PdfColors.black,
                           fontSize: 12,
@@ -97,7 +103,7 @@ class GeneratePrescriptionPdfRepoImpliment {
               children: [
                 pw.Expanded(
                   child: pw.Text(
-                    "Patient Name : Mubashir",
+                    "Patient Name : ${patientData.name??""}",
                     style: pw.TextStyle(
                       color: PdfColors.black,
                       fontSize: 12,
@@ -106,7 +112,7 @@ class GeneratePrescriptionPdfRepoImpliment {
                   ),
                 ),
                 pw.Text(
-                  "Age : 23",
+                  "Age : ${calculateAge( patientData.dob??DateTime.now()) }",
                   style: pw.TextStyle(
                     color: PdfColors.black,
                     fontSize: 12,
@@ -115,7 +121,7 @@ class GeneratePrescriptionPdfRepoImpliment {
                 ),
                 pw.SizedBox(width: 10),
                 pw.Text(
-                  "Gender : Male",
+                  "Gender : ${patientData.gender  ??""}",
                   style: pw.TextStyle(
                     color: PdfColors.black,
                     fontSize: 12,
@@ -124,7 +130,7 @@ class GeneratePrescriptionPdfRepoImpliment {
                 ),
                 pw.SizedBox(width: 10),
                 pw.Text(
-                  "Date : 20/12/2023",
+                  "Date : ${dateFormatToddmmyyyy(apppoinmetDate)}",
                   style: pw.TextStyle(
                     color: PdfColors.black,
                     fontSize: 12,
@@ -163,9 +169,16 @@ class GeneratePrescriptionPdfRepoImpliment {
                         width: 50,
                         child:
                             content(data[i].timeoftheday!.morning.toString())),
-                    pw.SizedBox(width: 50, child: content(data[i].timeoftheday!.noon.toString())),
-                    pw.SizedBox(width: 50, child: content(data[i].timeoftheday!.evening.toString())),
-                    pw.SizedBox(width: 50, child: content(data[i].timeoftheday!.night.toString())),
+                    pw.SizedBox(
+                        width: 50,
+                        child: content(data[i].timeoftheday!.noon.toString())),
+                    pw.SizedBox(
+                        width: 50,
+                        child:
+                            content(data[i].timeoftheday!.evening.toString())),
+                    pw.SizedBox(
+                        width: 50,
+                        child: content(data[i].timeoftheday!.night.toString())),
                     pw.SizedBox(
                         width: 50, child: content("${data[i].duration} Days")),
                   ],

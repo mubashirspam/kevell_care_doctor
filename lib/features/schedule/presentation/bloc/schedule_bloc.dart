@@ -152,8 +152,8 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
 
             removeScheduleByIds(
               id: int.parse(event.id),
-              todayschedule: data.data!.todayschedule,
-              upcomingschedule: data.data!.upcomingschedule,
+              notApproved: data.data!.notapprove,
+              approve: data.data!.approve,
             );
 
             return state.copyWith(
@@ -244,11 +244,11 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
 
   void removeScheduleByIds({
     required int id,
-    required List<Schedule>? todayschedule,
-    required List<Schedule>? upcomingschedule,
+    required List<Schedule>? approve,
+    required List<Schedule>? notApproved,
   }) {
-    todayschedule?.removeWhere((schedule) => schedule.id == id);
-    upcomingschedule?.removeWhere((schedule) => schedule.id == id);
+    approve?.removeWhere((schedule) => schedule.id == id);
+    notApproved?.removeWhere((schedule) => schedule.id == id);
   }
 
   // List<TimeSlote> generateTimeSlots(

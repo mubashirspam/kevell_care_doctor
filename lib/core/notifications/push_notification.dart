@@ -1,9 +1,8 @@
 import 'dart:developer';
 
-import 'package:dr_kevell/settings/route/routes.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-import '../../pages/profile/presentation/my_profile_screen.dart';
+// import '../../pages/profile/presentation/my_profile_screen.dart';
 import '../../settings/value/constant.dart';
 import '../../settings/value/secure_storage.dart';
 
@@ -31,7 +30,7 @@ class PushNotification {
   void handleMessage(RemoteMessage message) {
     if (message.notification?.title == 'notification') {
       log('page navigation calld');
-      navigatorKey.currentState?.pushNamed(MyProfileScreen.routeName);
+      // navigatorKey.currentState?.pushNamed(MyProfileScreen.routeName);
     }
   }
 

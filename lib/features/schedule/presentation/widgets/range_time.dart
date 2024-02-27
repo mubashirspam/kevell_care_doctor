@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
@@ -63,6 +65,7 @@ class DateRanger extends StatelessWidget {
             );
           }, child: BlocBuilder<ScheduleBloc, ScheduleState>(
             builder: (context, state) {
+              log("Time : ${extractTime(state.startTime)} TO ${extractTime(state.endTime)}");
               return timeSection(context, extractTime(state.startTime), true);
             },
           )),

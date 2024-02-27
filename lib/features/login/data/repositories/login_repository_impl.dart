@@ -23,21 +23,29 @@ class LoginRepoImpliment implements LoginRepository {
     try {
       final fcm = await getTokenFromSS(fcmStoreKey);
       final response = await dio.post(
-        V2.login,
-        
-        data: {
-          'email_id': email,
-          'password': password,
-          "device_token": fcm,
-          "device_type": "Android"
-        },
-      );
+          V2.login,
+          // "https://kevelldigital.com/patient/api/Login",
+          // data: {
+          //   "Emailid": "test@gmail.com",
+          //   "password": "11111111",
+          //   "device_token": "eretretretreter",
+          //   "device_type": "android"
+          // }
+
+          data: {
+            'email_id': email,
+            'password': password,
+            "device_token": fcm,
+            "device_type": "Android"
+          },
+          );
 
       switch (response.statusCode) {
         case 200:
         case 201:
           final result = LoginModel.fromJson(response.data);
           log(result.toString());
+          
           return Right(result);
         case 204:
           final result = FailureModel.fromJson(response.data);

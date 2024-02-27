@@ -38,40 +38,64 @@ class ReportGeneraInfoModel {
 
 class Data {
     int? id;
-    String? username;
-    String? mobile;
-    String? address;
-    DateTime? startdate;
-    DateTime? enddate;
-    DateTime? dob;
+    String? profileImagelink;
+    String? name;
+    String? mobileNo;
+    Address? address;
 
     Data({
         this.id,
-        this.username,
-        this.mobile,
+        this.profileImagelink,
+        this.name,
+        this.mobileNo,
         this.address,
-        this.startdate,
-        this.enddate,
-        this.dob,
     });
 
     factory Data.fromJson(Map<String, dynamic> json) => Data(
         id: json["_id"],
-        username: json["Username"],
-        mobile: json["mobile"],
-        address: json["Address"],
-        startdate: json["startdate"] == null ? null : DateTime.parse(json["startdate"]),
-        enddate: json["enddate"] == null ? null : DateTime.parse(json["enddate"]),
-        dob: json["dob"] == null ? null : DateTime.parse(json["dob"]),
+        profileImagelink: json["profile_imagelink"],
+        name: json["name"],
+        mobileNo: json["mobile_no"],
+        address: json["address"] == null ? null : Address.fromJson(json["address"]),
     );
 
     Map<String, dynamic> toJson() => {
         "_id": id,
-        "Username": username,
-        "mobile": mobile,
-        "Address": address,
-        "startdate": "${startdate!.year.toString().padLeft(4, '0')}-${startdate!.month.toString().padLeft(2, '0')}-${startdate!.day.toString().padLeft(2, '0')}",
-        "enddate": "${enddate!.year.toString().padLeft(4, '0')}-${enddate!.month.toString().padLeft(2, '0')}-${enddate!.day.toString().padLeft(2, '0')}",
-        "dob": "${dob!.year.toString().padLeft(4, '0')}-${dob!.month.toString().padLeft(2, '0')}-${dob!.day.toString().padLeft(2, '0')}",
+        "profile_imagelink": profileImagelink,
+        "name": name,
+        "mobile_no": mobileNo,
+        "address": address?.toJson(),
+    };
+}
+
+class Address {
+    String? street;
+    String? city;
+    String? state;
+    String? zipCode;
+    String? district;
+
+    Address({
+        this.street,
+        this.city,
+        this.state,
+        this.zipCode,
+        this.district,
+    });
+
+    factory Address.fromJson(Map<String, dynamic> json) => Address(
+        street: json["street"],
+        city: json["city"],
+        state: json["state"],
+        zipCode: json["zipCode"],
+        district: json["district"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "street": street,
+        "city": city,
+        "state": state,
+        "zipCode": zipCode,
+        "district": district,
     };
 }

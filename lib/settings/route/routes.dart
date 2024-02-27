@@ -1,7 +1,7 @@
 import 'package:dr_kevell/features/forgot_password_screen/presentation/pages/forgot_password_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/pages/checkup/presentation/patient_checkup_screen.dart';
-import 'package:dr_kevell/pages/profile/presentation/my_profile_screen.dart';
+// import 'package:dr_kevell/pages/profile/presentation/my_profile_screen.dart';
 import 'package:dr_kevell/features/profile/presentation/pages/profile_screen.dart';
 import 'package:dr_kevell/features/report/presetantion/pages/report_screen.dart';
 import '../../../features/home/data/models/waiting_patient_model.dart';
@@ -25,7 +25,7 @@ final Map<String, Widget Function(BuildContext ctx)> route = {
   Dashboard.routeName: (ctx) => const Dashboard(),
   ScheduleYourTime.routeName: (ctx) => const ScheduleYourTime(),
   ProfileScreen.routeName: (ctx) => const ProfileScreen(),
-  MyProfileScreen.routeName: (ctx) => const MyProfileScreen(),
+  // MyProfileScreen.routeName: (ctx) => const MyProfileScreen(),
   ForgotPasswordScreen.routeName: (ctx) => const ForgotPasswordScreen(),
   CreatePrescriptionScreen.routeName: (ctx) => CreatePrescriptionScreen(
         checkupDetalis:

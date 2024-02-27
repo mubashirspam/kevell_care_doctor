@@ -83,9 +83,11 @@ class CreatePrescriptionScreen extends StatelessWidget {
                                       appointmentId:
                                           checkupDetalis['appointmentID'],
                                       doctorId: checkupDetalis['doctorID'],
+                                      patientId: checkupDetalis['patientID'],
+
                                       prescription:
                                           prescriptionData.prescription!,
-                                      remark: "remark",
+                                      
                                     ),
                                   ),
                                 );

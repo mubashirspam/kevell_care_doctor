@@ -57,7 +57,7 @@ class _DashboardState extends State<Dashboard> {
       builder: (context, index, _) {
         return Scaffold(
           //  key: scaffoldMessengerKey,
-          drawer: DrawerWidget(),
+          drawer: const DrawerWidget(),
           appBar: _pagesOptions.elementAt(index)["appbar"],
           body: _pagesOptions.elementAt(index)["page"],
           floatingActionButton: _pagesOptions.elementAt(index)["flotingButton"],

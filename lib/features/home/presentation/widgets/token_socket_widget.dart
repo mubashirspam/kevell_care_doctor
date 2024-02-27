@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+
+import 'package:dr_kevell/core/helper/date.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/features/home/domain/repositories/appoinmntment_scrvice.dart';
 
@@ -21,10 +23,22 @@ class AppoinemntStatusCard extends StatefulWidget {
 class _AppoinemntStatusCardState extends State<AppoinemntStatusCard> {
   @override
   void initState() {
+    initailizeToken();
     chatServiceIniti();
 
     super.initState();
   }
+
+  void initailizeToken() {
+    for (var element in widget.appiontment) {
+      updatedAppointment.add(UpdatedAppointment(
+          status: TaskStatus.waiting,
+          time: extractTime(element.appointmentStarttime!),
+          token: element.apptToken.toString()));
+    }
+  }
+
+  List<UpdatedAppointment> updatedAppointment = [];
 
   bool isSocketConnecting = false;
   bool isSocketConnected = false;
@@ -62,19 +76,6 @@ class _AppoinemntStatusCardState extends State<AppoinemntStatusCard> {
     });
   }
 
-  List<UpdatedAppointment> updatedAppointment = [
-    UpdatedAppointment(status: TaskStatus.finished, time: "10:01", token: "1"),
-    UpdatedAppointment(status: TaskStatus.finished, time: "10:02", token: "2"),
-    UpdatedAppointment(status: TaskStatus.skipped, time: "10:03", token: "3"),
-    UpdatedAppointment(status: TaskStatus.finished, time: "10:04", token: "4"),
-    UpdatedAppointment(status: TaskStatus.current, time: "10:05", token: "5"),
-    UpdatedAppointment(status: TaskStatus.waiting, time: "10:06", token: "6"),
-    UpdatedAppointment(status: TaskStatus.waiting, time: "10:07", token: "7"),
-    UpdatedAppointment(status: TaskStatus.waiting, time: "10:08", token: "8"),
-    UpdatedAppointment(status: TaskStatus.waiting, time: "10:09", token: "9"),
-    UpdatedAppointment(status: TaskStatus.waiting, time: "10:10", token: "10"),
-  ];
-
   @override
   Widget build(BuildContext context) {
     double tokenWidth = (MediaQuery.of(context).size.width - 70) / 3;
@@ -101,7 +102,7 @@ class _AppoinemntStatusCardState extends State<AppoinemntStatusCard> {
                   children: [
                     Text("Ongoing Appointments",
                         style: Theme.of(context).textTheme.headlineMedium!),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Text(
                         isSocketConnecting
                             ? "Connecting..."
@@ -132,7 +133,7 @@ class _AppoinemntStatusCardState extends State<AppoinemntStatusCard> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             SizedBox(
               child: Wrap(
                 crossAxisAlignment: WrapCrossAlignment.start,
@@ -192,7 +193,7 @@ class _AppoinemntStatusCardState extends State<AppoinemntStatusCard> {
                         )),
               ),
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             SizedBox(
               child: Wrap(
                 spacing: 10,
@@ -213,7 +214,7 @@ class _AppoinemntStatusCardState extends State<AppoinemntStatusCard> {
                                 color: statusEntry.value),
                           ),
                         ),
-                        SizedBox(width: 5),
+                        const SizedBox(width: 5),
                         Text(
                           statusEntry.key,
                           style: Theme.of(context)
@@ -249,3 +250,6 @@ class UpdatedAppointment {
   UpdatedAppointment(
       {required this.status, required this.time, required this.token});
 }
+
+
+//  UpdatedAppointment(status: TaskStatus.finished, time: "10:01", token: "1"),

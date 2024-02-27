@@ -49,7 +49,6 @@ class MainConfigColorsDarkThem {
   static const Color textThemePrimary = Color(0xFF0095F7);
 }
 
-
 Color generateLightColor() {
   final Random random = Random();
   final int red = 200 + random.nextInt(55);
@@ -57,4 +56,17 @@ Color generateLightColor() {
   final int blue = 200 + random.nextInt(55);
 
   return Color.fromRGBO(red, green, blue, 1.0);
+}
+
+class CardColor {
+  static const color1 = Color(0xffdeedd7);
+  static const color2 = Color(0xffE7E3C3);
+  static const color3 = Color(0xffcbd0fe);
+  static const color4 = Color(0xffcccacf);
+
+   static const color5 = Color(0xffCBF3F2);
+
+  static const color10 = Color(0xfffbe7e3);
+
+  static const color18 = Color(0xffd6efe0);
 }

@@ -28,8 +28,9 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
   @override
   void initState() {
     patientID = widget.checkupDetalis.patientId!;
-    doctorID = widget.checkupDetalis.doctorId!;
-    appointmentID = widget.checkupDetalis.appointmentId!;
+    doctorID = 1001;
+    //  doctorID = widget.checkupDetalis.doctorId!;
+    appointmentID = widget.checkupDetalis.id!;
 
     SignallingService.instance.init(
       websocketUrl: ApiEndPoints.websocketUrl,
@@ -45,9 +46,9 @@ class _PatientCheckupScreenState extends State<PatientCheckupScreen> {
         slivers: [
           SliverPinnedHeader(
             child: CheckupHeaderWidget(
-              name: widget.checkupDetalis.name ?? "No name found",
-              type:  "No case found",
-              imageUrl: widget.checkupDetalis.profileImagelink??"",
+              name: widget.checkupDetalis.patientname ?? "No name found",
+              type: "Shortness of breath, cough, fever",
+              imageUrl: widget.checkupDetalis.profileImagelink ?? "",
               paitentCallerId: patientID.toString(),
               selfCallerId: doctorID.toString(),
             ),

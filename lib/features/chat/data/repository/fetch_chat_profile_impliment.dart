@@ -2,9 +2,9 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:dr_kevell/features/chat/data/model/chat_person_model.dart';
+import 'package:dr_kevell/settings/api/endpoints.dart';
 import 'package:dr_kevell/settings/value/constant.dart';
 import 'package:injectable/injectable.dart';
-import 'package:dr_kevell/settings/api/endpoints.dart';
 import '../../../../core/failiar/main_failures.dart';
 import '../../../../settings/value/secure_storage.dart';
 import '../../domain/repository/fetch_chat_profile_repository.dart';
@@ -17,8 +17,10 @@ class FetchChatProfileRepoImpliment implements FetchChatProfileRepository {
   }) async {
     final ids = await getFromSS(drIdsecureStoreKey);
     try {
-      final response = await Dio().get(ApiEndPoints.fetchChatProfile,
-          queryParameters: {'doctorid': ids});
+      final response = await Dio().get(
+
+        V2.chat,
+          queryParameters: {'doctor_id': ids});
 
       if (response.statusCode == 200) {
         final result = ChatProfileModel.fromJson(response.data);

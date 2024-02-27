@@ -36,9 +36,9 @@ class ScheduleCard extends StatelessWidget {
       elevation: 0,
       color: context.theme.secondary,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      child: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Row(
+      child: ExpansionTile(
+        tilePadding: const EdgeInsets.all(15),
+        title: Row(
           children: [
             Container(
               margin: const EdgeInsets.only(left: 0, right: 15),
@@ -69,10 +69,12 @@ class ScheduleCard extends StatelessWidget {
                       children: [
                         Text.rich(
                           TextSpan(
-                            text: "${extractTime(schedule.starttime!)} : ",
+                            text:
+                                "${extractTime(DateTime.parse(schedule.startTime!))} : ",
                             children: [
                               TextSpan(
-                                text: extractTime(schedule.endtime!),
+                                text: extractTime(
+                                    DateTime.parse(schedule.endTime!)),
                               ),
                             ],
                           ),
@@ -85,7 +87,7 @@ class ScheduleCard extends StatelessWidget {
                         Chip(
                           backgroundColor: context.theme.primary,
                           label: Text(
-                            "${schedule.dailylimitcount}",
+                            "${schedule.dailyLimitCount}",
                             style: Theme.of(context)
                                 .textTheme
                                 .titleLarge!
@@ -106,72 +108,112 @@ class ScheduleCard extends StatelessWidget {
                 ),
               ),
             ),
-            isTodays
-                ? const SizedBox()
-                : InkWell(
-                    onTap: () {
-                      showModalBottomSheet(
-                        backgroundColor: Colors.transparent,
-                        elevation: 0,
-                        isScrollControlled: true,
-                        context: context,
-                        builder: (context) => EditScheduleWidget(
-                          schedule: schedule,
+            if (!isTodays)
+              InkWell(
+                  onTap: () {
+                    showModalBottomSheet(
+                      backgroundColor: Colors.transparent,
+                      elevation: 0,
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (context) => EditScheduleWidget(
+                        schedule: schedule,
+                      ),
+                    );
+                  },
+                  child: SvgPicture.asset(AppIcons.edit)),
+            if (!isTodays)
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: isDeleteLoading
+                    ? SizedBox(
+                        height: 15,
+                        width: 15,
+                        child: CupertinoActivityIndicator(
+                          color: context.theme.primary,
                         ),
-                      );
-                    },
-                    child: SvgPicture.asset(AppIcons.edit)),
-            Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: isDeleteLoading
-                  ? SizedBox(
-                      height: 15,
-                      width: 15,
-                      child: CupertinoActivityIndicator(
-                        color: context.theme.primary,
+                      )
+                    : InkWell(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return BlocBuilder<ScheduleBloc, ScheduleState>(
+                                builder: (context, state) {
+                                  log(state.isDeleted.toString());
+                                  return MyCustomAlertDialog(
+                                    successMessage:
+                                        "The schedule has been successfully deleted. If you need to reschedule or make new appointments, please visit the 'Schedule' page",
+                                    questionMesage:
+                                        'Are you sure you want to delete the schedule? Please note that this action cannot be undone',
+                                    okPressed: () {
+                                      context.read<ScheduleBloc>().add(
+                                            const ScheduleEvent.getSchedule(),
+                                          );
+                                      Navigator.of(context).pop();
+                                    },
+                                    onPress: () {
+                                      context.read<ScheduleBloc>().add(
+                                            ScheduleEvent.deleteSchedule(
+                                              id: schedule.id.toString(),
+                                            ),
+                                          );
+                                    },
+                                    isLoading: state.isDeleteLoading,
+                                    isCompleted: state.isDeleted,
+                                  );
+                                },
+                              );
+                            },
+                          );
+                        },
+                        child: SvgPicture.asset(
+                          AppIcons.delete,
+                        ),
                       ),
-                    )
-                  : InkWell(
-                      onTap: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return BlocBuilder<ScheduleBloc, ScheduleState>(
-                              builder: (context, state) {
-                                log(state.isDeleted.toString());
-                                return MyCustomAlertDialog(
-                                  successMessage:
-                                      "The schedule has been successfully deleted. If you need to reschedule or make new appointments, please visit the 'Schedule' page",
-                                  questionMesage:
-                                      'Are you sure you want to delete the schedule? Please note that this action cannot be undone',
-                                  okPressed: () {
-                                    context.read<ScheduleBloc>().add(
-                                          const ScheduleEvent.getSchedule(),
-                                        );
-                                    Navigator.of(context).pop();
-                                  },
-                                  onPress: () {
-                                    context.read<ScheduleBloc>().add(
-                                          ScheduleEvent.deleteSchedule(
-                                            id: schedule.id.toString(),
-                                          ),
-                                        );
-                                  },
-                                  isLoading: state.isDeleteLoading,
-                                  isCompleted: state.isDeleted,
-                                );
-                              },
-                            );
-                          },
-                        );
-                      },
-                      child: SvgPicture.asset(
-                        AppIcons.delete,
-                      ),
-                    ),
-            ),
+              ),
           ],
         ),
+        expandedAlignment: Alignment.topLeft,
+        expandedCrossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (schedule.bookedappointmentdetails!.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Text(
+                "Booked Tokens",
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineLarge!
+                    .copyWith(fontSize: 16),
+              ),
+            ),
+          if (schedule.bookedappointmentdetails!.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.all(15).copyWith(top: 0),
+              child: Wrap(
+                runSpacing: 15,
+                spacing: 15,
+                children: List.generate(
+                    schedule.bookedappointmentdetails!.length,
+                    (index) => CircleAvatar(
+                          radius: 25,
+                          backgroundColor: context.theme.primary,
+                          child: Center(
+                            child: Text(
+                              schedule
+                                  .bookedappointmentdetails![index].apptToken
+                                  .toString(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineMedium!
+                                  .copyWith(color: Colors.white),
+                            ),
+                          ),
+                        )),
+              ),
+            )
+        ],
       ),
     );
   }

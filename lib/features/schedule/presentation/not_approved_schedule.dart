@@ -1,15 +1,15 @@
-import 'package:dr_kevell/features/widgets/error_widget.dart';
 import 'package:dr_kevell/features/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:dr_kevell/features/schedule/presentation/widgets/schedule_card_itm.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../widgets/cards/schedule_your_time_lead_widget.dart';
+import '../../widgets/error_widget.dart';
 import '../data/models/schedule_model.dart';
 import 'bloc/schedule_bloc.dart';
 
-class UpcomingSchedule extends StatelessWidget {
-  const UpcomingSchedule({super.key});
+class NotApprovedSchedule extends StatelessWidget {
+  const NotApprovedSchedule({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class UpcomingSchedule extends StatelessWidget {
         if (state.hasData && state.isLoading || state.hasData) {
           ScheduleModel result = context.read<ScheduleBloc>().state.result!;
 
-          if (result.data!.upcomingschedule?.isEmpty ?? true) {
+          if (result.data!.notapprove?.isEmpty ?? true) {
             return Column(
               children: [
                 Padding(
@@ -47,15 +47,17 @@ class UpcomingSchedule extends StatelessWidget {
               ],
             );
           } else {
-            return Column(
-              children:
-                  List.generate(result.data!.upcomingschedule!.length, (index) {
-                return ScheduleCard(
-                  isDeleteLoading: state.isDeleteLoading,
-                  isTodays: false,
-                  schedule: result.data!.upcomingschedule![index],
-                );
-              }),
+            return SingleChildScrollView(
+              child: Column(
+                children:
+                    List.generate(result.data!.notapprove!.length, (index) {
+                  return ScheduleCard(
+                    isDeleteLoading: state.isDeleteLoading,
+                    isTodays: false,
+                    schedule: result.data!.notapprove![index],
+                  );
+                }),
+              ),
             );
           }
         }

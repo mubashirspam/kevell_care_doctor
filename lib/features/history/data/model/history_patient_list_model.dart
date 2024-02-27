@@ -37,37 +37,41 @@ class HistoryPatientListModel {
 }
 
 class Data {
-    int? allcount;
+    int? totalCount;
     DateTime? startDate;
-    int? todaycount;
-    int? monthcount;
-    int? weekcount;
+    int? allCount;
+    int? todayCount;
+    int? monthCount;
+    int? weekCount;
     List<Patient>? patients;
 
     Data({
-        this.allcount,
+        this.totalCount,
         this.startDate,
-        this.todaycount,
-        this.monthcount,
-        this.weekcount,
+        this.allCount,
+        this.todayCount,
+        this.monthCount,
+        this.weekCount,
         this.patients,
     });
 
     factory Data.fromJson(Map<String, dynamic> json) => Data(
-        allcount: json["allcount"],
+        totalCount: json["total_Count"],
         startDate: json["start_date"] == null ? null : DateTime.parse(json["start_date"]),
-        todaycount: json["todaycount"],
-        monthcount: json["monthcount"],
-        weekcount: json["weekcount"],
+        allCount: json["all_count"],
+        todayCount: json["today_count"],
+        monthCount: json["month_count"],
+        weekCount: json["week_count"],
         patients: json["patients"] == null ? [] : List<Patient>.from(json["patients"]!.map((x) => Patient.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
-        "allcount": allcount,
+        "total_Count": totalCount,
         "start_date": "${startDate!.year.toString().padLeft(4, '0')}-${startDate!.month.toString().padLeft(2, '0')}-${startDate!.day.toString().padLeft(2, '0')}",
-        "todaycount": todaycount,
-        "monthcount": monthcount,
-        "weekcount": weekcount,
+        "all_count": allCount,
+        "today_count": todayCount,
+        "month_count": monthCount,
+        "week_count": weekCount,
         "patients": patients == null ? [] : List<dynamic>.from(patients!.map((x) => x.toJson())),
     };
 }
@@ -75,55 +79,51 @@ class Data {
 class Patient {
     int? patientId;
     String? name;
-    DateTime? appointmentdate;
-    DateTime? appointmentstarttime;
-    DateTime? appointmentendtime;
-    int? doctornameid;
+    DateTime? appointmentDate;
+    DateTime? appointmentStarttime;
+    DateTime? appointmentEndtime;
+    int? doctorId;
     int? appointmentno;
     DateTime? createdAt;
     DateTime? updatedAt;
     int? v;
-    String? profileImagelink;
 
     Patient({
         this.patientId,
         this.name,
-        this.appointmentdate,
-        this.appointmentstarttime,
-        this.appointmentendtime,
-        this.doctornameid,
+        this.appointmentDate,
+        this.appointmentStarttime,
+        this.appointmentEndtime,
+        this.doctorId,
         this.appointmentno,
         this.createdAt,
         this.updatedAt,
         this.v,
-        this.profileImagelink,
     });
 
     factory Patient.fromJson(Map<String, dynamic> json) => Patient(
         patientId: json["patient_id"],
         name: json["name"],
-        appointmentdate: json["appointmentdate"] == null ? null : DateTime.parse(json["appointmentdate"]),
-        appointmentstarttime: json["appointmentstarttime"] == null ? null : DateTime.parse(json["appointmentstarttime"]),
-        appointmentendtime: json["appointmentendtime"] == null ? null : DateTime.parse(json["appointmentendtime"]),
-        doctornameid: json["doctornameid"],
+        appointmentDate: json["appointment_date"] == null ? null : DateTime.parse(json["appointment_date"]),
+        appointmentStarttime: json["appointment_starttime"] == null ? null : DateTime.parse(json["appointment_starttime"]),
+        appointmentEndtime: json["appointment_endtime"] == null ? null : DateTime.parse(json["appointment_endtime"]),
+        doctorId: json["doctor_id"],
         appointmentno: json["appointmentno"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         v: json["__v"],
-        profileImagelink: json["ProfileImagelink"],
     );
 
     Map<String, dynamic> toJson() => {
         "patient_id": patientId,
         "name": name,
-        "appointmentdate": "${appointmentdate!.year.toString().padLeft(4, '0')}-${appointmentdate!.month.toString().padLeft(2, '0')}-${appointmentdate!.day.toString().padLeft(2, '0')}",
-        "appointmentstarttime": appointmentstarttime?.toIso8601String(),
-        "appointmentendtime": appointmentendtime?.toIso8601String(),
-        "doctornameid": doctornameid,
+        "appointment_date": "${appointmentDate!.year.toString().padLeft(4, '0')}-${appointmentDate!.month.toString().padLeft(2, '0')}-${appointmentDate!.day.toString().padLeft(2, '0')}",
+        "appointment_starttime": appointmentStarttime?.toIso8601String(),
+        "appointment_endtime": appointmentEndtime?.toIso8601String(),
+        "doctor_id": doctorId,
         "appointmentno": appointmentno,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
         "__v": v,
-        "ProfileImagelink": profileImagelink,
     };
 }

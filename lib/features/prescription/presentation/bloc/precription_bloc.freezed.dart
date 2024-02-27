@@ -26,7 +26,8 @@ mixin _$PrecriptionEvent {
     required TResult Function(
             Prescription prescriptions, bool isEditing, int? index)
         editOrCreatePrescription,
-    required TResult Function(List<ReportPrescription> data, PdfActions action)
+    required TResult Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)
         genaratePdf,
     required TResult Function(int index) deletePrescription,
   }) =>
@@ -39,7 +40,8 @@ mixin _$PrecriptionEvent {
     TResult? Function(Map<String, dynamic> payload)? updatePrescription,
     TResult? Function(Prescription prescriptions, bool isEditing, int? index)?
         editOrCreatePrescription,
-    TResult? Function(List<ReportPrescription> data, PdfActions action)?
+    TResult? Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)?
         genaratePdf,
     TResult? Function(int index)? deletePrescription,
   }) =>
@@ -52,7 +54,8 @@ mixin _$PrecriptionEvent {
     TResult Function(Map<String, dynamic> payload)? updatePrescription,
     TResult Function(Prescription prescriptions, bool isEditing, int? index)?
         editOrCreatePrescription,
-    TResult Function(List<ReportPrescription> data, PdfActions action)?
+    TResult Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)?
         genaratePdf,
     TResult Function(int index)? deletePrescription,
     required TResult orElse(),
@@ -189,7 +192,8 @@ class _$GetPrescriptionListImpl implements _GetPrescriptionList {
     required TResult Function(
             Prescription prescriptions, bool isEditing, int? index)
         editOrCreatePrescription,
-    required TResult Function(List<ReportPrescription> data, PdfActions action)
+    required TResult Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)
         genaratePdf,
     required TResult Function(int index) deletePrescription,
   }) {
@@ -205,7 +209,8 @@ class _$GetPrescriptionListImpl implements _GetPrescriptionList {
     TResult? Function(Map<String, dynamic> payload)? updatePrescription,
     TResult? Function(Prescription prescriptions, bool isEditing, int? index)?
         editOrCreatePrescription,
-    TResult? Function(List<ReportPrescription> data, PdfActions action)?
+    TResult? Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)?
         genaratePdf,
     TResult? Function(int index)? deletePrescription,
   }) {
@@ -221,7 +226,8 @@ class _$GetPrescriptionListImpl implements _GetPrescriptionList {
     TResult Function(Map<String, dynamic> payload)? updatePrescription,
     TResult Function(Prescription prescriptions, bool isEditing, int? index)?
         editOrCreatePrescription,
-    TResult Function(List<ReportPrescription> data, PdfActions action)?
+    TResult Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)?
         genaratePdf,
     TResult Function(int index)? deletePrescription,
     required TResult orElse(),
@@ -341,7 +347,8 @@ class _$GetPrescriptionSettingsImpl implements _GetPrescriptionSettings {
     required TResult Function(
             Prescription prescriptions, bool isEditing, int? index)
         editOrCreatePrescription,
-    required TResult Function(List<ReportPrescription> data, PdfActions action)
+    required TResult Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)
         genaratePdf,
     required TResult Function(int index) deletePrescription,
   }) {
@@ -357,7 +364,8 @@ class _$GetPrescriptionSettingsImpl implements _GetPrescriptionSettings {
     TResult? Function(Map<String, dynamic> payload)? updatePrescription,
     TResult? Function(Prescription prescriptions, bool isEditing, int? index)?
         editOrCreatePrescription,
-    TResult? Function(List<ReportPrescription> data, PdfActions action)?
+    TResult? Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)?
         genaratePdf,
     TResult? Function(int index)? deletePrescription,
   }) {
@@ -373,7 +381,8 @@ class _$GetPrescriptionSettingsImpl implements _GetPrescriptionSettings {
     TResult Function(Map<String, dynamic> payload)? updatePrescription,
     TResult Function(Prescription prescriptions, bool isEditing, int? index)?
         editOrCreatePrescription,
-    TResult Function(List<ReportPrescription> data, PdfActions action)?
+    TResult Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)?
         genaratePdf,
     TResult Function(int index)? deletePrescription,
     required TResult orElse(),
@@ -511,7 +520,8 @@ class _$CreatePrescriptionImpl implements _CreatePrescription {
     required TResult Function(
             Prescription prescriptions, bool isEditing, int? index)
         editOrCreatePrescription,
-    required TResult Function(List<ReportPrescription> data, PdfActions action)
+    required TResult Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)
         genaratePdf,
     required TResult Function(int index) deletePrescription,
   }) {
@@ -527,7 +537,8 @@ class _$CreatePrescriptionImpl implements _CreatePrescription {
     TResult? Function(Map<String, dynamic> payload)? updatePrescription,
     TResult? Function(Prescription prescriptions, bool isEditing, int? index)?
         editOrCreatePrescription,
-    TResult? Function(List<ReportPrescription> data, PdfActions action)?
+    TResult? Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)?
         genaratePdf,
     TResult? Function(int index)? deletePrescription,
   }) {
@@ -543,7 +554,8 @@ class _$CreatePrescriptionImpl implements _CreatePrescription {
     TResult Function(Map<String, dynamic> payload)? updatePrescription,
     TResult Function(Prescription prescriptions, bool isEditing, int? index)?
         editOrCreatePrescription,
-    TResult Function(List<ReportPrescription> data, PdfActions action)?
+    TResult Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)?
         genaratePdf,
     TResult Function(int index)? deletePrescription,
     required TResult orElse(),
@@ -695,7 +707,8 @@ class _$UpdatePrescriptionImpl implements _UpdatePrescription {
     required TResult Function(
             Prescription prescriptions, bool isEditing, int? index)
         editOrCreatePrescription,
-    required TResult Function(List<ReportPrescription> data, PdfActions action)
+    required TResult Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)
         genaratePdf,
     required TResult Function(int index) deletePrescription,
   }) {
@@ -711,7 +724,8 @@ class _$UpdatePrescriptionImpl implements _UpdatePrescription {
     TResult? Function(Map<String, dynamic> payload)? updatePrescription,
     TResult? Function(Prescription prescriptions, bool isEditing, int? index)?
         editOrCreatePrescription,
-    TResult? Function(List<ReportPrescription> data, PdfActions action)?
+    TResult? Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)?
         genaratePdf,
     TResult? Function(int index)? deletePrescription,
   }) {
@@ -727,7 +741,8 @@ class _$UpdatePrescriptionImpl implements _UpdatePrescription {
     TResult Function(Map<String, dynamic> payload)? updatePrescription,
     TResult Function(Prescription prescriptions, bool isEditing, int? index)?
         editOrCreatePrescription,
-    TResult Function(List<ReportPrescription> data, PdfActions action)?
+    TResult Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)?
         genaratePdf,
     TResult Function(int index)? deletePrescription,
     required TResult orElse(),
@@ -892,7 +907,8 @@ class _$EditOrCreatePrescriptionImpl implements _EditOrCreatePrescription {
     required TResult Function(
             Prescription prescriptions, bool isEditing, int? index)
         editOrCreatePrescription,
-    required TResult Function(List<ReportPrescription> data, PdfActions action)
+    required TResult Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)
         genaratePdf,
     required TResult Function(int index) deletePrescription,
   }) {
@@ -908,7 +924,8 @@ class _$EditOrCreatePrescriptionImpl implements _EditOrCreatePrescription {
     TResult? Function(Map<String, dynamic> payload)? updatePrescription,
     TResult? Function(Prescription prescriptions, bool isEditing, int? index)?
         editOrCreatePrescription,
-    TResult? Function(List<ReportPrescription> data, PdfActions action)?
+    TResult? Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)?
         genaratePdf,
     TResult? Function(int index)? deletePrescription,
   }) {
@@ -924,7 +941,8 @@ class _$EditOrCreatePrescriptionImpl implements _EditOrCreatePrescription {
     TResult Function(Map<String, dynamic> payload)? updatePrescription,
     TResult Function(Prescription prescriptions, bool isEditing, int? index)?
         editOrCreatePrescription,
-    TResult Function(List<ReportPrescription> data, PdfActions action)?
+    TResult Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)?
         genaratePdf,
     TResult Function(int index)? deletePrescription,
     required TResult orElse(),
@@ -1005,7 +1023,12 @@ abstract class _$$GeneratePdfImplCopyWith<$Res> {
           _$GeneratePdfImpl value, $Res Function(_$GeneratePdfImpl) then) =
       __$$GeneratePdfImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<ReportPrescription> data, PdfActions action});
+  $Res call(
+      {List<ReportPrescription> data,
+      Doctor doctorData,
+      Patient patientData,
+      DateTime apppoinmetDate,
+      PdfActions action});
 }
 
 /// @nodoc
@@ -1020,6 +1043,9 @@ class __$$GeneratePdfImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? data = null,
+    Object? doctorData = null,
+    Object? patientData = null,
+    Object? apppoinmetDate = null,
     Object? action = null,
   }) {
     return _then(_$GeneratePdfImpl(
@@ -1027,6 +1053,18 @@ class __$$GeneratePdfImplCopyWithImpl<$Res>
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
               as List<ReportPrescription>,
+      doctorData: null == doctorData
+          ? _value.doctorData
+          : doctorData // ignore: cast_nullable_to_non_nullable
+              as Doctor,
+      patientData: null == patientData
+          ? _value.patientData
+          : patientData // ignore: cast_nullable_to_non_nullable
+              as Patient,
+      apppoinmetDate: null == apppoinmetDate
+          ? _value.apppoinmetDate
+          : apppoinmetDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       action: null == action
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
@@ -1039,7 +1077,11 @@ class __$$GeneratePdfImplCopyWithImpl<$Res>
 
 class _$GeneratePdfImpl implements _GeneratePdf {
   const _$GeneratePdfImpl(
-      {required final List<ReportPrescription> data, required this.action})
+      {required final List<ReportPrescription> data,
+      required this.doctorData,
+      required this.patientData,
+      required this.apppoinmetDate,
+      required this.action})
       : _data = data;
 
   final List<ReportPrescription> _data;
@@ -1051,11 +1093,17 @@ class _$GeneratePdfImpl implements _GeneratePdf {
   }
 
   @override
+  final Doctor doctorData;
+  @override
+  final Patient patientData;
+  @override
+  final DateTime apppoinmetDate;
+  @override
   final PdfActions action;
 
   @override
   String toString() {
-    return 'PrecriptionEvent.genaratePdf(data: $data, action: $action)';
+    return 'PrecriptionEvent.genaratePdf(data: $data, doctorData: $doctorData, patientData: $patientData, apppoinmetDate: $apppoinmetDate, action: $action)';
   }
 
   @override
@@ -1064,12 +1112,23 @@ class _$GeneratePdfImpl implements _GeneratePdf {
         (other.runtimeType == runtimeType &&
             other is _$GeneratePdfImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
+            (identical(other.doctorData, doctorData) ||
+                other.doctorData == doctorData) &&
+            (identical(other.patientData, patientData) ||
+                other.patientData == patientData) &&
+            (identical(other.apppoinmetDate, apppoinmetDate) ||
+                other.apppoinmetDate == apppoinmetDate) &&
             (identical(other.action, action) || other.action == action));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_data), action);
+      runtimeType,
+      const DeepCollectionEquality().hash(_data),
+      doctorData,
+      patientData,
+      apppoinmetDate,
+      action);
 
   @JsonKey(ignore: true)
   @override
@@ -1088,11 +1147,12 @@ class _$GeneratePdfImpl implements _GeneratePdf {
     required TResult Function(
             Prescription prescriptions, bool isEditing, int? index)
         editOrCreatePrescription,
-    required TResult Function(List<ReportPrescription> data, PdfActions action)
+    required TResult Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)
         genaratePdf,
     required TResult Function(int index) deletePrescription,
   }) {
-    return genaratePdf(data, action);
+    return genaratePdf(data, doctorData, patientData, apppoinmetDate, action);
   }
 
   @override
@@ -1104,11 +1164,13 @@ class _$GeneratePdfImpl implements _GeneratePdf {
     TResult? Function(Map<String, dynamic> payload)? updatePrescription,
     TResult? Function(Prescription prescriptions, bool isEditing, int? index)?
         editOrCreatePrescription,
-    TResult? Function(List<ReportPrescription> data, PdfActions action)?
+    TResult? Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)?
         genaratePdf,
     TResult? Function(int index)? deletePrescription,
   }) {
-    return genaratePdf?.call(data, action);
+    return genaratePdf?.call(
+        data, doctorData, patientData, apppoinmetDate, action);
   }
 
   @override
@@ -1120,13 +1182,14 @@ class _$GeneratePdfImpl implements _GeneratePdf {
     TResult Function(Map<String, dynamic> payload)? updatePrescription,
     TResult Function(Prescription prescriptions, bool isEditing, int? index)?
         editOrCreatePrescription,
-    TResult Function(List<ReportPrescription> data, PdfActions action)?
+    TResult Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)?
         genaratePdf,
     TResult Function(int index)? deletePrescription,
     required TResult orElse(),
   }) {
     if (genaratePdf != null) {
-      return genaratePdf(data, action);
+      return genaratePdf(data, doctorData, patientData, apppoinmetDate, action);
     }
     return orElse();
   }
@@ -1184,9 +1247,15 @@ class _$GeneratePdfImpl implements _GeneratePdf {
 abstract class _GeneratePdf implements PrecriptionEvent {
   const factory _GeneratePdf(
       {required final List<ReportPrescription> data,
+      required final Doctor doctorData,
+      required final Patient patientData,
+      required final DateTime apppoinmetDate,
       required final PdfActions action}) = _$GeneratePdfImpl;
 
   List<ReportPrescription> get data;
+  Doctor get doctorData;
+  Patient get patientData;
+  DateTime get apppoinmetDate;
   PdfActions get action;
   @JsonKey(ignore: true)
   _$$GeneratePdfImplCopyWith<_$GeneratePdfImpl> get copyWith =>
@@ -1266,7 +1335,8 @@ class _$DeletePrescriptionImpl implements _DeletePrescription {
     required TResult Function(
             Prescription prescriptions, bool isEditing, int? index)
         editOrCreatePrescription,
-    required TResult Function(List<ReportPrescription> data, PdfActions action)
+    required TResult Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)
         genaratePdf,
     required TResult Function(int index) deletePrescription,
   }) {
@@ -1282,7 +1352,8 @@ class _$DeletePrescriptionImpl implements _DeletePrescription {
     TResult? Function(Map<String, dynamic> payload)? updatePrescription,
     TResult? Function(Prescription prescriptions, bool isEditing, int? index)?
         editOrCreatePrescription,
-    TResult? Function(List<ReportPrescription> data, PdfActions action)?
+    TResult? Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)?
         genaratePdf,
     TResult? Function(int index)? deletePrescription,
   }) {
@@ -1298,7 +1369,8 @@ class _$DeletePrescriptionImpl implements _DeletePrescription {
     TResult Function(Map<String, dynamic> payload)? updatePrescription,
     TResult Function(Prescription prescriptions, bool isEditing, int? index)?
         editOrCreatePrescription,
-    TResult Function(List<ReportPrescription> data, PdfActions action)?
+    TResult Function(List<ReportPrescription> data, Doctor doctorData,
+            Patient patientData, DateTime apppoinmetDate, PdfActions action)?
         genaratePdf,
     TResult Function(int index)? deletePrescription,
     required TResult orElse(),

@@ -1,8 +1,8 @@
-import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/features/report/data/model/report_model.dart'
     as report;
 import 'package:flutter/material.dart';
 
+import '../../../../core/helper/date.dart';
 import '../../../../settings/color/main_color.dart';
 import '../../../checkup/presentation/end_appoinment_report_screen.dart';
 import '../../../checkup/presentation/widgets/ecg_graph.dart';
@@ -23,8 +23,9 @@ class ReportScreen extends StatelessWidget {
     List<ECGData> ecgData = [];
     List<double> voltageValues;
     double widthEcg = 1;
-    if (data.ecginfo!.isNotEmpty) {
-      String? value = data.ecginfo!.first.data?.content;
+
+    if (data.ecgInfo != null && data.ecgInfo!.data != null) {
+      String? value = data.ecgInfo!.data?.content;
       if (value != null && value.isNotEmpty) {
         voltageValues = value
             .split(',')
@@ -46,33 +47,34 @@ class ReportScreen extends StatelessWidget {
         }
       }
     }
-    List<ECGData> grsData = [];
-    List<double> grsvoltageValues;
-    double widthGsr = 1;
 
-    if (data.gsrinfo!.isNotEmpty) {
-      String? value = data.gsrinfo!.first.data?.content;
-      if (value != null && value.isNotEmpty) {
-        grsvoltageValues = value
-            .split(',')
-            .map((e) => e.trim()) // Trim whitespace
-            .where((element) => element.isNotEmpty)
-            .map((e) {
-          try {
-            return double.parse(e);
-          } catch (_) {
-            return 0.0; // Handle non-numeric values or provide a suitable default
-          }
-        }).toList();
-        widthGsr = double.parse(grsvoltageValues.length.toString());
-        for (int i = 0; i < grsvoltageValues.length; i++) {
-          grsData.add(ECGData(
-            time: i,
-            voltage: grsvoltageValues[i],
-          ));
-        }
-      }
-    }
+    // List<ECGData> grsData = [];
+    // List<double> grsvoltageValues;
+    // double widthGsr = 1;
+
+    // if (data.gsrInfo!=null) {
+    //   String? value = data.gsrInfo!.toString();
+    //   if (value != null && value.isNotEmpty) {
+    //     grsvoltageValues = value
+    //         .split(',')
+    //         .map((e) => e.trim()) // Trim whitespace
+    //         .where((element) => element.isNotEmpty)
+    //         .map((e) {
+    //       try {
+    //         return double.parse(e);
+    //       } catch (_) {
+    //         return 0.0; // Handle non-numeric values or provide a suitable default
+    //       }
+    //     }).toList();
+    //     widthGsr = double.parse(grsvoltageValues.length.toString());
+    //     for (int i = 0; i < grsvoltageValues.length; i++) {
+    //       grsData.add(ECGData(
+    //         time: i,
+    //         voltage: grsvoltageValues[i],
+    //       ));
+    //     }
+    //   }
+    // }
     return Scaffold(
       appBar: const ReportScreenAppBar(),
       body: SingleChildScrollView(
@@ -83,7 +85,7 @@ class ReportScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(20),
               child: Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis pharetra suspendisse nisl, et interdum. Morbi fames et justo, mauris,et, scelerisque in aenean odio. Sed egestas quis pellentesque consectetur leo, proin est,",
+                dateFormatToMMddyyyEEEE(data.appointmentDate ?? DateTime.now()),
                 style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
@@ -94,10 +96,10 @@ class ReportScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ),
-            if (data.temperatureinfo!.data != null)
+            if (data.temperatureInfo!.data != null)
               ResultCard(
                 parameter: "Temprature",
-                value: data.temperatureinfo!.data!.content!,
+                value: data.temperatureInfo!.data!.content!,
               ),
             if (data.spO2Info!.data != null)
               ResultCard(
@@ -109,12 +111,12 @@ class ReportScreen extends StatelessWidget {
                 parameter: "Heart rate",
                 value: data.spO2Info!.data!.heartRate!,
               ),
-            if (data.bpinfo!.data != null)
+            if (data.bpInfo!.data != null)
               BpCard(
                 parameter: "Blood pressure",
-                value: data.bpinfo!.data!,
+                value: data.bpInfo!.data!,
               ),
-            if (data.ecginfo!.isNotEmpty)
+            if (data.ecgInfo != null)
               EcgResultCard(
                 width: 2 * widthEcg,
                 colors: [
@@ -124,18 +126,23 @@ class ReportScreen extends StatelessWidget {
                 ecgData: ecgData,
                 name: "ECG",
               ),
-            if (data.gsrinfo!.isNotEmpty)
-              EcgResultCard(
-                width: 2 * widthGsr,
-                colors: [
-                  generateLightColor(),
-                  generateLightColor(),
-                ],
-                ecgData: grsData,
-                name: "GRS ",
-              ),
+            // if (data.gsrInfo!.data != null)
+            //       EcgResultCard(
+            //         width: 2 * widthGsr,
+            //         colors: [
+            //           generateLightColor(),
+            //           generateLightColor(),
+            //         ],
+            //         ecgData: grsData,
+            //         name: "GRS ",
+            //       ),
             if (data.prescription!.isNotEmpty)
-              PrescriptionReportsCard(data: data.prescription!),
+              PrescriptionReportsCard(
+                data: data.prescription!,
+                doctorData: data.doctor!,
+                apppoinmetDate: data.appointmentDate ?? DateTime.now(),
+                patientData: data.patient!,
+              ),
             const SizedBox(
               height: 30,
             )

@@ -4,54 +4,61 @@
 
 import 'dart:convert';
 
-ChatProfileModel chatProfileModelFromJson(String str) => ChatProfileModel.fromJson(json.decode(str));
+ChatProfileModel chatProfileModelFromJson(String str) =>
+    ChatProfileModel.fromJson(json.decode(str));
 
-String chatProfileModelToJson(ChatProfileModel data) => json.encode(data.toJson());
+String chatProfileModelToJson(ChatProfileModel data) =>
+    json.encode(data.toJson());
 
 class ChatProfileModel {
-    int? responseCode;
-    bool? success;
-    List<Result>? result;
+  int? responseCode;
+  bool? success;
+  List<Result>? result;
 
-    ChatProfileModel({
-        this.responseCode,
-        this.success,
-        this.result,
-    });
+  ChatProfileModel({
+    this.responseCode,
+    this.success,
+    this.result,
+  });
 
-    factory ChatProfileModel.fromJson(Map<String, dynamic> json) => ChatProfileModel(
+  factory ChatProfileModel.fromJson(Map<String, dynamic> json) =>
+      ChatProfileModel(
         responseCode: json["responseCode"],
         success: json["success"],
-        result: json["result"] == null ? [] : List<Result>.from(json["result"]!.map((x) => Result.fromJson(x))),
-    );
+        result: json["result"] == null
+            ? []
+            : List<Result>.from(json["result"]!.map((x) => Result.fromJson(x))),
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "responseCode": responseCode,
         "success": success,
-        "result": result == null ? [] : List<dynamic>.from(result!.map((x) => x.toJson())),
-    };
+        "result": result == null
+            ? []
+            : List<dynamic>.from(result!.map((x) => x.toJson())),
+      };
 }
 
 class Result {
-    int? id;
-    String? username;
-    String? profileImagelink;
+  int? id;
+  String? username;
+  String? profileImagelink;
 
-    Result({
-        this.id,
-        this.username,
-        this.profileImagelink,
-    });
+  Result({
+    this.id,
+    this.username,
+    this.profileImagelink,
+  });
 
-    factory Result.fromJson(Map<String, dynamic> json) => Result(
+  factory Result.fromJson(Map<String, dynamic> json) => Result(
         id: json["_id"],
-        username: json["Username"],
-        profileImagelink: json["ProfileImagelink"],
-    );
+        username: json["name"],
+        profileImagelink: json["profile_imagelink"],
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "_id": id,
-        "Username": username,
-        "ProfileImagelink": profileImagelink,
-    };
+        "name": username,
+        "profile_imagelink": profileImagelink,
+      };
 }

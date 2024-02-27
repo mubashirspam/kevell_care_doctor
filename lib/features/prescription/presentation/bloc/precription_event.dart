@@ -21,6 +21,9 @@ class PrecriptionEvent with _$PrecriptionEvent {
 
   const factory PrecriptionEvent.genaratePdf({
     required List<ReportPrescription> data,
+        required Doctor doctorData,
+       required   Patient patientData,
+   required DateTime apppoinmetDate,
     required PdfActions action,
   }) = _GeneratePdf;
 

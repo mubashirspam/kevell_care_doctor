@@ -50,12 +50,30 @@ class EcgWidget extends StatelessWidget {
         ),
         const SizedBox(height: 15),
         SizedBox(
-          height: 170,
-          child: ECGGraph(
-            data: data,
+          height: data.isNotEmpty ? 170 : 30,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: SizedBox(
+              height: data.isNotEmpty ? 170 : 30,
+              width: 1.5 * data.length.toDouble(),
+              child: ECGGraph(
+                data: data,
+              ),
+            ),
           ),
-        ),
+        )
       ],
     );
   }
 }
+
+
+// EcgResultCard(
+//                 width: 2 * widthEcg,
+//                 colors: [
+//                   generateLightColor(),
+//                   generateLightColor(),
+//                 ],
+//                 ecgData: ecgData,
+//                 name: "ECG",
+//               ),

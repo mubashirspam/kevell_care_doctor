@@ -18,6 +18,17 @@ class PatientDetailsWidget extends StatelessWidget {
           BlocBuilder<ReportBloc, ReportState>(
             builder: (context, state) {
               if (state.hasGenaralInfoData) {
+                List<String> detailsList = [];
+                if (state.reportGeneraInfo!.data!.address != null) {
+                  final address = state.reportGeneraInfo!.data!.address;
+                  detailsList = [
+                    "City:${address!.city}",
+                    "District:${address.district}",
+                    "State:${address.state}",
+                    "Street:${address.street}",
+                    "Zipcode:${address.zipCode}",
+                  ];
+                }
                 return Container(
                   margin: const EdgeInsets.all(20).copyWith(bottom: 0),
                   decoration: ShapeDecoration(
@@ -27,40 +38,38 @@ class PatientDetailsWidget extends StatelessWidget {
                   ),
                   padding: const EdgeInsets.all(20),
                   child: Column(
-                    children: [
-                      const ActiveAvatar(
-                        isActive: false,
-                        imageUrl:
-                            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        state.reportGeneraInfo!.data!.username ?? "No Name",
-                        style: Theme.of(context).textTheme.headlineMedium,
-                      ),
-                      SizedBox(
-                        height: 40,
-                        child: Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: List.generate(
-                                3,
-                                (index) => richText(
-                                    context,
-                                    "Age-",
-                                    state.reportGeneraInfo!.data!.dob ??
-                                        "No Age")),
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Center(
+                          child: ActiveAvatar(
+                              isActive: false,
+                              imageUrl: state.reportGeneraInfo!.data!
+                                      .profileImagelink ??
+                                  ""),
+                        ),
+                        const SizedBox(height: 15),
+                        Center(
+                          child: Text(
+                            state.reportGeneraInfo!.data!.name ?? "No Name",
+                            style: Theme.of(context).textTheme.headlineMedium,
                           ),
                         ),
-                      ),
-                      richText(context, "Address - ",
-                          state.reportGeneraInfo!.data!.address ?? "No Adress"),
-                      const SizedBox(height: 20),
-                      richText(context, "Case history",
-                          "\n \nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis pharetra suspendisse nisl, et interdum. Morbi fames et justo, mauris, et, scelerisque in aenean odio. Sed egestas quis pellentesque consectetur leo, proin est, pellentesque lorem. In facilisis suspendisse asellus integer varius lectus iaculis dignissim.  ")
-                    ],
-                  ),
+                        Text("Address",
+                            style: Theme.of(context).textTheme.headlineMedium),
+                        const SizedBox(height: 10), ...List.generate(
+                          detailsList.length,
+                          (index) {
+                            final detail = detailsList[index].split(":");
+                            final key = detail[0].trim();
+                            final value = detail[1].trim();
+
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 5),
+                              child: richText(context, "$key : ", value),
+                            );
+                          },
+                        ),
+                      ]),
                 );
               }
               if (state.isGenaralInfoLoading) {
@@ -79,6 +88,7 @@ class PatientDetailsWidget extends StatelessWidget {
               );
             },
           ),
+          const SizedBox(height: 15),
           const HealthInfoWidget(),
         ],
       ),

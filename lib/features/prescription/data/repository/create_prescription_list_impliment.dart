@@ -33,7 +33,7 @@ class CreatePrescriptionListRepoImpliment
       log(payload.toJson().toString());
 
       final response = await Dio(BaseOptions()).post(
-        ApiEndPoints.createPrescription,
+        V2.prescription,
         options: Options(headers: headers,   validateStatus: (_) => true,),
         data: payload.toJson(),
       );

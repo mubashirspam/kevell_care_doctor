@@ -26,7 +26,7 @@ class DeleteScheduleRepoImpliment implements DeleteScheduleRepository {
       };
 
       final response = await Dio(BaseOptions()).delete(
-        ApiEndPoints.deleteSchedule, options: Options(headers: headers),
+     V2.schedule,options: Options(headers: headers),
         data: {"id": id},
       );
 

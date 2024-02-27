@@ -7,7 +7,6 @@ import 'package:dr_kevell/core/helper/toast.dart';
 import 'package:dr_kevell/core/helper/validater.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:dr_kevell/pages/initialize/initialize.dart';
-import 'package:dr_kevell/features/signup/presentation/pages/lsignup_screen.dart';
 
 import '../../../settings/value/constant.dart';
 import '../../../settings/value/secure_storage.dart';
@@ -28,7 +27,7 @@ class _LoginWidgetState extends State<LoginWidget> {
   TextEditingController emailController =
       TextEditingController(text: "test@gmail.com");
   TextEditingController passwordController =
-      TextEditingController(text: "sachin@12");
+      TextEditingController(text: "abcd123");
 
   //       TextEditingController emailController =
   //     TextEditingController();
@@ -150,14 +149,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                   if (state.loginDetails!.data!.first.token != null &&
                       state.loginDetails!.data!.first.emailId != null &&
                       state.loginDetails!.data!.first.id != null) {
+                    addToSS(
+                        isVeryfiedKey,
+                        state.loginDetails!.data!.first.doctorApproved
+                            .toString());
 
-
-                    // addToSS(
-                    //     isVeryfiedKey,
-                    //     state.loginDetails!.data!.first.doctorApproved
-                    //         .toString());
-
-                    addToSS(isVeryfiedKey, "true");
+   
 
                     addToSS(mailsecureStoreKey,
                         state.loginDetails!.data!.first.emailId!);
@@ -169,6 +166,15 @@ class _LoginWidgetState extends State<LoginWidget> {
                         secureStoreKey, state.loginDetails!.data!.first.token!);
 
                     addToSS(nameKey, state.loginDetails!.data!.first.name!);
+
+                    // addToSS(mailsecureStoreKey, "test@gmail.com");
+
+                    // addToSS(drIdsecureStoreKey, "1045");
+
+                    // addTokenToSS(secureStoreKey,
+                    //     " eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEwNDUsImlhdCI6MTcwNDcxNDI1MiwiZXhwIjoxNzA0NzMyMjUyfQ.W-8TYt7WmDpHRL5DRpvy3fTvMxxIYOL1apkq2f6PV7w");
+
+                    // addToSS(nameKey, "Mubashir");
 
                     Toast.showToast(
                       context: context,

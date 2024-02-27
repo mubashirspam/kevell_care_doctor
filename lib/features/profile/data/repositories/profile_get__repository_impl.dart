@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -43,7 +42,7 @@ class GetProfileRepoImpliment implements GetProfileRepository {
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = ProfileModel.fromJson(response.data);
-        log("Profile : ${result.toJson().toString()}");
+        // log("Profile : ${result.toJson().toString()}");
         return Right(result);
       } else if (response.statusCode == 400 || response.statusCode == 401) {
         final result = FailureModel.fromJson(response.data);

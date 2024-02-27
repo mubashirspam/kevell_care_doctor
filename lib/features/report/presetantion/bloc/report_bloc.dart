@@ -93,7 +93,7 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
 ReportModel filterDataByDateRange(
     ReportModel reportData, DateTime startDateTime, DateTime endDateTime) {
   List<Datum> filteredData = reportData.data!.where((datum) {
-    DateTime appointmentDate = datum.appointmentdate!;
+    DateTime appointmentDate = datum.appointmentDate!;
     return appointmentDate.isAfterOrEquals(startDateTime) &&
         appointmentDate.isBeforeOrEquals(endDateTime);
   }).toList();
@@ -102,7 +102,7 @@ ReportModel filterDataByDateRange(
     responseCode: reportData.responseCode,
     status: reportData.status,
     message: reportData.message,
-    startdate: reportData.startdate,
+    // startdate: reportData.startdate,
     data: filteredData,
   );
 }

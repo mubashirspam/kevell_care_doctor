@@ -24,8 +24,8 @@ class EditScheduleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<ScheduleBloc>().add(ScheduleEvent.pickTime(
-            endTime: schedule.endtime!,
-            startTime: schedule.starttime!,
+            endTime: DateTime.parse(schedule.endTime!),
+            startTime:DateTime.parse( schedule.startTime!),
           ));
     });
 

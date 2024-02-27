@@ -28,13 +28,12 @@ class GetPrescriptionListRepoImpliment
         'Content-Type': 'application/json',
       };
 
-      final response = await Dio(BaseOptions()).get(
-          ApiEndPoints.getPrescription,
+      final response = await Dio(BaseOptions()).get(V2.prescription,
           options: Options(
             headers: headers,
             validateStatus: (_) => true,
           ),
-          data: {"doctorID": int.parse(id!), "appointmentID": appointmentId});
+          data: {"doctor_id": int.parse(id!), "appointment_id": appointmentId});
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = PrescriptionModel.fromJson(response.data);
@@ -59,9 +58,8 @@ class GetPrescriptionListRepoImpliment
         }
       }
       // final result = PrescriptionModel.fromJson(dummyJson);
-   
+
       return const Left(MainFailure.clientFailure());
     }
   }
 }
-

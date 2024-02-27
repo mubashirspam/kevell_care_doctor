@@ -98,7 +98,7 @@ class AppoinmentsEndReportScrenn extends StatelessWidget {
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 5),
                                 child: text(context, "Symptoms - ",
-                                    "${datas.userdoctorcommand}"),
+                                    "${datas.userDoctorcommand}"),
                               ),
                               text(
                                   context,
@@ -106,7 +106,7 @@ class AppoinmentsEndReportScrenn extends StatelessWidget {
 
                                   // "${dateFormatToYYYYMMddWithDay(datas.appointmentdate!)}  \n${extractTime(datas.appointmentstarttime!)}  to ${extractTime(datas.appointmentendtime!)} "
 
-                                  "${extractTime(datas.appointmentstarttime!)}  to ${extractTime(datas.appointmentendtime!)} "),
+                                  "${extractTime(datas.appointmentStarttime!)}  to ${extractTime(datas.appointmentEndtime!)} "),
                             ],
                           )
                         ],
@@ -204,7 +204,7 @@ class AppoinmentsEndReportScrenn extends StatelessWidget {
                                       CreatePrescriptionScreen.routeName,
                                       arguments: {
                                         "appointmentID": datas.id,
-                                        "doctorID": datas.doctorid,
+                                        "doctorID": datas.doctorId,
                                         "patientID": datas.patientId
                                       });
                                 },
@@ -322,7 +322,7 @@ class ResultCard extends StatelessWidget {
 class BpCard extends StatelessWidget {
   final String parameter;
   final Bp? bp;
-  final BpinfoData? value;
+  final BpInfoData? value;
   const BpCard({
     required this.parameter,
     this.value,

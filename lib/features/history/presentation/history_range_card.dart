@@ -25,8 +25,10 @@ class HistoryRangeCard extends StatelessWidget {
                       endDate: DateTime.now(),
                       startDate: state.patientListResult!.data == null
                           ? DateTime.now()
-                          : state.patientListResult!.data!.startDate!,
+                          : state.patientListResult!.data!.patients!.first.appointmentDate!,
                     ));
+
+                    // need start date
 
                 context.read<HistoryBloc>().add(
                     HistoryEvent.gePatientHistoryList(
@@ -34,7 +36,7 @@ class HistoryRangeCard extends StatelessWidget {
                         toDate: dateFormatToYYYYMMdd(state.endDate)));
               },
               count:
-                  "${state.patientListResult == null ? 0 : state.patientListResult!.data!.allcount ?? 0}",
+                  "${state.patientListResult == null ? 0 : state.patientListResult!.data!.allCount ?? 0}",
               name: "All",
             ),
           ),
@@ -55,7 +57,7 @@ class HistoryRangeCard extends StatelessWidget {
                         toDate: dateFormatToYYYYMMdd(state.endDate)));
               },
               count:
-                  "${state.patientListResult == null ? 0 : state.patientListResult!.data!.todaycount ?? 0}",
+                  "${state.patientListResult == null ? 0 : state.patientListResult!.data!.todayCount ?? 0}",
               name: "Today",
             ),
           ),
@@ -78,7 +80,7 @@ class HistoryRangeCard extends StatelessWidget {
                         toDate: dateFormatToYYYYMMdd(state.endDate)));
               },
               count:
-                  "${state.patientListResult == null ? 0 : state.patientListResult!.data!.weekcount ?? 0}",
+                  "${state.patientListResult == null ? 0 : state.patientListResult!.data!.weekCount ?? 0}",
               name: "Last week",
             ),
           ),
@@ -103,7 +105,7 @@ class HistoryRangeCard extends StatelessWidget {
                     );
               },
               count:
-                  "${state.patientListResult == null ? 0 : state.patientListResult!.data!.monthcount ?? 0}",
+                  "${state.patientListResult == null ? 0 : state.patientListResult!.data!.monthCount ?? 0}",
               name: "Current month",
             ),
           ),

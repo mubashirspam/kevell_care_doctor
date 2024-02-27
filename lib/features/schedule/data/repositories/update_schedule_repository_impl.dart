@@ -20,20 +20,17 @@ class UpdateScheduleRepoImpliment implements UpdateScheduleRepository {
   Future<Either<MainFailure, UpdateScheduleModel>> updateSchedule({
     required UpdateSchedulePayload schedulePayload,
   }) async {
- 
     try {
       final token = await getTokenFromSS(secureStoreKey);
-   
 
       final headers = {
         'Authorization': 'Bearer $token',
         'Content-Type': 'application/json',
       };
 
-
       final response = await Dio(BaseOptions()).put(
-        ApiEndPoints.updateSchedule,
-           options: Options(headers: headers),
+        V2.schedule,
+        options: Options(headers: headers),
         data: schedulePayload.toJson(),
       );
 

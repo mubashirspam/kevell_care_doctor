@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:dr_kevell/features/forgot_password_screen/presentation/bloc/forgot_password_bloc.dart';
+
 import 'package:dr_kevell/firebase_options.dart';
 import 'package:dr_kevell/pages/initialize/initialize.dart';
 import 'package:dr_kevell/settings/value/secure_storage.dart';
@@ -25,10 +26,10 @@ import 'features/schedule/presentation/bloc/schedule_bloc.dart';
 import 'features/checkup/presentation/bloc/checkup_bloc.dart';
 import 'features/login/presentation/bloc/login_bloc.dart';
 import 'features/profile/presentation/bloc/profile_bloc.dart';
-import 'features/schedule/presentation/pages/schedule_screen.dart';
 import 'features/signup/presentation/bloc/signup_bloc.dart';
 import 'features/chat/presentation/bloc/chat_bloc.dart';
 import 'features/history/presentation/bloc/history_bloc.dart';
+
 import 'pages/initialize/bloc/initialize_bloc.dart';
 import 'settings/route/routes.dart';
 import 'settings/value/constant.dart';
@@ -89,6 +90,15 @@ class MyApp extends StatelessWidget {
         navigatorKey: navigatorKey,
         routes: route,
         home: const Initialize(),
+        // home: PatientCheckupScreen(
+        //     checkupDetalis: WaitingPatient(
+        //   patientId: 1003,
+        //   doctorId: 1045,
+        //   appointmentId: 1099,
+        //   name: "Mubashir",
+        //   profileImagelink:
+        //       "https://images.unsplash.com/photo-1575936123452-b67c3203c357?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        // )),
 
         // home: const CreatePrescriptionScreen(
         //     checkupDetalis: {"appointmentID": 1289, "doctorID": 1045}),

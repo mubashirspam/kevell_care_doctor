@@ -14,7 +14,7 @@ class CreatePrescriptionPayload {
   int? appointmentId;
   String? remark;
   List<Prescription>? prescription;
-
+  int? patientId;
 
   void updatePrescription(int index, Prescription updatedPrescription) {
     if (prescription != null && index >= 0 && index < prescription!.length) {
@@ -37,19 +37,16 @@ class CreatePrescriptionPayload {
     this.appointmentId,
     this.remark,
     this.prescription,
+    this.patientId
   });
 
   Map<String, dynamic> toJson() => {
-        "doctorID": doctorId,
-        "appointmentID": appointmentId,
-        "remark": remark,
-        "prescription": prescription == null
-            ? []
-            : List<dynamic>.from(prescription!.map((x) => x.toJson())),
-      };
+        "doctor_id": doctorId,
+        "appointment_id": appointmentId,
+        "patient_id": patientId,
+        "prescription": prescription == null ? [] : List<dynamic>.from(prescription!.map((x) => x.toJson())),
+    };
 }
-
-
 
 class Timeoftheday {
   String? morning;
@@ -98,5 +95,3 @@ class Tobetaken {
         "value": value,
       };
 }
-
-

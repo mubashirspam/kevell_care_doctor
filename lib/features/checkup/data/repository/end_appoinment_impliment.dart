@@ -22,21 +22,22 @@ class EndAppoinmentRepoImpliment implements EndAppoinmentRepository {
     try {
       final token = await getTokenFromSS(secureStoreKey);
 
-
       final headers = {
         'Authorization': 'Bearer $token',
         'Content-Type': 'application/json',
       };
 
       final response = await Dio(BaseOptions()).post(
-        ApiEndPoints.endAppoinment,
+        V2.endAppoinment,
         options: Options(headers: headers),
-        data: {"patient_id": patientId, "Appoinment_id": appoinmentId},
+        data: {
+          "patient_id": int.parse(patientId),
+          "appoinment_id": int.parse(appoinmentId)
+        },
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = EndAppoinmentModel.fromJson(response.data);
-        log(result.toJson().toString());
 
         return Right(result);
       } else if (response.statusCode == 400 || response.statusCode == 401) {

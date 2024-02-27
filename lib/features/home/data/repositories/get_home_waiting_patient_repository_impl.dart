@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dr_kevell/features/home/data/models/waiting_patient_model.dart';
+import '../../../../settings/api/endpoints.dart';
 import '../../../../settings/value/constant.dart';
 import '../../../../settings/value/secure_storage.dart';
 import '../../../../core/failiar/failiur_model.dart';
@@ -29,17 +30,18 @@ class UpdateProfileRepoImpliment implements GetWaitingPatientRepository {
         'Content-Type': 'application/json',
       };
 
-      log("todayWaitingHallPatientsdetails api calling...........");
+      // log("todayWaitingHallPatientsdetails api calling...........");
 
-      final response = await Dio().post(
-          "https://kevelldigital.com/register/api/todayWaitingHallPatientsdetails",
-          options: Options(
-            headers: headers,
-            validateStatus: (_) => true,
-          ),
-          data: {"doctorId": int.parse("$id")});
+      final response = await Dio().get(
+        "$baseUrl/v2/doctors/today-appointment-details?doctor_id=$id",
+        options: Options(
+          headers: headers,
+          validateStatus: (_) => true,
+        ),
+        // data: {"doctorId": int.parse("$id")}
+      );
 
-      log("todayWaitingHallPatientsdetails : ${response.data}");
+      // log("todayWaitingHallPatientsdetails : ${response.data}");
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = HomeWaitingPatientModel.fromJson(response.data);

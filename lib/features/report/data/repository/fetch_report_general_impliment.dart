@@ -4,10 +4,10 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:dr_kevell/features/report/data/model/report_general_info_model.dart';
 import 'package:injectable/injectable.dart';
-import 'package:dr_kevell/settings/api/endpoints.dart';
 
 import '../../../../core/failiar/failiur_model.dart';
 import '../../../../core/failiar/main_failures.dart';
+import '../../../../settings/api/endpoints.dart';
 import '../../../../settings/value/constant.dart';
 import '../../../../settings/value/secure_storage.dart';
 import '../../domain/repositories/fetch_report_general_repository.dart';
@@ -21,7 +21,6 @@ class FetchReportGeneraInfoRepoImpliment
   }) async {
     try {
       final token = await getTokenFromSS(secureStoreKey);
-    
 
       final headers = {
         'Authorization': 'Bearer $token',
@@ -29,9 +28,10 @@ class FetchReportGeneraInfoRepoImpliment
       };
 
       final response = await Dio(BaseOptions()).post(
-        ApiEndPoints.patientreportgeneralinfo,
+
+V2.generalReport,
         options: Options(headers: headers),
-        data: {'patientId': id},
+        data: {'patient_id': id},
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {

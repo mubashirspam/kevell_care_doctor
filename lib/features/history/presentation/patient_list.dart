@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dr_kevell/core/helper/date.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -61,19 +63,25 @@ class PatientList extends StatelessWidget {
         }
 
         if (state.hasPatientListData) {
-          if (state.patientListResult!.data!.patients!.isEmpty) {
-            return Container(
-              height: 200,
-              width: 200,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: NetworkImage(
-                          "https://static.vecteezy.com/system/resources/thumbnails/005/006/031/small/no-result-data-document-or-file-not-found-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-etc-vector.jpg"))),
-              child: const Text(
-                "No Appoiment Found",
+          if (state.patientListResult!.data!.patients == null ||
+              state.patientListResult!.data!.patients!.isEmpty) {
+                  log("isEmpty");
+            return Center(
+              child: Container(
+                height: 200,
+                width: 200,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            "https://static.vecteezy.com/system/resources/thumbnails/005/006/031/small/no-result-data-document-or-file-not-found-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-etc-vector.jpg"))),
+                child: const Text(
+                  "No Appoiment Found",
+                ),
               ),
             );
           } else {
+
+            log("called");
             final List<Patient>? list = state.patientListResult!.data!.patients;
             return SizedBox(
               child: Column(
@@ -85,7 +93,7 @@ class PatientList extends StatelessWidget {
                         "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
                     patientName: list[index].name ?? "No name",
                     purpose:
-                        "${extractTime(list[index].appointmentstarttime!)} TO ${extractTime(list[index].appointmentendtime!)}",
+                        "${extractTime(list[index].appointmentStarttime!)} TO ${extractTime(list[index].appointmentEndtime!)}",
                     onPressed: () => Navigator.of(context)
                         .pushNamed(PersonHistroyScreen.routeName, arguments: {
                       "id": list[index].patientId,

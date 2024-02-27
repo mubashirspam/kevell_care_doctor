@@ -46,12 +46,12 @@ class HistoryRangeSelector extends StatelessWidget {
             listener: (context, state) {},
             builder: (context, state) {
               if (state.hasPatientListData) {
-                log("ffff ;;  ${state.patientListResult!.data!.startDate}");
+                log("ffff ;;  ${state.patientListResult!.data!.patients!.first.appointmentDate}");
                 return SizedBox(
                   child: Row(
                     children: [
                       DateField(
-                        firstDate: state.patientListResult!.data!.startDate!,
+                        firstDate: state.patientListResult!.data!.patients!.first.appointmentDate!,
                         selectedTime: state.startDate,
                         onDateTimeChanged: (v) {
                           context.read<HistoryBloc>().add(HistoryEvent.pickDate(
@@ -73,7 +73,7 @@ class HistoryRangeSelector extends StatelessWidget {
                       ),
                       const SizedBox(width: 10),
                       DateField(
-                        firstDate: state.patientListResult!.data!.startDate!,
+                        firstDate: state.patientListResult!.data!.patients!.first.appointmentDate!,
                         selectedTime: state.endDate,
                         onDateTimeChanged: (v) {
                           context.read<HistoryBloc>().add(HistoryEvent.pickDate(

@@ -1,7 +1,5 @@
 
 
-import '../../../report/data/model/report_model.dart';
-import 'prescription_model.dart';
 
 class PrescriptionPdfModel {
   int? doctorId;

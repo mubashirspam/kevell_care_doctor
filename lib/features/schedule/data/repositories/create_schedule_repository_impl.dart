@@ -18,10 +18,10 @@ class CreateScheduleRepoImpliment implements CreateScheduleRepository {
   Future<Either<MainFailure, CreateScheduleModel>> createSchedule({
     required SchedulePayload schedulePayload,
   }) async {
-    // if (await networkInfo.isConnected) {
+   
     try {
       final token = await getTokenFromSS(secureStoreKey);
-      // final id = await getTokenFromSS(drIdsecureStoreKey);
+      
 
       final headers = {
         'Authorization': 'Bearer $token',
@@ -31,7 +31,7 @@ class CreateScheduleRepoImpliment implements CreateScheduleRepository {
       log("payload : ${schedulePayload.toJson()}");
 
       final response = await Dio(BaseOptions()).post(
-        ApiEndPoints.createSchedule,
+        V2.schedule,
         options: Options(headers: headers),
         data: schedulePayload.toJson(),
       );

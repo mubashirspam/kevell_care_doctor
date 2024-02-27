@@ -30,6 +30,7 @@ class ActiveAvatar extends StatelessWidget {
             borderRadius: BorderRadius.circular(100),
             child: CachedNetworkImage(
               imageUrl: imageUrl,
+              fit: BoxFit.cover,
               placeholder: (context, url) => Shimmer.fromColors(
                   baseColor: context.theme.secondary!,
                   highlightColor: Colors.white,

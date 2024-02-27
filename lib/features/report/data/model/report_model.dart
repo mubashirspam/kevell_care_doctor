@@ -1,30 +1,16 @@
-// To parse this JSON data, do
-//
-//     final reportModel = reportModelFromJson(jsonString);
-
-import 'dart:convert';
-
-
-
-ReportModel reportModelFromJson(String str) =>
-    ReportModel.fromJson(json.decode(str));
-
-
-
 class ReportModel {
   int? responseCode;
   bool? status;
   String? message;
-  DateTime? startdate;
   List<Datum>? data;
+  DateTime? startdate;
 
-  ReportModel({
-    this.responseCode,
-    this.status,
-    this.message,
-    this.startdate,
-    this.data,
-  });
+  ReportModel(
+      {this.responseCode,
+      this.status,
+      this.message,
+      this.data,
+      this.startdate});
 
   factory ReportModel.fromJson(Map<String, dynamic> json) => ReportModel(
         responseCode: json["responseCode"],
@@ -37,296 +23,177 @@ class ReportModel {
             ? []
             : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
       );
-
-  
 }
 
 class Datum {
   int? id;
   int? patientId;
-  String? patientid;
+  int? scheduleId;
+  String? patientPid;
   String? patientname;
-  String? reasonformeetingdoctor;
-  DateTime? appointmentstarttime;
-  DateTime? appointmentendtime;
-  int? doctornameid;
+  String? patientMail;
+  String? patientMobile;
+  DateTime? appointmentStarttime;
+  DateTime? appointmentEndtime;
+  int? doctorId;
   String? doctorname;
-  DateTime? appointmentdate;
-  List<dynamic>? preexistingdisease;
+  String? doctorImage;
+  DateTime? appointmentDate;
+  List<dynamic>? preexistingDisease;
   bool? isvisited;
-  bool? isTimeup; // Corrected field name
+  bool? isTimeup;
   String? date;
-  int? userdoctorrating;
-  String? userdoctorcommand;
-  String? patientpdflink;
+  int? userDoctorrating;
+  String? userDoctorcommand;
+  String? patientPdflink;
+  EcgInfo? ecgInfo;
+
+  List<ReportPrescription>? prescription;
+  bool? notifyStatus;
+  bool? isCancelled;
+  bool? isDeleted;
+  int? apptToken;
+  String? bookingStatus;
   DateTime? createdAt;
   DateTime? updatedAt;
-  int? sno;
   int? v;
-  Temperatureinfo? temperatureinfo;
+  int? sno;
+  Info? temperatureInfo;
   DateTime? isvisiteddate;
   SpO2Info? spO2Info;
-  Bpinfo? bpinfo;
-  List<Info>? ecginfo;
-  List<Info>? gsrinfo;
-  List<ReportPrescription>? prescription;
-  Bodyfatinfo? hwinfo;
-  Bodyfatinfo? bodyfatinfo;
-  Bodyfatinfo? glucometerinfo;
-  List<dynamic>? emginfo;
-  Bodyfatinfo? stestoscopeinfo;
-  Bodyfatinfo? otoscopeinfo1;
-  Bodyfatinfo? otoscopeinfo2;
-  Bodyfatinfo? otoscopeinfo3;
-  Bodyfatinfo? otoscopeinfo4;
-  Bodyfatinfo? otoscopeinfo5;
-  Bodyfatinfo? otoscopeinfo6;
-  Bodyfatinfo? otoscopeinfo7;
-  Bodyfatinfo? otoscopeinfo8;
-  Bodyfatinfo? otoscopeinfo9;
-  Bodyfatinfo? otoscopeinfo10;
-
-  // Rest of the class remains unchanged...
+  BpInfo? bpInfo;
+  Info? glucometerInfo;
+  Patient? patient;
+  Doctor? doctor;
+  String? hospitalname;
+  String? remark;
 
 
   Datum({
     this.id,
     this.patientId,
-    this.patientid,
+    this.scheduleId,
+    this.patientPid,
     this.patientname,
-    this.reasonformeetingdoctor,
-    this.appointmentstarttime,
-    this.appointmentendtime,
-    this.doctornameid,
+    this.patientMail,
+    this.patientMobile,
+    this.appointmentStarttime,
+    this.appointmentEndtime,
+    this.doctorId,
     this.doctorname,
-    this.appointmentdate,
-    this.preexistingdisease,
+    this.doctorImage,
+    this.appointmentDate,
+    this.preexistingDisease,
     this.isvisited,
     this.isTimeup,
     this.date,
-    this.userdoctorrating,
-    this.userdoctorcommand,
-    this.patientpdflink,
+    this.userDoctorrating,
+    this.userDoctorcommand,
+    this.patientPdflink,
+    this.ecgInfo,
+    this.prescription,
+    this.notifyStatus,
+    this.isCancelled,
+    this.isDeleted,
+    this.apptToken,
+    this.bookingStatus,
     this.createdAt,
     this.updatedAt,
-    this.sno,
     this.v,
-    this.temperatureinfo,
+    this.sno,
+    this.temperatureInfo,
     this.isvisiteddate,
     this.spO2Info,
-    this.bpinfo,
-    this.ecginfo,
-    this.gsrinfo,
-    this.prescription,
-    this.hwinfo,
-    this.bodyfatinfo,
-    this.glucometerinfo,
-    this.emginfo,
-    this.stestoscopeinfo,
-    this.otoscopeinfo1,
-    this.otoscopeinfo2,
-    this.otoscopeinfo3,
-    this.otoscopeinfo4,
-    this.otoscopeinfo5,
-    this.otoscopeinfo6,
-    this.otoscopeinfo7,
-    this.otoscopeinfo8,
-    this.otoscopeinfo9,
-    this.otoscopeinfo10,
+    this.bpInfo,
+    this.glucometerInfo,
+    this.patient,
+    this.doctor,
+    this.hospitalname,
+    this.remark,
+
   });
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json["_id"],
-        patientId: json["patientId"],
-        patientid: json["patientid"],
+        patientId: json["patient_id"],
+        scheduleId: json["schedule_id"],
+        patientPid: json["patient_pid"],
         patientname: json["patientname"],
-        reasonformeetingdoctor: json["Reasonformeetingdoctor"],
-        appointmentstarttime: json["appointmentstarttime"] == null
+        patientMail: json["patient_mail"],
+        patientMobile: json["patient_mobile"],
+        appointmentStarttime: json["appointment_starttime"] == null
             ? null
-            : DateTime.parse(json["appointmentstarttime"]),
-        appointmentendtime: json["appointmentendtime"] == null
+            : DateTime.parse(json["appointment_starttime"]),
+        appointmentEndtime: json["appointment_endtime"] == null
             ? null
-            : DateTime.parse(json["appointmentendtime"]),
-        doctornameid: json["doctornameid"],
+            : DateTime.parse(json["appointment_endtime"]),
+        doctorId: json["doctor_id"],
         doctorname: json["doctorname"],
-        appointmentdate: json["appointmentdate"] == null
+        doctorImage: json["doctor_image"],
+        appointmentDate: json["appointment_date"] == null
             ? null
-            : DateTime.parse(json["appointmentdate"]),
-        preexistingdisease: json["preexistingdisease"] == null
+            : DateTime.parse(json["appointment_date"]),
+        preexistingDisease: json["preexisting_disease"] == null
             ? []
-            : List<dynamic>.from(json["preexistingdisease"]!.map((x) => x)),
+            : List<dynamic>.from(json["preexisting_disease"]!.map((x) => x)),
         isvisited: json["isvisited"],
         isTimeup: json["is_timeup"],
         date: json["date"],
-        userdoctorrating: json["userdoctorrating"],
-        userdoctorcommand: json["userdoctorcommand"],
-        patientpdflink: json["patientpdflink"],
+        userDoctorrating: json["user_doctorrating"],
+        userDoctorcommand: json["user_doctorcommand"],
+        patientPdflink: json["patient_pdflink"],
+        ecgInfo: json["ecg_info"] == null ||
+                json["ecg_info"] == [] ||
+                json["ecg_info"] is List
+            ? null
+            : EcgInfo.fromJson(json["ecg_info"]),
+        prescription: json["prescription"] == null
+            ? []
+            : List<ReportPrescription>.from(json["prescription"]!
+                .map((x) => ReportPrescription.fromJson(x))),
+        notifyStatus: json["notify_status"],
+        isCancelled: json["is_cancelled"],
+        isDeleted: json["is_deleted"],
+        apptToken: json["appt_token"],
+        bookingStatus: json["booking_status"],
         createdAt: json["createdAt"] == null
             ? null
             : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null
             ? null
             : DateTime.parse(json["updatedAt"]),
-        sno: json["sno"],
         v: json["__v"],
-        temperatureinfo: json["temperatureinfo"] == null
+        sno: json["sno"],
+        temperatureInfo: json["temperature_info"] == null
             ? null
-            : Temperatureinfo.fromJson(json["temperatureinfo"]),
+            : Info.fromJson(json["temperature_info"]),
         isvisiteddate: json["isvisiteddate"] == null
             ? null
             : DateTime.parse(json["isvisiteddate"]),
-        spO2Info: json["spO2info"] == null
+        spO2Info: json["spO2_info"] == null
             ? null
-            : SpO2Info.fromJson(json["spO2info"]),
-        bpinfo: json["bpinfo"] == null ? null : Bpinfo.fromJson(json["bpinfo"]),
-        ecginfo: json["ecginfo"] == null
-            ? []
-            : List<Info>.from(json["ecginfo"]!.map((x) => Info.fromJson(x))),
-        gsrinfo: json["gsrinfo"] == null
-            ? []
-            : List<Info>.from(json["gsrinfo"]!.map((x) => Info.fromJson(x))),
-        prescription: json["prescription"] == null
-            ? []
-            : List<ReportPrescription>.from(
-                json["prescription"]!.map((x) => ReportPrescription.fromJson(x))),
-        hwinfo: json["hwinfo"] == null
+            : SpO2Info.fromJson(json["spO2_info"]),
+        bpInfo:
+            json["bp_info"] == null ? null : BpInfo.fromJson(json["bp_info"]),
+        glucometerInfo: json["glucometer_info"] == null
             ? null
-            : Bodyfatinfo.fromJson(json["hwinfo"]),
-        bodyfatinfo: json["bodyfatinfo"] == null
-            ? null
-            : Bodyfatinfo.fromJson(json["bodyfatinfo"]),
-        glucometerinfo: json["glucometerinfo"] == null
-            ? null
-            : Bodyfatinfo.fromJson(json["glucometerinfo"]),
-        emginfo: json["emginfo"] == null
-            ? []
-            : List<dynamic>.from(json["emginfo"]!.map((x) => x)),
-        stestoscopeinfo: json["stestoscopeinfo"] == null
-            ? null
-            : Bodyfatinfo.fromJson(json["stestoscopeinfo"]),
-        otoscopeinfo1: json["otoscopeinfo1"] == null
-            ? null
-            : Bodyfatinfo.fromJson(json["otoscopeinfo1"]),
-        otoscopeinfo2: json["otoscopeinfo2"] == null
-            ? null
-            : Bodyfatinfo.fromJson(json["otoscopeinfo2"]),
-        otoscopeinfo3: json["otoscopeinfo3"] == null
-            ? null
-            : Bodyfatinfo.fromJson(json["otoscopeinfo3"]),
-        otoscopeinfo4: json["otoscopeinfo4"] == null
-            ? null
-            : Bodyfatinfo.fromJson(json["otoscopeinfo4"]),
-        otoscopeinfo5: json["otoscopeinfo5"] == null
-            ? null
-            : Bodyfatinfo.fromJson(json["otoscopeinfo5"]),
-        otoscopeinfo6: json["otoscopeinfo6"] == null
-            ? null
-            : Bodyfatinfo.fromJson(json["otoscopeinfo6"]),
-        otoscopeinfo7: json["otoscopeinfo7"] == null
-            ? null
-            : Bodyfatinfo.fromJson(json["otoscopeinfo7"]),
-        otoscopeinfo8: json["otoscopeinfo8"] == null
-            ? null
-            : Bodyfatinfo.fromJson(json["otoscopeinfo8"]),
-        otoscopeinfo9: json["otoscopeinfo9"] == null
-            ? null
-            : Bodyfatinfo.fromJson(json["otoscopeinfo9"]),
-        otoscopeinfo10: json["otoscopeinfo10"] == null
-            ? null
-            : Bodyfatinfo.fromJson(json["otoscopeinfo10"]),
+            : Info.fromJson(json["glucometer_info"]),
+        patient:
+            json["patient"] == null ? null : Patient.fromJson(json["patient"]),
+        doctor: json["doctor"] == null ? null : Doctor.fromJson(json["doctor"]),
+        hospitalname: json["hospitalname"],
+        remark: json["remark"],
+       
       );
-
-  
-}
-class ReportPrescription {
-    String? name;
-    String? type;
-    String? duration;
-    Timeoftheday? timeoftheday;
-    List<Tobetaken>? tobetaken;
-
-    ReportPrescription({
-        this.name,
-        this.type,
-        this.duration,
-        this.timeoftheday,
-        this.tobetaken,
-    });
-
-    factory ReportPrescription.fromJson(Map<String, dynamic> json) => ReportPrescription(
-        name: json["name"],
-        type: json["type"],
-        duration: json["duration"],
-        timeoftheday: json["timeoftheday"] == null ? null : Timeoftheday.fromJson(json["timeoftheday"]),
-        tobetaken: json["tobetaken"] == null ? [] : List<Tobetaken>.from(json["tobetaken"]!.map((x) => Tobetaken.fromJson(x))),
-    );
-
-    Map<String, dynamic> toJson() => {
-        "name": name,
-        "type": type,
-        "duration": duration,
-        "timeoftheday": timeoftheday?.toJson(),
-        "tobetaken": tobetaken == null ? [] : List<dynamic>.from(tobetaken!.map((x) => x.toJson())),
-    };
 }
 
-class Timeoftheday {
-    String? morning;
-    String? evening;
-    String? noon;
-    String? night;
+class BodyfatInfo {
+  BodyfatInfo();
 
-    Timeoftheday({
-        this.morning,
-        this.evening,
-        this.noon,
-        this.night,
-    });
-
-    factory Timeoftheday.fromJson(Map<String, dynamic> json) => Timeoftheday(
-        morning: json["morning"],
-        evening: json["evening"],
-        noon: json["noon"],
-        night: json["night"],
-    );
-
-    Map<String, dynamic> toJson() => {
-        "morning": morning,
-        "evening": evening,
-        "noon": noon,
-        "night": night,
-    };
+  factory BodyfatInfo.fromJson(Map<String, dynamic> json) => BodyfatInfo();
 }
 
-class Tobetaken {
-    String? name;
-    bool? value;
-
-    Tobetaken({
-        this.name,
-        this.value,
-    });
-
-    factory Tobetaken.fromJson(Map<String, dynamic> json) => Tobetaken(
-        name: json["name"],
-        value: json["value"],
-    );
-
-    Map<String, dynamic> toJson() => {
-        "name": name,
-        "value": value,
-    };
-}
-
-class Bodyfatinfo {
-  Bodyfatinfo();
-
-  factory Bodyfatinfo.fromJson(Map<String, dynamic> json) => Bodyfatinfo();
-
-  Map<String, dynamic> toJson() => {};
-}
-
-class Bpinfo {
+class BpInfo {
   String? id;
   String? patientId;
   String? appointmentId;
@@ -335,9 +202,9 @@ class Bpinfo {
   String? state;
   DateTime? date;
   String? number;
-  BpinfoData? data;
+  BpInfoData? data;
 
-  Bpinfo({
+  BpInfo({
     this.id,
     this.patientId,
     this.appointmentId,
@@ -349,121 +216,345 @@ class Bpinfo {
     this.data,
   });
 
-  factory Bpinfo.fromJson(Map<String, dynamic> json) => Bpinfo(
+  factory BpInfo.fromJson(Map<String, dynamic> json) => BpInfo(
         id: json["id"],
-        patientId: json["patientID"],
-        appointmentId: json["appointmentID"],
-        doctorId: json["doctorID"],
+        patientId: json["patient_id"],
+        appointmentId: json["appointment_id"],
+        doctorId: json["doctor_id"],
         type: json["type"],
         state: json["state"],
         date: json["date"] == null ? null : DateTime.parse(json["date"]),
         number: json["number"],
-        data: json["data"] == null ? null : BpinfoData.fromJson(json["data"]),
+        data: json["data"] == null ? null : BpInfoData.fromJson(json["data"]),
       );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "patientID": patientId,
-        "appointmentID": appointmentId,
-        "doctorID": doctorId,
-        "type": type,
-        "state": state,
-        "date": date?.toIso8601String(),
-        "number": number,
-        "data": data?.toJson(),
-      };
 }
 
-class BpinfoData {
+class BpInfoData {
   String? type;
+  String? battery;
   String? bpsysValue;
   String? bpDiaValue;
   String? bpPulseValue;
+  bool? bpIrregular;
+  bool? bpRest;
+  bool? bpAfib;
+  DateTime? timeRecord;
 
-  BpinfoData({
+  BpInfoData({
     this.type,
+    this.battery,
     this.bpsysValue,
     this.bpDiaValue,
     this.bpPulseValue,
+    this.bpIrregular,
+    this.bpRest,
+    this.bpAfib,
+    this.timeRecord,
   });
 
-  factory BpinfoData.fromJson(Map<String, dynamic> json) => BpinfoData(
+  factory BpInfoData.fromJson(Map<String, dynamic> json) => BpInfoData(
         type: json["type"],
+        battery: json["battery"],
         bpsysValue: json["BpsysValue"],
         bpDiaValue: json["BpDiaValue"],
         bpPulseValue: json["BpPulseValue"],
+        bpIrregular: json["bpIrregular"],
+        bpRest: json["BpRest"],
+        bpAfib: json["BpAfib"],
+        timeRecord: json["time_record"] == null
+            ? null
+            : DateTime.parse(json["time_record"]),
       );
-
-  Map<String, dynamic> toJson() => {
-        "type": type,
-        "BpsysValue": bpsysValue,
-        "BpDiaValue": bpDiaValue,
-        "BpPulseValue": bpPulseValue,
-      };
 }
 
-class Info {
-  EcginfoData? data;
-  String? id;
-  int? patientId;
-  int? appointmentId;
-  int? doctorId;
-  dynamic state;
-  int? number;
+class Doctor {
+  int? id;
+  String? emailId;
+  String? mobileNo;
+  DateTime? dob;
+  Address? address;
+  String? specialist;
+  String? location;
+  String? profileImagelink;
+  String? signatureImage;
 
-  Info({
-    this.data,
+  Doctor({
+    this.id,
+    this.emailId,
+    this.mobileNo,
+    this.dob,
+    this.address,
+    this.specialist,
+    this.location,
+    this.profileImagelink,
+    this.signatureImage,
+  });
+
+  factory Doctor.fromJson(Map<String, dynamic> json) => Doctor(
+        id: json["_id"],
+        emailId: json["email_id"],
+        mobileNo: json["mobile_no"],
+        dob: json["dob"] == null ? null : DateTime.parse(json["dob"]),
+        address:
+            json["address"] == null ? null : Address.fromJson(json["address"]),
+        specialist: json["specialist"],
+        location: json["location"],
+        profileImagelink: json["profile_imagelink"],
+        signatureImage: json["signature_image"],
+      );
+}
+
+class Address {
+  String? street;
+  String? city;
+  String? state;
+  String? district;
+  String? zipcode;
+
+  Address({
+    this.street,
+    this.city,
+    this.state,
+    this.district,
+    this.zipcode,
+  });
+
+  factory Address.fromJson(Map<String, dynamic> json) => Address(
+        street: json["street"],
+        city: json["city"],
+        state: json["state"],
+        district: json["district"],
+        zipcode: json["zipcode"],
+      );
+}
+
+class EcgInfo {
+  String? id;
+  String? patientId;
+  String? appointmentId;
+  String? doctorId;
+  String? type;
+  String? state;
+  DateTime? date;
+  String? number;
+  EcgInfoData? data;
+
+  EcgInfo({
     this.id,
     this.patientId,
     this.appointmentId,
     this.doctorId,
+    this.type,
     this.state,
+    this.date,
     this.number,
+    this.data,
+  });
+
+  factory EcgInfo.fromJson(Map<String, dynamic> json) => EcgInfo(
+        id: json["id"],
+        patientId: json["patient_id"],
+        appointmentId: json["appointment_id"],
+        doctorId: json["doctor_id"],
+        type: json["type"],
+        state: json["state"],
+        date: json["date"] == null ? null : DateTime.parse(json["date"]),
+        number: json["number"],
+        data: json["data"] == null ? null : EcgInfoData.fromJson(json["data"]),
+      );
+}
+
+class EcgInfoData {
+  String? type;
+  String? battery;
+  String? content;
+  String? time;
+  int? dataLen;
+  double? timeInterval;
+  String? pulse;
+  String? rr;
+  String? status;
+  String? timeRecord;
+
+  EcgInfoData({
+    this.type,
+    this.battery,
+    this.content,
+    this.time,
+    this.dataLen,
+    this.timeInterval,
+    this.pulse,
+    this.rr,
+    this.status,
+    this.timeRecord,
+  });
+
+  factory EcgInfoData.fromJson(Map<String, dynamic> json) => EcgInfoData(
+        type: json["type"],
+        battery: json["battery"],
+        content: json["content"],
+        time: json["time"],
+        dataLen: json["data_len"],
+        timeInterval: json["time_interval"]?.toDouble(),
+        pulse: json["pulse"],
+        rr: json["rr"],
+        status: json["status"],
+        timeRecord: json["time_record"],
+      );
+}
+
+class Info {
+  String? id;
+  String? patientId;
+  String? appointmentId;
+  String? doctorId;
+  String? type;
+  String? state;
+  DateTime? date;
+  String? number;
+  GlucometerInfoData? data;
+
+  Info({
+    this.id,
+    this.patientId,
+    this.appointmentId,
+    this.doctorId,
+    this.type,
+    this.state,
+    this.date,
+    this.number,
+    this.data,
   });
 
   factory Info.fromJson(Map<String, dynamic> json) => Info(
-        data: json["data"] == null ? null : EcginfoData.fromJson(json["data"]),
         id: json["id"],
-        patientId: json["patientID"],
-        appointmentId: json["appointmentID"],
-        doctorId: json["doctorID"],
+        patientId: json["patient_id"],
+        appointmentId: json["appointment_id"],
+        doctorId: json["doctor_id"],
+        type: json["type"],
         state: json["state"],
+        date: json["date"] == null ? null : DateTime.parse(json["date"]),
         number: json["number"],
+        data: json["data"] == null
+            ? null
+            : GlucometerInfoData.fromJson(json["data"]),
       );
-
-  Map<String, dynamic> toJson() => {
-        "data": data?.toJson(),
-        "id": id,
-        "patientID": patientId,
-        "appointmentID": appointmentId,
-        "doctorID": doctorId,
-        "state": state,
-        "number": number,
-      };
 }
 
-class EcginfoData {
-  String? content;
+class GlucometerInfoData {
   String? type;
+  String? content;
+  String? status;
 
-  EcginfoData({
-    this.content,
+  GlucometerInfoData({
     this.type,
+    this.content,
+    this.status,
   });
 
-  factory EcginfoData.fromJson(Map<String, dynamic> json) => EcginfoData(
-        content: json["content"],
+  factory GlucometerInfoData.fromJson(Map<String, dynamic> json) =>
+      GlucometerInfoData(
         type: json["type"],
+        content: json["content"],
+        status: json["status"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "content": content,
-        "type": type,
-      };
 }
 
+class Patient {
+  int? id;
+  String? profileImagelink;
+  String? name;
+  String? mobileNo;
+  String? gender;
+  DateTime? dob;
 
+  Patient({
+    this.id,
+    this.profileImagelink,
+    this.name,
+    this.mobileNo,
+    this.gender,
+    this.dob,
+  });
 
+  factory Patient.fromJson(Map<String, dynamic> json) => Patient(
+        id: json["_id"],
+        profileImagelink: json["profile_imagelink"],
+        name: json["name"],
+        mobileNo: json["mobile_no"],
+        gender: json["gender"],
+        dob: json["dob"] == null ? null : DateTime.parse(json["dob"]),
+      );
+}
+
+class ReportPrescription {
+  String? name;
+  String? type;
+  String? duration;
+  Timeoftheday? timeoftheday;
+  List<Tobetaken>? tobetaken;
+  dynamic remarks;
+
+  ReportPrescription({
+    this.name,
+    this.type,
+    this.duration,
+    this.timeoftheday,
+    this.tobetaken,
+    this.remarks,
+  });
+
+  factory ReportPrescription.fromJson(Map<String, dynamic> json) =>
+      ReportPrescription(
+        name: json["name"],
+        type: json["type"],
+        duration: json["duration"],
+        timeoftheday: json["timeoftheday"] == null
+            ? null
+            : Timeoftheday.fromJson(json["timeoftheday"]),
+        tobetaken: json["tobetaken"] == null
+            ? []
+            : List<Tobetaken>.from(
+                json["tobetaken"]!.map((x) => Tobetaken.fromJson(x))),
+        remarks: json["remarks"],
+      );
+}
+
+class Timeoftheday {
+  String? morning;
+  String? evening;
+  String? noon;
+  String? night;
+
+  Timeoftheday({
+    this.morning,
+    this.evening,
+    this.noon,
+    this.night,
+  });
+
+  factory Timeoftheday.fromJson(Map<String, dynamic> json) => Timeoftheday(
+        morning: json["morning"],
+        evening: json["evening"],
+        noon: json["noon"],
+        night: json["night"],
+      );
+}
+
+class Tobetaken {
+  String? name;
+  bool? value;
+
+  Tobetaken({
+    this.name,
+    this.value,
+  });
+
+  factory Tobetaken.fromJson(Map<String, dynamic> json) => Tobetaken(
+        name: json["name"],
+        value: json["value"],
+      );
+}
 
 class SpO2Info {
   String? id;
@@ -490,27 +581,15 @@ class SpO2Info {
 
   factory SpO2Info.fromJson(Map<String, dynamic> json) => SpO2Info(
         id: json["id"],
-        patientId: json["patientID"],
-        appointmentId: json["appointmentID"],
-        doctorId: json["doctorID"],
+        patientId: json["patient_id"],
+        appointmentId: json["appointment_id"],
+        doctorId: json["doctor_id"],
         type: json["type"],
         state: json["state"],
         date: json["date"] == null ? null : DateTime.parse(json["date"]),
         number: json["number"],
         data: json["data"] == null ? null : SpO2InfoData.fromJson(json["data"]),
       );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "patientID": patientId,
-        "appointmentID": appointmentId,
-        "doctorID": doctorId,
-        "type": type,
-        "state": state,
-        "date": date?.toIso8601String(),
-        "number": number,
-        "data": data?.toJson(),
-      };
 }
 
 class SpO2InfoData {
@@ -518,12 +597,14 @@ class SpO2InfoData {
   String? content;
   String? spo2;
   String? heartRate;
+  String? status;
 
   SpO2InfoData({
     this.type,
     this.content,
     this.spo2,
     this.heartRate,
+    this.status,
   });
 
   factory SpO2InfoData.fromJson(Map<String, dynamic> json) => SpO2InfoData(
@@ -531,61 +612,6 @@ class SpO2InfoData {
         content: json["content"],
         spo2: json["spo2"],
         heartRate: json["heart_rate"],
+        status: json["status"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "type": type,
-        "content": content,
-        "spo2": spo2,
-        "heart_rate": heartRate,
-      };
-}
-
-class Temperatureinfo {
-  String? id;
-  String? patientId;
-  String? appointmentId;
-  String? doctorId;
-  String? type;
-  String? state;
-  DateTime? date;
-  String? number;
-  EcginfoData? data;
-
-  Temperatureinfo({
-    this.id,
-    this.patientId,
-    this.appointmentId,
-    this.doctorId,
-    this.type,
-    this.state,
-    this.date,
-    this.number,
-    this.data,
-  });
-
-  factory Temperatureinfo.fromJson(Map<String, dynamic> json) =>
-      Temperatureinfo(
-        id: json["id"],
-        patientId: json["patientID"],
-        appointmentId: json["appointmentID"],
-        doctorId: json["doctorID"],
-        type: json["type"],
-        state: json["state"],
-        date: json["date"] == null ? null : DateTime.parse(json["date"]),
-        number: json["number"],
-        data: json["data"] == null ? null : EcginfoData.fromJson(json["data"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "patientID": patientId,
-        "appointmentID": appointmentId,
-        "doctorID": doctorId,
-        "type": type,
-        "state": state,
-        "date": date?.toIso8601String(),
-        "number": number,
-        "data": data?.toJson(),
-      };
 }

@@ -11,7 +11,6 @@ import 'package:dr_kevell/features/schedule/presentation/widgets/range_time.dart
 import 'package:dr_kevell/features/widgets/buttons/text_button_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
-
 import '../../../settings/value/constant.dart';
 import '../../../settings/value/secure_storage.dart';
 import '../../../core/helper/date.dart';
@@ -33,7 +32,7 @@ class ScheduleYourTimeWidget extends StatelessWidget {
             builder: (context, state) {
               return RangeCalnderWidget(
                 onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
-                  log(args.value.toString());
+                  // log(args.value.toString());
 
                   if (args.value is PickerDateRange) {
                     final DateTime? startDate =
@@ -172,19 +171,16 @@ class ScheduleYourTimeWidget extends StatelessWidget {
                                 context.read<ScheduleBloc>().add(
                                       ScheduleEvent.createSchedule(
                                         schedulePayload: SchedulePayload(
-                                            dailylimitcount: state
+                                            dailyLimitCount: state
                                                 .numberOfPatient
                                                 .toString(),
-                                            startingDate: dateFormatToYYYYMMdd(
-                                                state.startDate),
-                                            starttime: state.startTime
-                                                .toIso8601String(),
-                                            endingDate: dateFormatToYYYYMMdd(
-                                                state.endDate),
-                                            endtime:
-                                                state.endTime.toIso8601String(),
+                                            startDate: state.startDate,
+                                            endDate: state.endDate,
+                                            startTime: state.startTime,
+                                            endTime: state.endTime,
                                             doctorId: id,
-                                            timeperPatient:
+                                            amount: "100",
+                                            timePerPatient:
                                                 state.timeForSinglePatient,
                                             type: "patient_consult"),
                                       ),

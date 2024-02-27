@@ -1,4 +1,4 @@
-import 'package:dr_kevell/features/profile/presentation/view_my_profile.dart';
+// import 'package:dr_kevell/features/profile/presentation/view_my_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dr_kevell/features/widgets/loading_widget.dart';
@@ -7,6 +7,7 @@ import 'package:dr_kevell/pages/initialize/bloc/initialize_bloc.dart';
 import 'package:dr_kevell/features/login/presentation/pages/login_screen.dart';
 
 import '../../features/dashborad/presentation/widgets/bottom_navigation.dart';
+import '../../features/profile/presentation/pages/profile_screen.dart';
 
 class Initialize extends StatelessWidget {
   const Initialize({super.key});
@@ -29,12 +30,7 @@ class Initialize extends StatelessWidget {
           if (state.isVerified) {
             return const Dashboard();
           }
-          return const Scaffold(
-              body: SafeArea(
-                  child: Padding(
-            padding: EdgeInsets.all(20),
-            child: ViewMyProfile(notverified: true),
-          )));
+          return const Scaffold(body: SafeArea(child: ProfileScreen()));
         } else if (!state.isToken) {
           selectedIndexNorifier.value == 0;
           return const LoginScreen();

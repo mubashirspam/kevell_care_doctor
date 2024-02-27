@@ -1,12 +1,30 @@
 import '../value/constant.dart';
 
+const baseUrl = "https://kevelldigital.com"; //development
+// const baseUrl = "https://8c05-183-82-33-226.ngrok-free.app"; //developmen
+
 class V2 {
   // AUTH & USER
+
   static const register = "$baseUrl/$service/register";
-
   static const login = "$baseUrl/$service/login";
-
   static const fetchProfile = "$baseUrl/$service/users/details";
+
+  // SCHEDULE
+
+  static const schedule = "$baseUrl/$service/schedule";
+
+  static const endAppoinment = "$baseUrl/$service/finished-appoinment";
+  static const prescription = "$baseUrl/$service/medicinedata";
+
+  static const history = "$baseUrl/$service/visited-patient-reportdata";
+
+  static const report = "$baseUrl/$service/view-patient-report";
+  static const generalReport = "$baseUrl/$service/patient-report-general-info";
+    static const chat = "$baseUrl/videochat/chat/api/getallusers";
+
+
+
 }
 
 class ApiEndPoints {
@@ -24,13 +42,7 @@ class ApiEndPoints {
   static const String homeWaitingPatient =
       "$baseUrl/register/api/todayWaitingHallPatientsdetails";
 
-  static const String patientHistoryList =
-      "$baseUrl/appointment/api/VisitedPatientReportdata";
 
-  static const String getPrescription = "$baseUrl/users/api/medicinedata";
-
-  static const String createPrescription =
-      "$baseUrl/users/api/saveAndupdatemedicinedata";
 
   static const String updatePrescription =
       "$baseUrl/users/api/saveAndupdatemedicinedata";
@@ -41,30 +53,12 @@ class ApiEndPoints {
   static const String deletePrescription =
       "$baseUrl/users/api/deletemedicinedata";
 
-  static const String getSchedule = "$baseUrl/doctor/api/getdoctorschedule";
 
-  static const String createSchedule =
-      "$baseUrl/doctor/api/createdoctorschedule";
 
-  static const String updateSchedule =
-      "$baseUrl/doctor/api/updatedoctorSchedule";
-
-  static const String deleteSchedule =
-      "$baseUrl/doctor/api/deletedoctorschedule";
-
-  static const String patientreportgeneralinfo =
-      "$baseUrl/doctor/api/patientreportgeneralinfo";
-
-  static const String patientreport =
-      "$baseUrl/doctor/api/ViewPatientReport_new";
-
-  static const String endAppoinment = "$baseUrl/doctor/api/Finishtheappoinment";
   static const websocketUrl =
       "https://kevelldigital.com/videochat?type=videocall&callerId=";
 
   static const chatWebsocketUrl =
       "https://kevelldigital.com/videochat?type=chat";
 
-  static const String fetchChatProfile =
-      "https://kevelldigital.com/videochat/chat/api/getallusers";
 }

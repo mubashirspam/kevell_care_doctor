@@ -40,14 +40,14 @@ class Data {
     int? id;
     int? patientId;
     String? patientname;
-    DateTime? appointmentstarttime;
-    DateTime? appointmentendtime;
-    int? doctorid;
+    DateTime? appointmentStarttime;
+    DateTime? appointmentEndtime;
+    int? doctorId;
     String? doctorname;
-    DateTime? appointmentdate;
+    DateTime? appointmentDate;
     String? date;
-    String? userdoctorcommand;
-    int? userdoctorrating;
+    String? userDoctorcommand;
+    int? userDoctorrating;
     DateTime? createdAt;
     DateTime? updatedAt;
     int? sno;
@@ -61,14 +61,14 @@ class Data {
         this.id,
         this.patientId,
         this.patientname,
-        this.appointmentstarttime,
-        this.appointmentendtime,
-        this.doctorid,
+        this.appointmentStarttime,
+        this.appointmentEndtime,
+        this.doctorId,
         this.doctorname,
-        this.appointmentdate,
+        this.appointmentDate,
         this.date,
-        this.userdoctorcommand,
-        this.userdoctorrating,
+        this.userDoctorcommand,
+        this.userDoctorrating,
         this.createdAt,
         this.updatedAt,
         this.sno,
@@ -81,16 +81,16 @@ class Data {
 
     factory Data.fromJson(Map<String, dynamic> json) => Data(
         id: json["_id"],
-        patientId: json["patientId"],
+        patientId: json["patient_id"],
         patientname: json["patientname"],
-        appointmentstarttime: json["appointmentstarttime"] == null ? null : DateTime.parse(json["appointmentstarttime"]),
-        appointmentendtime: json["appointmentendtime"] == null ? null : DateTime.parse(json["appointmentendtime"]),
-        doctorid: json["doctorid"],
+        appointmentStarttime: json["appointment_starttime"] == null ? null : DateTime.parse(json["appointment_starttime"]),
+        appointmentEndtime: json["appointment_endtime"] == null ? null : DateTime.parse(json["appointment_endtime"]),
+        doctorId: json["doctor_id"],
         doctorname: json["doctorname"],
-        appointmentdate: json["appointmentdate"] == null ? null : DateTime.parse(json["appointmentdate"]),
+        appointmentDate: json["appointment_date"] == null ? null : DateTime.parse(json["appointment_date"]),
         date: json["date"],
-        userdoctorcommand: json["userdoctorcommand"],
-        userdoctorrating: json["userdoctorrating"],
+        userDoctorcommand: json["user_doctorcommand"],
+        userDoctorrating: json["user_doctorrating"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         sno: json["sno"],
@@ -103,16 +103,16 @@ class Data {
 
     Map<String, dynamic> toJson() => {
         "_id": id,
-        "patientId": patientId,
+        "patient_id": patientId,
         "patientname": patientname,
-        "appointmentstarttime": appointmentstarttime?.toIso8601String(),
-        "appointmentendtime": appointmentendtime?.toIso8601String(),
-        "doctorid": doctorid,
+        "appointment_starttime": appointmentStarttime?.toIso8601String(),
+        "appointment_endtime": appointmentEndtime?.toIso8601String(),
+        "doctor_id": doctorId,
         "doctorname": doctorname,
-        "appointmentdate": "${appointmentdate!.year.toString().padLeft(4, '0')}-${appointmentdate!.month.toString().padLeft(2, '0')}-${appointmentdate!.day.toString().padLeft(2, '0')}",
+        "appointment_date": "${appointmentDate!.year.toString().padLeft(4, '0')}-${appointmentDate!.month.toString().padLeft(2, '0')}-${appointmentDate!.day.toString().padLeft(2, '0')}",
         "date": date,
-        "userdoctorcommand": userdoctorcommand,
-        "userdoctorrating": userdoctorrating,
+        "user_doctorcommand": userDoctorcommand,
+        "user_doctorrating": userDoctorrating,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
         "sno": sno,
@@ -128,8 +128,8 @@ class CheckupResult {
     String? bodyTemp;
     String? spO2;
     String? heartRate;
-    String? glucose;
     Bp? bp;
+    String? glucose;
     String? ecg;
 
     CheckupResult({
@@ -137,8 +137,8 @@ class CheckupResult {
         this.spO2,
         this.heartRate,
         this.bp,
-        this.ecg,
         this.glucose,
+        this.ecg,
     });
 
     factory CheckupResult.fromJson(Map<String, dynamic> json) => CheckupResult(
@@ -146,8 +146,8 @@ class CheckupResult {
         spO2: json["SpO2"],
         heartRate: json["Heart_Rate"],
         bp: json["Bp"] == null ? null : Bp.fromJson(json["Bp"]),
-        ecg: json["ECG"],
         glucose: json["Glucose"],
+        ecg: json["ECG"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -155,34 +155,55 @@ class CheckupResult {
         "SpO2": spO2,
         "Heart_Rate": heartRate,
         "Bp": bp?.toJson(),
+        "Glucose": glucose,
         "ECG": ecg,
     };
 }
 
 class Bp {
     String? type;
+    String? battery;
     String? bpsysValue;
     String? bpDiaValue;
     String? bpPulseValue;
+    bool? bpIrregular;
+    bool? bpRest;
+    bool? bpAfib;
+    DateTime? timeRecord;
 
     Bp({
         this.type,
+        this.battery,
         this.bpsysValue,
         this.bpDiaValue,
         this.bpPulseValue,
+        this.bpIrregular,
+        this.bpRest,
+        this.bpAfib,
+        this.timeRecord,
     });
 
     factory Bp.fromJson(Map<String, dynamic> json) => Bp(
         type: json["type"],
+        battery: json["battery"],
         bpsysValue: json["BpsysValue"],
         bpDiaValue: json["BpDiaValue"],
         bpPulseValue: json["BpPulseValue"],
+        bpIrregular: json["bpIrregular"],
+        bpRest: json["BpRest"],
+        bpAfib: json["BpAfib"],
+        timeRecord: json["time_record"] == null ? null : DateTime.parse(json["time_record"]),
     );
 
     Map<String, dynamic> toJson() => {
         "type": type,
+        "battery": battery,
         "BpsysValue": bpsysValue,
         "BpDiaValue": bpDiaValue,
         "BpPulseValue": bpPulseValue,
+        "bpIrregular": bpIrregular,
+        "BpRest": bpRest,
+        "BpAfib": bpAfib,
+        "time_record": timeRecord?.toIso8601String(),
     };
 }

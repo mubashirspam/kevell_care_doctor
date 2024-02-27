@@ -17,10 +17,16 @@ import '../../data/model/report_model.dart';
 
 class PrescriptionReportsCard extends StatelessWidget {
   final List<ReportPrescription> data;
+  final Doctor doctorData;
+    final   Patient patientData;
+   final DateTime apppoinmetDate;
 
   const PrescriptionReportsCard({
     super.key,
     required this.data,
+    required this.doctorData,
+    required this.apppoinmetDate,
+    required this.patientData
   });
 
   @override
@@ -82,7 +88,7 @@ class PrescriptionReportsCard extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) =>
-                      CreatePrescriptionScreen(checkupDetalis: {}),
+                      const CreatePrescriptionScreen(checkupDetalis: {}),
                 ),
               );
             }
@@ -128,6 +134,9 @@ class PrescriptionReportsCard extends StatelessWidget {
                           onPressed: () {
                             context.read<PrecriptionBloc>().add(
                                   PrecriptionEvent.genaratePdf(
+                                    doctorData: doctorData,
+                                    apppoinmetDate:apppoinmetDate ,
+                                    patientData: patientData,
                                       action: PdfActions.view, data: data),
                                 );
                           },
@@ -147,6 +156,10 @@ class PrescriptionReportsCard extends StatelessWidget {
                             onPressed: () {
                               context.read<PrecriptionBloc>().add(
                                     PrecriptionEvent.genaratePdf(
+                                      doctorData: doctorData,
+                                       apppoinmetDate:apppoinmetDate ,
+                                    patientData: patientData,
+                             
                                         action: PdfActions.download,
                                         data: data),
                                   );
@@ -165,6 +178,9 @@ class PrescriptionReportsCard extends StatelessWidget {
                           onPressed: () {
                             context.read<PrecriptionBloc>().add(
                                   PrecriptionEvent.genaratePdf(
+                                    doctorData: doctorData,
+                                     apppoinmetDate:apppoinmetDate ,
+                                    patientData: patientData,
                                       action: PdfActions.share, data: data),
                                 );
                           },

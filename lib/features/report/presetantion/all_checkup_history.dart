@@ -186,14 +186,14 @@ class ReportItem extends StatelessWidget {
           TextSpan(
             children: [
               TextSpan(
-                text: dateFormatToYYYYMMddWithDay(data.appointmentdate!),
+                text: dateFormatToYYYYMMddWithDay(data.appointmentDate!),
                 style: Theme.of(context).textTheme.titleLarge!.copyWith(
                       color: context.theme.textPrimary,
                     ),
               ),
               TextSpan(
                 text:
-                    "   ${extractTime(data.appointmentstarttime!)} - ${extractTime(data.appointmentendtime!)}",
+                    "   ${extractTime(data.appointmentStarttime!)} - ${extractTime(data.appointmentEndtime!)}",
                 style: Theme.of(context).textTheme.titleMedium,
               ),
             ],

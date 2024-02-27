@@ -1,5 +1,4 @@
-
-
+import 'package:dr_kevell/core/helper/date.dart';
 import 'package:dr_kevell/core/helper/toast.dart';
 import 'package:dr_kevell/core/them/custom_theme_extension.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,10 +7,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dr_kevell/features/signup/presentation/bloc/signup_bloc.dart';
 import 'package:dr_kevell/features/widgets/input_field/input_field_widget.dart';
 
+import '../../../core/helper/date_formater.dart';
+import '../../../core/helper/date_validater.dart';
 import '../../../core/helper/validater.dart';
 import '../../login/presentation/pages/login_screen.dart';
 import '../../widgets/buttons/text_button_widget.dart';
 
+import '../../widgets/calender/calnder.dart';
 import '../domain/entities/signup_payload.dart';
 
 class SignUpWidget extends StatefulWidget {
@@ -30,8 +32,17 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController mobileController = TextEditingController();
   TextEditingController registerIdController = TextEditingController();
-  TextEditingController addressController = TextEditingController();
+
+  TextEditingController dobController = TextEditingController();
+
+  TextEditingController streetController = TextEditingController();
+  TextEditingController cityController = TextEditingController();
+  TextEditingController stateController = TextEditingController();
+  TextEditingController districtController = TextEditingController();
+  TextEditingController zipController = TextEditingController();
+
   String selectedLocation = "Please select location";
+  DateTime selectedDob = DateTime.now();
   String selectedSpecialist = "Please select specialization";
 
   List<String> locations = [
@@ -74,6 +85,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
     "Cuddalore",
     "Virudhunagar",
   ];
+  String? selectedGender = '';
 
   List<String> specialists = [
     "Dentist",
@@ -131,6 +143,19 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   //       );
   // }
 
+  // int calculateAge(DateTime birthDate) {
+  //   DateTime currentDate = DateTime.now();
+  //   int age = currentDate.year - birthDate.year;
+
+  //   if (currentDate.month < birthDate.month ||
+  //       (currentDate.month == birthDate.month &&
+  //           currentDate.day < birthDate.day)) {
+  //     age--;
+  //   }
+
+  //   return age;
+  // }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -171,37 +196,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 return null; // Return null if validation succeeds
               },
             ),
-            const SizedBox(height: 20),
-            Text("Registration id",
-                style: Theme.of(context).textTheme.titleLarge),
-            const SizedBox(height: 10),
-            TextFieldWidget(
-              textEditingController: registerIdController,
-              onChanged: (value) {},
-              hintText: "registration id",
-              keyboardType: TextInputType.name,
-              validate: (number) {
-                if (number == null || number.isEmpty) {
-                  return "Please enter an Registration id";
-                }
-                return null; // Return null if validation succeeds
-              },
-            ),
-            const SizedBox(height: 20),
-            Text("Adress", style: Theme.of(context).textTheme.titleLarge),
-            const SizedBox(height: 10),
-            TextFieldWidget(
-              textEditingController: addressController,
-              onChanged: (value) {},
-              hintText: "Adress",
-              keyboardType: TextInputType.name,
-              validate: (number) {
-                if (number == null || number.isEmpty) {
-                  return "Please enter an Adress";
-                }
-                return null; // Return null if validation succeeds
-              },
-            ),
             const SizedBox(height: 10),
             Text("Mobile", style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(height: 10),
@@ -219,6 +213,172 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 return null; // Return null if validation succeeds
               },
             ),
+            const SizedBox(height: 20),
+            Text("Registration id",
+                style: Theme.of(context).textTheme.titleLarge),
+            const SizedBox(height: 10),
+            TextFieldWidget(
+              textEditingController: registerIdController,
+              onChanged: (value) {},
+              hintText: "registration id",
+              keyboardType: TextInputType.name,
+              validate: (number) {
+                if (number == null || number.isEmpty) {
+                  return "Please enter an Registration id";
+                }
+                return null; // Return null if validation succeeds
+              },
+            ),
+            const SizedBox(height: 10),
+            Text("Date of Birth",
+                style: Theme.of(context).textTheme.titleLarge),
+            const SizedBox(height: 10),
+            TextFieldWidget(
+              textEditingController: dobController,
+              readOnly: true,
+              hintText: "12/12/2023",
+              inputFormatters: [DateInputFormatter()],
+              validate: DateValidator.validateDate,
+              keyboardType: TextInputType.datetime,
+              suffixIcon: GestureDetector(
+                onTap: () => showDialog(
+                    context: context,
+                    builder: (context) => CustomDatePickerDialog(
+                          initialDate:
+                              DateTime.now().subtract(const Duration(days: 18 * 365)),
+                          firstDate: DateTime(1920, 9, 7, 17, 30),
+                          lastDate:
+                              DateTime.now().subtract(const Duration(days: 18 * 365)),
+                          onDateTimeChanged: (onDateTimeChanged) {
+                            setState(() {
+                              selectedDob = onDateTimeChanged;
+                              dobController = TextEditingController(
+                                  text:
+                                      dateFormatToddmmyyyy(onDateTimeChanged));
+                              Navigator.of(context).pop();
+                            });
+
+                            // Navigator.of(context).pop();
+                          },
+                        )),
+                child: Icon(
+                  Icons.calendar_month,
+                  color: context.theme.primary,
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            Text("Gender", style: Theme.of(context).textTheme.titleLarge),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Radio(
+                  value: 'male',
+                  activeColor: context.theme.primary,
+                  groupValue: selectedGender,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedGender = value;
+                    });
+                  },
+                ),
+                Text(
+                  'Male',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                const SizedBox(width: 20), // Adjust the spacing between radio buttons
+                Radio(
+                  value: 'female',
+                  groupValue: selectedGender,
+                  activeColor: context.theme.primary,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedGender = value;
+                    });
+                  },
+                ),
+                Text(
+                  'Female',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Text("Street", style: Theme.of(context).textTheme.titleLarge),
+            const SizedBox(height: 10),
+            TextFieldWidget(
+              textEditingController: streetController,
+              onChanged: (value) {},
+              hintText: "Street",
+              keyboardType: TextInputType.name,
+              validate: (number) {
+                if (number == null || number.isEmpty) {
+                  return "Please enter an Street";
+                }
+                return null; // Return null if validation succeeds
+              },
+            ),
+            const SizedBox(height: 10),
+            Text("City", style: Theme.of(context).textTheme.titleLarge),
+            const SizedBox(height: 10),
+            TextFieldWidget(
+              textEditingController: cityController,
+              onChanged: (value) {},
+              hintText: "City",
+              keyboardType: TextInputType.name,
+              validate: (number) {
+                if (number == null || number.isEmpty) {
+                  return "Please enter an City";
+                }
+                return null; // Return null if validation succeeds
+              },
+            ),
+            const SizedBox(height: 10),
+            Text("State", style: Theme.of(context).textTheme.titleLarge),
+            const SizedBox(height: 10),
+            TextFieldWidget(
+              textEditingController: stateController,
+              onChanged: (value) {},
+              hintText: "State",
+              keyboardType: TextInputType.name,
+              validate: (number) {
+                if (number == null || number.isEmpty) {
+                  return "Please enter an State";
+                }
+                return null; // Return null if validation succeeds
+              },
+            ),
+            const SizedBox(height: 10),
+            Text("District", style: Theme.of(context).textTheme.titleLarge),
+            const SizedBox(height: 10),
+            TextFieldWidget(
+              textEditingController: districtController,
+              onChanged: (value) {},
+              hintText: "District",
+              keyboardType: TextInputType.name,
+              validate: (number) {
+                if (number == null || number.isEmpty) {
+                  return "Please enter an District";
+                }
+                return null; // Return null if validation succeeds
+              },
+            ),
+            const SizedBox(height: 10),
+            Text("Zip Code", style: Theme.of(context).textTheme.titleLarge),
+            const SizedBox(height: 10),
+            TextFieldWidget(
+              textEditingController: zipController,
+              onChanged: (value) {},
+              hintText: "Zip Code",
+              keyboardType: TextInputType.number,
+              validate: (number) {
+                if (number == null || number.isEmpty) {
+                  return "Please enter an zipcode";
+                }
+                return null; // Return null if validation succeeds
+              },
+            ),
             const SizedBox(height: 10),
             Text("Select place", style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(height: 10),
@@ -231,7 +391,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       color: context.theme.inputFiled),
-                  padding: EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -254,7 +414,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       color: context.theme.inputFiled),
-                  padding: EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -379,9 +539,16 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         context.read<SignupBloc>().add(
                               SignupEvent.signup(
                                 payload: SingupPayload(
-                                  // address: addressController.value.text,
-                                  dob: DateTime.now(),
+                                  dob: selectedDob,
                                   emailId: emailController.value.text,
+                                  address: Address(
+                                    city: cityController.value.text,
+                                    district: districtController.value.text,
+                                    state: stateController.value.text,
+                                    street: streetController.value.text,
+                                    zipcode: zipController.value.text,
+                                  ),
+                                  gender: selectedGender,
                                   location: selectedLocation,
                                   mobileNo: mobileController.value.text,
                                   password:

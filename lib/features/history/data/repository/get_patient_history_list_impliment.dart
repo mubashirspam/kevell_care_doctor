@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:dr_kevell/settings/api/endpoints.dart';
 import 'package:dr_kevell/features/history/data/model/history_patient_list_model.dart';
 
+import '../../../../settings/api/endpoints.dart';
 import '../../../../settings/value/constant.dart';
 import '../../../../settings/value/secure_storage.dart';
 
@@ -23,6 +23,7 @@ class GetPatientHistoryListRepoImpliment
   }) async {
     try {
       final token = await getTokenFromSS(secureStoreKey);
+
       final id = await getTokenFromSS(drIdsecureStoreKey);
 
       final headers = {
@@ -31,12 +32,12 @@ class GetPatientHistoryListRepoImpliment
       };
 
       final response = await Dio(BaseOptions()).post(
-        ApiEndPoints.patientHistoryList,
+        V2.history,
         options: Options(headers: headers),
         data: {
-          'doctorid': int.parse(id.toString()),
-          "fromdate": fromDate,
-          "todate": toDate,
+          'doctor_id': int.parse(id.toString()),
+          "from_date": fromDate,
+          "to_date": toDate
         },
       );
 
@@ -64,12 +65,14 @@ class GetPatientHistoryListRepoImpliment
         case 502:
           final result = FailureModel.fromJson(response.data);
           return Left(
-            MainFailure.serverFailure(message: result.message ?? "Internal Server Error"),
+            MainFailure.serverFailure(
+                message: result.message ?? "Internal Server Error"),
           );
         case 503:
           final result = FailureModel.fromJson(response.data);
           return Left(
-            MainFailure.serviceUnavailable(message: result.message ?? "Service Unavailable"),
+            MainFailure.serviceUnavailable(
+                message: result.message ?? "Service Unavailable"),
           );
         default:
           final result = FailureModel.fromJson(response.data);
